@@ -1,0 +1,270 @@
+<html>
+<head>
+  <title>CURIO New Map Gallery</title>
+  <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<!-- Libraries-->
+    <!-- Load Leaflet from -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
+    <script src="./js/leaflet.js"></script>
+    <!-- Load Esri Leaflet -->
+    <script src="./js/esri-leaflet.js"></script>
+	<!-- Load jquery -->
+    <script src="./js/jquery-2.1.1.min.js"></script>  
+	
+	<!-- Load Bootstrap -->
+	<script src="./js/bootstrap.min.js"></script>
+	
+	<!-- Sortable -->
+	<script src="./js/Sortable.min.js"></script>
+	
+	<!-- rangeslider -->
+	<script src="./js/rangeslider.min.js"></script>
+		
+	<!-- Load css-->
+	<link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+	<link rel="stylesheet" href="./css/bootleaf.css">
+    <!-- already added to <style>  <link rel="stylesheet" href="./css/leaflet.groupedlayercontrol.css">-->
+	
+	
+  <style>
+#container {
+height: 100%;
+width: 100%
+}
+#map {
+	height: 100%;
+ 1position: absolute;
+ 1top: 0;
+ 1bottom: 0;
+ 1right: 0;
+ 1left: 0;
+}
+#info-pane {
+	position: absolute;
+	top: 10px;
+	right: 200px;
+	z-index: 10;
+	padding: 1em;
+	background: white;
+}
+#title {
+	position: absolute;
+	top: 10px;
+	right: 350px;
+	z-index: 100;
+    1float:right;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: solid 1px;
+	background: rgba(255,255,255,0.56);
+}
+.list-complete-item {
+  padding: 4px;
+  margin-top: 4px;
+  border: solid 1px;
+  transition: all 1s;
+}
+
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+}
+
+.pre-scrollable {
+    max-height: 600px;
+	overflow: auto;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    white-space: pre;
+}
+
+.glyphicon glyphicon-list {
+    font-size: 75px;
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- navigation bar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        
+          <div class="navbar-header" id="mapheader">
+		  <a class="navbar-brand mapheader" href="http://curio.osu.edu/">CURIO@OSU Comprehensive Map Gallery</a>
+        </div>
+        <div class="navbar-collapse collapse">
+         <ul class="nav navbar-nav">
+<!-- Navigation bar contents -->
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+			<li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Map Control</a></li>
+            <!--<li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;POI List</a></li>-->
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+<!-- map body -->
+<div id="container">
+<div id="sidebar">
+		<div class="sidebar-wrapper">
+		  <div class="panel panel-default" id="control">
+			<div class="panel-heading">
+              <h3 class="panel-title">Map Control
+              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+            </div>
+		  <div class="panel-body">
+<ul class="list-group" id="controlList">
+<li class="list-group-item">
+		<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="baseMap">Switch Basemap
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#" id="esriDarkGray">esriDarkGray</a></li>
+    <li><a href="#" id="esriTopo">esriTopo</a></li>
+    <li><a href="#" id="esriGray">esriGray</a></li>
+	<li><a href="#" id="esriImagery">esriImagery</a></li>
+  </ul>
+</div>
+</li>
+
+<li class="list-group-item">
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="baseMap">Add Layers
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#" id="tree-btn">Columbus Tree Map</a></li>
+    <li><a href="#" id="ohio-btn">Ohio Outline</a></li>
+	<li><a href="#" id="bikepath-btn">Bike Paths in Central Ohio</a></li>
+	<li><a href="#" id="sewer-btn">Sewer Overflow Discharges</a></li>
+	<li><a href="#" id="homeown-btn">Home Ownership</a></li>
+  </ul>
+</div>
+</li>
+
+</ul>
+</div>
+
+<div class="panel-body" style="height:100%"> 
+<div id="layerList" class="list-group pre-scrollable">
+  </div>  
+</div>
+
+</div>
+</div>
+
+
+        
+</div>
+
+
+<div id="map">
+
+	  <div id="loading" style="display: none;">
+      <div class="loading-indicator">
+        <div class="progress progress-striped active">
+          <div class="progress-bar progress-bar-info progress-bar-full"></div>
+        </div>
+      </div>
+      </div>
+
+</div>
+</div>
+
+<!-- modals -->
+<!--aboutModal-->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">About Comprehensive Map Gallery</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs nav-justified" id="aboutTabs">
+              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the Map</a></li>
+             
+              
+              <li class="dropdown1">
+                <a href="#metadata" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-globe"></i>&nbsp;Metadata</a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://data.columbus.opendata.arcgis.com/datasets/0dae954be1184293b293dbace5e0718b_0" target="_blank"> data-toggle="tab">Trees</a></li>
+                                  
+                </ul>
+              </li>
+            </ul>
+            <!--Start Copy Here-->
+            <div class="tab-content" id="aboutTabsContent">
+              <div class="tab-pane fade active in" id="about">
+                
+                <div class="panel panel-primary">
+                
+                
+                  <div class="panel-body" style="width: 100%"> <!--css reset for panel body SAF-->
+  					<p>Map introduction here.</p> 
+                    <hr> 
+                   <div class="col-md-6" > 
+                   <h4>
+				   <svg height="28" width="56">
+				   	<circle cx="7" cy="14" r="7"  fill="#D2E0A2"/>
+					<circle cx="21" cy="14" r="10"  fill="#D2E0A2"/>
+					<circle cx="42" cy="14" r="14"  fill="#A87000"/>
+                   </svg> &nbsp;more introduction</h4>
+                   
+                    <p>blahblahblah</p>  
+                    <hr>
+                   
+                    </div>
+                    <!--this is the picture block-->
+                   <!-- <div class="col-md-6"><img src="http://curio.osu.edu/wp-content/uploads/2017/01/cogoThumb.jpg" style="border:1px solid black; margin:auto; display:block; width:100%"> </div>-->
+                    
+                  </div>
+                  
+                </div>
+              </div>
+             
+             <div id="metadata" class="tab-pane fade">
+              	<h4>DATA SOURCE</h4>
+                <div class="panel" id="boroughs-tab">
+                <p>blahblahblah</a></p>
+              </div>
+              <!--<h4><img src='http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png' width='28' height='28'>&nbsp;&nbsp;ZAGSTER DATA</h4>
+              <p>Zagster Station Data courtesy of  <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster Bikeshare</a>  Download a <a href="http://curio.osu.edu/api/trans/_jsonZagsterArrayGeoJSON.php" download="zagster.geojson" target="_blank">geoJSON</a> file of their locations.<!--or <a href="#" target="_blank">CSV</a> file of their locations.--></p>
+              <h4>BASEMAPS</h4> 
+                    <p>Basemaps are provided by <a href="http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps" target="_blank">Esri</a> and hosted on ArcGIS online.  Basemaps can be integrated into webmaps for free.</p>
+               <h4>MAP TEMPLATE</h4> 
+               <p>This map is based on a <a href="https://github.com/bmcbride/bootleaf" target="_blank">bootleaf template</a> created by Brian McBride</p>
+              </div>
+            
+           
+            </div><!--end COPY of about tabs-->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+<!-- app.js -->
+<script src="./script/main.js"></script>
+<!-- methods.js -->
+<script src="./script/methods.js"></script>
+
+</body>
+</html>
