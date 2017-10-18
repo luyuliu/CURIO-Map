@@ -1,4 +1,4 @@
-/* ******************************************************
+/* *****************************************************************
  *
  *   Comprehensive Map Gallery using leaflet - main javascript
  *
@@ -6,12 +6,12 @@
  *   Contact: liu.6544@osu.edu
  *   Update Date:2017.9.30
  *
- * ******************************************************* */
+ * *************************************************************** */
 
 //------------------------------------map & basemap layers------------------------------------
-var baseLayer=L.esri.basemapLayer('Topographic')
-
-  map = L.map("map", {
+var baseLayer = L.esri.basemapLayer('Topographic')
+var theaterSearch = []
+map = L.map("map", {
   zoom: 13,
   center: [39.98, -83],
   layers: [baseLayer],
@@ -20,172 +20,70 @@ var baseLayer=L.esri.basemapLayer('Topographic')
   maxZoom: 18
 });
 
-  groupedOverlays={}//dummy parameters
-  map.createPane('basemapPane');
-  map.getPane('basemapPane').style.zIndex=100;
-  
+groupedOverlays = {} //dummy parameters
+map.createPane('basemapPane');
+map.getPane('basemapPane').style.zIndex = 100;
+map.getPane('popupPane').style.zIndex=700;
+
+//------------------------------------symbol layers------------------------------------
+/* Overlay Layers */
+var highlight = L.geoJson(null);
+var highlightStyle = {
+  stroke: false,
+  fillColor: "#00FFFF",
+  fillOpacity: 0.7,
+  radius: 10
+};
+highlight.addTo(map)
+
+var e=null;
+
+
+
 //------------------------------------signals & flags------------------------------------
 //layer flag
-var bikeshrAdded=false;
-var airAdded=false;
-var homeownAdded=false;
-var cotaAdded=false;
-var wshdAdded=false;
-var ethAdded=false;
-var sdwAdded=false;
-var sewerAdded=false;
-var demoAdded=false;
-var bikepath_pathAdded=false;
-var bikepath_greenAdded=false;
-var bikepath_headsAdded=false;
-var waterAdded=false;
-var gasAdded=false;
-var transAdded=false;
-var treeAdded=false;
-var ohioAdded=false;
+var flagList=new Array();//the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
+var POIFlagList=new Array();// the list of layer with features to demonstrate in the POI list
+var mapFlagList=new Array();//the list of each maps. In accord with the buttons.
 
-//z-index
-//basemap: z-index=100
-var baseZindex=100;
-var currentZindex=baseZindex+1;
+baseLayerID = "esriTopo";
 
-  var listofLayerID=new Array();
-  //var listofZindex=new Array();
-  
+//var listofZindex=new Array();
+
 //------------------------------------attribution control------------------------------------
-  var attributionControl = L.control({
+var attributionControl = L.control({
   position: "bottomright"
 });
 attributionControl.onAdd = function (map) {
-   var div = L.DomUtil.create("div", "leaflet-control-attribution");
+  var div = L.DomUtil.create("div", "leaflet-control-attribution");
   div.innerHTML = "<span class='hidden-xs'><a href='http://cura.osu.edu' target='_blank'>CURA</a> | <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>Luyu Liu</a> | <a href='http://bryanmcbride.com' target='_blank'>Bootleaf</a></span>";
   return div;
 };
 map.addControl(attributionControl);
 
-//------------------------------------buttons------------------------------------
+var zoomControl = L.control.zoom({
+  position: "bottomright"
+}).addTo(map);
 
-$("#about-btn").click(function() {
-  $("#aboutModal").modal("show");
-  $(".navbar-collapse.in").collapse("hide");
-  return false;
-});
-
-$("#list-btn").click(function() {
-  animateSidebar();
-  return false;
-});
-
-$("#sidebar-hide-btn").click(function() {
-  animateSidebar();
-  return false;
-});
-
-//------------------------------------add buttons------------------------------------
-$("#tree-btn").click(function() {
-  //tree data receive
-  if(treeAdded==false)
-  {
-  xlayerID="tree";
-  addLayerHandle(xlayerID);
-  return false;
-  }
-  else
-  {
-	  alert("Already added this layer.")
-	  return false;
-  }
-  
-});
-
-
-$("#ohio-btn").click(function() {
-  //ohio data receive
-  if(ohioAdded==false)
-  {
-  xlayerID="ohio";
-  addLayerHandle(xlayerID);
-  return false;
-  }
-  else
-  {
-	  alert("Already added this layer.")
-	  return false;
-  }
-  
-});
-
-$("#bikepath-btn").click(function() {
-  //bikepath data receive
-	if(bikepath_pathAdded==true&&bikepath_greenAdded==true&&bikepath_headsAdded==true)
-{
-	alert("Already added this layer.")
-	  return false;
-}
-  if(bikepath_pathAdded==false)
-  {
-  xlayerID="bikepath_path";
-  addLayerHandle(xlayerID);}
-  
-  if(bikepath_greenAdded==false){
-  xlayerID="bikepath_green";
-  addLayerHandle(xlayerID);}
-  
-  if(bikepath_headsAdded==false){
-  xlayerID="bikepath_heads";
-  addLayerHandle(xlayerID);}
-  
-return false;
-  
-});
-
-$("#sewer-btn").click(function() {
-  //sewer data receive
-  if(ohioAdded==false)
-  {
-  xlayerID="sewer";
-  addLayerHandle(xlayerID);
-  return false;
-  }
-  else
-  {
-	  alert("Already added this layer.")
-	  return false;
-  }
-  
-});
-
-$("#homeown-btn").click(function() {
-  //homeown data receive
-  if(ohioAdded==false)
-  {
-  xlayerID="homeown";
-  addLayerHandle(xlayerID);
-  return false;
-  }
-  else
-  {
-	  alert("Already added this layer.")
-	  return false;
-  }
-  
-});
-
-//------------------------------------basemap controls------------------------------------
-$("#esriDarkGray").click(function(){changeBasemap("DarkGray")});
-$("#esriTopo").click(function(){changeBasemap("Topographic")});
-$("#esriImagery").click(function(){changeBasemap("Imagery")});
-$("#esriGray").click(function(){changeBasemap("Gray")});
 //------------------------------------Sortable list------------------------------------
 // List with handle
 //include onsort eventlistener and handle
-var sortable=Sortable.create(layerList, {
+var sortable = Sortable.create(layerList, {
   handle: '.glyphicon-move',
   animation: 150,
   scroll: true,
   scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
   scrollSpeed: 10,
-onEnd: function(e){
-	sortLayerHandle(e)
-}});
+  onEnd: function (e) {
+    sortLayerHandle(e)
+  }
+});
 
+
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});

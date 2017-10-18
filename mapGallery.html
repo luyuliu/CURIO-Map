@@ -1,0 +1,421 @@
+<html>
+
+<head>
+	<title>CURIO New Map Gallery</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#000000">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="shortcut icon" href="./img/favicon.ico">
+	<!-- Libraries-->
+	<!-- Load Leaflet from -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<script src="./js/leaflet.js"></script>
+	<!-- Load Esri Leaflet -->
+	<script src="./js/esri-leaflet.js"></script>
+	<!-- Load jquery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<!-- Load Bootstrap -->
+	<script src="./js/bootstrap.min.js"></script>
+
+	<!-- Sortable -->
+	<script src="./js/Sortable.min.js"></script>
+
+	<!-- rangeslider -->
+	<script src="./js/rangeslider.min.js"></script>
+
+	<!-- awesomemarkers -->
+	<script src="./js/leaflet.awesome-markers.min.js"></script>
+
+	<!-- markercluster -->
+	<script src="./js/leaflet.markercluster.js"></script>
+
+	<!-- list.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+
+	<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+
+
+	<!-- Load css-->
+	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
+	<link rel="stylesheet" href="./css/awesome-bootstrap-checkbox.css">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+	<link rel="stylesheet" href="./css/MarkerCluster.css">
+	<link rel="stylesheet" href="./css/MarkerCluster.Default.css">
+	<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+	<link rel="stylesheet" href="./css/bootleaf.css">
+	<!-- already added to <style>  <link rel="stylesheet" href="./css/leaflet.groupedlayercontrol.css">-->
+</head>
+
+
+<body>
+
+	<!-- navigation bar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+
+			<div class="navbar-header" id="mapheader">
+				<a class="navbar-brand mapheader" id="about-btn" title="Metadata of the map gallery" href="#">CURIO@OSU Comprehensive Map Gallery</a>
+			</div>
+			<div class="navbar-collapse collapse">
+
+			</div>
+			<!--/.navbar-collapse -->
+		</div>
+	</div>
+
+	<!-- map body -->
+	<div id="container">
+		<div id="sidebar">
+			<div class="sidebar-wrapper">
+
+				<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true" style="position:absolute">
+					<div class="panel panel-default" style="margin:0,height:80%">
+						<div class="panel-heading" role="tab" id="headingOne0" style="margin:0">
+							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne0" aria-expanded="true" aria-controls="collapseOne0">Map Administration
+								<button type="button" class="btn btn-xs btn-default pull-right" title="Click to hide sidebar" id="sidebar-hide-btn">
+									<i class="fa fa-chevron-left"></i>
+								</button>
+							</a>
+						</div>
+						<div id="collapseOne0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne0" style="margin:0">
+							<div class="panel-body" style="padding:0">
+								<ul class="list-group" id="controlList" style="padding:0">
+									<li class="list-group-item">
+										<div class="dropdown">
+											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Layer Settings
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li class="dropdown-submenu">
+													<a class="test" tabindex="-1" href="#">Select Basemap
+														<span class="caret"></span>
+													</a>
+													<ul class="dropdown-menu">
+														<li>
+															<a href="#" id="esriTopo"><i class="fa fa-check" aria-hidden="true"></i> esriTopo</a>
+														</li>
+														<li>
+															<a href="#" id="esriDarkGray">esriDarkGray</a>
+														</li>
+														<li>
+															<a href="#" id="esriGray">esriGray</a>
+														</li>
+														<li>
+															<a href="#" id="esriImagery">esriImagery</a>
+														</li>
+													</ul>
+												</li>
+
+												<li class="dropdown-submenu">
+													<a class="test" tabindex="-1" href="#">Add Layers
+														<span class="caret"></span>
+													</a>
+													<ul class="dropdown-menu">
+														<li>
+															<a href="#" id="tree-btn"><i class="fa fa-circle" aria-hidden="true"></i> Columbus Tree Map</a>
+														</li>
+														<li>
+															<a href="#" id="ohio-btn"><i class="fa fa-circle" aria-hidden="true"></i> Ohio Outline</a>
+														</li>
+														<li>
+															<a href="#" id="bikepath-btn"><i class="fa fa-circle" aria-hidden="true"></i> Bike Paths in Central Ohio</a>
+														</li>
+														<li>
+															<a href="#" id="sewer-btn"><i class="fa fa-circle" aria-hidden="true"></i> Sewer Overflow Discharges</a>
+														</li>
+														<li>
+															<a href="#" id="homeown-btn"><i class="fa fa-circle" aria-hidden="true"></i> Home Ownership</a>
+														</li>
+														<li>
+															<a href="#" id="bikeshr-btn"><i class="fa fa-circle" aria-hidden="true"></i> Bike Sharing Stations</a>
+														</li>
+														<li>
+															<a id="morelayer-btn"><i class="fa fa-question-circle-o" aria-hidden="true"></i> More layers…</a>
+														</li>
+													</ul>
+												</li>
+												
+												<li>
+															<a href="#" id="removeall-btn">Remove All Layers</a>
+														</li>
+											</ul>
+										</div>
+									</li>
+
+									<li class="list-group-item">
+										<div class="dropdown">
+											<button class="btn btn-default dropdown-toggle" title="Add default layers and other layers" type="button" data-toggle="dropdown">Legend Settings
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="#" id="test-btn">Under Construction...</a>
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+
+
+						</div>
+
+
+					</div>
+					<div class="panel panel-default" style="margin:0,height:80%">
+						<div class="panel-heading" role="tab" id="headingOne1" style="margin:0">
+							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">Layer Control
+							</a>
+
+
+						</div>
+
+
+						<div id="collapseOne1" class="panel-collapse collapse collapse" role="tabpanel" aria-labelledby="headingOne1" style="margin:0">
+							<div class="panel-body" style="padding:0">
+								<div id="layerList" class="list-group pre-scrollable" style="width:250">
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel panel-default" style="margin:0,height:20%">
+						<div class="panel-heading" role="tab" id="headingOne1" style="margin:0">
+							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">POI List
+							</a>
+						</div>
+						<div id="collapseOne2" class="panel-collapse collapse collapse" role="tabpanel" aria-labelledby="headingOne2" style="margin:0">
+
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-8 col-md-8">
+										<input type="text" class="form-control search" placeholder="Filter" />
+									</div>
+									<div class="col-xs-4 col-md-4">
+										<button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn">
+											<i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+									</div>
+								</div>
+							</div>
+							<table class="table table-hover" id="feature-list">
+								<thead class="hidden">
+									<tr>
+										<th>Icon</th>
+										<tr>
+											<tr>
+												<th>Name</th>
+												<tr>
+													<tr>
+														<th>Chevron</th>
+														<tr>
+								</thead>
+								<tbody class="list"></tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+		<div class="mini-submenu" title="Expand the map control">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</div>
+		<div id="map">
+
+			<div id="loading" style="display: none;">
+				<div class="loading-indicator">
+					<div class="progress progress-striped active">
+						<div class="progress-bar progress-bar-info progress-bar-full"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- modals -->
+	<!--aboutModal-->
+	<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">About Comprehensive Map Gallery</h4>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-tabs nav-justified" id="aboutTabs">
+						<li class="active">
+							<a href="#about" data-toggle="tab">
+								<i class="fa fa-question-circle"></i>&nbsp;About the Map</a>
+						</li>
+
+
+						<li class="dropdown1">
+							<a href="#metadata" class="dropdown-toggle" data-toggle="tab">
+								<i class="fa fa-globe"></i>&nbsp;Metadata</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="http://data.columbus.opendata.arcgis.com/datasets/0dae954be1184293b293dbace5e0718b_0" target="_blank"> data-toggle="tab">Trees</a>
+								</li>
+
+							</ul>
+						</li>
+					</ul>
+					<!--Start Copy Here-->
+					<div class="tab-content" id="aboutTabsContent">
+						<div class="tab-pane fade active in" id="about">
+
+							<div class="panel panel-primary">
+
+
+								<div class="panel-body" style="width: 100%">
+									<!--css reset for panel body SAF-->
+									<p>Map introduction here.</p>
+									<hr>
+									<div class="col-md-6">
+										<h4>
+											<svg height="28" width="56">
+												<circle cx="7" cy="14" r="7" fill="#D2E0A2" />
+												<circle cx="21" cy="14" r="10" fill="#D2E0A2" />
+												<circle cx="42" cy="14" r="14" fill="#A87000" />
+											</svg> &nbsp;more introduction</h4>
+
+										<p>blahblahblah</p>
+										<hr>
+
+									</div>
+									<!--this is the picture block-->
+									<!-- <div class="col-md-6"><img src="http://curio.osu.edu/wp-content/uploads/2017/01/cogoThumb.jpg" style="border:1px solid black; margin:auto; display:block; width:100%"> </div>-->
+
+								</div>
+
+							</div>
+						</div>
+
+						<div id="metadata" class="tab-pane fade">
+							<h4>DATA SOURCE</h4>
+							<div class="panel" id="boroughs-tab">
+								<p>blahblahblah</a>
+								</p>
+							</div>
+							<!--<h4><img src='http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png' width='28' height='28'>&nbsp;&nbsp;ZAGSTER DATA</h4>
+              <p>Zagster Station Data courtesy of  <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster Bikeshare</a>  Download a <a href="http://curio.osu.edu/api/trans/_jsonZagsterArrayGeoJSON.php" download="zagster.geojson" target="_blank">geoJSON</a> file of their locations.<!--or <a href="#" target="_blank">CSV</a> file of their locations.-->
+							</p>
+							<h4>BASEMAPS</h4>
+							<p>Basemaps are provided by
+								<a href="http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps" target="_blank">Esri</a> and hosted on ArcGIS online. Basemaps can be integrated into webmaps for free.</p>
+							<h4>MAP TEMPLATE</h4>
+							<p>This map is based on a
+								<a href="https://github.com/bmcbride/bootleaf" target="_blank">bootleaf template</a> created by Brian McBride</p>
+						</div>
+
+
+					</div>
+					<!--end COPY of about tabs-->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div class="modal fade" id="metaModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">
+						Developed by
+						<a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Luyu Liu</a>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="attribution"></div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	<div class="modal fade" id="rickrollModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">
+						Developed by
+						<a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Luyu Liu</a>
+					</h4>
+					<div id="rickrollBox"></div>
+				</div>
+				<div class="modal-body">
+					<div id="attribution"></div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div id="mm" class="easyui-menu" style="width:120px;">
+		<div onclick="javascript:alert('new')">New</div>
+		<div>
+			<span>Open</span>
+			<div style="width:150px;">
+				<div>
+					<b>Word</b>
+				</div>
+				<div>Excel</div>
+				<div>PowerPoint</div>
+			</div>
+		</div>
+		<div icon="icon-save">Save</div>
+		<div class="menu-sep"></div>
+		<div>Exit</div>
+	</div>
+
+
+	<!-- app.js -->
+	<script src="./script/main.js"></script>
+	<!-- methods.js -->
+	<script src="./script/methods.js"></script>
+	<!-- events.js -->
+	<script src="./script/events.js"></script>
+	<!-- style.css -->
+	<link rel="stylesheet" href="./script/style.css">
+	<!-- addhandle.js -->
+	<script src="./script/addhandle.js"></script>
+	<!-- buttons.js -->
+	<script src="./script/buttons.js"></script>
+
+</body>
+
+</html>
