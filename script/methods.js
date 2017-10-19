@@ -9,7 +9,7 @@
  * ******************************************************* */
 function testFailedHandle()//error information
 {
-	document.getElementById("rickrollBox").innerHTML+="<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
+	document.getElementById("rickrollBox").innerHTML="<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
   $("#rickrollModal").modal("show");
 }
 
