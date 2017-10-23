@@ -179,7 +179,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 					}
 				}
 			});
-			$.get("https://luyuliu.github.io/CURIO-Map/data/_jsonCOGOArrayGeoJSON.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/COGOArrayGeoJSON.json", function (data) {
 				bikeshr_cogoFullLayer.addData(data);
 				bikeshr_cogoLayer.addLayer(bikeshr_cogoFullLayer)
 				map.addLayer(bikeshr_cogoLayer);
@@ -238,7 +238,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				}
 
 			});
-			$.get("https://luyuliu.github.io/CURIO-Map/data/_jsonZagsterArrayGeoJSON.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/ZagsterArrayGeoJSON.json", function (data) {
 				bikeshr_zgstFullLayer.addData(data);
 				bikeshr_zgstLayer.addLayer(bikeshr_zgstFullLayer);
 				map.addLayer(bikeshr_zgstLayer);
