@@ -159,3 +159,22 @@
     left: 100%;
     margin-top: -1px;
 }
+
+#map .leaflet-popup-content-wrapper {
+  background:#2c3e50;
+  color:#fff;
+  font-size:16px;
+  line-height:24px;
+  }
+  #map .leaflet-popup-content-wrapper a {
+  color:rgba(255,255,255,0.5);
+  }
+  #map .leaflet-popup-tip-container {
+  width:0px;
+  height:0px;
+  }
+  #map .leaflet-popup-tip {
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-top:15px solid #2c3e50;
+  }

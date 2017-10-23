@@ -30,7 +30,6 @@ map.on("moveend", function (e) {
 /* Clear feature highlight when map is clicked */
 map.on("click", function (e) {
   highlight.clearLayers();
-  console.log(mapFlagList)
 });
 
 

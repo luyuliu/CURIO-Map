@@ -148,14 +148,13 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				},
 				onEachFeature: function (feature, layer) {
 					if (feature.properties) {
-						var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Station Name</th><td>" + feature.properties.name + "</td></tr>" + "<tr><th>Available Bikes</th><td>" + feature.properties.availableBikes + "</td></tr>" + "<tr><th>Available Docks</th><td>" + feature.properties.availableDocks + "</td></tr>" + "<tr><th>Last Checked</th><td>" + feature.properties.timestamp + "</td></tr>" + "</table>" +
-							<!--Streetview Div-->
+						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>"+ "Available Bikes: " + feature.properties.availableBikes + "<br/>" + "Available Docks: " + feature.properties.availableDocks + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
+							"<!--Streetview Div-->"+
 							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 
 						layer.on({
 							click: function (e) {
-								
 								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
 								
 								
@@ -213,7 +212,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				},
 				onEachFeature: function (feature, layer) {
 					if (feature.properties) {
-						var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Station Name</th><td>" + feature.properties.name + "</td></tr>" + "</table><br><div  id='streetview'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+						var content = "<h4>" + "Station Name: " + feature.properties.name + "</h4><br/>" + "</table><br><div  id='streetview'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 						layer.on({
 							click: function (e) {
 								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);

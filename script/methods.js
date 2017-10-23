@@ -114,14 +114,8 @@ function onEachAdminFeature(feature, layer) {
 		color: '#999',
 		fillOpacity: 0.7
 	    });
-	    feature = e.target.feature;
-	    var popupContent = "<h4>"+"Census Tract: " + feature.properties.TRACT + "</h4>" +
-		"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
-		
-		"Vacant Units: " + feature.properties.VACANT + "<br/>" +
-		"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
-		"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
-		"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
+	    
+	    
 	    //info.update(popupContent);
 	    
 	},
@@ -129,7 +123,18 @@ function onEachAdminFeature(feature, layer) {
 	    eval(thisLayerID+"Layer"+".resetStyle(e.target);")
 	},
 	click: function(e) {
-	    // TODO: click
+		// TODO: click
+		feature = e.target.feature;
+		console.log(e);
+		var popupContent = "<h4>"+"Census Tract: " + feature.properties.TRACT + "</h4>" +
+		"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
+		
+		"Vacant Units: " + feature.properties.VACANT + "<br/>" +
+		"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
+		"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
+		"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
+
+		var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
 	}
     });
 }
