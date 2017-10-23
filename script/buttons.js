@@ -10,7 +10,7 @@
 //------------------------------------other buttons------------------------------------
 
 $("#about-btn").click(function () {
-  $("#aboutModal").modal("show");
+  $("#about-modal").modal("show");
   $(".navbar-collapse.in").collapse("hide");
   return false;
 });
@@ -28,19 +28,15 @@ $('.mini-submenu').on('click', function () {
 })
 
 $("#removeall-btn").click(function () {
-	for(var layerID in flagList){
-		deleteClickedHandle(layerID);
-	}
+  for (var layerID in flagList) {
+    deleteClickedHandle(layerID);
+  }
   return false;
 });
 
-$("#morelayer-btn").click(function () {
-	testFailedHandle();
-  return false;
-});
 
 $("#test-btn").click(function () {
-	testFailedHandle();
+  testFailedHandle();
   return false;
 });
 //------------------------------------add buttons------------------------------------
@@ -50,8 +46,8 @@ $("#tree-btn").click(function () {
   xlayerID = "tree";
   if (!flagList[xlayerID]) {
     addLayerHandle(xlayerID);
-  changeButtonStatus(xlayerID)
-	mapFlagList[xlayerID]=true;
+    changeButtonStatus(xlayerID)
+    mapFlagList[xlayerID] = true;
   } else {
     alert("Already added this layer.")
   }
@@ -66,8 +62,8 @@ $("#ohio-btn").click(function () {
   xlayerID = "ohio";
   if (!flagList[xlayerID]) {
     addLayerHandle(xlayerID);
-  changeButtonStatus(xlayerID)
-	mapFlagList[xlayerID]=true;
+    changeButtonStatus(xlayerID)
+    mapFlagList[xlayerID] = true;
   } else {
     alert("Already added this layer.")
   }
@@ -77,13 +73,13 @@ $("#ohio-btn").click(function () {
 
 $("#bikepath-btn").click(function () {
   //bikepath data receive
-  
-  if (flagList["bikepath_path"] && flagList["bikepath_green"]  && flagList["bikepath_heads"] ) {
+
+  if (flagList["bikepath_path"] && flagList["bikepath_green"] && flagList["bikepath_heads"]) {
     alert("Already added this layer.")
     return false;
   }
-  
-  if (!flagList["bikepath_path"] ) {
+
+  if (!flagList["bikepath_path"]) {
     xlayerID = "bikepath_path";
     addLayerHandle(xlayerID);
   }
@@ -99,7 +95,7 @@ $("#bikepath-btn").click(function () {
   }
   sortLayerHandle(e)
   changeButtonStatus("bikepath")
-	mapFlagList["bikepath"]=true;
+  mapFlagList["bikepath"] = true;
   return false;
 
 });
@@ -108,10 +104,10 @@ $("#sewer-btn").click(function () {
   //sewer data receive
   xlayerID = "sewer";
   if (!flagList[xlayerID]) {
-    
+
     addLayerHandle(xlayerID);
-  changeButtonStatus(xlayerID)
-	mapFlagList[xlayerID]=true;
+    changeButtonStatus(xlayerID)
+    mapFlagList[xlayerID] = true;
   } else {
     alert("Already added this layer.")
   }
@@ -123,10 +119,10 @@ $("#homeown-btn").click(function () {
   //homeown data receive
   xlayerID = "homeown";
   if (!flagList[xlayerID]) {
-    
+
     addLayerHandle(xlayerID);
-  changeButtonStatus("homeown")
-	mapFlagList[xlayerID]=true;
+    changeButtonStatus("homeown")
+    mapFlagList[xlayerID] = true;
   } else {
     alert("Already added this layer.")
   }
@@ -148,16 +144,37 @@ $("#bikeshr-btn").click(function () {
     xlayerID = "bikeshr_zgst";
     addLayerHandle(xlayerID);
   }
-  sortLayerHandle(e)  
+  sortLayerHandle(e)
   changeButtonStatus("bikeshr")
-	mapFlagList["bikeshr"]=true;
-  
+  mapFlagList["bikeshr"] = true;
+
 
   return false;
 });
 
 
 
+
+
+
+$("#morelayer-btn").click(function () {
+  $("#more-modal").modal("show");
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
+$("#confirm-btn").click(function () {//equal to clicking addLayer buttons.
+  xlayerID = document.getElementById("");
+  if (!flagList[xlayerID]) {
+    addLayerHandle(xlayerID);
+    changeButtonStatus(xlayerID)
+    mapFlagList[xlayerID] = true;
+  } else {
+    alert("Already added this layer.")
+  }
+  sortLayerHandle(e)
+  return false;
+});
 
 //------------------------------------basemap controls------------------------------------
 $("#esriDarkGray").click(function () {

@@ -4,11 +4,23 @@
  *
  *   Author: Luyu Liu 
  *   Contact: liu.6544@osu.edu
- *   Update Date:2017.10.12
  *
  * ******************************************************* */
 
-function addingLayer(layerID) { ///////////////must add the layer to the corresponding pane! &&&& must adjust flag status
+function addingLayer(layerID, URLType, URL, featureType, symbolType) { 
+	/*must:
+	1. add layer to corresponding pane;
+	2. change flagList status;
+	3. if entering parameters only include layerID, then must enter switch branches.
+	*/
+	/*if (URLType === undefined && URL === undefined && featureType === undefined && symbolType === undefined) {
+		URLType=null;
+		URL=null;
+		featureType=null;
+		symbolType=null;
+	}*/
+
+
 	switch (layerID) {
 		case "tree":
 			treeLayer = L.esri.tiledMapLayer({
@@ -16,7 +28,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(treeLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
 
@@ -25,36 +37,38 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 			Jsonp_URL = "http://localhost:8080/geoserver/POST/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=POST:county&maxFeatures=50&outputFormat=text%2Fjavascript&format_options=callback%3Agetjson"
 			ohioLayer = receiveJsonp(Jsonp_URL, layerID);
 			map.addLayer(ohioLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
-			var colors = ['#ffffb2','#fecc5c','#fd8d3c','#e31a1c' ];
-			homeownLayer=L.geoJson(null,{
-					style: function (feature) {
+			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
+			homeownLayer = L.geoJson(null, {
+				style: function (feature) {
 					edgeColor = "#bdbdbd";
 					fillColor = getColorx(feature.properties.PCT_OWN, grades, colors);
-					return {color: edgeColor,
+					return {
+						color: edgeColor,
 						fillColor: fillColor,
 						opacity: 1,
 						fillOpacity: 0.90,
-						weight: 0.5};
-					},
-					onEachFeature: onEachAdminFeature,
-					pane: layerID + 'Pane'
-					
-					
-				})
-			
-			
+						weight: 0.5
+					};
+				},
+				onEachFeature: onEachAdminFeature,
+				pane: layerID + 'Pane'
+
+
+			})
+
+
 			$.get("http://geog-cura-pc5/morpcCensus.json", function (data) {
 				homeownLayer.addData(data)
 			});
-			
+
 			map.addLayer(homeownLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
 
@@ -78,7 +92,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				}
 			})
 			map.addLayer(sewerLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
 
@@ -88,7 +102,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(bikepath_pathLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
 		case "bikepath_green":
@@ -97,7 +111,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				pane: layerID + 'Pane'
 			})
 			map.addLayer(bikepath_greenLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
 		case "bikepath_heads":
@@ -120,10 +134,10 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				}
 			})
 			map.addLayer(bikepath_headsLayer);
-			flagList[layerID]=1;
+			flagList[layerID] = 1;
 			break;
 
-		case "bikeshr_cogo"://about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
+		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 			bikeshr_cogoLayer = new L.markerClusterGroup({
 				spiderfyOnMaxZoom: true,
@@ -148,25 +162,17 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				},
 				onEachFeature: function (feature, layer) {
 					if (feature.properties) {
-						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>"+ "Available Bikes: " + feature.properties.availableBikes + "<br/>" + "Available Docks: " + feature.properties.availableDocks + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
-							"<!--Streetview Div-->"+
+						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>" + "Available Bikes: " + feature.properties.availableBikes + "<br/>" + "Available Docks: " + feature.properties.availableDocks + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
+							"<!--Streetview Div-->" +
 							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 
 						layer.on({
 							click: function (e) {
 								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
-								
-								
-								
-								/*
-								$("#feature-title").html(feature.properties.name);
-								$("#feature-info").html(content);
-								$("#featureModal").modal("show");
-								highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));*/
 							}
 						});
-						$("#feature-list tbody").append('<tr class="feature-row" layerID="'+layerID+'" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/bikeshr_cogo.png"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/bikeshr_cogo.png"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 						theaterSearch.push({
 							name: layer.feature.properties.NAME,
 							address: layer.feature.properties.ADDRESS1,
@@ -183,7 +189,7 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				bikeshr_cogoLayer.addLayer(bikeshr_cogoFullLayer)
 				map.addLayer(bikeshr_cogoLayer);
 			});
-			flagList[layerID]=2;
+			flagList[layerID] = 2;
 			break;
 
 		case "bikeshr_zgst":
@@ -216,15 +222,9 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 						layer.on({
 							click: function (e) {
 								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
-								
-								/*
-								$("#feature-title").html(feature.properties.name);
-								$("#feature-info").html(content);
-								$("#featureModal").modal("show");
-								highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));*/
 							}
 						});
-						$("#feature-list tbody").append('<tr class="feature-row" layerID="'+layerID+'" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/bikeshr_zgst.png"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/bikeshr_zgst.png"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 						theaterSearch.push({
 							name: layer.feature.properties.NAME,
 							address: layer.feature.properties.ADDRESS1,
@@ -242,10 +242,19 @@ function addingLayer(layerID) { ///////////////must add the layer to the corresp
 				bikeshr_zgstLayer.addLayer(bikeshr_zgstFullLayer);
 				map.addLayer(bikeshr_zgstLayer);
 			});
-			flagList[layerID]=2;
+			flagList[layerID] = 2;
 			break;
-			
-			
+
+
+			case "gas":
+				
+
+			default:
+				
+
+
+
+
 
 	}
 

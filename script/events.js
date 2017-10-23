@@ -4,7 +4,6 @@
  *
  *   Author: Luyu Liu 
  *   Contact: liu.6544@osu.edu
- *   Update Date:2017.10.04
  *
  * ******************************************************* */
 
@@ -17,9 +16,9 @@ $(window).resize(function () {
 
 $(document).on("click", ".feature-row", function (e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
-  
-  
-  sidebarClick(parseInt($(this).attr("id"), 10),$(this).attr("layerID"));
+
+
+  sidebarClick(parseInt($(this).attr("id"), 10), $(this).attr("layerID"));
 });
 
 /* Filter sidebar feature list to only show features in current map bounds */
@@ -108,5 +107,3 @@ $(document).one("ajaxStop", function () {
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
 });
-
-

@@ -4,13 +4,12 @@
  *
  *   Author: Luyu Liu 
  *   Contact: liu.6544@osu.edu
- *   Update Date:2017.9.30
  *
  * ******************************************************* */
 function testFailedHandle()//error information
 {
-	document.getElementById("rickrollBox").innerHTML="<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
-  $("#rickrollModal").modal("show");
+	document.getElementById("rickroll-box").innerHTML="<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
+  $("#rickroll-modal").modal("show");
 }
 
 
@@ -307,7 +306,7 @@ function addLayerHandle(layerID) {
 
 
 		//"<div class=\"panel-title\" style=\"float:left\">" +
-		"<a style=\"float:left\" id=\"" + layerID + "MetaData" + "\" title=\"The metadata of the layer\" valign=\"top\" href=\"#\">" + getLayerName(layerID) + "</a>" + //metadata
+		"<a style=\"float:left\" id=\"" + layerID + "-metadata" + "\" title=\"The metadata of the layer\" valign=\"top\" href=\"#\">" + getLayerName(layerID) + "</a>" + //metadata
 		"<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion\" style=\"vertical-align: middle; float:right\" href=\"#" + layerID + "-controlcontainer" + "\" title=\"Click to show or hide the control box\">" +
 		"</a>" +
 		//"</div>" +
@@ -327,14 +326,14 @@ function addLayerHandle(layerID) {
 		"</div>"
 	document.getElementById("layerList").prepend(neodiv);
 
-	$("#" + layerID + "MetaData").click(function () {//metadata
-		$("#metaModal").modal("show");
+	$("#" + layerID + "-metadata").click(function () {//metadata
+		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
 	});
 
 	$("#" + layerID + "-legend").click(function () {//legend
-		$("#metaModal").modal("show");
+		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
 	});
@@ -471,9 +470,6 @@ function deleteClickedHandle(layerID){
 				delete mapFlagList[getLayerParent(layerID)];
 			}
 		}
-		
-		
-		
 		syncSidebar();
 }
 
