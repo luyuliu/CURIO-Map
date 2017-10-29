@@ -4,7 +4,6 @@
  *
  *   Author: Luyu Liu 
  *   Contact: liu.6544@osu.edu
- *   Update Date:2017.10.12
  *
  * ******************************************************* */
 //------------------------------------other buttons------------------------------------
@@ -164,11 +163,15 @@ $("#morelayer-btn").click(function () {
 });
 
 $("#confirm-btn").click(function () {//equal to clicking addLayer buttons.
-  xlayerID = document.getElementById("");
+
+  xlayerID =  $("#name-input").val();
+  URL=$("#url-input").val();
+  dataType=$("#datatype-input").val();
+  featureInputType=$("#featuretype-input").val();
+  symbolType=$("#symbol-input").val();
+  jsonp=$("#jsonp-input").val();
   if (!flagList[xlayerID]) {
-    addLayerHandle(xlayerID);
-    changeButtonStatus(xlayerID)
-    mapFlagList[xlayerID] = true;
+    addLayerHandle(xlayerID,dataType,URL,featureInputType,symbolType,jsonp);
   } else {
     alert("Already added this layer.")
   }

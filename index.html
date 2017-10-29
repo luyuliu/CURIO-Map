@@ -417,12 +417,30 @@
 							<input class="form-control" id="url-input" type="text">
 						</li>
 						<li>
-							Geometry type:
-							<select class="form-control" id="geotype-input">
-								<option>Points features</option>
-								<option>Polylines features</option>
-								<option>Polygons features</option>
-								<option>Raster layer</option>
+							Data Type:
+							<select class="form-control" id="datatype-input">
+								<option>JSON Points</option>
+								<option>JSON Polylines/Polygons</option>
+								<option>Geo Server</option>
+								<option>More...</option>
+							</select>
+						</li>
+						<li>
+								Ajax Method:
+								<select class="form-control" id="jsonp-input">
+										<option>JSON</option>
+										<option>JSONP(format_options=callback:getjson)</option>
+									</select>
+							</li>
+						<li>
+								URL:
+								<input class="form-control" id="url-input" type="text">
+							</li>
+						<li>
+							Geo Server Data Enter Type:
+							<select class="form-control" id="featuretype-input" title="Select the way to enter the map">
+								<option>esri.feature</option>
+								<option>esri.tile</option>
 							</select>
 						</li>
 						<li>

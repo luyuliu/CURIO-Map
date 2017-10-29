@@ -6,10 +6,10 @@
  *   Contact: liu.6544@osu.edu
  *
  * ******************************************************* */
-function testFailedHandle()//error information
+function testFailedHandle() //error information
 {
-	document.getElementById("rickroll-box").innerHTML="<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
-  $("#rickroll-modal").modal("show");
+	document.getElementById("rickroll-box").innerHTML = "<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
+	$("#rickroll-modal").modal("show");
 }
 
 
@@ -17,13 +17,13 @@ function testFailedHandle()//error information
 
 
 
-if (!("ontouchstart" in window)) {//highlight
+if (!("ontouchstart" in window)) { //highlight
 	$(document).on("mouseover", ".feature-row", function (e) {
 		highlight.clearLayers().addLayer(L.circleMarker([$(this).attr("lat"), $(this).attr("lng")], highlightStyle));
 	});
 }
 
-$(document).on("mouseout", ".feature-row", clearHighlight);//clear highlight when mouse out of feature-row
+$(document).on("mouseout", ".feature-row", clearHighlight); //clear highlight when mouse out of feature-row
 
 function clearHighlight() {
 	highlight.clearLayers();
@@ -42,8 +42,8 @@ function sizeLayerControl() {
 	$(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
 }
 
-function sidebarClick(id,layerID) {//click on the sidebar handle
-	markerClusters=eval(layerID+"Layer");
+function sidebarClick(id, layerID) { //click on the sidebar handle
+	markerClusters = eval(layerID + "Layer");
 	var alayer = markerClusters.getLayer(id);
 	map.setView([alayer.getLatLng().lat, alayer.getLatLng().lng], 17);
 	alayer.fire("click");
@@ -54,112 +54,139 @@ function sidebarClick(id,layerID) {//click on the sidebar handle
 	}
 }
 
-function syncSidebar() {//update the siderbar
+function syncSidebar() { //update the siderbar
 	/* Empty sidebar features */
 	$("#feature-list tbody").empty();
-		/* Loop through stations layer and add only features which are in the map bounds */
-	for (var i in POIFlagList){
-		var pictureURL="img/"+i+".png";
-		var layerIDFullLayer=eval(i+"FullLayer");
+	/* Loop through stations layer and add only features which are in the map bounds */
+	for (var i in POIFlagList) {
+		var pictureURL = "img/" + i + ".png";
+		var layerIDFullLayer = eval(i + "FullLayer");
 		layerIDFullLayer.eachLayer(function (layer) {
-		if (map.hasLayer(bikeshr_cogoLayer)) {
-			if (map.getBounds().contains(layer.getLatLng())) {
-				$("#feature-list tbody").append('<tr class="feature-row" layerID="'+i+'" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="'+pictureURL
-				+'"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+			if (map.hasLayer(bikeshr_cogoLayer)) {
+				if (map.getBounds().contains(layer.getLatLng())) {
+					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="' + pictureURL +
+						'"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+				}
 			}
-		}
-	});
+		});
 	}
-	
+
 }
 
 
 //------------------------------------addhandle.js------------------------------------
-function receiveJsonp(URL2, layerID) {
-	var ajax2 = $.ajax({
-		url: URL2,
-		dataType: 'jsonp',
-		jsonpCallback: 'getjson',
-		success: getjson
-	});
-
-
-	var geoJsonLayer = new L.GeoJSON(null, {
-		style: function style(feature) {
-			return {
-				weight: 1,
-				opacity: 1,
-				color: 'brown',
-				fill: false
-			};
-		},
-		pane: layerID + "Pane"
-	});
-
-	function getjson(data) {
-		geoJsonLayer.addData(data);
+function receiveJsonp(URL2, layerID, jsonp, acolor, aweight) {
+	if (acolor === undefined && aweight === undefined) {
+		acolor = "brown"
+		aweight = 1
 	}
-	return geoJsonLayer;
+
+	switch (jsonp) {
+		case "JSON":
+		var ajax2 = $.ajax({
+			url: URL2,
+			dataType: 'jsonp',
+			jsonpCallback: 'getjson',
+			success: getjson
+		});
+		var geoJsonLayer = new L.GeoJSON(null, {
+			style: function style(feature) {
+				return {
+					weight: aweight,
+					opacity: 1,
+					color: acolor,
+					fill: false
+				};
+			},
+			pane: layerID + "Pane"
+		});
+
+		function getjson(data) {
+			geoJsonLayer.addData(data);
+		}
+		return geoJsonLayer;
+		break;
+
+		default:
+			$.getJSON( URL2, function( data ) {
+				var geoJsonLayer = new L.GeoJSON(data, {
+					style: function style(feature) {
+						return {
+							weight: aweight,
+							opacity: 1,
+							color: acolor,
+							fill: false
+						};
+					},
+					pane: layerID + "Pane"
+				});
+				return geoJsonLayer;
+			}
+	}
+
+
+
+
+	
 }
 
 //for homeown, mouse events
 function onEachAdminFeature(feature, layer) {
-    layer.on({
-	mouseover: function(e) {
-		thisLayerID=e.target.options.pane.substring(0,e.target.options.pane.indexOf("P"))
-	    var layer = e.target;
-	    layer.setStyle({
-		weight: 5,
-		color: '#999',
-		fillOpacity: 0.7
-	    });
-	    
-	    
-	    //info.update(popupContent);
-	    
-	},
-        mouseout: function(e) {
-	    eval(thisLayerID+"Layer"+".resetStyle(e.target);")
-	},
-	click: function(e) {
-		// TODO: click
-		feature = e.target.feature;
-		console.log(e);
-		var popupContent = "<h4>"+"Census Tract: " + feature.properties.TRACT + "</h4>" +
-		"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
-		
-		"Vacant Units: " + feature.properties.VACANT + "<br/>" +
-		"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
-		"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
-		"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
+	layer.on({
+		mouseover: function (e) {
+			thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+			var layer = e.target;
+			layer.setStyle({
+				weight: 5,
+				color: '#999',
+				fillOpacity: 0.7
+			});
 
-		var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
-	}
-    });
+
+			//info.update(popupContent);
+
+		},
+		mouseout: function (e) {
+			eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
+		},
+		click: function (e) {
+			// TODO: click
+			feature = e.target.feature;
+			console.log(e);
+			var popupContent = "<h4>" + "Census Tract: " + feature.properties.TRACT + "</h4>" +
+				"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
+
+				"Vacant Units: " + feature.properties.VACANT + "<br/>" +
+				"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
+				"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
+				"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
+
+			var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
+		}
+	});
 }
 
 //------------------------------------About 'Layer Settings' menu------------------------------------
-function changeBasemap(basemap) {//change the icon of each options when changing basemap
+function changeBasemap(basemap) { //change the icon of each options when changing basemap
 	map.removeLayer(baseLayer);
 	baseLayer = L.esri.basemapLayer(getLayerName(basemap), pane = "basemapPane");
 	map.addLayer(baseLayer);
-	document.getElementById(baseLayerID).innerHTML=document.getElementById(baseLayerID).innerHTML.substring(document.getElementById(baseLayerID).innerHTML.indexOf('/')+4,document.getElementById(baseLayerID).innerHTML.length)
+	document.getElementById(baseLayerID).innerHTML = document.getElementById(baseLayerID).innerHTML.substring(document.getElementById(baseLayerID).innerHTML.indexOf('/') + 4, document.getElementById(baseLayerID).innerHTML.length)
 	console.log(basemap)
-	document.getElementById(basemap).innerHTML='<i class="fa fa-check" aria-hidden="true"></i> '+document.getElementById(basemap).innerHTML;
-	baseLayerID=basemap;
+	document.getElementById(basemap).innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> ' + document.getElementById(basemap).innerHTML;
+	baseLayerID = basemap;
+}
+
+function changeButtonStatus(layerID) { //to change the icon in the buttons of each map
+	if (mapFlagList[layerID] == null) {
+		document.getElementById(layerID + "-btn").innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> ' + document.getElementById(layerID + "-btn").innerHTML.substring(document.getElementById(layerID + "-btn").innerHTML.indexOf('/') + 4, document.getElementById(layerID + "-btn").innerHTML.length)
+	} else {
+		document.getElementById(layerID + "-btn").innerHTML = '<i class="fa fa-circle" aria-hidden="true"></i> ' + document.getElementById(layerID + "-btn").innerHTML.substring(document.getElementById(layerID + "-btn").innerHTML.indexOf('/') + 4, document.getElementById(layerID + "-btn").innerHTML.length)
 	}
 
-function changeButtonStatus(layerID){//to change the icon in the buttons of each map
-if(mapFlagList[layerID]==null){
-	document.getElementById(layerID+"-btn").innerHTML='<i class="fa fa-check" aria-hidden="true"></i> '+document.getElementById(layerID+"-btn").innerHTML.substring(document.getElementById(layerID+"-btn").innerHTML.indexOf('/')+4,document.getElementById(layerID+"-btn").innerHTML.length)
-}
-else{
-	document.getElementById(layerID+"-btn").innerHTML='<i class="fa fa-circle" aria-hidden="true"></i> '+document.getElementById(layerID+"-btn").innerHTML.substring(document.getElementById(layerID+"-btn").innerHTML.indexOf('/')+4,document.getElementById(layerID+"-btn").innerHTML.length)
-}
-	
 }
 
-function getLayerName(layerID) {//from layerID to get full name of layer, the name 
+function getLayerName(layerID) { //from layerID to get full name of layer, the name 
 	switch (layerID) {
 		case "esriDarkGray":
 			mapName = "DarkGray";
@@ -262,17 +289,17 @@ function getLayerName(layerID) {//from layerID to get full name of layer, the na
 }
 
 function getColorx(val, grades, colors) {
-    for (i=0; i<grades.length; i++)
-	if (val >= grades[i])
-	    return colors[i];
-    return '#ffffff';
+	for (i = 0; i < grades.length; i++)
+		if (val >= grades[i])
+			return colors[i];
+	return '#ffffff';
 }
 
 
 
 //addLayerHandle: when add button is pushed, this method is fired.
 //Include: add items and their eventlisteners, remove eventlisteners
-function addLayerHandle(layerID) {
+function addLayerHandle(layerID, dataType, URL, featureType, symbolType, jsonp) {
 	//create pane for each layer, so that adjusting zindex is possible. Pane is a DOM so avoid use same name as layer.
 	var layerPaneID = layerID + "Pane";
 	if (!map.getPane(layerPaneID)) {
@@ -284,13 +311,13 @@ function addLayerHandle(layerID) {
 	addingLayer(layerID);
 	//add list-item to the layers list, id=layerList
 	//include a delete button, a icon, a slider (basically)
-	
-	if(flagList[layerID]==2){
-		POIFlagList[layerID]=true;//push layerID with features to demonstrate
+
+	if (flagList[layerID] == 2) {
+		POIFlagList[layerID] = true; //push layerID with features to demonstrate
 	}
-	syncSidebar();//refresh POIList
-	
-	
+	syncSidebar(); //refresh POIList
+
+
 	var neodiv = document.createElement('div');
 	neodiv.innerHTML = "<div class=\"list-group-item\" id=\"" + layerID + "-listItem\">" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:210px;height:20px;padding:0\">" + //wrapper
@@ -314,9 +341,9 @@ function addLayerHandle(layerID) {
 
 		"<div id=\"" + layerID + "-controlcontainer" + "\" class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
 		"<div class=\"panel-body\" style=\"width:210px;padding:0px;margin:0px\">" + //wrapper
-		
-		'<i id="'+layerID+'-legend'+'" class="fa fa-info-circle" aria-hidden="true"></i>'+
-		
+
+		'<i id="' + layerID + '-legend' + '" class="fa fa-info-circle" aria-hidden="true"></i>' +
+
 		"<a id=\"" + layerID + "-delete-btn\" class=\"btn btn-danger btn-delete-item btn-xs pull-right\" title=\"Click to delete the layer\">Delete</a>" + //delete button
 		"<input id=\"" + //slider
 		layerID +
@@ -326,13 +353,13 @@ function addLayerHandle(layerID) {
 		"</div>"
 	document.getElementById("layerList").prepend(neodiv);
 
-	$("#" + layerID + "-metadata").click(function () {//metadata
+	$("#" + layerID + "-metadata").click(function () { //metadata
 		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
 	});
 
-	$("#" + layerID + "-legend").click(function () {//legend
+	$("#" + layerID + "-legend").click(function () { //legend
 		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
@@ -376,8 +403,8 @@ function addLayerHandle(layerID) {
 	$('#' + layerID + "-delete-btn").click(function () {
 		deleteClickedHandle(layerID);
 	})
-	
-	
+
+
 
 }
 
@@ -394,8 +421,8 @@ function sortLayerHandle(e) {
 }
 
 //get layer's mapID
-function getLayerParent(layerID){//very ugly codes...
-	switch(layerID){
+function getLayerParent(layerID) { //very ugly codes...
+	switch (layerID) {
 		case "bikeshr_cogo":
 			return "bikeshr";
 			break;
@@ -405,71 +432,68 @@ function getLayerParent(layerID){//very ugly codes...
 		case "bikepath_heads":
 			return "bikepath";
 			break;
-			case "bikepath_green":
+		case "bikepath_green":
 			return "bikepath";
 			break;
-			case "bikepath_path":
+		case "bikepath_path":
 			return "bikepath";
 			break;
-			
+
 		default:
-		return layerID;
+			return layerID;
 	}
 }
 
 //get map's layerID
-function getLayerChildren(layerID){//very ugly codes...
-	switch(layerID){
+function getLayerChildren(layerID) { //very ugly codes...
+	switch (layerID) {
 		case "bikeshr":
-			return ["bikeshr_cogo","bikeshr_zgst"];
+			return ["bikeshr_cogo", "bikeshr_zgst"];
 		case "bikepath":
-			return ["bikepath_heads","bikepath_green","bikepath_path"]
-		
+			return ["bikepath_heads", "bikepath_green", "bikepath_path"]
+
 		default:
-			return[layerID]
-		
-		
+			return [layerID]
+
+
 	}
 }
 
 //deletebutton of each layer handle
-function deleteClickedHandle(layerID){
+function deleteClickedHandle(layerID) {
 	$("#" + layerID + "-listItem").animate({
-			height: "0px"
-		}, 100, function () {
-			document.getElementById(layerID + "-listItem").parentElement.remove();
-		});
+		height: "0px"
+	}, 100, function () {
+		document.getElementById(layerID + "-listItem").parentElement.remove();
+	});
 
-		map.removeLayer(eval(layerID + "Layer"));
-		
-		var Sibling=getLayerChildren(getLayerParent(layerID));
-		
-		
-		delete flagList[layerID];
-		if(POIFlagList[layerID])
-		{
-			delete POIFlagList[layerID];
+	map.removeLayer(eval(layerID + "Layer"));
+
+	var Sibling = getLayerChildren(getLayerParent(layerID));
+
+
+	delete flagList[layerID];
+	if (POIFlagList[layerID]) {
+		delete POIFlagList[layerID];
+	}
+
+
+	//adjust the status of buttons
+	if (Sibling.length == 1) {
+		changeButtonStatus(getLayerParent(layerID));
+		delete mapFlagList[getLayerParent(layerID)];
+		return false;
+	}
+	for (var otherSibling in Sibling) {
+		console.log(otherSibling)
+		console.log(Sibling[otherSibling])
+		if (flagList[Sibling[otherSibling]]) {
+			break;
 		}
-		
-		
-		//adjust the status of buttons
-		if(Sibling.length==1){
+		if (Sibling[otherSibling] == Sibling[Sibling.length - 1]) {
 			changeButtonStatus(getLayerParent(layerID));
 			delete mapFlagList[getLayerParent(layerID)];
-			return false;
 		}
-		for(var otherSibling in Sibling){
-			console.log(otherSibling)
-			console.log(Sibling[otherSibling])
-			if(flagList[Sibling[otherSibling]]){
-				break;
-			}
-			if(Sibling[otherSibling]==Sibling[Sibling.length-1])
-			{
-				changeButtonStatus(getLayerParent(layerID));
-				delete mapFlagList[getLayerParent(layerID)];
-			}
-		}
-		syncSidebar();
+	}
+	syncSidebar();
 }
-

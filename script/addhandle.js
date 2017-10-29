@@ -7,18 +7,12 @@
  *
  * ******************************************************* */
 
-function addingLayer(layerID, URLType, URL, featureType, symbolType) { 
+function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
 	/*must:
 	1. add layer to corresponding pane;
 	2. change flagList status;
-	3. if entering parameters only include layerID, then must enter switch branches.
+	3. if entering parameters only include layerID, then entering switch branches is necessary.
 	*/
-	/*if (URLType === undefined && URL === undefined && featureType === undefined && symbolType === undefined) {
-		URLType=null;
-		URL=null;
-		featureType=null;
-		symbolType=null;
-	}*/
 
 
 	switch (layerID) {
@@ -246,14 +240,51 @@ function addingLayer(layerID, URLType, URL, featureType, symbolType) {
 			break;
 
 
-			case "gas":
-				
-
-			default:
-				
+		case "gas":
 
 
+		default:
+			//user's custom layer
+			if (dataType == "JSON Points") {
 
+				bikeshr_cogoFullLayer = L.geoJson(null, {
+					pointToLayer: function (feature, latlng) {
+						return L.marker(latlng, {
+							icon: L.AwesomeMarkers.icon({
+								icon: 'coffee',
+								markerColor: 'red',
+								shadow: null
+							}),
+							riseOnHover: true,
+							pane: layerID + 'Pane'
+						});
+					}
+				})
+			}
+			if (dataType == "JSON Polyline/Polygon") {
+				eval(layerID + "Layer = receiveJsonp(Jsonp_URL, layerID,jsonp);")
+				eval("map.addLayer(" + layerID + "Layer);")
+				flagList[layerID] = 1;
+				return false;
+			}
+			if (dataType == "Geo Server") {
+				if (featureType == "esri.feature") {
+
+
+
+
+				}
+				if (featureType == "esri.tile")
+					eval(layerID + "Layer = L.esri.tiledMapLayer({" +
+						"url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer'," +
+						"pane: layerID + 'Pane'" +
+						"});")
+				eval("map.addLayer(" + layerID + "Layer);")
+				flagList[layerID] = 1;
+				return false;
+
+
+			}
 
 
 	}
