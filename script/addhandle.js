@@ -261,22 +261,18 @@ function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
 					}
 				})
 			}
+
 			if (dataType == "JSON Polyline/Polygon") {
 				eval(layerID + "Layer = receiveJsonp(Jsonp_URL, layerID,jsonp);")
 				eval("map.addLayer(" + layerID + "Layer);")
 				flagList[layerID] = 1;
 				return false;
 			}
+
 			if (dataType == "Geo Server") {
-				if (featureType == "esri.feature") {
-
-
-
-
-				}
 				if (featureType == "esri.tile")
 					eval(layerID + "Layer = L.esri.tiledMapLayer({" +
-						"url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer'," +
+						"url: "+URL+"," +
 						"pane: layerID + 'Pane'" +
 						"});")
 				eval("map.addLayer(" + layerID + "Layer);")

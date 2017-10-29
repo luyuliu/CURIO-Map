@@ -121,7 +121,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, aweight) {
 					pane: layerID + "Pane"
 				});
 				return geoJsonLayer;
-			}
+			})
 	}
 
 
@@ -308,7 +308,7 @@ function addLayerHandle(layerID, dataType, URL, featureType, symbolType, jsonp) 
 
 
 	//add layer to the map by layerID
-	addingLayer(layerID);
+	addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp);
 	//add list-item to the layers list, id=layerList
 	//include a delete button, a icon, a slider (basically)
 
@@ -461,6 +461,14 @@ function getLayerChildren(layerID) { //very ugly codes...
 
 //deletebutton of each layer handle
 function deleteClickedHandle(layerID) {
+
+	$("#" + layerID + "-metadata").off("click");
+	$("#" + layerID + "-legend").off("click");
+	$('#' + layerID + "-slider").off("rangeslider");
+	$('#' + layerID + "-checkbox").off("change");
+	$("#" + layerID + "-slider").off("input");//turn off the eventhandler
+
+
 	$("#" + layerID + "-listItem").animate({
 		height: "0px"
 	}, 100, function () {
@@ -468,6 +476,7 @@ function deleteClickedHandle(layerID) {
 	});
 
 	map.removeLayer(eval(layerID + "Layer"));
+
 
 	var Sibling = getLayerChildren(getLayerParent(layerID));
 
