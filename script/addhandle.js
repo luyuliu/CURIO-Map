@@ -7,7 +7,7 @@
  *
  * ******************************************************* */
 
-function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
+function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	/*must:
 	1. add layer to corresponding pane;
 	2. change flagList status;
@@ -17,23 +17,29 @@ function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
 
 	switch (layerID) {
 		case "tree":
+			var url = 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer'
 			treeLayer = L.esri.tiledMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer',
+				url: url,
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(treeLayer);
 			flagList[layerID] = 1;
+
+
+
+			var legend = L.control({
+				position: 'bottomright'
+			});
+			legend.onAdd = function (map) {
+				var legendDiv = L.DomUtil.create('div', 'info legend')
+				legendDiv.innerHTML = getMapServerLegendDiv(layerID, url);
+				return legendDiv
+			}
+			legend.addTo(map)
+
+
+
 			break;
-
-
-		case "ohio":
-			//jsonpdata receive
-			Jsonp_URL = "http://localhost:8080/geoserver/POST/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=POST:county&maxFeatures=50&outputFormat=text%2Fjavascript&format_options=callback%3Agetjson"
-			ohioLayer = receiveJsonp(Jsonp_URL, layerID);
-			map.addLayer(ohioLayer);
-			flagList[layerID] = 1;
-			break;
-
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
@@ -68,8 +74,8 @@ function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
 
 		case "sewer":
 			var sewerMarker = L.AwesomeMarkers.icon({
-				icon: 'coffee',
-				markerColor: "black",
+				icon: 'filter',
+				markerColor: 'black',
 				shadow: null
 			});
 			sewerMarker.options.shadowSize = [0, 0]
@@ -110,7 +116,7 @@ function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
 
 		case "bikepath_heads":
 			var bikepath_headsMarker = L.AwesomeMarkers.icon({
-				icon: 'coffee',
+				icon: 'cog',
 				markerColor: 'red',
 				shadow: null
 			});
@@ -241,45 +247,32 @@ function addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp) {
 
 
 		case "gas":
-
+			break;
 
 		default:
-			//user's custom layer
+			//user's custom layers
 			if (dataType == "JSON Points") {
-
-				bikeshr_cogoFullLayer = L.geoJson(null, {
-					pointToLayer: function (feature, latlng) {
-						return L.marker(latlng, {
-							icon: L.AwesomeMarkers.icon({
-								icon: 'coffee',
-								markerColor: 'red',
-								shadow: null
-							}),
-							riseOnHover: true,
-							pane: layerID + 'Pane'
-						});
-					}
-				})
+				eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
+				eval("map.addLayer(" + layerID + "Layer);")
+				flagList[layerID] = 1;
+				return false;
 			}
 
 			if (dataType == "JSON Polyline/Polygon") {
-				eval(layerID + "Layer = receiveJsonp(Jsonp_URL, layerID,jsonp);")
+				eval(layerID + "Layer = receiveJsonp(Jsonp_URL, layerID,jsonp,acolor);")
 				eval("map.addLayer(" + layerID + "Layer);")
 				flagList[layerID] = 1;
 				return false;
 			}
 
-			if (dataType == "Geo Server") {
-				if (featureType == "esri.tile")
-					eval(layerID + "Layer = L.esri.tiledMapLayer({" +
-						"url: "+URL+"," +
-						"pane: layerID + 'Pane'" +
-						"});")
+			if (dataType == "GeoServer tiles") {
+				eval(layerID + "Layer = L.esri.tiledMapLayer({" +
+					"url: '" + URL + "'," +
+					"pane: layerID + 'Pane'" +
+					"});")
 				eval("map.addLayer(" + layerID + "Layer);")
 				flagList[layerID] = 1;
 				return false;
-
-
 			}
 
 

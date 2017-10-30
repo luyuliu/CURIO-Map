@@ -162,21 +162,46 @@ $("#morelayer-btn").click(function () {
   return false;
 });
 
-$("#confirm-btn").click(function () {//equal to clicking addLayer buttons.
-
-  xlayerID =  $("#name-input").val();
-  URL=$("#url-input").val();
-  dataType=$("#datatype-input").val();
-  featureInputType=$("#featuretype-input").val();
-  symbolType=$("#symbol-input").val();
-  jsonp=$("#jsonp-input").val();
+$("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
+  
+  xlayerID = $("#name-input").val();
+  URL = $("#url-input").val();
+  dataType = $("#datatype-input").val();
+  symbolType = $("#symbol-input").val();
+  jsonp = "json";
+  afcolor = $("#color-palette").val();
+  if(xlayerID===undefined||URL===undefined)
+  {
+    alert("Please finish the input.")
+    return false;
+  }
+  
+  
+  /*
+   try {
+     if (!flagList[xlayerID]) {
+       addLayerHandle(xlayerID, dataType, URL, symbolType, jsonp, color);
+     } else {
+       alert("Already added this layer.")
+     }
+     sortLayerHandle(e)
+     $("#more-modal").modal("hide");
+     return false;
+   } catch (err) {
+     alert("Something went wrong. Adding layer failed.");
+     try {
+       deleteClickedHandle(xlayerID);
+     } catch (err) {}
+   }*/
   if (!flagList[xlayerID]) {
-    addLayerHandle(xlayerID,dataType,URL,featureInputType,symbolType,jsonp);
+    addLayerHandle(xlayerID, dataType, URL, symbolType, jsonp, afcolor);
   } else {
     alert("Already added this layer.")
   }
   sortLayerHandle(e)
+  $("#more-modal").modal("hide");
   return false;
+
 });
 
 //------------------------------------basemap controls------------------------------------

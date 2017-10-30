@@ -75,7 +75,7 @@ function syncSidebar() { //update the siderbar
 
 
 //------------------------------------addhandle.js------------------------------------
-function receiveJsonp(URL2, layerID, jsonp, acolor, aweight) {
+function receiveJsonp(URL2, layerID, jsonp, acolor) {
 	if (acolor === undefined && aweight === undefined) {
 		acolor = "brown"
 		aweight = 1
@@ -83,32 +83,32 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, aweight) {
 
 	switch (jsonp) {
 		case "JSON":
-		var ajax2 = $.ajax({
-			url: URL2,
-			dataType: 'jsonp',
-			jsonpCallback: 'getjson',
-			success: getjson
-		});
-		var geoJsonLayer = new L.GeoJSON(null, {
-			style: function style(feature) {
-				return {
-					weight: aweight,
-					opacity: 1,
-					color: acolor,
-					fill: false
-				};
-			},
-			pane: layerID + "Pane"
-		});
+			var ajax2 = $.ajax({
+				url: URL2,
+				dataType: 'jsonp',
+				jsonpCallback: 'getjson',
+				success: getjson
+			});
+			var geoJsonLayer = new L.GeoJSON(null, {
+				style: function style(feature) {
+					return {
+						weight: aweight,
+						opacity: 1,
+						color: acolor,
+						fill: false
+					};
+				},
+				pane: layerID + "Pane"
+			});
 
-		function getjson(data) {
-			geoJsonLayer.addData(data);
-		}
-		return geoJsonLayer;
-		break;
+			function getjson(data) {
+				geoJsonLayer.addData(data);
+			}
+			return geoJsonLayer;
+			break;
 
 		default:
-			$.getJSON( URL2, function( data ) {
+			$.getJSON(URL2, function (data) {
 				var geoJsonLayer = new L.GeoJSON(data, {
 					style: function style(feature) {
 						return {
@@ -124,11 +124,49 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, aweight) {
 			})
 	}
 
-
-
-
-	
 }
+
+function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
+	var anewicon = L.AwesomeMarkers.icon({
+		icon: symbolType,
+		markerColor: awcolor,
+		shadow: null
+	});
+	anewicon.options.shadowSize = [0, 0]
+
+	newLayer = L.geoJson(null, {
+		pointToLayer: function (feature, latlng) {
+			return L.marker(latlng, {
+				icon: anewicon,
+				title: feature.properties.name,
+				riseOnHover: true,
+				pane: layerID + "Pane"
+			});
+		}
+	})
+
+	$.get(URL, function (data) {
+		newLayer.addData(data);
+	});
+
+	return newLayer;
+}
+
+function getMapServerLegendDiv(layerID,url) {//return one map's legend
+
+	var legendContent='<div id="'+layerID+'-legendcontent">'
+	$.getJSON(url, function (data) {
+		for (var i in data.layers["0"].legend) {
+			labelContent = i.label;
+			legendContent +=
+				"<img src='data:image/png;base64," + i.imageData + "'>"
+			"<span>" + labelContent + "</span>" + "<br>"
+		}
+	})
+	legendContent+="</div>"
+	return legendContent
+}
+
 
 //for homeown, mouse events
 function onEachAdminFeature(feature, layer) {
@@ -178,11 +216,13 @@ function changeBasemap(basemap) { //change the icon of each options when changin
 }
 
 function changeButtonStatus(layerID) { //to change the icon in the buttons of each map
-	if (mapFlagList[layerID] == null) {
-		document.getElementById(layerID + "-btn").innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> ' + document.getElementById(layerID + "-btn").innerHTML.substring(document.getElementById(layerID + "-btn").innerHTML.indexOf('/') + 4, document.getElementById(layerID + "-btn").innerHTML.length)
-	} else {
-		document.getElementById(layerID + "-btn").innerHTML = '<i class="fa fa-circle" aria-hidden="true"></i> ' + document.getElementById(layerID + "-btn").innerHTML.substring(document.getElementById(layerID + "-btn").innerHTML.indexOf('/') + 4, document.getElementById(layerID + "-btn").innerHTML.length)
-	}
+	try {
+		if (mapFlagList[layerID] == null) {
+			document.getElementById(layerID + "-btn").innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> ' + document.getElementById(layerID + "-btn").innerHTML.substring(document.getElementById(layerID + "-btn").innerHTML.indexOf('/') + 4, document.getElementById(layerID + "-btn").innerHTML.length)
+		} else {
+			document.getElementById(layerID + "-btn").innerHTML = '<i class="fa fa-circle" aria-hidden="true"></i> ' + document.getElementById(layerID + "-btn").innerHTML.substring(document.getElementById(layerID + "-btn").innerHTML.indexOf('/') + 4, document.getElementById(layerID + "-btn").innerHTML.length)
+		}
+	} catch (err) {}
 
 }
 
@@ -299,16 +339,21 @@ function getColorx(val, grades, colors) {
 
 //addLayerHandle: when add button is pushed, this method is fired.
 //Include: add items and their eventlisteners, remove eventlisteners
-function addLayerHandle(layerID, dataType, URL, featureType, symbolType, jsonp) {
+function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 	//create pane for each layer, so that adjusting zindex is possible. Pane is a DOM so avoid use same name as layer.
 	var layerPaneID = layerID + "Pane";
 	if (!map.getPane(layerPaneID)) {
 		map.createPane(layerPaneID);
 	}
-
+	if (symbolType === undefined) {
+		symbolType = "cog";
+	}
+	if (color === undefined) {
+		color = "#000000";
+	}
 
 	//add layer to the map by layerID
-	addingLayer(layerID, dataType, URL, featureType, symbolType, jsonp);
+	addingLayer(layerID, dataType, URL, symbolType, jsonp, color);
 	//add list-item to the layers list, id=layerList
 	//include a delete button, a icon, a slider (basically)
 
@@ -342,7 +387,8 @@ function addLayerHandle(layerID, dataType, URL, featureType, symbolType, jsonp) 
 		"<div id=\"" + layerID + "-controlcontainer" + "\" class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
 		"<div class=\"panel-body\" style=\"width:210px;padding:0px;margin:0px\">" + //wrapper
 
-		'<i id="' + layerID + '-legend' + '" class="fa fa-info-circle" aria-hidden="true"></i>' +
+		'<b id="' + layerID + '-legend' + '" class="fa fa-info-circle" aria-hidden="true"></b>' +
+
 
 		"<a id=\"" + layerID + "-delete-btn\" class=\"btn btn-danger btn-delete-item btn-xs pull-right\" title=\"Click to delete the layer\">Delete</a>" + //delete button
 		"<input id=\"" + //slider
@@ -364,6 +410,8 @@ function addLayerHandle(layerID, dataType, URL, featureType, symbolType, jsonp) 
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
 	});
+
+
 
 	//-----slider------
 	$('#' + layerID + "-slider").rangeslider({
@@ -466,7 +514,7 @@ function deleteClickedHandle(layerID) {
 	$("#" + layerID + "-legend").off("click");
 	$('#' + layerID + "-slider").off("rangeslider");
 	$('#' + layerID + "-checkbox").off("change");
-	$("#" + layerID + "-slider").off("input");//turn off the eventhandler
+	$("#" + layerID + "-slider").off("input"); //turn off the eventhandler
 
 
 	$("#" + layerID + "-listItem").animate({
@@ -475,7 +523,8 @@ function deleteClickedHandle(layerID) {
 		document.getElementById(layerID + "-listItem").parentElement.remove();
 	});
 
-	map.removeLayer(eval(layerID + "Layer"));
+	//map.removeLayer(eval(layerID + "Layer"));
+	eval('map.removeLayer(' + layerID + 'Layer);')
 
 
 	var Sibling = getLayerChildren(getLayerParent(layerID));

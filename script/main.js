@@ -22,7 +22,7 @@ map = L.map("map", {
 groupedOverlays = {} //dummy parameters
 map.createPane('basemapPane');
 map.getPane('basemapPane').style.zIndex = 100;
-map.getPane('popupPane').style.zIndex=700;
+map.getPane('popupPane').style.zIndex = 700;
 
 //------------------------------------symbol layers------------------------------------
 /* Overlay Layers */
@@ -35,15 +35,18 @@ var highlightStyle = {
 };
 highlight.addTo(map)
 
-var e=null;
+var e = null;
+
+//------------------------------------legend------------------------------------
+legendFullContent=null;
 
 
 
 //------------------------------------signals & flags------------------------------------
 //layer flag
-var flagList=new Array();//the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
-var POIFlagList=new Array();// the list of layer with features to demonstrate in the POI list
-var mapFlagList=new Array();//the list of each maps. In accord with the buttons.
+var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
+var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI list
+var mapFlagList = new Array(); //the list of each maps. In accord with the buttons.
 
 baseLayerID = "esriTopo";
 
@@ -55,7 +58,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'><a href='http://cura.osu.edu' target='_blank'>CURA</a> | <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target='_blank'>Luyu Liu</a> | <a href='http://bryanmcbride.com' target='_blank'>Bootleaf</a></span>";
+  div.innerHTML = "<span class='hidden-xs'><a href='http://cura.osu.edu' target='_blank'>CURA</a> | <a href='https://github.com/luyuliu' target='_blank'>Luyu Liu</a> | <a href='http://bryanmcbride.com' target='_blank'>Bootleaf</a></span>";
   return div;
 };
 map.addControl(attributionControl);
@@ -79,8 +82,8 @@ var sortable = Sortable.create(layerList, {
 });
 
 
-$(document).ready(function(){
-  $('.dropdown-submenu a.test').on("click", function(e){
+$(document).ready(function () {
+  $('.dropdown-submenu a.test').on("click", function (e) {
     $(this).next('ul').toggle();
     e.stopPropagation();
     e.preventDefault();

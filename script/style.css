@@ -148,33 +148,57 @@
   -webkit-backface-visibility: hidden;
 }
 
-
-
 .dropdown-submenu {
-    position: relative;
+  position: relative;
 }
 
 .dropdown-submenu .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
 }
 
 #map .leaflet-popup-content-wrapper {
-  background:#2c3e50;
-  color:#fff;
-  font-size:16px;
-  line-height:24px;
-  }
-  #map .leaflet-popup-content-wrapper a {
-  color:rgba(255,255,255,0.5);
-  }
-  #map .leaflet-popup-tip-container {
-  width:0px;
-  height:0px;
-  }
-  #map .leaflet-popup-tip {
-  border-left:15px solid transparent;
-  border-right:15px solid transparent;
-  border-top:15px solid #2c3e50;
-  }
+  background: #2c3e50;
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+#map .leaflet-popup-content-wrapper a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#map .leaflet-popup-tip-container {
+  width: 0px;
+  height: 0px;
+}
+
+#map .leaflet-popup-tip {
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #2c3e50;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
