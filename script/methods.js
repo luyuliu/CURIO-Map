@@ -152,21 +152,29 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 	return newLayer;
 }
 
-function getMapServerLegendDiv(layerID,url) {//return one map's legend
+function getMapServerLegendDiv(layerID, url) { //return one map's legend
 
-	var legendContent='<div id="'+layerID+'-legendcontent">'
-	$.getJSON(url, function (data) {
-		for (var i in data.layers["0"].legend) {
-			labelContent = i.label;
-			legendContent +=
-				"<img src='data:image/png;base64," + i.imageData + "'>"
-			"<span>" + labelContent + "</span>" + "<br>"
+	var alegendContent = '<div id="' + layerID + '-legendcontent">' + "<table><tbody>"
+	$.ajax({
+		url: url,
+		type: 'GET',
+		async: false,
+		dataType: 'JSON',
+		success: function (data) {
+			for (var i in data.layers["0"].legend) {
+				labelContent = data.layers["0"].legend[i].label;
+				alegendContent += "<tr valign='middle'>" +
+					"<td><img src='data:image/png;base64," + data.layers["0"].legend[i].imageData + "'></td>" +
+					"<td><span>" + labelContent + "</span><td>" + "</tr>"
+			}
+			alegendContent += "</tbody><table></div>"
+
 		}
 	})
-	legendContent+="</div>"
-	return legendContent
-}
+	console.log(alegendContent)
+	return alegendContent
 
+}
 
 //for homeown, mouse events
 function onEachAdminFeature(feature, layer) {

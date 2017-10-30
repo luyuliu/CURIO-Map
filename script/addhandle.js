@@ -25,18 +25,9 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			map.addLayer(treeLayer);
 			flagList[layerID] = 1;
 
-
-
-			var legend = L.control({
-				position: 'bottomright'
-			});
-			legend.onAdd = function (map) {
-				var legendDiv = L.DomUtil.create('div', 'info legend')
-				legendDiv.innerHTML = getMapServerLegendDiv(layerID, url);
-				return legendDiv
-			}
-			legend.addTo(map)
-
+			var innerContent=getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
+			legendContent="<div id='"+layerID+"-legendcontent'>"+innerContent+"</div>"
+			legend.getContainer().innerHTML+=legendContent
 
 
 			break;

@@ -38,7 +38,14 @@ highlight.addTo(map)
 var e = null;
 
 //------------------------------------legend------------------------------------
-legendFullContent=null;
+var legend = L.control({
+  position: 'topright'
+})
+legend.onAdd=function(map){
+  var div = L.DomUtil.create('div', 'info legend')
+  return div;
+}
+legend.addTo(map)
 
 
 
