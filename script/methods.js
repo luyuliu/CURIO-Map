@@ -152,9 +152,15 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 	return newLayer;
 }
 
+//--------------------------------------Legend---------------------------
 function getMapServerLegendDiv(layerID, url) { //return one map's legend
 
-	var alegendContent = '<div id="' + layerID + '-legendcontent">' + "<table><tbody>"
+	var legendContent = '<div class="legendcontent" id="' + layerID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + layerID + '-collapse">' + layerID + '</a>' +
+		'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'
+
+	legend.getContainer().innerHTML += legendContent
+
+	var alegendContent = '<table><tbody>'
 	$.ajax({
 		url: url,
 		type: 'GET',
@@ -164,20 +170,91 @@ function getMapServerLegendDiv(layerID, url) { //return one map's legend
 			for (var i in data.layers["0"].legend) {
 				labelContent = data.layers["0"].legend[i].label;
 				alegendContent += "<tr valign='middle'>" +
-					"<td><img src='data:image/png;base64," + data.layers["0"].legend[i].imageData + "'></td>" +
-					"<td><span>" + labelContent + "</span><td>" + "</tr>"
+					"<td class='tablehead' align='middle'><img src='data:image/png;base64," + data.layers["0"].legend[i].imageData + "'></td>" +
+					"<td class='tablecontent' align='right'><span>" + labelContent + "</span><td>" + "</tr>"
 			}
-			alegendContent += "</tbody><table></div>"
-
+			alegendContent += "</tbody><table>"
+			document.getElementById('legend-' + layerID + '-collapse').innerHTML = alegendContent;
 		}
 	})
-	console.log(alegendContent)
-	return alegendContent
 
 }
 
+function getGraduatedColorsDiv(layerID, grades, colors) { //grades.length must === colors.length
+	var legendContent = '<div class="legendcontent" id="' + layerID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + layerID + '-collapse">' + layerID + '</a>' +
+		'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse in" role="tabpane2" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'
+
+	legend.getContainer().innerHTML += legendContent
+
+	var legendContent2 = '<table><tbody>'
+	for (var i in grades) {
+		if (i == 0) {
+			labelContent2 = grades[i] + " +"
+		} else {
+			labelContent2 = grades[i] + " - " + grades[i - 1]
+		}
+		legendContent2 += "<tr valign='middle'>" +
+			"<td class='tablehead' align='middle'>" + getColorBlockString(colors[i]) + "</td>" +
+			"<td class='tablecontent' align='right'><span>" + labelContent2 + "</span><td>" + "</tr>"
+	}
+	legendContent2 += "</tbody><table>"
+	document.getElementById('legend-' + layerID + '-collapse').innerHTML = legendContent2;
+}
+
+function getColorBlockString(color) {
+	var div = '<div class="legendbox" style="padding:0px;background:' + color + '"></div>'
+	return div;
+}
+
+function getIconBlockString(color, icon) {
+	var div = '<div class="legendbox" style="padding:0px;background:' + color + '"><i class="fa fa-' + icon + '" aria-hidden="true" style="color:#ffffff"></i></div>'
+	return div;
+}
+
+function getIconBlockDiv(mapID, icons, colors, names, url) {
+	var legendContent = '<div class="legendcontent" id="' + mapID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + mapID + '-collapse">' + mapID + '</a>' +
+		'<div id="' + 'legend-' + mapID + '-collapse' + '" class="panel-collapse collapse in" role="tabpane2" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'
+
+	legend.getContainer().innerHTML += legendContent
+
+	var legendContent2 = '<table><tbody>'
+	if (icons == "pic") {
+		legendContent2 += "<tr valign='middle'>" +
+			"<td class='tablehead' align='middle'>" + getPicBlockString(url) + "</td>" +
+			"<td class='tablecontent' align='right'><span>" + names + "</span><td>" +
+			"</tr>"
+	} else {
+		if (icons == "line") {
+			legendContent2 += "<tr valign='middle'>" +
+				"<td class='tablehead' align='middle'>" + getColorLineString(colors) + "</td>" +
+				"<td class='tablecontent' align='right'><span>" + names + "</span><td>" +
+				"</tr>"
+
+		} else {
+			legendContent2 += "<tr valign='middle'>" +
+				"<td class='tablehead' align='middle'>" + getIconBlockString(colors, icons) + "</td>" +
+				"<td class='tablecontent' align='right'><span>" + names + "</span><td>" +
+				"</tr>"
+		}
+	}
+
+
+	legendContent2 += "</tbody><table>"
+	document.getElementById('legend-' + mapID + '-collapse').innerHTML = legendContent2;
+}
+
+function getPicBlockString(url) {
+	var div = '<img src=' + url + '>'
+	return div;
+}
+
+function getColorLineString(color) {
+	var div = '<hr width="26px" style="background-color:' + color + '; border-width:0;">'
+	return div;
+}
+
 //for homeown, mouse events
-function onEachAdminFeature(feature, layer) {
+function onEachAdminFeatureForHomeown(feature, layer) {
 	layer.on({
 		mouseover: function (e) {
 			thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
@@ -212,6 +289,12 @@ function onEachAdminFeature(feature, layer) {
 	});
 }
 
+function getColorx(val, grades, colors) {
+	for (i = 0; i < grades.length; i++)
+		if (val >= grades[i])
+			return colors[i];
+	return '#ffffff';
+}
 //------------------------------------About 'Layer Settings' menu------------------------------------
 function changeBasemap(basemap) { //change the icon of each options when changing basemap
 	map.removeLayer(baseLayer);
@@ -336,12 +419,6 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 	}
 }
 
-function getColorx(val, grades, colors) {
-	for (i = 0; i < grades.length; i++)
-		if (val >= grades[i])
-			return colors[i];
-	return '#ffffff';
-}
 
 
 
@@ -524,6 +601,8 @@ function deleteClickedHandle(layerID) {
 	$('#' + layerID + "-checkbox").off("change");
 	$("#" + layerID + "-slider").off("input"); //turn off the eventhandler
 
+	deletelegend = document.getElementById(layerID + "-legendcontent")
+	deletelegend.parentNode.removeChild(deletelegend)
 
 	$("#" + layerID + "-listItem").animate({
 		height: "0px"

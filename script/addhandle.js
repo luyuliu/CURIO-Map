@@ -25,16 +25,12 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			map.addLayer(treeLayer);
 			flagList[layerID] = 1;
 
-			var innerContent=getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
-			legendContent="<div id='"+layerID+"-legendcontent'>"+innerContent+"</div>"
-			legend.getContainer().innerHTML+=legendContent
-
-
+			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
 			break;
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
-			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
+			var colors = ['#ffffb2','#fecc5c','#fd8d3c','#e31a1c'];
 			homeownLayer = L.geoJson(null, {
 				style: function (feature) {
 					edgeColor = "#bdbdbd";
@@ -47,9 +43,8 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 						weight: 0.5
 					};
 				},
-				onEachFeature: onEachAdminFeature,
+				onEachFeature: onEachAdminFeatureForHomeown,
 				pane: layerID + 'Pane'
-
 
 			})
 
@@ -59,6 +54,9 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			});
 
 			map.addLayer(homeownLayer);
+
+
+			getGraduatedColorsDiv(layerID,grades,colors)
 			flagList[layerID] = 1;
 			break;
 
@@ -66,7 +64,7 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		case "sewer":
 			var sewerMarker = L.AwesomeMarkers.icon({
 				icon: 'filter',
-				markerColor: 'black',
+				markerColor: 'green',
 				shadow: null
 			});
 			sewerMarker.options.shadowSize = [0, 0]
@@ -83,16 +81,20 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			})
 			map.addLayer(sewerLayer);
+			getIconBlockDiv(layerID,"filter","green","sewer")
+
 			flagList[layerID] = 1;
 			break;
 
 
 		case "bikepath_path":
+			var url='http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer'
 			bikepath_pathLayer = L.esri.tiledMapLayer({
-				url: 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer',
+				url: url,
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(bikepath_pathLayer);
+			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
 			flagList[layerID] = 1;
 			break;
 
@@ -102,6 +104,7 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				pane: layerID + 'Pane'
 			})
 			map.addLayer(bikepath_greenLayer);
+			getIconBlockDiv(layerID,"line", "blue", "Greenway")
 			flagList[layerID] = 1;
 			break;
 
@@ -125,6 +128,8 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			})
 			map.addLayer(bikepath_headsLayer);
+
+			getIconBlockDiv(layerID,"cog","red","Trailheads")
 			flagList[layerID] = 1;
 			break;
 
@@ -180,6 +185,7 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				bikeshr_cogoLayer.addLayer(bikeshr_cogoFullLayer)
 				map.addLayer(bikeshr_cogoLayer);
 			});
+			getIconBlockDiv(layerID, "pic", null, "Cogo", "./img/bikeshr_cogo.png")
 			flagList[layerID] = 2;
 			break;
 
@@ -233,6 +239,7 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				bikeshr_zgstLayer.addLayer(bikeshr_zgstFullLayer);
 				map.addLayer(bikeshr_zgstLayer);
 			});
+			getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
 			flagList[layerID] = 2;
 			break;
 
