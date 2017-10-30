@@ -245,33 +245,12 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 		case "gas":
+			
 			break;
 
 		default:
 			//user's custom layers
-			if (dataType == "JSON Points") {
-				eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
-				eval("map.addLayer(" + layerID + "Layer);")
-				flagList[layerID] = 1;
-				return false;
-			}
-
-			if (dataType == "JSON Polyline/Polygon") {
-				eval(layerID + "Layer = receiveJsonp(Jsonp_URL, layerID,jsonp,acolor);")
-				eval("map.addLayer(" + layerID + "Layer);")
-				flagList[layerID] = 1;
-				return false;
-			}
-
-			if (dataType == "GeoServer tiles") {
-				eval(layerID + "Layer = L.esri.tiledMapLayer({" +
-					"url: '" + URL + "'," +
-					"pane: layerID + 'Pane'" +
-					"});")
-				eval("map.addLayer(" + layerID + "Layer);")
-				flagList[layerID] = 1;
-				return false;
-			}
+			addDefaultHandles(dataType,layerID,URL);
 
 
 	}

@@ -152,7 +152,7 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 	return newLayer;
 }
 
-//--------------------------------------Legend---------------------------
+//--------------------------------------Legend------------------------------------
 function getMapServerLegendDiv(layerID, url) { //return one map's legend
 
 	var legendContent = '<div class="legendcontent" id="' + layerID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + layerID + '-collapse">' + layerID + '</a>' +
@@ -419,7 +419,33 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 	}
 }
 
+//------------------------------------------add layer-===---------------------------------------
+function addDefaultHandles(dataType,layerID,URL)
+{
+	if (dataType == "JSON Points") {
+		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
+		eval("map.addLayer(" + layerID + "Layer);")
+		flagList[layerID] = 1;
+		return false;
+	}
 
+	if (dataType == "JSON Polyline/Polygon") {
+		eval(layerID + "Layer = receiveJsonp(URL, layerID,jsonp,acolor);")
+		eval("map.addLayer(" + layerID + "Layer);")
+		flagList[layerID] = 1;
+		return false;
+	}
+
+	if (dataType == "GeoServer tiles") {
+		eval(layerID + "Layer = L.esri.tiledMapLayer({" +
+		"url: '" + URL + "'," +
+		"pane: layerID + 'Pane'" +
+		"});")
+	eval("map.addLayer(" + layerID + "Layer);")
+	flagList[layerID] = 1;
+	return false;
+	}
+}
 
 
 //addLayerHandle: when add button is pushed, this method is fired.
