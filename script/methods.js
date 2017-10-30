@@ -420,7 +420,7 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 }
 
 //------------------------------------------add layer-===---------------------------------------
-function addDefaultHandles(dataType,layerID,URL)
+function addDefaultHandles(layerID,dataType, URL, symbolType, jsonp, acolor)//尚未添加图例
 {
 	if (dataType == "JSON Points") {
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")

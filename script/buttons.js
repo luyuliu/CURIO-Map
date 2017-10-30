@@ -151,7 +151,31 @@ $("#bikeshr-btn").click(function () {
   return false;
 });
 
+$("#water-btn").click(function () {
+  //water data receive
+  if (flagList["water_npdes"] && flagList["water_intakes"] && flagList["water_buffers"]) {
+    alert("Already added this layer.")
+    return false;
+  }
+  if (!flagList["water_npdes"]) {
+    xlayerID = "water_npdes";
+    addLayerHandle(xlayerID,"GeoServer tiles","http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1");
+  }
+  if (!flagList["water_intakes"]) {
+    xlayerID = "water_intakes";
+    addLayerHandle(xlayerID,"GeoServer tiles","http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DDAGW_WI/MapServer/0");
+  }
+  if (!flagList["water_buffers"]) {
+    xlayerID = "water_buffers";
+    addLayerHandle(xlayerID,"GeoServer tiles","http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/IntakeBuffers/MapServer/1");
+  }
+  sortLayerHandle(e)
+  changeButtonStatus("water")
+  mapFlagList["water"] = true;
 
+
+  return false;
+});
 
 
 

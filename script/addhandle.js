@@ -49,7 +49,7 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			})
 
 
-			$.get("http://geog-cura-pc5/morpcCensus.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/morpcCensus.json", function (data) {
 				homeownLayer.addData(data)
 			});
 
@@ -250,7 +250,10 @@ function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 		default:
 			//user's custom layers
-			addDefaultHandles(dataType,layerID,URL);
+			//"JSON Points"
+			//"JSON Polyline/Polygon"
+			//"GeoServer tiles"
+			addDefaultHandles(layerID,dataType, URL, symbolType, jsonp, acolor);
 
 
 	}
