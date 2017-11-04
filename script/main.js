@@ -54,6 +54,8 @@ legend.addTo(map)
 var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI list
 var mapFlagList = new Array(); //the list of each maps. In accord with the buttons.
+var fullLayerIDsList=new Array('bikeshr_cogo', 'bikeshr_zgst', 'air_coal', 'air_ngp', 'homeown', 'cota', 'wshd_cso', 'wshd_wshd', 'eth_eth', 'eth_asian', 'eth_his', 'eth_black', 'eth_white', 'sdw_sdw', 'sdw_nsdw', 'sewer', 'demo', 'bikepath_path', 'bikepath_green', 'bikepath_heads', 'water_npdes', 'water_intakes', 'water_buffers', 'gas', 'trans_cabsN', 'trans_cabsS', 'trans_cabsNE', 'trans_cabsER', 'trans_cabsBV', 'trans_parkingC', 'trans_parkingB', 'trans_parkingA', 'trans_parkingG', 'tree')
+//---------------------------------------------Initialization----------------------------------------
 
 baseLayerID = "esriTopo";
 
@@ -88,6 +90,14 @@ var sortable = Sortable.create(layerList, {
   }
 });
 
+$(function(){
+  for(var i in fullLayerIDsList){
+    addLayerHandle(fullLayerIDsList[i])
+    }
+  $("#layerList").height($(window).height()/2);
+  new SimpleBar(document.getElementById('layerList'))
+  })
+  
 
 $(document).ready(function () {
   $('.dropdown-submenu a.test').on("click", function (e) {
@@ -96,3 +106,5 @@ $(document).ready(function () {
     e.preventDefault();
   });
 });
+
+//------------------------------------Initializing List------------------------------------

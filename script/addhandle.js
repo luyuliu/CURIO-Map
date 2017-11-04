@@ -7,7 +7,7 @@
  *
  * ******************************************************* */
 
-function addingLayer(layerID, dataType, URL, symbolType, jsonp, acolor) {
+function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	/*must:
 	1. add layer to corresponding pane;
 	2. change flagList status;

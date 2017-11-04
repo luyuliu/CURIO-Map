@@ -45,8 +45,11 @@
 
 	<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
 
+	<!-- scrollbar.js -->
+	<script src="./js/simplebar.js"></script>
 
 	<!-- Load css-->
+	<link rel="stylesheet" href="./css/simplebar.css">
 	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
 	<link rel="stylesheet" href="./css/awesome-bootstrap-checkbox.css">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
@@ -82,8 +85,8 @@
 		<div id="sidebar">
 			<div class="sidebar-wrapper">
 
-				<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true" style="position:absolute">
-					<div class="panel panel-default" style="margin:0,height:80%">
+				<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true" style="height:100%">
+					<div class="panel panel-default" style="margin:0">
 						<div class="panel-heading" role="tab" id="headingOne0" style="margin:0">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne0" aria-expanded="true" aria-controls="collapseOne0">Map Administration
 								<button type="button" class="btn btn-xs btn-default pull-right" title="Click to hide sidebar" id="sidebar-hide-btn">
@@ -192,7 +195,7 @@
 
 
 					</div>
-					<div class="panel panel-default" style="margin:0,height:80%">
+					<div class="panel panel-default" style="margin:0">
 						<div class="panel-heading" role="tab" id="headingOne1" style="margin:0">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">Layer Control
 							</a>
@@ -201,16 +204,17 @@
 						</div>
 
 
-						<div id="collapseOne1" class="panel-collapse collapse collapse" role="tabpanel" aria-labelledby="headingOne1" style="margin:0">
-							<div class="panel-body" style="padding:0">
-								<div id="layerList" class="list-group pre-scrollable" style="width:250">
+						<div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1" style="margin:0">
+							<div class="panel-body" style="padding:0;margin:0">
+
+								<div id="layerList" class="list-group" style="width:250">
 
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="panel panel-default" style="margin:0,height:20%">
+					<div class="panel panel-default" style="margin:0">
 						<div class="panel-heading" role="tab" id="headingOne1" style="margin:0">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">POI List
 							</a>

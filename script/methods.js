@@ -420,7 +420,7 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 }
 
 //------------------------------------------add layer-===---------------------------------------
-function addDefaultHandles(layerID,dataType, URL, symbolType, jsonp, acolor)//尚未添加图例
+function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //尚未添加图例
 {
 	if (dataType == "JSON Points") {
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
@@ -438,12 +438,12 @@ function addDefaultHandles(layerID,dataType, URL, symbolType, jsonp, acolor)//�
 
 	if (dataType == "GeoServer tiles") {
 		eval(layerID + "Layer = L.esri.tiledMapLayer({" +
-		"url: '" + URL + "'," +
-		"pane: layerID + 'Pane'" +
-		"});")
-	eval("map.addLayer(" + layerID + "Layer);")
-	flagList[layerID] = 1;
-	return false;
+			"url: '" + URL + "'," +
+			"pane: layerID + 'Pane'" +
+			"});")
+		eval("map.addLayer(" + layerID + "Layer);")
+		flagList[layerID] = 1;
+		return false;
 	}
 }
 
@@ -463,10 +463,6 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		color = "#000000";
 	}
 
-	//add layer to the map by layerID
-	addingLayer(layerID, dataType, URL, symbolType, jsonp, color);
-	//add list-item to the layers list, id=layerList
-	//include a delete button, a icon, a slider (basically)
 
 	if (flagList[layerID] == 2) {
 		POIFlagList[layerID] = true; //push layerID with features to demonstrate
@@ -480,7 +476,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 		//checkbox
 		"<div class=\"checkbox checkbox-primary\" title=\"Click to show or hide the layer\" style=\"float:left ; margin: auto\">" +
-		"<input type=\"checkbox\" id=\"" + layerID + "-checkbox" + "\" class=\"styled\" checked style=\"float:left;vertical-align: middle\">" +
+		"<input type=\"checkbox\" id=\"" + layerID + "-checkbox" + "\" class=\"styled\" unchecked style=\"float:left;vertical-align: middle\">" +
 		"<label>" +
 		"<span style=\"float:left;vertical-align: middle\" class=\"glyphicon glyphicon-move\" title=\"Drag to change the sequence of layers\" aria-hidden=\"true\"></span>&nbsp" + //dragger
 		"</label>" +
@@ -500,8 +496,6 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 		'<b id="' + layerID + '-legend' + '" class="fa fa-info-circle" aria-hidden="true"></b>' +
 
-
-		"<a id=\"" + layerID + "-delete-btn\" class=\"btn btn-danger btn-delete-item btn-xs pull-right\" title=\"Click to delete the layer\">Delete</a>" + //delete button
 		"<input id=\"" + //slider
 		layerID +
 		"-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" +
@@ -531,41 +525,21 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 	$('#' + layerID + "-checkbox").change(function () {
 		if ($(this).prop('checked')) {
-			map.getPane(layerID + "Pane").style.opacity = 1;
-			$('#' + layerID + "-slider").val(100).change();
+			//add layer to the map by layerID
+			checkedHandle(layerID, dataType, URL, symbolType, jsonp, color);
+			//include a delete button, a icon, a slider (basically)
 		} else {
-			map.getPane(layerID + "Pane").style.opacity = 0;
-			$('#' + layerID + "-slider").val(0).change();
+			uncheckedHandle(layerID);
 		}
 	});
 
 	var selector = "#" + layerID + "-slider"
-
-	var currentLayer = eval(layerID + "Layer");
-	//opacity slider eventlistener
-
 	$(document).on('input', selector, function (e) {
 		map.getPane(layerPaneID).style.opacity = (e.currentTarget.value / 100);
-		if (e.currentTarget.value == 0) {
-			document.getElementById(layerID + "-checkbox").checked = false;
-
-		}
-		if (e.currentTarget.value != 0 && !$(this).prop('checked')) {
-
-			document.getElementById(layerID + "-checkbox").checked = true;
-
-		}
-
 	})
-
-	//delete button eventlistener (also remove the corresponding zindex in listofZindex)
-	$('#' + layerID + "-delete-btn").click(function () {
-		deleteClickedHandle(layerID);
-	})
-
-
 
 }
+
 
 //sort layer handle
 function sortLayerHandle(e) {
@@ -619,22 +593,22 @@ function getLayerChildren(layerID) { //very ugly codes...
 }
 
 //deletebutton of each layer handle
-function deleteClickedHandle(layerID) {
+function uncheckedHandle(layerID) {
 
-	$("#" + layerID + "-metadata").off("click");
+	/*$("#" + layerID + "-metadata").off("click");
 	$("#" + layerID + "-legend").off("click");
 	$('#' + layerID + "-slider").off("rangeslider");
 	$('#' + layerID + "-checkbox").off("change");
-	$("#" + layerID + "-slider").off("input"); //turn off the eventhandler
+	$("#" + layerID + "-slider").off("input"); //turn off the eventhandler*/
 
 	deletelegend = document.getElementById(layerID + "-legendcontent")
 	deletelegend.parentNode.removeChild(deletelegend)
 
-	$("#" + layerID + "-listItem").animate({
+	/*$("#" + layerID + "-listItem").animate({
 		height: "0px"
 	}, 100, function () {
 		document.getElementById(layerID + "-listItem").parentElement.remove();
-	});
+	});*/
 
 	//map.removeLayer(eval(layerID + "Layer"));
 	eval('map.removeLayer(' + layerID + 'Layer);')
@@ -650,6 +624,7 @@ function deleteClickedHandle(layerID) {
 
 
 	//adjust the status of buttons
+	/*
 	if (Sibling.length == 1) {
 		changeButtonStatus(getLayerParent(layerID));
 		delete mapFlagList[getLayerParent(layerID)];
@@ -665,6 +640,6 @@ function deleteClickedHandle(layerID) {
 			changeButtonStatus(getLayerParent(layerID));
 			delete mapFlagList[getLayerParent(layerID)];
 		}
-	}
+	}*/
 	syncSidebar();
 }

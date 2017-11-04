@@ -60,14 +60,6 @@
   opacity: 0;
 }
 
-.pre-scrollable {
-  max-height: 80%;
-  overflow: auto;
-  -ms-word-wrap: normal;
-  word-wrap: normal;
-  overflow-wrap: normal;
-  white-space: pre;
-}
 
 .glyphicon glyphicon-list {
   font-size: 75px;
@@ -217,3 +209,5 @@
 width:110px;
 
 }
+
+
