@@ -24,8 +24,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			});
 			map.addLayer(treeLayer);
 			flagList[layerID] = 1;
-
-			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
 			break;
 
 		case "homeown":
@@ -54,9 +52,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			});
 
 			map.addLayer(homeownLayer);
-
-
-			getGraduatedColorsDiv(layerID,grades,colors)
 			flagList[layerID] = 1;
 			break;
 
@@ -81,7 +76,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			})
 			map.addLayer(sewerLayer);
-			getIconBlockDiv(layerID,"filter","green","sewer")
 
 			flagList[layerID] = 1;
 			break;
@@ -94,7 +88,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(bikepath_pathLayer);
-			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
+			
 			flagList[layerID] = 1;
 			break;
 
@@ -104,7 +98,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				pane: layerID + 'Pane'
 			})
 			map.addLayer(bikepath_greenLayer);
-			getIconBlockDiv(layerID,"line", "blue", "Greenway")
 			flagList[layerID] = 1;
 			break;
 
@@ -129,7 +122,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			})
 			map.addLayer(bikepath_headsLayer);
 
-			getIconBlockDiv(layerID,"cog","red","Trailheads")
 			flagList[layerID] = 1;
 			break;
 
@@ -185,7 +177,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				bikeshr_cogoLayer.addLayer(bikeshr_cogoFullLayer)
 				map.addLayer(bikeshr_cogoLayer);
 			});
-			getIconBlockDiv(layerID, "pic", null, "Cogo", "./img/bikeshr_cogo.png")
 			flagList[layerID] = 2;
 			break;
 
@@ -239,7 +230,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				bikeshr_zgstLayer.addLayer(bikeshr_zgstFullLayer);
 				map.addLayer(bikeshr_zgstLayer);
 			});
-			getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
+			
 			flagList[layerID] = 2;
 			break;
 
@@ -258,4 +249,10 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 	}
 
+	if (flagList[layerID] == 2) {
+		POIFlagList[layerID] = true; //push layerID with features to demonstrate
+	}
+	
+	//-----legend------
+	addLegendHandle(layerID,url,grades,colors);
 }

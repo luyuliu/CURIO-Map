@@ -104,7 +104,7 @@
 											</button>
 											<ul class="dropdown-menu">
 												<li class="dropdown-submenu">
-													<a class="test" tabindex="-1" href="#">Select Basemap
+													<a class="test" tabindex="-1" href="#">Select basemap
 														<span class="caret"></span>
 													</a>
 													<ul class="dropdown-menu">
@@ -123,51 +123,11 @@
 														</li>
 													</ul>
 												</li>
-
-												<li class="dropdown-submenu">
-													<a class="test" tabindex="-1" href="#">Add Layers
-														<span class="caret"></span>
-													</a>
-													<ul class="dropdown-menu">
-														<li>
-															<a href="#" id="tree-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Columbus Tree Map</a>
-														</li>
-														<li>
-															<a href="#" id="bikepath-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Bike Paths in Central Ohio</a>
-														</li>
-														<li>
-															<a href="#" id="sewer-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Sewer Overflow Discharges</a>
-														</li>
-														<li>
-															<a href="#" id="homeown-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Home Ownership</a>
-														</li>
-														<li>
-															<a href="#" id="bikeshr-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Bike Sharing Stations</a>
-														</li>
-														<li>
-															<a href="#" id="gas-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Columbus Gas Prices</a>
-															</a>
-														</li>
-														<li>
-															<a href="#" id="water-btn">
-																<i class="fa fa-circle" aria-hidden="true"></i> Water Pollution</a>
-															</a>
-														</li>
-														<li>
-															<a href="#" id="morelayer-btn">
-																<i class="fa fa-wrench" aria-hidden="true"></i> More layers…</a>
-														</li>
-													</ul>
-												</li>
-
 												<li>
-													<a href="#" id="removeall-btn">Remove All Layers</a>
+													<a href="#" id="removeall-btn">Uncheck all layers</a>
+												</li>
+												<li>
+													<a href="#" id="onlycheck-btn">Only show checked layers</a>
 												</li>
 											</ul>
 										</div>
@@ -207,7 +167,7 @@
 						<div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1" style="margin:0">
 							<div class="panel-body" style="padding:0;margin:0">
 
-								<div id="layerList" class="list-group" style="width:250">
+								<div id="layer-list" class="list-group" style="width:250">
 
 								</div>
 							</div>
@@ -232,6 +192,7 @@
 									</div>
 								</div>
 							</div>
+							<div id="table-wrapper" style="overflow:scroll;height:80px;width:100%;overflow:auto">
 							<table class="table table-hover" id="feature-list">
 								<thead class="hidden">
 									<tr>
@@ -244,8 +205,9 @@
 														<th>Chevron</th>
 														<tr>
 								</thead>
-								<tbody class="list"></tbody>
+								<tbody id="POI-list" class="list"></tbody>
 							</table>
+							</div>>
 
 						</div>
 					</div>

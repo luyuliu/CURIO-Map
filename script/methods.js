@@ -40,6 +40,8 @@ function animateSidebar() {
 
 function sizeLayerControl() {
 	$(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
+	$("#layer-list").height($(window).height()/2);
+	$("#table-wrapper").height($(window).height()/2);
 }
 
 function sidebarClick(id, layerID) { //click on the sidebar handle
@@ -57,6 +59,7 @@ function sidebarClick(id, layerID) { //click on the sidebar handle
 function syncSidebar() { //update the siderbar
 	/* Empty sidebar features */
 	$("#feature-list tbody").empty();
+	console.log(POIFlagList)
 	/* Loop through stations layer and add only features which are in the map bounds */
 	for (var i in POIFlagList) {
 		var pictureURL = "img/" + i + ".png";
@@ -153,13 +156,48 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 }
 
 //--------------------------------------Legend------------------------------------
+function addLegendHandle(layerID,url,grades,colors){
+	switch(layerID){
+		case "tree":
+		getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
+		break;
+
+		case "homeown":
+		getGraduatedColorsDiv(layerID,grades,colors)
+		break;
+
+		case "sewer":
+		getIconBlockDiv(layerID,"filter","green","sewer")
+		break;
+
+		case "bikepath_path":
+		getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
+		break;
+
+		case "bikepath_green":
+		getIconBlockDiv(layerID,"line", "blue", "Greenway")
+		break;
+
+		case "bikepath_heads":
+		getIconBlockDiv(layerID,"cog","red","Trailheads")
+		break;
+
+		case "bikeshr_cogo":
+		getIconBlockDiv(layerID, "pic", null, "Cogo", "./img/bikeshr_cogo.png")
+		break;
+
+		case "bikeshr_zgst":
+		getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
+		break;
+
+
+	}
+
+
+}
+
+
 function getMapServerLegendDiv(layerID, url) { //return one map's legend
-
-	var legendContent = '<div class="legendcontent" id="' + layerID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + layerID + '-collapse">' + layerID + '</a>' +
-		'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'
-
-	legend.getContainer().innerHTML += legendContent
-
 	var alegendContent = '<table><tbody>'
 	$.ajax({
 		url: url,
@@ -181,10 +219,7 @@ function getMapServerLegendDiv(layerID, url) { //return one map's legend
 }
 
 function getGraduatedColorsDiv(layerID, grades, colors) { //grades.length must === colors.length
-	var legendContent = '<div class="legendcontent" id="' + layerID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + layerID + '-collapse">' + layerID + '</a>' +
-		'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse in" role="tabpane2" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'
-
-	legend.getContainer().innerHTML += legendContent
+	
 
 	var legendContent2 = '<table><tbody>'
 	for (var i in grades) {
@@ -212,10 +247,10 @@ function getIconBlockString(color, icon) {
 }
 
 function getIconBlockDiv(mapID, icons, colors, names, url) {
-	var legendContent = '<div class="legendcontent" id="' + mapID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + mapID + '-collapse">' + mapID + '</a>' +
+	/*var legendContent = '<div class="legendcontent" id="' + mapID + '-legendcontent"><a data-toggle="collapse" href="#legend-' + mapID + '-collapse">' + mapID + '</a>' +
 		'<div id="' + 'legend-' + mapID + '-collapse' + '" class="panel-collapse collapse in" role="tabpane2" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'
 
-	legend.getContainer().innerHTML += legendContent
+	legend.getContainer().innerHTML += legendContent*/
 
 	var legendContent2 = '<table><tbody>'
 	if (icons == "pic") {
@@ -464,10 +499,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 	}
 
 
-	if (flagList[layerID] == 2) {
-		POIFlagList[layerID] = true; //push layerID with features to demonstrate
-	}
-	syncSidebar(); //refresh POIList
+	//syncSidebar(); //refresh POIList
 
 
 	var neodiv = document.createElement('div');
@@ -494,15 +526,18 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		"<div id=\"" + layerID + "-controlcontainer" + "\" class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
 		"<div class=\"panel-body\" style=\"width:210px;padding:0px;margin:0px\">" + //wrapper
 
-		'<b id="' + layerID + '-legend' + '" class="fa fa-info-circle" aria-hidden="true"></b>' +
+		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\">"+'<b id="' + layerID + '-legend' + '" class="fa fa-info-circle" aria-hidden="true"></b>'+" Legend</a>"+
+		
 
-		"<input id=\"" + //slider
-		layerID +
-		"-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" +
+
+		"<input id=\"" + layerID +	"-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" +//slider
+
+		'<div class="legendcontent" id="' + layerID + '-legendcontent">'+
+		'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse collapse" role="tabpanel" aria-labelledby="headingOne0" aria-expanded="true"></div></div>'+
 		"</div>" +
 		"</div>" +
 		"</div>"
-	document.getElementById("layerList").prepend(neodiv);
+	document.getElementById("layer-list").prepend(neodiv);
 
 	$("#" + layerID + "-metadata").click(function () { //metadata
 		$("#meta-modal").modal("show");
@@ -510,12 +545,14 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		return false;
 	});
 
-	$("#" + layerID + "-legend").click(function () { //legend
-		$("#meta-modal").modal("show");
-		$(".navbar-collapse.in").collapse("hide");
-		return false;
+	//-----legend------if you are looking for the real adding legend sentence, pls go to add handle's bottom
+	$('#' + layerID + "-legend-btn").click(function(){
+		if(!$('#' + layerID + "-checkbox").prop('checked'))
+		{
+			alert("Please add the layer first.")
+		}
+		
 	});
-
 
 
 	//-----slider------
@@ -545,11 +582,16 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 function sortLayerHandle(e) {
 
 
-	var sortList = sortable.toArray();
+	var sortList = asortable.toArray();
 	var baseZindex = 300;
 	for (var i = 0; i < sortList.length; i++) {
-		currentLayerID = document.getElementById("layerList").children[i].children[0].id.substring(0, document.getElementById("layerList").children[i].children[0].id.indexOf("-"));
+		currentLayerID = contentwrapper.children[i].children[0].id.substring(0, contentwrapper.children[i].children[0].id.indexOf("-"));
+		try{
 		map.getPane(currentLayerID + "Pane").style.zIndex = baseZindex - i;
+		}
+		catch(err){
+			alert("Please add the layer first.")
+		}
 	}
 }
 
@@ -601,8 +643,8 @@ function uncheckedHandle(layerID) {
 	$('#' + layerID + "-checkbox").off("change");
 	$("#" + layerID + "-slider").off("input"); //turn off the eventhandler*/
 
-	deletelegend = document.getElementById(layerID + "-legendcontent")
-	deletelegend.parentNode.removeChild(deletelegend)
+	deletelegend = document.getElementById("legend-"+layerID +"-collapse")
+	deletelegend.innerHTML=''
 
 	/*$("#" + layerID + "-listItem").animate({
 		height: "0px"

@@ -38,14 +38,14 @@ highlight.addTo(map)
 var e = null;
 
 //------------------------------------legend------------------------------------
-var legend = L.control({
+/*var legend = L.control({
   position: 'topright'
 })
 legend.onAdd=function(map){
   var div = L.DomUtil.create('div', 'info legend')
   return div;
 }
-legend.addTo(map)
+legend.addTo(map)*/
 
 
 
@@ -76,10 +76,21 @@ var zoomControl = L.control.zoom({
   position: "bottomright"
 }).addTo(map);
 
+$(function(){
+  for(var i in fullLayerIDsList){
+    addLayerHandle(fullLayerIDsList[i])
+    }
+  $("#layer-list").height($(window).height()/2);
+
+  new SimpleBar(document.getElementById('layer-list'))
+  })
+
 //------------------------------------Sortable list------------------------------------
 // List with handle
 //include onsort eventlistener and handle
-var sortable = Sortable.create(layerList, {
+$(document).ready(function () {
+contentwrapper=document.getElementsByClassName("simplebar-content")[0]
+asortable = Sortable.create(contentwrapper, {
   handle: '.glyphicon-move',
   animation: 150,
   scroll: true,
@@ -89,15 +100,8 @@ var sortable = Sortable.create(layerList, {
     sortLayerHandle(e)
   }
 });
+})
 
-$(function(){
-  for(var i in fullLayerIDsList){
-    addLayerHandle(fullLayerIDsList[i])
-    }
-  $("#layerList").height($(window).height()/2);
-  new SimpleBar(document.getElementById('layerList'))
-  })
-  
 
 $(document).ready(function () {
   $('.dropdown-submenu a.test').on("click", function (e) {

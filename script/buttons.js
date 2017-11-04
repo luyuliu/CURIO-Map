@@ -28,11 +28,16 @@ $('.mini-submenu').on('click', function () {
 
 $("#removeall-btn").click(function () {
   for (var layerID in flagList) {
-    deleteClickedHandle(layerID);
+    uncheckedHandle(layerID);
+    document.getElementById(layerID + "-checkbox").checked = false;
   }
   return false;
 });
 
+$("#onlycheck-btn").click(function () {
+  testFailedHandle();
+  return false;
+});
 
 $("#test-btn").click(function () {
   testFailedHandle();
