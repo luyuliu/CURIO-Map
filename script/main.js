@@ -76,6 +76,7 @@ var zoomControl = L.control.zoom({
   position: "bottomright"
 }).addTo(map);
 
+//------------------------------------layerList initialization------------------------------------
 $(function(){
   for(var i in fullLayerIDsList){
     addLayerHandle(fullLayerIDsList[i])
