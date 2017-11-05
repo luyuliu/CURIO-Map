@@ -43,8 +43,58 @@ $("#test-btn").click(function () {
   testFailedHandle();
   return false;
 });
+//------------------------------------sorting buttons------------------------------------
+$("#topchecked-btn").click(function () {
+
+  var layerListOrder = asortable.toArray(),
+    currentItem,
+    currentBase36Id;
+  for (var j in flagList) {
+    currentItem = document.getElementById(j + "-list-item").parentNode;
+    currentBase36Id = generateBase36Id(currentItem);
+    for (var i = 0; i < layerListOrder.length; i++) {
+      if (currentBase36Id == layerListOrder[i]) {
+        var tempId = layerListOrder[i];
+        layerListOrder.splice(i, 1);
+        layerListOrder.unshift(tempId);
+        break;
+      }
+    }
+  }
+  asortable.sort(layerListOrder);
+  sortLayerHandle(e)
+  return false;
+});
+
+$("#alphabet-btn").click(function () {
+  var alphabeticalList = new Array();
+  var alpbtObject = [];
+  for (var i in fullLayerIDsList) {
+    alphabeticalList.push(getLayerName(fullLayerIDsList[i]));
+    alpbtObject[getLayerName(fullLayerIDsList[i])] = fullLayerIDsList[i]
+  }
+  alphabeticalList.sort();
+  for (var i in fullLayerIDsList) {
+    alphabeticalList[i] = generateBase36Id(document.getElementById(alpbtObject[alphabeticalList[i]] + "-list-item").parentNode)
+  }
+  asortable.sort(alphabeticalList);
+  sortLayerHandle(e)
+  return false;
+});
+
+$("#categorize-btn").click(function () {
+  testFailedHandle();
+  return false;
+});
+
+$("#gissorting-btn").click(function () {
+  testFailedHandle();
+  return false;
+});
+
 //------------------------------------add buttons------------------------------------
 //changebuttonstatus must be infront of mapflag chaanged
+/*
 $("#tree-btn").click(function () {
   //tree data receive
   xlayerID = "tree";
@@ -222,7 +272,7 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
        deleteClickedHandle(xlayerID);
      } catch (err) {}
    }*/
-  if (!flagList[xlayerID]) {
+/*if (!flagList[xlayerID]) {
     addLayerHandle(xlayerID, dataType, URL, symbolType, jsonp, afcolor);
   } else {
     alert("Already added this layer.")
@@ -231,7 +281,7 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
   $("#more-modal").modal("hide");
   return false;
 
-});
+});*/
 
 //------------------------------------basemap controls------------------------------------
 $("#esriDarkGray").click(function () {

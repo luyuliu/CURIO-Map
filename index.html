@@ -99,12 +99,12 @@
 								<ul class="list-group" id="controlList" style="padding:0">
 									<li class="list-group-item">
 										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Layer Settings
+											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-cogs" aria-hidden="true"></i> Layer Settings
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
 												<li class="dropdown-submenu">
-													<a class="test" tabindex="-1" href="#">Select basemap
+													<a class="test" tabindex="-1" href="#"><i class="fa fa-map" aria-hidden="true"></i> Select basemap
 														<span class="caret"></span>
 													</a>
 													<ul class="dropdown-menu">
@@ -124,10 +124,10 @@
 													</ul>
 												</li>
 												<li>
-													<a href="#" id="removeall-btn">Uncheck all layers</a>
+													<a href="#" id="removeall-btn"><i class="fa fa-ban" aria-hidden="true"></i> Uncheck all layers</a>
 												</li>
 												<li>
-													<a href="#" id="onlycheck-btn">Only show checked layers</a>
+													<a href="#" id="openall-btn"><i class="fa fa-hand-spock-o" aria-hidden="true"></i> Open all layers</a>
 												</li>
 											</ul>
 										</div>
@@ -135,13 +135,21 @@
 
 									<li class="list-group-item">
 										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" title="Add default layers and other layers" type="button" data-toggle="dropdown">Legend Settings
+											<button class="btn btn-default dropdown-toggle" title="Add default layers and other layers" type="button" data-toggle="dropdown"><i class="fa fa-binoculars" aria-hidden="true"></i> Sorting Layers
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
 												<li>
-													<a href="#" id="openlegend-btn">Open legend</a>
-													<a href="#" id="closelegend-btn">Close legend</a>
+													<a href="#" id="topchecked-btn"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Top selected layers</a>
+												</li>
+												<li>
+													<a href="#" id="alphabet-btn"><i class="fa fa-sort-alpha-asc" aria-hidden="true"></i> Sort layers Alphabetically</a>
+												</li>
+												<li>
+													<a href="#" id="categorize-btn"><i class="fa fa-tags" aria-hidden="true"></i> Categorize layers</a>
+												</li>
+												<li>
+													<a href="#" id="gissorting-btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i> GIS sorting</a>
 												</li>
 											</ul>
 										</div>

@@ -8,6 +8,7 @@
  * *************************************************************** */
 
 //------------------------------------map & basemap layers------------------------------------
+
 var baseLayer = L.esri.basemapLayer('Topographic')
 var theaterSearch = []
 map = L.map("map", {
@@ -51,10 +52,65 @@ legend.addTo(map)*/
 
 //------------------------------------signals & flags------------------------------------
 //layer flag
+class LayerFlag{
+  constructor(layerID,isSimpleLayer,layerType,featureType){
+    this._layerID=layerID;
+    this._isSimpleLayer=isSimpleLayer;
+    this._layerType=layerType;
+    this._featureType=featureType;
+  }
+  get layerID(){
+    return this._layerID;
+  }
+  get isSimpleLayer(){
+    return this._isSimpleLayer;
+  }
+  get layerType(){
+    return this._layerType;
+  }
+  get featureType(){
+    return this._featureType;
+  }
+  get layerName(){
+    return getLayerName(this._layerID);
+  }
+
+}
+
+class LayerFlagGroup{
+  constructor(layerIDs,isSimpleLayers,layerTypes,featureTypes){
+    var alayerFlag;
+    this._layerFlags=[];
+    for(var i in layerIDs){
+      alayerFlag=new LayerFlag(layerIDs[i],isSimpleLayers[i],layerTypes[i],featureTypes[i]);
+      this._layerFlags.push(alayerFlag);
+    }
+    }
+
+    get layerFlags(){
+      return this._layerFlags;
+    }
+
+    getItemByIndex(i){
+      return this.layerFlags[i];
+    }
+    static compareName(a,b){
+      var textA = a.layerID.toUpperCase();
+      var textB = b.layerID.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    }
+
+  }
+
 var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI list
 var mapFlagList = new Array(); //the list of each maps. In accord with the buttons.
 var fullLayerIDsList=new Array('bikeshr_cogo', 'bikeshr_zgst', 'air_coal', 'air_ngp', 'homeown', 'cota', 'wshd_cso', 'wshd_wshd', 'eth_eth', 'eth_asian', 'eth_his', 'eth_black', 'eth_white', 'sdw_sdw', 'sdw_nsdw', 'sewer', 'demo', 'bikepath_path', 'bikepath_green', 'bikepath_heads', 'water_npdes', 'water_intakes', 'water_buffers', 'gas', 'trans_cabsN', 'trans_cabsS', 'trans_cabsNE', 'trans_cabsER', 'trans_cabsBV', 'trans_parkingC', 'trans_parkingB', 'trans_parkingA', 'trans_parkingG', 'tree')
+var fullIsSimpleLayersList=new Array(false,false,false,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true)
+var fullFeatureType=new Array(1,1,1,1,3,3,1,2,1,1,1,1,1,2,2,1,3,2,2,1,1,1,3,1,2,2,2,2,2,2,2,2,2,3);
+var fullLayerTypesList=new Array('T','T','E','E','S','T','E','E','S','S','S','S','S','T','T','E','S','T','T','T','E','E','E','S','T','T','T','T','T','T','T','T','T','E')
+var fullLayerFlags=new LayerFlagGroup(fullLayerIDsList,fullIsSimpleLayersList,fullLayerTypesList,fullFeatureType);
+
 //---------------------------------------------Initialization----------------------------------------
 
 baseLayerID = "esriTopo";
@@ -112,4 +168,4 @@ $(document).ready(function () {
   });
 });
 
-//------------------------------------Initializing List------------------------------------
+

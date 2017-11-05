@@ -329,7 +329,7 @@ function getColorx(val, grades, colors) {
 	return '#ffffff';
 }
 
-/*//------------------------------------About 'Layer Settings' menu------------------------------------
+//------------------------------------About 'Layer Settings' menu------------------------------------
 function changeBasemap(basemap) { //change the icon of each options when changing basemap
 	map.removeLayer(baseLayer);
 	baseLayer = L.esri.basemapLayer(getLayerName(basemap), pane = "basemapPane");
@@ -348,7 +348,7 @@ function changeButtonStatus(layerID) { //to change the icon in the buttons of ea
 		}
 	} catch (err) {}
 
-}*/
+}
 
 //------------------------------------For sortable------------------------------------
 function generateBase36Id(el) {
@@ -536,11 +536,11 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		"</div>" +
 
 		"<div id=\"" + layerID + "-controlcontainer" + "\" class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
-		"<div class=\"panel-body\" style=\"width:210px;padding:0px;margin:0px\">" + //wrapper
+		"<div class=\"panel-body\" style=\"width:210px;padding:0px;margin:0px\"><br>" + //wrapper
 
 		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\">" + '<b' + ' class="fa fa-info-circle" aria-hidden="true"></b>' + " Legend</a>" + //legendbutton
-		"<a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\" data-toggle=\"collapse\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
-
+		" <a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
+		" <a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
 
 
 		"<input id=\"" + layerID + "-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" + //slider
@@ -583,6 +583,18 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		sortLayerHandle(e)
 	});
 
+	//------zoomto------
+	$('#' + layerID + "-zoomto-btn").click(function () {
+		try{
+		eval("map.fitBounds("+layerID+"Layer.getBounds())")
+		}
+		catch(err){
+			alert("I'm confused too.")
+		}
+		//eval('map.fitBounds('+layerID+'Layer.query().bounds())')
+		//eval('map.fitBounds(L.featureGroup(['+layerID+'Layer]).getBounds())')
+	});
+
 	//------slider------
 	$('#' + layerID + "-slider").rangeslider({
 		polyfill: true,
@@ -606,10 +618,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 }
 
 
-//sort layer handle
+//sort layer handle according to the list order in list-group aka 'layer-list'
 function sortLayerHandle(e) {
-
-
 	var sortList = asortable.toArray();
 	var baseZindex = 300;
 	for (var i = 0; i < sortList.length; i++) {
