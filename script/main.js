@@ -94,11 +94,6 @@ class LayerFlagGroup{
     getItemByIndex(i){
       return this.layerFlags[i];
     }
-    static compareName(a,b){
-      var textA = a.layerID.toUpperCase();
-      var textB = b.layerID.toUpperCase();
-      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    }
 
   }
 

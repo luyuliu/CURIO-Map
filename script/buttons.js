@@ -67,28 +67,49 @@ $("#topchecked-btn").click(function () {
 });
 
 $("#alphabet-btn").click(function () {
-  var alphabeticalList = new Array();
-  var alpbtObject = [];
-  for (var i in fullLayerIDsList) {
-    alphabeticalList.push(getLayerName(fullLayerIDsList[i]));
-    alpbtObject[getLayerName(fullLayerIDsList[i])] = fullLayerIDsList[i]
+  fullLayerFlags.layerFlags.sort(function(a,b){
+  var textA = a.layerID.toUpperCase();
+  var textB = b.layerID.toUpperCase();
+  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}
+)
+var base36ListTemp=new Array();
+for (var i in fullLayerIDsList) {
+  base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
+}
+asortable.sort(base36ListTemp)
+sortLayerHandle(e)
+return false;
+});
+
+$("#categorize-btn").click(function () {
+  fullLayerFlags.layerFlags.sort(function(a,b){
+    var textA = a.layerType;
+    var textB = b.layerType;
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
   }
-  alphabeticalList.sort();
+  )
+  var base36ListTemp=new Array();
   for (var i in fullLayerIDsList) {
-    alphabeticalList[i] = generateBase36Id(document.getElementById(alpbtObject[alphabeticalList[i]] + "-list-item").parentNode)
+    base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
   }
-  asortable.sort(alphabeticalList);
+  asortable.sort(base36ListTemp)
   sortLayerHandle(e)
   return false;
 });
 
-$("#categorize-btn").click(function () {
-  testFailedHandle();
-  return false;
-});
-
 $("#gissorting-btn").click(function () {
-  testFailedHandle();
+  fullLayerFlags.layerFlags.sort(function(a,b){
+  var textA = a.featureType;
+  var textB = b.featureType;
+  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+}
+  )
+  var base36ListTemp=new Array();
+  for (var i in fullLayerIDsList) {
+    base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
+  }
+  asortable.sort(base36ListTemp)
+  sortLayerHandle(e)
   return false;
 });
 

@@ -515,8 +515,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 
 	var neodiv = document.createElement('div');
-	neodiv.innerHTML = "<div class=\"list-group-item\" id=\"" + layerID + "-list-item\">" + //list-group-item
-		"<div class=\"panel-heading\" style=\"width:210px;height:20px;padding:0\">" + //wrapper
+	neodiv.innerHTML = "<div class=\"list-group-item\" id=\"" + layerID + "-list-item\" style='padding-left:10px;padding-right:5px'>" + //list-group-item
+		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
 
 		//checkbox
 		"<div class=\"checkbox checkbox-primary\" title=\"Click to show or hide the layer\" style=\"float:left ; margin: auto\">" +
@@ -535,12 +535,12 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		//"</div>" +
 		"</div>" +
 
-		"<div id=\"" + layerID + "-controlcontainer" + "\" class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
-		"<div class=\"panel-body\" style=\"width:210px;padding:0px;margin:0px\"><br>" + //wrapper
+		"<div id=\"" + layerID + "-controlcontainer" + "\" style='width:230px;margin:0' class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
+		"<div class=\"panel-body\" style=\"width:230px;padding:0px;margin:0px\"><br>" + //wrapper
 
 		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\">" + '<b' + ' class="fa fa-info-circle" aria-hidden="true"></b>' + " Legend</a>" + //legendbutton
-		" <a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
-		" <a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
+		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
+		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
 
 
 		"<input id=\"" + layerID + "-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" + //slider
