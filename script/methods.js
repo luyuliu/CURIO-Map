@@ -391,7 +391,14 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			var aUrl;
 			eval('var currentLayer=' + layerID + 'Layer')
 			aUrl = currentLayer.options.url;
+			var theend = aUrl.indexOf("MapServer");
+			aUrl=aUrl.substring(0,theend+9);
+			console.log(aUrl)
 			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
+			var corner1=L.latLng(extent[0][1],extent[0][0])
+			var corner2=L.latLng(extent[1][1],extent[1][0])
+			extent = L.latLngBounds(corner1, corner2)
+			
 			return extent;
 			break;
 
@@ -399,8 +406,12 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			var aUrl;
 			eval('var currentLayer=' + layerID + 'Layer')
 			aUrl = currentLayer._url;
-			console.log(aUrl)
+			var theend = aUrl.indexOf("/tile");
+			aUrl=aUrl.substring(0,theend);
 			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
+			var corner1=L.latLng(extent[0][1],extent[0][0])
+			var corner2=L.latLng(extent[1][1],extent[1][0])
+			extent = L.latLngBounds(corner1, corner2)
 			return extent;
 			break;
 
@@ -637,6 +648,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		//eval("map.fitBounds("+layerID+"Layer.getBounds())")
 		var bounds=returnBounds(layerID)
 		console.log(bounds)
+		map.fitBounds(bounds)
 		//eval('map.fitBounds('+layerID+'Layer.query().bounds())')
 		//eval('map.fitBounds(L.featureGroup(['+layerID+'Layer]).getBounds())')
 	});
