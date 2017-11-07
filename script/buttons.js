@@ -43,6 +43,12 @@ $("#test-btn").click(function () {
   testFailedHandle();
   return false;
 });
+
+$("#pinchecked-btn").click(function () {
+  
+  return false;
+});
+
 //------------------------------------sorting buttons------------------------------------
 $("#topchecked-btn").click(function () {
 

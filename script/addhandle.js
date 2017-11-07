@@ -255,4 +255,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	
 	//-----legend------
 	addLegendHandle(layerID,url,grades,colors);
+
+	
 }

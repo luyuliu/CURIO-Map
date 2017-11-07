@@ -64,12 +64,12 @@ function syncSidebar() { //update the siderbar
 		var pictureURL = "img/" + i + ".png";
 		var layerIDFullLayer = eval(i + "FullLayer");
 		layerIDFullLayer.eachLayer(function (layer) {
-			if (map.hasLayer(bikeshr_cogoLayer)) {
-				if (map.getBounds().contains(layer.getLatLng())) {
-					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="' + pictureURL +
-						'"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-				}
+			//if (map.hasLayer(bikeshr_cogoLayer)) {
+			if (map.getBounds().contains(layer.getLatLng())) {
+				$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="' + pictureURL +
+					'"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 			}
+			//}
 		});
 	}
 
@@ -339,6 +339,7 @@ function changeBasemap(basemap) { //change the icon of each options when changin
 	baseLayerID = basemap;
 }
 
+/*
 function changeButtonStatus(layerID) { //to change the icon in the buttons of each map
 	try {
 		if (mapFlagList[layerID] == null) {
@@ -348,7 +349,7 @@ function changeButtonStatus(layerID) { //to change the icon in the buttons of ea
 		}
 	} catch (err) {}
 
-}
+}*/
 
 //------------------------------------For sortable------------------------------------
 function generateBase36Id(el) {
@@ -363,6 +364,54 @@ function generateBase36Id(el) {
 	return sum.toString(36);
 }
 
+function getBoundsMapServer(url) {
+	var a;
+	$.ajax({
+		url: url,
+		type: 'GET',
+		async: false,
+		dataType: 'JSON',
+		success: function (data) {
+			a = data.extent;
+		}
+	})
+
+	return a;
+}
+
+function returnBounds(layerID) { //used to put this in the bottom of addhandle.js, due to ajax's async so can't. So just put this into buttons' click listener.
+	switch (fullLayerFlags.getItemBylayerID(layerID).dataType) {
+		case 1: //json
+			var extent;
+			eval('extent=' + layerID + "Layer.getBounds()")
+			return extent;
+			break;
+
+		case 2: //feature
+			var aUrl;
+			eval('var currentLayer=' + layerID + 'Layer')
+			aUrl = currentLayer.options.url;
+			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
+			return extent;
+			break;
+
+		case 3: //tile
+			var aUrl;
+			eval('var currentLayer=' + layerID + 'Layer')
+			aUrl = currentLayer._url;
+			console.log(aUrl)
+			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
+			return extent;
+			break;
+
+		default:
+
+
+
+
+
+	}
+}
 
 function getLayerName(layerID) { //from layerID to get full name of layer, the name 
 	switch (layerID) {
@@ -545,8 +594,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 		"<input id=\"" + layerID + "-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" + //slider
 
-		'<div class="legendcontent" id="' + layerID + '-legendcontent">'+ //legendcontent
-	'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse collapse" role="tabpanel" aria-labelledby="headingOne0" aria-expanded="true"></div></div>' +
+		'<div class="legendcontent" id="' + layerID + '-legendcontent">' + //legendcontent
+		'<div id="' + 'legend-' + layerID + '-collapse' + '" class="panel-collapse collapse collapse" role="tabpanel" aria-labelledby="headingOne0" aria-expanded="true"></div></div>' +
 		"</div>" +
 		"</div>" +
 		"</div>"
@@ -585,12 +634,9 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 	//------zoomto------
 	$('#' + layerID + "-zoomto-btn").click(function () {
-		try{
-		eval("map.fitBounds("+layerID+"Layer.getBounds())")
-		}
-		catch(err){
-			alert("I'm confused too.")
-		}
+		//eval("map.fitBounds("+layerID+"Layer.getBounds())")
+		var bounds=returnBounds(layerID)
+		console.log(bounds)
 		//eval('map.fitBounds('+layerID+'Layer.query().bounds())')
 		//eval('map.fitBounds(L.featureGroup(['+layerID+'Layer]).getBounds())')
 	});
