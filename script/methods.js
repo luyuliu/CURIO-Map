@@ -15,20 +15,6 @@ function testFailedHandle() //error information
 
 
 
-
-
-if (!("ontouchstart" in window)) { //highlight
-	$(document).on("mouseover", ".feature-row", function (e) {
-		highlight.clearLayers().addLayer(L.circleMarker([$(this).attr("lat"), $(this).attr("lng")], highlightStyle));
-	});
-}
-
-$(document).on("mouseout", ".feature-row", clearHighlight); //clear highlight when mouse out of feature-row
-
-function clearHighlight() {
-	highlight.clearLayers();
-}
-
 //------------------------------------sidebar------------------------------------
 function animateSidebar() {
 	$("#sidebar").animate({
@@ -287,47 +273,7 @@ function getColorLineString(color) {
 	return div;
 }
 
-//for homeown, mouse events
-function onEachAdminFeatureForHomeown(feature, layer) {
-	layer.on({
-		mouseover: function (e) {
-			thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
-			var layer = e.target;
-			layer.setStyle({
-				weight: 5,
-				color: '#999',
-				fillOpacity: 0.7
-			});
 
-
-			//info.update(popupContent);
-
-		},
-		mouseout: function (e) {
-			eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
-		},
-		click: function (e) {
-			// TODO: click
-			feature = e.target.feature;
-			var popupContent = "<h4>" + "Census Tract: " + feature.properties.TRACT + "</h4>" +
-				"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
-
-				"Vacant Units: " + feature.properties.VACANT + "<br/>" +
-				"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
-				"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
-				"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
-
-			var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
-		}
-	});
-}
-
-function getColorx(val, grades, colors) {
-	for (i = 0; i < grades.length; i++)
-		if (val >= grades[i])
-			return colors[i];
-	return '#ffffff';
-}
 
 //------------------------------------About 'Layer Settings' menu------------------------------------
 function changeBasemap(basemap) { //change the icon of each options when changing basemap
@@ -380,6 +326,14 @@ function getBoundsMapServer(url) {
 }
 
 function returnBounds(layerID) { //used to put this in the bottom of addhandle.js, due to ajax's async so can't. So just put this into buttons' click listener.
+	if (layerID == "gas") {
+		var corner1 = L.latLng(40.14948820651526, -83.17611694335939)
+		var corner2 = L.latLng(39.8928799002948, -82.86712646484376)
+		extent = L.latLngBounds(corner1, corner2)
+
+		return extent;
+	}
+
 	switch (fullLayerFlags.getItemBylayerID(layerID).dataType) {
 		case 1: //json
 			var extent;
@@ -392,13 +346,13 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			eval('var currentLayer=' + layerID + 'Layer')
 			aUrl = currentLayer.options.url;
 			var theend = aUrl.indexOf("MapServer");
-			aUrl=aUrl.substring(0,theend+9);
+			aUrl = aUrl.substring(0, theend + 9);
 			console.log(aUrl)
 			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
-			var corner1=L.latLng(extent[0][1],extent[0][0])
-			var corner2=L.latLng(extent[1][1],extent[1][0])
+			var corner1 = L.latLng(extent[0][1], extent[0][0])
+			var corner2 = L.latLng(extent[1][1], extent[1][0])
 			extent = L.latLngBounds(corner1, corner2)
-			
+
 			return extent;
 			break;
 
@@ -407,10 +361,10 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			eval('var currentLayer=' + layerID + 'Layer')
 			aUrl = currentLayer._url;
 			var theend = aUrl.indexOf("/tile");
-			aUrl=aUrl.substring(0,theend);
+			aUrl = aUrl.substring(0, theend);
 			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
-			var corner1=L.latLng(extent[0][1],extent[0][0])
-			var corner2=L.latLng(extent[1][1],extent[1][0])
+			var corner1 = L.latLng(extent[0][1], extent[0][0])
+			var corner2 = L.latLng(extent[1][1], extent[1][0])
 			extent = L.latLngBounds(corner1, corner2)
 			return extent;
 			break;
@@ -645,12 +599,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 	//------zoomto------
 	$('#' + layerID + "-zoomto-btn").click(function () {
-		//eval("map.fitBounds("+layerID+"Layer.getBounds())")
-		var bounds=returnBounds(layerID)
-		console.log(bounds)
+		var bounds = returnBounds(layerID)
 		map.fitBounds(bounds)
-		//eval('map.fitBounds('+layerID+'Layer.query().bounds())')
-		//eval('map.fitBounds(L.featureGroup(['+layerID+'Layer]).getBounds())')
 	});
 
 	//------slider------

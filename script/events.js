@@ -16,8 +16,6 @@ $(window).resize(function () {
 
 $(document).on("click", ".feature-row", function (e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);
-
-
   sidebarClick(parseInt($(this).attr("id"), 10), $(this).attr("layerID"));
 });
 

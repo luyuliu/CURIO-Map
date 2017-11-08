@@ -112,15 +112,15 @@ class LayerFlagGroup{
 var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI list
 //var mapFlagList = new Array(); //the list of each maps. In accord with the buttons.
-var fullLayerIDsList=new Array('bikeshr_cogo', 'bikeshr_zgst', 'air_coal', 'air_ngp', 'homeown', 'cota', 'wshd_cso', 'wshd_wshd', 'eth_eth', 'eth_asian', 'eth_his', 'eth_black', 'eth_white', 'sdw_sdw', 'sdw_nsdw', 'sewer', 'demo', 'bikepath_path', 'bikepath_green', 'bikepath_heads', 'water_npdes', 'water_intakes', 'water_buffers', 'gas', 'trans_cabsN', 'trans_cabsS', 'trans_cabsNE', 'trans_cabsER', 'trans_cabsBV', 'trans_parkingC', 'trans_parkingB', 'trans_parkingA', 'trans_parkingG', 'tree')
+var fullLayerIDsList=new Array('bikeshr_cogo', 'bikeshr_zgst', 'air_coal', 'air_ngp', 'homeown', 'cota', 'wshd_cso', 'wshd_wshd', 'eth_eth', 'eth_asian', 'eth_his', 'eth_black', 'eth_white', 'sdw_sdw', 'sdw_nsdw', 'sewer', 'demo', 'bikepath_path', 'bikepath_green', 'bikepath_heads', 'water_npdes', 'water_intakes', 'water_buffers', 'gas', 'trans_cabsN', 'trans_cabsS', 'trans_cabsNE', 'trans_cabsER', 'trans_cabsBV', 'trans_parkingC', 'trans_parkingB', 'trans_parkingA', 'trans_parkingG', 'tree','air_stations')
 //is simple layer? simple here is defined as layers which don't involve with POIlist
-var fullIsSimpleLayersList=new Array(false,false,false,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true)
+var fullIsSimpleLayersList=new Array(false,false,true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false)
 //1: points 2: lines 3: polygons
-var fullFeatureTypesList=new Array(1,1,1,1,3,3,1,2,1,1,1,1,1,2,2,1,3,2,2,1,1,1,3,1,2,2,2,2,2,2,2,2,2,3);
+var fullFeatureTypesList=new Array(1,1,1,1,3,3,1,2,1,1,1,1,1,2,2,1,3,2,2,1,1,1,3,1,2,2,2,2,2,2,2,2,2,3,1);
 //T: transportation E: Environment S: Social
-var fullLayerTypesList=new Array('T','T','E','E','S','T','E','E','S','S','S','S','S','T','T','E','S','T','T','T','E','E','E','S','T','T','T','T','T','T','T','T','T','E')
+var fullLayerTypesList=new Array('T','T','E','E','S','T','E','E','S','S','S','S','S','T','T','E','S','T','T','T','E','E','E','S','T','T','T','T','T','T','T','T','T','E','E')
 //1: json 2: esri.feature 3: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
-var fullDataTypesList=new Array(1,1,2,2,1,1,2,3,2,2,2,2,2,3,3,2,1,3,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,3);
+var fullDataTypesList=new Array(1,1,2,2,1,1,2,3,2,2,2,2,2,3,3,2,1,3,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,3,1);
 
 var fullLayerFlags=new LayerFlagGroup(fullLayerIDsList,fullIsSimpleLayersList,fullLayerTypesList,fullFeatureTypesList,fullDataTypesList);
 
