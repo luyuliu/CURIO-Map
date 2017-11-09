@@ -558,7 +558,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 							'pane: layerID + "Pane"'+
 						'});'+
 					'},'+
-					'ignoreRenderer:true'+
+					'ignoreRenderer:false'+
 				'})')
 				eval("map.addLayer("+layerID+"Layer)")
 				flagList[layerID] = 1;
