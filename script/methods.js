@@ -12,9 +12,6 @@ function testFailedHandle() //error information
 	$("#rickroll-modal").modal("show");
 }
 
-
-
-
 //------------------------------------sidebar------------------------------------
 function animateSidebar() {
 	$("#sidebar").animate({
@@ -561,6 +558,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 							'pane: layerID + "Pane"'+
 						'});'+
 					'},'+
+					'ignoreRenderer:true'+
 				'})')
 				eval("map.addLayer("+layerID+"Layer)")
 				flagList[layerID] = 1;

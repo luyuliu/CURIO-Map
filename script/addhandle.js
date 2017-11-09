@@ -125,51 +125,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 
-
-		/*case "bikepath_path":
-			var URL = 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer'
-			bikepath_pathLayer = L.esri.tiledMapLayer({
-				url: URL,
-				pane: layerID + 'Pane'
-			});
-			map.addLayer(bikepath_pathLayer);
-
-			flagList[layerID] = 1;
-			break;
-
-		case "bikepath_green":
-			bikepath_greenLayer = L.esri.featureLayer({
-				url: 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0',
-				pane: layerID + 'Pane'
-			})
-			map.addLayer(bikepath_greenLayer);
-			flagList[layerID] = 1;
-			break;
-
-		case "bikepath_heads":
-			var bikepath_headsMarker = L.AwesomeMarkers.icon({
-				icon: 'cog',
-				markerColor: 'red',
-				shadow: null
-			});
-			bikepath_headsMarker.options.shadowSize = [0, 0]
-
-			bikepath_headsLayer = L.esri.featureLayer({
-				url: 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0',
-				pointToLayer: function (geojson, latlng) {
-					return L.marker(latlng, {
-							icon: bikepath_headsMarker,
-							pane: layerID + "Pane"
-						}
-						///////////////////////////////////////////////////here goes the marker setting
-					)
-				}
-			})
-			map.addLayer(bikepath_headsLayer);
-
-			flagList[layerID] = 1;
-			break;*/
-
 		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 			bikeshr_cogoLayer = new L.markerClusterGroup({
