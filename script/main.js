@@ -53,12 +53,13 @@ legend.addTo(map)*/
 //------------------------------------signals & flags------------------------------------
 //layer flag
 class LayerFlag{
-  constructor(layerID,isSimpleLayer,layerType,featureType,dataType){
+  constructor(layerID,isSimpleLayer,layerType,featureType,dataType,URL){
     this._layerID=layerID;
     this._isSimpleLayer=isSimpleLayer;
     this._layerType=layerType;
     this._featureType=featureType;
     this._dataType=dataType;
+    this._URL=URL;
   }
   get layerID(){
     return this._layerID;
@@ -78,15 +79,18 @@ class LayerFlag{
   get dataType(){
     return this._dataType;
   }
+  get URL(){
+    return this.
+  }
 
 }
 
 class LayerFlagGroup{
-  constructor(layerIDs,isSimpleLayers,layerTypes,featureTypes,dataTypes){
+  constructor(layerIDs,isSimpleLayers,layerTypes,featureTypes,dataTypes,URLs){
     var alayerFlag;
     this._layerFlags=[];
     for(var i in layerIDs){
-      alayerFlag=new LayerFlag(layerIDs[i],isSimpleLayers[i],layerTypes[i],featureTypes[i],dataTypes[i]);
+      alayerFlag=new LayerFlag(layerIDs[i],isSimpleLayers[i],layerTypes[i],featureTypes[i],dataTypes[i],URLs[i]);
       this._layerFlags.push(alayerFlag);
     }
     }
@@ -122,7 +126,8 @@ var fullLayerTypesList=new Array('T','T','E','E','S','T','E','E','S','S','S','S'
 //1: json 2: esri.feature 3: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
 var fullDataTypesList=new Array(1,1,2,2,1,1,2,3,2,2,2,2,2,3,3,2,1,3,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,3,1);
 
-var fullLayerFlags=new LayerFlagGroup(fullLayerIDsList,fullIsSimpleLayersList,fullLayerTypesList,fullFeatureTypesList,fullDataTypesList);
+var fullURLsList=new Array(null,null,'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/0','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/1',null,null,'http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/WaterShedsOH_NHD/MapServer','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer','http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0',null,'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0','http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1','http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DDAGW_WI/MapServer/0','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/IntakeBuffers/MapServer/1',null,'https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/1','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/23','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/22','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/21','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer',null)
+var fullLayerFlags=new LayerFlagGroup(fullLayerIDsList,fullIsSimpleLayersList,fullLayerTypesList,fullFeatureTypesList,fullDataTypesList,fullURLsList);
 
 //---------------------------------------------Initialization----------------------------------------
 

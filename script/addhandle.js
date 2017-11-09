@@ -382,7 +382,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				break;
 
 
-
 		default:
 			//user's custom layers
 			//"JSON Points"
