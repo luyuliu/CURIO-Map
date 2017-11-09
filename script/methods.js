@@ -361,8 +361,7 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 
 		return extent;
 	}
-
-	switch (fullLayerFlags.getItemBylayerID(layerID).dataType) {
+	switch (fullLayerFlags.getItemByLayerID(layerID).extentType) {
 		case 1: //json
 			var extent;
 			eval('extent=' + layerID + "Layer.getBounds()")
@@ -538,15 +537,12 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		var iconurl,
 		numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
 		legendURL = URL.substring(0, URL.indexOf("MapServer") + 9)+'/legend?f=pjson'
-		//console.log(URL)
 		$.ajax({
 			url: legendURL,
 			type: 'GET',
 			dataType: 'JSON',
 			success: function (data) {
-				console.log(data)
 				iconurl ='data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
-				//console.log(iconurl)
 				var currentLayer = L.esri.featureLayer({
 					url: URL,
 					pointToLayer:function (feature, latlng) {
@@ -785,8 +781,6 @@ function uncheckedHandle(layerID) {
 		return false;
 	}
 	for (var otherSibling in Sibling) {
-		console.log(otherSibling)
-		console.log(Sibling[otherSibling])
 		if (flagList[Sibling[otherSibling]]) {
 			break;
 		}

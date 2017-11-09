@@ -371,15 +371,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			};
 			break;
 
-			case "air_coal":
-				dataType= "GeoServer features";
-				URL="http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/0";
-			break;
-			
-			case "air_ngp":
-				URL='http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/1'
-				dataType= "GeoServer features";
-				break;
 
 
 		default:
@@ -388,6 +379,12 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			//"JSON Polyline/Polygon"
 			//"GeoServer tiles"
 			//"GeoServer features" which users can't use.;)
+			if(typeof(URL)=="undefined"){
+				var URL=fullLayerFlags.getURLByLayerID(layerID);
+			}
+			if(typeof(featureType)=="undefined"){
+				var featureType=fullLayerFlags.getFeatureIDByLayerID(layerID);
+			}
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 
 

@@ -59,7 +59,7 @@ class LayerFlag {
     //is simple layer? simple here is defined as layers which don't involve with POIlist
     //1: points 2: lines 3: polygons
     //T: transportation E: Environment S: Social
-    //1: json 2: esri.feature 3: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
+    //0: not appliable 1: json points 2: json polylines and polygons 3: esri.feature 4: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
 
     this._layerID = layerID;
     this._isSimpleLayer = isSimpleLayer;
@@ -117,12 +117,30 @@ class LayerFlagGroup {
     return this.layerFlags[i];
   }
 
-  getItemBylayerID(layerID) {
+  getItemByLayerID(layerID) {
     for (var i in this.layerFlags) {
       if (this.layerFlags[i].layerID == layerID) {
         return this.layerFlags[i];
       }
     }
+  }
+
+  getIndexByLayerID(layerID){
+    for (var i in this.layerFlags) {
+      if (this.layerFlags[i].layerID == layerID) {
+        return i;
+      }
+    }
+
+  }
+
+  getFeatureIDByLayerID(layerID){
+    return this.getItemByLayerID(layerID).featureType;
+  }
+
+  getURLByLayerID(layerID){
+    console.log(this.getItemByLayerID(layerID))
+    return this.getItemByLayerID(layerID).URL;
   }
 
 }
