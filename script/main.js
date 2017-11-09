@@ -53,101 +53,124 @@ legend.addTo(map)*/
 
 
 //layer flag
-class LayerFlag{
-  constructor(layerID,isSimpleLayer,layerType,featureType,dataType,URL){
-    this._layerID=layerID;
-    this._isSimpleLayer=isSimpleLayer;
-    this._layerType=layerType;
-    this._featureType=featureType;
-    this._dataType=dataType;
-    this._URL=URL;
+class LayerFlag {
+  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL) {
+
+    //is simple layer? simple here is defined as layers which don't involve with POIlist
+    //1: points 2: lines 3: polygons
+    //T: transportation E: Environment S: Social
+    //1: json 2: esri.feature 3: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
+
+    this._layerID = layerID;
+    this._isSimpleLayer = isSimpleLayer;
+    this._layerType = layerType;
+    this._featureType = featureType;
+    this._dataType = dataType;
+    this._URL = URL;
   }
-  get layerID(){
+  get layerID() {
     return this._layerID;
   }
-  get isSimpleLayer(){
+  get isSimpleLayer() {
     return this._isSimpleLayer;
   }
-  get layerType(){
+  get layerType() {
     return this._layerType;
   }
-  get featureType(){
+  get featureType() {
     return this._featureType;
   }
-  get layerName(){
+  get layerName() {
     return getLayerName(this._layerID);
   }
-  get dataType(){
+  get dataType() {
     return this._dataType;
   }
-  get URL(){
+  get URL() {
     return this._URL;
   }
 
 }
 
-class LayerFlagGroup{
+class LayerFlagGroup {
   /*constructor(layerIDs,isSimpleLayers,layerTypes,featureTypes,dataTypes,URLs){
     var alayerFlag;
-    this._layerFlags=[];
+    
     for(var i in layerIDs){
       alayerFlag=new LayerFlag(layerIDs[i],isSimpleLayers[i],layerTypes[i],featureTypes[i],dataTypes[i],URLs[i]);
       this._layerFlags.push(alayerFlag);
     }
     }*/
-    construcor(layerFlags)
-    {
-      this._layerFlags=layerFlags;
-    }
-
-    get layerFlags(){
-      return this._layerFlags;
-    }
-
-    getItemByIndex(i){
-      return this.layerFlags[i];
-    }
-
-    getItemBylayerID(layerID){
-      for (var i in this.layerFlags){
-        if(this.layerFlags[i].layerID==layerID){
-          return this.layerFlags[i];
-        }
-      }
-    }
-
+  constructor() {
+    this._layerFlags=new Array();
   }
 
-  $.ajax({
-    url: "https://luyuliu.github.io/CURIO-Map/data/inventory.json",
-    type: 'GET',
-    async: false,
-    dataType: 'JSON',
-    success: function (data) {
-      var aLayerFlags=new Array();
-      for(var i in data){
-        aLayerFlag=new LayerFlag(data.layerID,data.isSimpleLayers,layerTypes[i],featureTypes[i],dataTypes[i],URLs[i]);
+  get layerFlags() {
+    return this._layerFlags;
+  }
 
+  pushNewItems(layerFlag){
+    this._layerFlags.push(layerFlag)
+  }
 
+  getItemByIndex(i) {
+    return this.layerFlags[i];
+  }
+
+  getItemBylayerID(layerID) {
+    for (var i in this.layerFlags) {
+      if (this.layerFlags[i].layerID == layerID) {
+        return this.layerFlags[i];
       }
-
     }
-  })
-var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
-var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI list
-//var mapFlagList = new Array(); //the list of each maps. In accord with the buttons.
-var fullLayerIDsList=new Array('bikeshr_cogo', 'bikeshr_zgst', 'air_coal', 'air_ngp', 'homeown', 'cota', 'wshd_cso', 'wshd_wshd', 'eth_eth', 'eth_asian', 'eth_his', 'eth_black', 'eth_white', 'sdw_sdw', 'sdw_nsdw', 'sewer', 'demo', 'bikepath_path', 'bikepath_green', 'bikepath_heads', 'water_npdes', 'water_intakes', 'water_buffers', 'gas', 'trans_cabsN', 'trans_cabsS', 'trans_cabsNE', 'trans_cabsER', 'trans_cabsBV', 'trans_parkingC', 'trans_parkingB', 'trans_parkingA', 'trans_parkingG', 'tree','air_stations')
-//is simple layer? simple here is defined as layers which don't involve with POIlist
-var fullIsSimpleLayersList=new Array(false,false,true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false)
-//1: points 2: lines 3: polygons
-var fullFeatureTypesList=new Array(1,1,1,1,3,3,1,2,1,1,1,1,1,2,2,1,3,2,2,1,1,1,3,1,2,2,2,2,2,2,2,2,2,3,1);
-//T: transportation E: Environment S: Social
-var fullLayerTypesList=new Array('T','T','E','E','S','T','E','E','S','S','S','S','S','T','T','E','S','T','T','T','E','E','E','S','T','T','T','T','T','T','T','T','T','E','E')
-//1: json 2: esri.feature 3: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
-var fullDataTypesList=new Array(1,1,2,2,1,1,2,3,2,2,2,2,2,3,3,2,1,3,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,3,1);
+  }
 
-var fullURLsList=new Array(null,null,'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/0','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/1',null,null,'http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/WaterShedsOH_NHD/MapServer','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer','http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0',null,'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0','http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0','http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1','http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DDAGW_WI/MapServer/0','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/IntakeBuffers/MapServer/1',null,'https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/1','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/23','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/22','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/21','https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18','http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer',null)
-var fullLayerFlags=new LayerFlagGroup(fullLayerIDsList,fullIsSimpleLayersList,fullLayerTypesList,fullFeatureTypesList,fullDataTypesList,fullURLsList);
+}
+
+var fullLayerFlags= new LayerFlagGroup();
+
+$.ajax({
+  url: "https://luyuliu.github.io/CURIO-Map/data/inventory.json",
+  type: 'GET',
+  //async: false,
+  dataType: 'JSON',
+  success: function (data) {
+
+    for (var i in data) {
+      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL));
+    }
+
+
+    //------------------------------------layerList initialization------------------------------------
+    for (var i in fullLayerFlags.layerFlags) {
+      addLayerHandle(fullLayerFlags.layerFlags[i].layerID)
+    }
+    $("#layer-list").height($(window).height() / 2);
+
+    new SimpleBar(document.getElementById('layer-list'))
+
+
+    //------------------------------------Sortable list------------------------------------
+    // List with handle
+    //include onsort eventlistener and handle
+
+    contentwrapper = document.getElementsByClassName("simplebar-content")[0]
+    asortable = Sortable.create(contentwrapper, {
+      handle: '.glyphicon-move',
+      animation: 150,
+      scroll: true,
+      scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+      scrollSpeed: 10,
+      onEnd: function (e) {
+        sortLayerHandle(e)
+      }
+    });
+  }
+})
+
+var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
+var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI listconsole.log(fullLayerFlags)
+
 
 //---------------------------------------------Initialization----------------------------------------
 
@@ -170,32 +193,9 @@ var zoomControl = L.control.zoom({
   position: "bottomright"
 }).addTo(map);
 
-//------------------------------------layerList initialization------------------------------------
-$(function(){
-  for(var i in fullLayerIDsList){
-    addLayerHandle(fullLayerIDsList[i])
-    }
-  $("#layer-list").height($(window).height()/2);
 
-  new SimpleBar(document.getElementById('layer-list'))
-  })
 
-//------------------------------------Sortable list------------------------------------
-// List with handle
-//include onsort eventlistener and handle
-$(document).ready(function () {
-contentwrapper=document.getElementsByClassName("simplebar-content")[0]
-asortable = Sortable.create(contentwrapper, {
-  handle: '.glyphicon-move',
-  animation: 150,
-  scroll: true,
-  scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
-  scrollSpeed: 10,
-  onEnd: function (e) {
-    sortLayerHandle(e)
-  }
-});
-})
+
 
 
 $(document).ready(function () {
@@ -205,5 +205,3 @@ $(document).ready(function () {
     e.preventDefault();
   });
 });
-
-

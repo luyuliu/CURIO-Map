@@ -74,12 +74,12 @@ $("#topchecked-btn").click(function () {
 
 $("#alphabet-btn").click(function () {
   fullLayerFlags.layerFlags.sort(function(a,b){
-  var textA = a.layerID.toUpperCase();
-  var textB = b.layerID.toUpperCase();
+  var textA = getLayerName(a.layerID).toUpperCase();
+  var textB = getLayerName(b.layerID).toUpperCase();
   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}
 )
 var base36ListTemp=new Array();
-for (var i in fullLayerIDsList) {
+for (var i in fullLayerFlags.layerFlags) {
   base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
 }
 asortable.sort(base36ListTemp)
@@ -95,7 +95,7 @@ $("#categorize-btn").click(function () {
   }
   )
   var base36ListTemp=new Array();
-  for (var i in fullLayerIDsList) {
+  for (var i in fullLayerFlags.layerFlags) {
     base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
   }
   asortable.sort(base36ListTemp)
@@ -111,7 +111,7 @@ $("#gissorting-btn").click(function () {
 }
   )
   var base36ListTemp=new Array();
-  for (var i in fullLayerIDsList) {
+  for (var i in fullLayerFlags.layerFlags) {
     base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
   }
   asortable.sort(base36ListTemp)
