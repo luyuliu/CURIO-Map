@@ -383,8 +383,12 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				var URL=fullLayerFlags.getURLByLayerID(layerID);
 			}
 			if(typeof(featureType)=="undefined"){
-				var featureType=fullLayerFlags.getFeatureIDByLayerID(layerID);
+				var featureType=fullLayerFlags.getFeatureTypeByLayerID(layerID);
 			}
+			if(typeof(dataType)=="undefined"){
+				var dataType=fullLayerFlags.getDataTypeByLayerID(layerID)
+			}
+			console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 
 

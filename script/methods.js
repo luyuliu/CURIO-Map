@@ -190,13 +190,13 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			}
 			break;
 		default:
-			if (dataType == "GeoServer tiles" || dataType == "GeoServer features") {
+			if (dataType == 3 || dataType == 4) {
 				numberOfLayer = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("/") + 2)
 				url = url.substring(0, url.indexOf("MapServer") + 9)
 				getMapServerLegendDiv(layerID, url + '/legend?f=pjson', numberOfLayer)
-			} else if (dataType == "JSON Points") {
+			} else if (dataType == 1) {
 				getIconBlockDiv(layerID, icons, color, getLayerName(layerID), null)
-			} else if (dataType == "JSON Polyline/Polygon") {
+			} else if (dataType == 2) {
 				getIconBlockDiv(layerID, null, color, getLayerName(layerID), null)
 			}
 
@@ -361,6 +361,8 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 
 		return extent;
 	}
+	
+	console.log(fullLayerFlags.getItemByLayerID(layerID).extentType);
 	switch (fullLayerFlags.getItemByLayerID(layerID).extentType) {
 		case 1: //json
 			var extent;
@@ -509,21 +511,21 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 //------------------------------------------add layer-===---------------------------------------
 function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //尚未添加图例
 {
-	if (dataType == "JSON Points") {
+	if (dataType ==1) { //"JSON Points"
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
 	}
 
-	if (dataType == "JSON Polyline/Polygon") {
+	if (dataType == 2) {//"JSON Polyline/Polygon"
 		eval(layerID + "Layer = receiveJsonp(URL, layerID,jsonp,acolor);")
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
 	}
 
-	if (dataType == "GeoServer tiles") {
+	if (dataType == 4) {//"GeoServer tiles"
 		eval(layerID + "Layer = L.esri.tiledMapLayer({" +
 			"url: '" + URL + "'," +
 			"pane: layerID + 'Pane'" +
@@ -533,7 +535,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		return false;
 	}
 
-	if (dataType == "GeoServer features") {
+	if (dataType == 3) {//"GeoServer features"
 		var iconurl,
 		numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
 		legendURL = URL.substring(0, URL.indexOf("MapServer") + 9)+'/legend?f=pjson'

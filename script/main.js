@@ -54,7 +54,7 @@ legend.addTo(map)*/
 
 //layer flag
 class LayerFlag {
-  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL) {
+  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL,extentType) {
 
     //is simple layer? simple here is defined as layers which don't involve with POIlist
     //1: points 2: lines 3: polygons
@@ -67,6 +67,7 @@ class LayerFlag {
     this._featureType = featureType;
     this._dataType = dataType;
     this._URL = URL;
+    this._extentType=extentType;
   }
   get layerID() {
     return this._layerID;
@@ -88,6 +89,9 @@ class LayerFlag {
   }
   get URL() {
     return this._URL;
+  }
+  get extentType(){
+    return this._extentType;
   }
 
 }
@@ -134,13 +138,16 @@ class LayerFlagGroup {
 
   }
 
-  getFeatureIDByLayerID(layerID){
+  getFeatureTypeByLayerID(layerID){
     return this.getItemByLayerID(layerID).featureType;
   }
 
   getURLByLayerID(layerID){
-    console.log(this.getItemByLayerID(layerID))
     return this.getItemByLayerID(layerID).URL;
+  }
+
+  getDataTypeByLayerID(layerID){
+    return this.getItemByLayerID(layerID).dataType;
   }
 
 }
@@ -155,7 +162,7 @@ $.ajax({
   success: function (data) {
 
     for (var i in data) {
-      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL));
+      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL,parseInt(data[i].extentType)));
     }
 
 
