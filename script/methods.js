@@ -141,7 +141,12 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 }
 
 //--------------------------------------Legend------------------------------------
-function addLegendHandle(layerID, url, grades, colors) {
+function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) { //colors and grades are intented for gradient
+
+	//for default layer; dataType,layerID
+	//ADDITIONAL FOR JSON points: icon, color
+	//polyline: color
+	//server: url
 	switch (layerID) {
 		case "tree":
 			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
@@ -175,6 +180,25 @@ function addLegendHandle(layerID, url, grades, colors) {
 			getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
 			break;
 
+		case "gas":
+			getIconBlockDiv(layerID, "pic", null, "Very high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconVeryHI.png')
+			getIconBlockDiv(layerID, "pic", null, "High", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconHi.png')
+			getIconBlockDiv(layerID, "pic", null, "Mid high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconMidHi.png')
+			for (i = 0; i < 15; i++) {
+				iconurl = 'http://gis.osu.edu/misc/gasprices/icons/marker-icon' + (i + 1) + '.png';
+				getIconBlockDiv(layerID, "pic", null, "No." + (i + 1) + " low", iconurl)
+			}
+			break;
+		default:
+			if (dataType == "GeoServer tiles" || dataType == "GeoServer features") {
+				numberOfLayer = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("/") + 2)
+				url = url.substring(0, url.indexOf("MapServer") + 9)
+				getMapServerLegendDiv(layerID, url + '/legend?f=pjson', numberOfLayer)
+			} else if (dataType == "JSON Points") {
+				getIconBlockDiv(layerID, icons, color, getLayerName(layerID), null)
+			} else if (dataType == "JSON Polyline/Polygon") {
+				getIconBlockDiv(layerID, null, color, getLayerName(layerID), null)
+			}
 
 	}
 
@@ -182,7 +206,11 @@ function addLegendHandle(layerID, url, grades, colors) {
 }
 
 
-function getMapServerLegendDiv(layerID, url) { //return one map's legend
+function getMapServerLegendDiv(layerID, url, numberOfLayer) { //return one map's legend
+	if (numberOfLayer == undefined) {
+		numberOfLayer = "0";
+	}
+	numberOfLayer = numberOfLayer.toString();
 	var alegendContent = '<table><tbody>'
 	$.ajax({
 		url: url,
@@ -190,14 +218,14 @@ function getMapServerLegendDiv(layerID, url) { //return one map's legend
 		async: false,
 		dataType: 'JSON',
 		success: function (data) {
-			for (var i in data.layers["0"].legend) {
-				labelContent = data.layers["0"].legend[i].label;
+			for (var i in data.layers[numberOfLayer].legend) {
+				labelContent = data.layers[numberOfLayer].legend[i].label;
 				alegendContent += "<tr valign='middle'>" +
-					"<td class='tablehead' align='middle'><img src='data:image/png;base64," + data.layers["0"].legend[i].imageData + "'></td>" +
+					"<td class='tablehead' align='middle'><img src='data:image/png;base64," + data.layers[numberOfLayer].legend[i].imageData + "'></td>" +
 					"<td class='tablecontent' align='right'><span>" + labelContent + "</span><td>" + "</tr>"
 			}
 			alegendContent += "</tbody><table>"
-			document.getElementById('legend-' + layerID + '-collapse').innerHTML = alegendContent;
+			document.getElementById('legend-' + layerID + '-collapse').innerHTML += alegendContent;
 		}
 	})
 
@@ -218,7 +246,7 @@ function getGraduatedColorsDiv(layerID, grades, colors) { //grades.length must =
 			"<td class='tablecontent' align='right'><span>" + labelContent2 + "</span><td>" + "</tr>"
 	}
 	legendContent2 += "</tbody><table>"
-	document.getElementById('legend-' + layerID + '-collapse').innerHTML = legendContent2;
+	document.getElementById('legend-' + layerID + '-collapse').innerHTML += legendContent2;
 }
 
 function getColorBlockString(color) {
@@ -250,7 +278,7 @@ function getIconBlockDiv(mapID, icons, colors, names, url) {
 				"<td class='tablecontent' align='right'><span>" + names + "</span><td>" +
 				"</tr>"
 
-		} else {
+		} else { //icon+colorblock
 			legendContent2 += "<tr valign='middle'>" +
 				"<td class='tablehead' align='middle'>" + getIconBlockString(colors, icons) + "</td>" +
 				"<td class='tablecontent' align='right'><span>" + names + "</span><td>" +
@@ -260,7 +288,7 @@ function getIconBlockDiv(mapID, icons, colors, names, url) {
 
 
 	legendContent2 += "</tbody><table>"
-	document.getElementById('legend-' + mapID + '-collapse').innerHTML = legendContent2;
+	document.getElementById('legend-' + mapID + '-collapse').innerHTML += legendContent2;
 }
 
 function getPicBlockString(url) {
@@ -347,7 +375,6 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			aUrl = currentLayer.options.url;
 			var theend = aUrl.indexOf("MapServer");
 			aUrl = aUrl.substring(0, theend + 9);
-			console.log(aUrl)
 			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
 			var corner1 = L.latLng(extent[0][1], extent[0][0])
 			var corner2 = L.latLng(extent[1][1], extent[1][0])
@@ -505,6 +532,45 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
+	}
+
+	if (dataType == "GeoServer features") {
+		var iconurl,
+		numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
+		legendURL = URL.substring(0, URL.indexOf("MapServer") + 9)+'/legend?f=pjson'
+		//console.log(URL)
+		$.ajax({
+			url: legendURL,
+			type: 'GET',
+			dataType: 'JSON',
+			success: function (data) {
+				console.log(data)
+				iconurl ='data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
+				//console.log(iconurl)
+				var currentLayer = L.esri.featureLayer({
+					url: URL,
+					pointToLayer:function (feature, latlng) {
+						return L.marker(latlng, {
+							icon: L.icon({
+								iconUrl: iconurl,
+								iconSize: [28, 28],
+								iconAnchor: [12, 28],
+								popupAnchor: [0, -25]
+							}),
+							riseOnHover: true,
+							title: feature.properties.name,
+							pane: layerID + "Pane"
+						});
+					},
+				})
+				eval(layerID+"Layer = currentLayer; ")
+				eval(layerID+"Layer.addTo(map);")
+				flagList[layerID] = 1;
+				return false;
+			}
+		})
+		
+
 	}
 }
 

@@ -17,9 +17,9 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 	switch (layerID) {
 		case "tree":
-			var url = 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer'
+			var URL = 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer'
 			treeLayer = L.esri.tiledMapLayer({
-				url: url,
+				url: URL,
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(treeLayer);
@@ -136,9 +136,9 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 		case "bikepath_path":
-			var url = 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer'
+			var URL = 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer'
 			bikepath_pathLayer = L.esri.tiledMapLayer({
-				url: url,
+				url: URL,
 				pane: layerID + 'Pane'
 			});
 			map.addLayer(bikepath_pathLayer);
@@ -324,12 +324,13 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 			$.ajax({
 				type: "GET",
+				dataType: 'JSON',
 				//url: "http://gis.osu.edu/gisxx/gasprices/get-prices.php", // use this for client
-				url: "http://GEOG-CURA-PC5/gas.json", // use this for local test
-				//url: "http://curio.osu.edu/api/trans/getGasTrendJSON.php",
+				//url: "http://GEOG-CURA-PC5/gas.json", // use this for local test
+				url: "http://curio.osu.edu/api/trans/getGasTrendJSON.php",
 				success: handleStations,
 				error: function (request, status, error) {
-					console.log(error)
+					console.log(request,status,error)
 				}
 			});
 
@@ -370,11 +371,24 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			};
 			break;
 
+			case "air_coal":
+				dataType= "GeoServer features";
+				URL="http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/0";
+			break;
+			
+			case "air_ngp":
+				URL='http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/1'
+				dataType= "GeoServer features";
+				break;
+
+
+
 		default:
 			//user's custom layers
 			//"JSON Points"
 			//"JSON Polyline/Polygon"
 			//"GeoServer tiles"
+			//"GeoServer features" which users can't use.;)
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 
 
@@ -384,8 +398,11 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		POIFlagList[layerID] = true; //push layerID with features to demonstrate
 	}
 
+	if (!flagList[layerID]){
+		addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
+	}
 	//-----legend------
-	addLegendHandle(layerID, url, grades, colors);
+	addLegendHandle(layerID, URL, grades, colors,dataType,icons,acolor);
 
 
 }
