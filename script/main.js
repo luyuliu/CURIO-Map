@@ -54,7 +54,7 @@ legend.addTo(map)*/
 
 //layer flag
 class LayerFlag {
-  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL,extentType) {
+  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType) {
 
     //is simple layer? simple here is defined as layers which don't involve with POIlist
     //1: points 2: lines 3: polygons
@@ -67,7 +67,7 @@ class LayerFlag {
     this._featureType = featureType;
     this._dataType = dataType;
     this._URL = URL;
-    this._extentType=extentType;
+    this._extentType = extentType;
   }
   get layerID() {
     return this._layerID;
@@ -90,7 +90,7 @@ class LayerFlag {
   get URL() {
     return this._URL;
   }
-  get extentType(){
+  get extentType() {
     return this._extentType;
   }
 
@@ -106,14 +106,14 @@ class LayerFlagGroup {
     }
     }*/
   constructor() {
-    this._layerFlags=new Array();
+    this._layerFlags = new Array();
   }
 
   get layerFlags() {
     return this._layerFlags;
   }
 
-  pushNewItems(layerFlag){
+  pushNewItems(layerFlag) {
     this._layerFlags.push(layerFlag)
   }
 
@@ -129,7 +129,7 @@ class LayerFlagGroup {
     }
   }
 
-  getIndexByLayerID(layerID){
+  getIndexByLayerID(layerID) {
     for (var i in this.layerFlags) {
       if (this.layerFlags[i].layerID == layerID) {
         return i;
@@ -138,21 +138,21 @@ class LayerFlagGroup {
 
   }
 
-  getFeatureTypeByLayerID(layerID){
+  getFeatureTypeByLayerID(layerID) {
     return this.getItemByLayerID(layerID).featureType;
   }
 
-  getURLByLayerID(layerID){
+  getURLByLayerID(layerID) {
     return this.getItemByLayerID(layerID).URL;
   }
 
-  getDataTypeByLayerID(layerID){
+  getDataTypeByLayerID(layerID) {
     return this.getItemByLayerID(layerID).dataType;
   }
 
 }
 
-var fullLayerFlags= new LayerFlagGroup();
+var fullLayerFlags = new LayerFlagGroup();
 
 $.ajax({
   url: "https://luyuliu.github.io/CURIO-Map/data/inventory.json",
@@ -162,7 +162,7 @@ $.ajax({
   success: function (data) {
 
     for (var i in data) {
-      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL,parseInt(data[i].extentType)));
+      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType)));
     }
 
 

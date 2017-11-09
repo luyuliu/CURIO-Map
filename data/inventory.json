@@ -248,7 +248,7 @@
         "domainHead": "arcgiswebadp1.morpc.org",
         "typeOfSource": "Mapserver",
         "layerSource": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0",
-        "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0"
+        "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer"
     },
     {
         "mapName": "Bike Paths in Central Ohio",

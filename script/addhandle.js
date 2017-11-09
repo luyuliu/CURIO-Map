@@ -16,15 +16,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 	switch (layerID) {
-		case "tree":
-			var URL = 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer'
-			treeLayer = L.esri.tiledMapLayer({
-				url: URL,
-				pane: layerID + 'Pane'
-			});
-			map.addLayer(treeLayer);
-			flagList[layerID] = 1;
-			break;
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
@@ -135,7 +126,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			break;
 
 
-		case "bikepath_path":
+		/*case "bikepath_path":
 			var URL = 'http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer'
 			bikepath_pathLayer = L.esri.tiledMapLayer({
 				url: URL,
@@ -177,7 +168,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			map.addLayer(bikepath_headsLayer);
 
 			flagList[layerID] = 1;
-			break;
+			break;*/
 
 		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */

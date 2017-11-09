@@ -543,26 +543,26 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 			url: legendURL,
 			type: 'GET',
 			dataType: 'JSON',
+			async: false,
 			success: function (data) {
 				iconurl ='data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
-				var currentLayer = L.esri.featureLayer({
-					url: URL,
-					pointToLayer:function (feature, latlng) {
-						return L.marker(latlng, {
-							icon: L.icon({
-								iconUrl: iconurl,
-								iconSize: [28, 28],
-								iconAnchor: [12, 28],
-								popupAnchor: [0, -25]
-							}),
-							riseOnHover: true,
-							title: feature.properties.name,
-							pane: layerID + "Pane"
-						});
-					},
-				})
-				eval(layerID+"Layer = currentLayer; ")
-				eval(layerID+"Layer.addTo(map);")
+				eval(layerID+'Layer = L.esri.featureLayer({'+
+					'url: URL,'+
+					'pointToLayer:function (feature, latlng) {'+
+						'return L.marker(latlng, {'+
+							'icon: L.icon({'+
+								'iconUrl: iconurl,'+
+								'iconSize: [28, 28],'+
+								'iconAnchor: [12, 28],'+
+								'popupAnchor: [0, -25]'+
+							'}),'+
+							'riseOnHover: true,'+
+							'title: feature.properties.name,'+
+							'pane: layerID + "Pane"'+
+						'});'+
+					'},'+
+				'})')
+				eval("map.addLayer("+layerID+"Layer)")
 				flagList[layerID] = 1;
 				return false;
 			}
@@ -744,7 +744,7 @@ function getLayerChildren(layerID) { //very ugly codes...
 	}
 }
 
-//deletebutton of each layer handle
+//uncheck handle of each layer
 function uncheckedHandle(layerID) {
 
 	/*$("#" + layerID + "-metadata").off("click");
