@@ -47,10 +47,11 @@ legend.onAdd=function(map){
   return div;
 }
 legend.addTo(map)*/
-
-
-
 //------------------------------------signals & flags------------------------------------
+
+
+
+
 //layer flag
 class LayerFlag{
   constructor(layerID,isSimpleLayer,layerType,featureType,dataType,URL){
@@ -80,19 +81,23 @@ class LayerFlag{
     return this._dataType;
   }
   get URL(){
-    return this.
+    return this._URL;
   }
 
 }
 
 class LayerFlagGroup{
-  constructor(layerIDs,isSimpleLayers,layerTypes,featureTypes,dataTypes,URLs){
+  /*constructor(layerIDs,isSimpleLayers,layerTypes,featureTypes,dataTypes,URLs){
     var alayerFlag;
     this._layerFlags=[];
     for(var i in layerIDs){
       alayerFlag=new LayerFlag(layerIDs[i],isSimpleLayers[i],layerTypes[i],featureTypes[i],dataTypes[i],URLs[i]);
       this._layerFlags.push(alayerFlag);
     }
+    }*/
+    construcor(layerFlags)
+    {
+      this._layerFlags=layerFlags;
     }
 
     get layerFlags(){
@@ -113,6 +118,21 @@ class LayerFlagGroup{
 
   }
 
+  $.ajax({
+    url: "https://luyuliu.github.io/CURIO-Map/data/inventory.json",
+    type: 'GET',
+    async: false,
+    dataType: 'JSON',
+    success: function (data) {
+      var aLayerFlags=new Array();
+      for(var i in data){
+        aLayerFlag=new LayerFlag(data.layerID,data.isSimpleLayers,layerTypes[i],featureTypes[i],dataTypes[i],URLs[i]);
+
+
+      }
+
+    }
+  })
 var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI list
 //var mapFlagList = new Array(); //the list of each maps. In accord with the buttons.
