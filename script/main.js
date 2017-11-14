@@ -56,16 +56,16 @@ legend.addTo(map)*/
 class LayerFlag {
   constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType) {
 
-    //is simple layer? simple here is defined as layers which don't involve with POIlist
-    //1: points 2: lines 3: polygons
-    //T: transportation E: Environment S: Social
-    //0: not appliable 1: json points 2: json polylines and polygons 3: esri.feature 4: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
+    
+    
+    
+    
 
     this._layerID = layerID;
-    this._isSimpleLayer = isSimpleLayer;
-    this._layerType = layerType;
-    this._featureType = featureType;
-    this._dataType = dataType;
+    this._isSimpleLayer = isSimpleLayer;//is simple layer? simple here is defined as layers which don't involve with POIlist
+    this._layerType = layerType;//T: transportation E: Environment S: Social
+    this._featureType = featureType;//1: points 2: lines 3: polygons
+    this._dataType = dataType;//0: not appliable 1: json points 2: json polylines and polygons 3: esri.feature 4: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
     this._URL = URL;
     this._extentType = extentType;
   }
@@ -149,6 +149,25 @@ class LayerFlagGroup {
   getDataTypeByLayerID(layerID) {
     return this.getItemByLayerID(layerID).dataType;
   }
+
+  getBackgroundColor(layerID){
+		switch(this.getItemByLayerID(layerID).layerType){
+      case "T":
+        return "#FFF4F4"//red
+      break;
+
+      case "S":
+        return "#F4FFFF"//blue
+      break;
+
+      case "E":
+        return "#F4FFF6"//green
+      break;
+
+      default:
+        alert();
+    }
+	}
 
 }
 

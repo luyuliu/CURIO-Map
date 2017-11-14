@@ -588,10 +588,10 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 
 	//syncSidebar(); //refresh POIList
-
+	
 
 	var neodiv = document.createElement('div');
-	neodiv.innerHTML = "<div class=\"list-group-item\" id=\"" + layerID + "-list-item\" style='padding-left:10px;padding-right:5px'>" + //list-group-item
+	neodiv.innerHTML = "<div class=\"list-group-item\" id=\"" + layerID + "-list-item\" style='background-color:"+fullLayerFlags.getBackgroundColor(layerID)+";padding-left:10px;padding-right:5px;'>" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
 
 		//checkbox
@@ -670,6 +670,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		polyfill: true,
 	});
 
+	//------checkbox------
 	$('#' + layerID + "-checkbox").change(function () {
 		if ($(this).prop('checked')) {
 			//add layer to the map by layerID

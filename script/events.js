@@ -105,3 +105,14 @@ $(document).one("ajaxStop", function () {
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
 });
+
+
+$('#pin-checkbox').change(function () {
+  if ($(this).prop('checked')) {
+    //add layer to the map by layerID
+    checkedHandle(layerID, dataType, URL, symbolType, jsonp, color);
+    //include a delete button, a icon, a slider (basically)
+  } else {
+    uncheckedHandle(layerID);
+  }
+});
