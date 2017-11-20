@@ -44,17 +44,27 @@ $("#test-btn").click(function () {
   return false;
 });
 
-$("#pinchecked-btn").click(function () {
-  
-  return false;
+$('#pin-checkbox').change(function () {
+  if ($(this).prop('checked')) {
+    isPined = true;
+    reSortHandle();
+  } else {
+    isPined = false;
+  }
 });
 
 //------------------------------------sorting buttons------------------------------------
-$("#topchecked-btn").click(function () {
-
-  var layerListOrder = asortable.toArray(),
+/*$("#topchecked-btn").click(function () {
+  var container = document.getElementsByClassName("simplebar-content")[0]
+  var base36ToLayerIDList = [],
+    layerListOrder = asortable.toArray(),
     currentItem,
     currentBase36Id;
+  for (var i in container.children) {
+    var currentLayerID = document.getElementsByClassName("simplebar-content")[0].children[1].children[0].getAttribute("layerID")
+    base36ToLayerIDList[layerListOrder[i]]=currentLayerID
+  }
+
   for (var j in flagList) {
     currentItem = document.getElementById(j + "-list-item").parentNode;
     currentBase36Id = generateBase36Id(currentItem);
@@ -70,53 +80,30 @@ $("#topchecked-btn").click(function () {
   asortable.sort(layerListOrder);
   sortLayerHandle(e)
   return false;
-});
+});*/
 
 $("#alphabet-btn").click(function () {
-  fullLayerFlags.layerFlags.sort(function(a,b){
-  var textA = getLayerName(a.layerID).toUpperCase();
-  var textB = getLayerName(b.layerID).toUpperCase();
-  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}
-)
-var base36ListTemp=new Array();
-for (var i in fullLayerFlags.layerFlags) {
-  base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
-}
-asortable.sort(base36ListTemp)
-sortLayerHandle(e)
-return false;
+  var condition = 'layerUpperName'; //in the defination of class 'LayerFlag'
+  conditionalSortHandle(condition);
+  if (isPined) {
+    reSortHandle();
+  }
 });
 
 $("#categorize-btn").click(function () {
-  fullLayerFlags.layerFlags.sort(function(a,b){
-    var textA = a.layerType;
-    var textB = b.layerType;
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  var condition = 'layerType'; //in the defination of class 'LayerFlag'
+  conditionalSortHandle(condition);
+  if (isPined) {
+    reSortHandle();
   }
-  )
-  var base36ListTemp=new Array();
-  for (var i in fullLayerFlags.layerFlags) {
-    base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
-  }
-  asortable.sort(base36ListTemp)
-  sortLayerHandle(e)
-  return false;
 });
 
 $("#gissorting-btn").click(function () {
-  fullLayerFlags.layerFlags.sort(function(a,b){
-  var textA = a.featureType;
-  var textB = b.featureType;
-  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-}
-  )
-  var base36ListTemp=new Array();
-  for (var i in fullLayerFlags.layerFlags) {
-    base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
+  var condition = 'featureType'; //in the defination of class 'LayerFlag'
+  conditionalSortHandle(condition);
+  if (isPined) {
+    reSortHandle();
   }
-  asortable.sort(base36ListTemp)
-  sortLayerHandle(e)
-  return false;
 });
 
 //------------------------------------add buttons------------------------------------

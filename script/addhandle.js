@@ -242,7 +242,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					iconSize: [25, 41], // size of the icon
 					shadowSize: [41, 41], // size of the shadow
 					iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
-					
+
 					popupAnchor: [1, -40] // point from which the popup should open relative to the iconAnchor
 				}
 			});
@@ -262,9 +262,11 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 			var icons = [];
 
-			for (i=0; i<15; i++) {
-				iconurl = 'http://gis.osu.edu/misc/gasprices/icons/marker-icon'+(i+1)+'.png';
-				var myicon = new LowIcon({iconUrl: iconurl});
+			for (i = 0; i < 15; i++) {
+				iconurl = 'http://gis.osu.edu/misc/gasprices/icons/marker-icon' + (i + 1) + '.png';
+				var myicon = new LowIcon({
+					iconUrl: iconurl
+				});
 				icons[icons.length] = myicon;
 			}
 
@@ -276,16 +278,16 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				url: "http://curio.osu.edu/api/trans/getGasTrendJSON.php",
 				success: handleStations,
 				error: function (request, status, error) {
-					console.log(request,status,error)
+					console.log(request, status, error)
 				}
 			});
 
-			
+
 			function handleStations(result, status) {
 				testData = result
 				date = testData.features[0].properties.date;
 				len = testData.features.length;
-				highestprice = testData.features[len-1].properties.price;
+				highestprice = testData.features[len - 1].properties.price;
 				lowestprice = testData.features[0].properties.price;
 				for (i = 0; i < testData.features.length; i++) {
 					f = testData.features[i]
@@ -294,18 +296,18 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					if (f.properties.price == highestprice)
 						var mymarker = L.marker([lat, lng], {
 							icon: HighIcon,
-							pane: layerID+"Pane"
+							pane: layerID + "Pane"
 						});
 					else {
 						if (i < icons.length)
 							var mymarker = L.marker([lat, lng], {
 								icon: icons[i],
-								pane: layerID+"Pane"
+								pane: layerID + "Pane"
 							});
 						else
 							var mymarker = L.marker([lat, lng], {
 								icon: MidHighIcon,
-								pane: layerID+"Pane"
+								pane: layerID + "Pane"
 							});
 					}
 					mymarker.bindPopup('<b>$' + f.properties.price + '</b><br/>' +
@@ -325,17 +327,18 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			//"JSON Polyline/Polygon"
 			//"GeoServer tiles"
 			//"GeoServer features" which users can't use.;)
-			if(typeof(URL)=="undefined"){
-				var URL=fullLayerFlags.getURLByLayerID(layerID);
+			if (typeof (URL) == "undefined") {
+				var URL = fullLayerFlags.getURLByLayerID(layerID);
 			}
-			if(typeof(featureType)=="undefined"){
-				var featureType=fullLayerFlags.getFeatureTypeByLayerID(layerID);
+			if (typeof (featureType) == "undefined") {
+				var featureType = fullLayerFlags.getFeatureTypeByLayerID(layerID);
 			}
-			if(typeof(dataType)=="undefined"){
-				var dataType=fullLayerFlags.getDataTypeByLayerID(layerID)
+			if (typeof (dataType) == "undefined") {
+				var dataType = fullLayerFlags.getDataTypeByLayerID(layerID)
 			}
 			console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
+			flagList[layerID] = 1
 
 
 	}
@@ -344,11 +347,14 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		POIFlagList[layerID] = true; //push layerID with features to demonstrate
 	}
 
-	if (!flagList[layerID]){
-		addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
+	if (isPined) {
+		reSortHandle();
 	}
+	/*if (!flagList[layerID]){
+		addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
+	}*/
 	//-----legend------
-	addLegendHandle(layerID, URL, grades, colors,dataType,icons,acolor);
+	addLegendHandle(layerID, URL, grades, colors, dataType, icons, acolor);
 
 
 }

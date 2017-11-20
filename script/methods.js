@@ -157,18 +157,6 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getIconBlockDiv(layerID, "filter", "green", "sewer")
 			break;
 
-		case "bikepath_path":
-			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
-			break;
-
-		case "bikepath_green":
-			getIconBlockDiv(layerID, "line", "blue", "Greenway")
-			break;
-
-		case "bikepath_heads":
-			getIconBlockDiv(layerID, "cog", "red", "Trailheads")
-			break;
-
 		case "bikeshr_cogo":
 			getIconBlockDiv(layerID, "pic", null, "Cogo", "./img/bikeshr_cogo.png")
 			break;
@@ -189,6 +177,10 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 		default:
 			if (dataType == 3 || dataType == 4) {
 				numberOfLayer = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("/") + 2)
+				console.log(numberOfLayer)
+				if (!parseInt(numberOfLayer)) {
+					numberOfLayer = 0
+				}
 				url = url.substring(0, url.indexOf("MapServer") + 9)
 				getMapServerLegendDiv(layerID, url + '/legend?f=pjson', numberOfLayer)
 			} else if (dataType == 1) {
@@ -358,7 +350,7 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 
 		return extent;
 	}
-	
+
 	console.log(fullLayerFlags.getItemByLayerID(layerID).extentType);
 	switch (fullLayerFlags.getItemByLayerID(layerID).extentType) {
 		case 1: //json
@@ -508,21 +500,21 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 //------------------------------------------add layer-===---------------------------------------
 function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //尚未添加图例
 {
-	if (dataType ==1) { //"JSON Points"
+	if (dataType == 1) { //"JSON Points"
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
 	}
 
-	if (dataType == 2) {//"JSON Polyline/Polygon"
+	if (dataType == 2) { //"JSON Polyline/Polygon"
 		eval(layerID + "Layer = receiveJsonp(URL, layerID,jsonp,acolor);")
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
 	}
 
-	if (dataType == 4) {//"GeoServer tiles"
+	if (dataType == 4) { //"GeoServer tiles"
 		eval(layerID + "Layer = L.esri.tiledMapLayer({" +
 			"url: '" + URL + "'," +
 			"pane: layerID + 'Pane'" +
@@ -532,40 +524,40 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		return false;
 	}
 
-	if (dataType == 3) {//"GeoServer features"
+	if (dataType == 3) { //"GeoServer features"
 		var iconurl,
-		numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
-		legendURL = URL.substring(0, URL.indexOf("MapServer") + 9)+'/legend?f=pjson'
+			numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
+		legendURL = URL.substring(0, URL.indexOf("MapServer") + 9) + '/legend?f=pjson'
 		$.ajax({
 			url: legendURL,
 			type: 'GET',
 			dataType: 'JSON',
 			async: false,
 			success: function (data) {
-				iconurl ='data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
-				eval(layerID+'Layer = L.esri.featureLayer({'+
-					'url: URL,'+
-					'pointToLayer:function (feature, latlng) {'+
-						'return L.marker(latlng, {'+
-							'icon: L.icon({'+
-								'iconUrl: iconurl,'+
-								'iconSize: [28, 28],'+
-								'iconAnchor: [12, 28],'+
-								'popupAnchor: [0, -25]'+
-							'}),'+
-							'riseOnHover: true,'+
-							'title: feature.properties.name,'+
-							'pane: layerID + "Pane"'+
-						'});'+
-					'},'+
-					'ignoreRenderer:false'+
-				'})')
-				eval("map.addLayer("+layerID+"Layer)")
+				iconurl = 'data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
+				eval(layerID + 'Layer = L.esri.featureLayer({' +
+					'url: URL,' +
+					'pointToLayer:function (feature, latlng) {' +
+					'return L.marker(latlng, {' +
+					'icon: L.icon({' +
+					'iconUrl: iconurl,' +
+					'iconSize: [28, 28],' +
+					'iconAnchor: [12, 28],' +
+					'popupAnchor: [0, -25]' +
+					'}),' +
+					'riseOnHover: true,' +
+					'title: feature.properties.name,' +
+					'pane: layerID + "Pane"' +
+					'});' +
+					'},' +
+					'ignoreRenderer:false' +
+					'})')
+				eval("map.addLayer(" + layerID + "Layer)")
 				flagList[layerID] = 1;
 				return false;
 			}
 		})
-		
+
 
 	}
 }
@@ -588,10 +580,10 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 
 	//syncSidebar(); //refresh POIList
-	
+
 
 	var neodiv = document.createElement('div');
-	neodiv.innerHTML = "<div class=\"list-group-item\" id=\"" + layerID + "-list-item\" style='background-color:"+fullLayerFlags.getBackgroundColor(layerID)+";padding-left:10px;padding-right:5px;'>" + //list-group-item
+	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='background-color:" + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
 
 		//checkbox
@@ -773,7 +765,9 @@ function uncheckedHandle(layerID) {
 		delete POIFlagList[layerID];
 	}
 
-
+	if (isPined) {
+		reSortHandle();
+	}
 	//adjust the status of buttons
 	/*
 	if (Sibling.length == 1) {
@@ -792,3 +786,108 @@ function uncheckedHandle(layerID) {
 	}*/
 	syncSidebar();
 }
+
+function conditionalSortHandle(condition) {
+	/*fullLayerFlags.layerFlags.sort(function (a, b) {
+		eval('var textA = a.'+condition)
+		eval('var textB = a.'+condition)
+		return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+	  })*/
+	switch (condition) {
+		case "layerUpperName":
+			fullLayerFlags.layerFlags.sort(function (a, b) {
+				var textA = getLayerName(a.layerID).toUpperCase();
+				var textB = getLayerName(b.layerID).toUpperCase();
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			})
+			break;
+
+		case "layerType":
+			fullLayerFlags.layerFlags.sort(function (a, b) {
+				var textA = a.layerType;
+				var textB = b.layerType;
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			})
+			break;
+
+		case "featureType":
+			fullLayerFlags.layerFlags.sort(function (a, b) {
+				var textA = a.featureType;
+				var textB = b.featureType;
+				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+			})
+			break;
+
+	}
+
+
+	var base36ListTemp = new Array();
+	for (var i in fullLayerFlags.layerFlags) {
+		base36ListTemp[i] = generateBase36Id(document.getElementById(fullLayerFlags.layerFlags[i].layerID + "-list-item").parentNode)
+	}
+	asortable.sort(base36ListTemp)
+	sortLayerHandle(e)
+	return false;
+}
+
+/*Array.prototype.remove = function (dx) {
+	if (isNaN(dx) || dx > this.length) {
+		return false;
+	}
+	for (var i = 0, n = 0; i < this.length; i++) {
+		if (this[i] != this[dx]) {
+			this[n++] = this[i]
+		}
+	}
+	this.length -= 1
+}*/
+
+function removeItem(a,b){
+	var flag=false;
+	for (var i in a){
+		if(a[i]==b){
+			a.splice(i,1);
+			flag=true;
+			return flag;
+		}
+	}
+	return flag;
+}
+
+function reSortHandle() { //to guarantee the sequence of the sortable list is always right. Design for "pin-checkbox"
+	var container = document.getElementsByClassName("simplebar-content")[0]
+
+	var layerIDList = new Array(),
+		base36UpList = new Array();
+
+	var base36List = asortable.toArray();
+	for (var i in base36List) { //something goes wrong here
+		var currentLayerID = document.getElementsByClassName("simplebar-content")[0].children[i].children[0].getAttribute("layerID")
+		layerIDList.push(currentLayerID);
+		currentItem = document.getElementById(currentLayerID + "-list-item").parentNode;
+		currentBase36Id = generateBase36Id(currentItem);
+		//console.log(currentLayerID, currentBase36Id)
+	}
+	var base36DownList = asortable.toArray();
+	//console.log(layerIDList, base36List, base36UpList, base36DownList)
+	for (var i in layerIDList) { //this goes something wrong
+		if (flagList[layerIDList[i]]) { //
+			//console.log(base36List[i], layerIDList[i])
+			base36UpList.push(base36List[i]);
+			removeItem(base36DownList,base36List[i])
+			//console.log(base36List[i])
+		}
+	}
+	//console.log(layerIDList, base36List, base36UpList, base36DownList)
+	if (!base36UpList) {
+		return false;
+	}
+
+	for (var i in base36UpList) {
+		base36DownList.unshift(base36UpList[base36UpList.length - i - 1])
+	}
+	//console.log(base36UpList,base36DownList)
+	asortable.sort(base36DownList);
+	return false;
+}
+

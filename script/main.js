@@ -55,17 +55,11 @@ legend.addTo(map)*/
 //layer flag
 class LayerFlag {
   constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType) {
-
-    
-    
-    
-    
-
     this._layerID = layerID;
-    this._isSimpleLayer = isSimpleLayer;//is simple layer? simple here is defined as layers which don't involve with POIlist
-    this._layerType = layerType;//T: transportation E: Environment S: Social
-    this._featureType = featureType;//1: points 2: lines 3: polygons
-    this._dataType = dataType;//0: not appliable 1: json points 2: json polylines and polygons 3: esri.feature 4: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
+    this._isSimpleLayer = isSimpleLayer; //is simple layer? simple here is defined as layers which don't involve with POIlist
+    this._layerType = layerType; //T: transportation E: Environment S: Social
+    this._featureType = featureType; //1: points 2: lines 3: polygons
+    this._dataType = dataType; //0: not appliable 1: json points 2: json polylines and polygons 3: esri.feature 4: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
     this._URL = URL;
     this._extentType = extentType;
   }
@@ -83,6 +77,9 @@ class LayerFlag {
   }
   get layerName() {
     return getLayerName(this._layerID);
+  }
+  get layerUpperName() {
+    return getLayerName(this._layerID).toUpperCase();
   }
   get dataType() {
     return this._dataType;
@@ -150,24 +147,24 @@ class LayerFlagGroup {
     return this.getItemByLayerID(layerID).dataType;
   }
 
-  getBackgroundColor(layerID){
-		switch(this.getItemByLayerID(layerID).layerType){
+  getBackgroundColor(layerID) {
+    switch (this.getItemByLayerID(layerID).layerType) {
       case "T":
-        return "#FFF4F4"//red
-      break;
+        return "#FFF4F4" //red
+        break;
 
       case "S":
-        return "#F4FFFF"//blue
-      break;
+        return "#F4FFFF" //blue
+        break;
 
       case "E":
-        return "#F4FFF6"//green
-      break;
+        return "#F4FFF6" //green
+        break;
 
       default:
         alert();
     }
-	}
+  }
 
 }
 
@@ -214,7 +211,7 @@ $.ajax({
 
 var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI listconsole.log(fullLayerFlags)
-
+var isPined = false;
 
 //---------------------------------------------Initialization----------------------------------------
 
@@ -249,3 +246,5 @@ $(document).ready(function () {
     e.preventDefault();
   });
 });
+
+
