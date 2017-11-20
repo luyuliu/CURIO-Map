@@ -269,7 +269,7 @@
       "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
       "color": "green",
       "icon": "filter",
-      "layerName": "Sewer overflow discharges"
+      "layerName": "Sewer discharges"
     },
     {
       "mapName": "Franklin County Demographics",
