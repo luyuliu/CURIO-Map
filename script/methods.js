@@ -183,7 +183,7 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 					dataType: 'JSON',
 					success: function (data) {
 						var layerName = data.name;
-						console.log(data)
+						//console.log(data)
 						url = url.substring(0, url.indexOf("MapServer") + 9)
 						getMapServerLegendDiv(layerID, url + '/legend?f=pjson', layerName)
 
@@ -222,7 +222,7 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 			}
 			var alegendContent = '<table><tbody>'
 
-			console.log(numberOfLayer)
+			//console.log(numberOfLayer)
 			for (var i in data.layers[numberOfLayer].legend) {
 				labelContent = data.layers[numberOfLayer].legend[i].label;
 				alegendContent += "<tr valign='middle'>" +
