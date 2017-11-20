@@ -176,13 +176,19 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			break;
 		default:
 			if (dataType == 3 || dataType == 4) {
-				numberOfLayer = url.substring(url.lastIndexOf("/") + 1, url.lastIndexOf("/") + 2)
-				console.log(numberOfLayer)
-				if (!parseInt(numberOfLayer)) {
-					numberOfLayer = 0
-				}
-				url = url.substring(0, url.indexOf("MapServer") + 9)
-				getMapServerLegendDiv(layerID, url + '/legend?f=pjson', numberOfLayer)
+				$.ajax({
+					url: url + "?f=pjson",
+					type: 'GET',
+					async: false,
+					dataType: 'JSON',
+					success: function (data) {
+						var layerName = data.name;
+						console.log(data)
+						url = url.substring(0, url.indexOf("MapServer") + 9)
+						getMapServerLegendDiv(layerID, url + '/legend?f=pjson', layerName)
+
+					}
+				});
 			} else if (dataType == 1) {
 				getIconBlockDiv(layerID, icons, color, getLayerName(layerID), null)
 			} else if (dataType == 2) {
@@ -195,18 +201,28 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 }
 
 
-function getMapServerLegendDiv(layerID, url, numberOfLayer) { //return one map's legend
-	if (numberOfLayer == undefined) {
-		numberOfLayer = "0";
-	}
-	numberOfLayer = numberOfLayer.toString();
-	var alegendContent = '<table><tbody>'
+function getMapServerLegendDiv(layerID, url, layerName) { //return one map's legend
+
 	$.ajax({
 		url: url,
 		type: 'GET',
 		async: false,
 		dataType: 'JSON',
 		success: function (data) {
+			console.log(layerName)
+			var numberOfLayer;
+			for (var i in data.layers) {
+				if (data.layers[i].layerName == layerName) {
+					numberOfLayer = i;
+				}
+			}
+
+			if (numberOfLayer == undefined) {
+				numberOfLayer = "0";
+			}
+			var alegendContent = '<table><tbody>'
+
+			console.log(numberOfLayer)
 			for (var i in data.layers[numberOfLayer].legend) {
 				labelContent = data.layers[numberOfLayer].legend[i].label;
 				alegendContent += "<tr valign='middle'>" +
@@ -421,7 +437,7 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 }
 
 //------------------------------------------add layer-===---------------------------------------
-function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //尚未添加图例
+function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 {
 	if (dataType == 1) { //"JSON Points"
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
@@ -473,6 +489,9 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 					'pane: layerID + "Pane"' +
 					'});' +
 					'},' +
+					'style:function(feature){' +
+					'return {color:"' + acolor + '"};' +
+					'},' +
 					'ignoreRenderer:false' +
 					'})')
 				eval("map.addLayer(" + layerID + "Layer)")
@@ -483,14 +502,14 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 
 
 	}
-	if(dataType==5){
+	if (dataType == 5) {
 		eval(layerID + "Layer = L.esri.dynamic({" +
-		"url: '" + URL + "'," +
-		"pane: layerID + 'Pane'" +
-		"});")
-	eval("map.addLayer(" + layerID + "Layer);")
-	flagList[layerID] = 1;
-	return false;
+			"url: '" + URL + "'," +
+			"pane: layerID + 'Pane'" +
+			"});")
+		eval("map.addLayer(" + layerID + "Layer);")
+		flagList[layerID] = 1;
+		return false;
 
 	}
 }
@@ -508,7 +527,11 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		symbolType = "cog";
 	}
 	if (color === undefined) {
-		color = "#000000";
+		if (fullLayerFlags.getItemByLayerID(layerID).color != "null") {
+			color = fullLayerFlags.getItemByLayerID(layerID).color
+		} else {
+			color = "#000000";
+		}
 	}
 
 
@@ -775,12 +798,12 @@ function conditionalSortHandle(condition) {
 	this.length -= 1
 }*/
 
-function removeItem(a,b){
-	var flag=false;
-	for (var i in a){
-		if(a[i]==b){
-			a.splice(i,1);
-			flag=true;
+function removeItem(a, b) {
+	var flag = false;
+	for (var i in a) {
+		if (a[i] == b) {
+			a.splice(i, 1);
+			flag = true;
 			return flag;
 		}
 	}
@@ -807,7 +830,7 @@ function reSortHandle() { //to guarantee the sequence of the sortable list is al
 		if (flagList[layerIDList[i]]) { //
 			//console.log(base36List[i], layerIDList[i])
 			base36UpList.push(base36List[i]);
-			removeItem(base36DownList,base36List[i])
+			removeItem(base36DownList, base36List[i])
 			//console.log(base36List[i])
 		}
 	}
@@ -823,4 +846,3 @@ function reSortHandle() { //to guarantee the sequence of the sortable list is al
 	asortable.sort(base36DownList);
 	return false;
 }
-
