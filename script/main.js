@@ -54,7 +54,7 @@ legend.addTo(map)*/
 
 //layer flag
 class LayerFlag {
-  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType) {
+  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType, color, icon, layerName) {
     this._layerID = layerID;
     this._isSimpleLayer = isSimpleLayer; //is simple layer? simple here is defined as layers which don't involve with POIlist
     this._layerType = layerType; //T: transportation E: Environment S: Social
@@ -62,6 +62,9 @@ class LayerFlag {
     this._dataType = dataType; //0: not appliable 1: json points 2: json polylines and polygons 3: esri.feature 4: esri.tile The main purpose of this list is to specify datatype when instantiate "zoomto" buttons
     this._URL = URL;
     this._extentType = extentType;
+    this._color = color;
+    this._icon = icon;
+    this._layerName = layerName;
   }
   get layerID() {
     return this._layerID;
@@ -90,7 +93,15 @@ class LayerFlag {
   get extentType() {
     return this._extentType;
   }
-
+  get color() {
+    return this._color;
+  }
+  get icon() {
+    return this._icon;
+  }
+  get layerName() {
+    return this._layerName;
+  }
 }
 
 class LayerFlagGroup {
@@ -178,7 +189,7 @@ $.ajax({
   success: function (data) {
 
     for (var i in data) {
-      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType)));
+      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType),data[i].color,data[i].icon,data[i].layerName));
     }
 
 
@@ -246,5 +257,3 @@ $(document).ready(function () {
     e.preventDefault();
   });
 });
-
-

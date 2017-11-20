@@ -413,85 +413,8 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 			mapName = "Gray";
 			return mapName;
 			break;
-		case "bikeshr":
-			mapName = "Bike Sharing Stations";
-			return mapName;
-			break;
-
-		case "air":
-			mapName = "Central Ohio Air Quality";
-			return mapName;
-			break;
-
-		case "homeown":
-			mapName = "Home Ownership";
-			return mapName;
-			break;
-
-		case "cota":
-			mapName = "COTA Ridership";
-			return mapName;
-			break;
-
-		case "wshd":
-			mapName = "Watersheds";
-			return mapName;
-			break;
-
-		case "eth":
-			mapName = "Ethnic Dot Density";
-			return mapName;
-			break;
-
-		case "sdw":
-			mapName = "Sidewalk Inventory";
-			return mapName;
-			break;
-
-		case "sewer":
-			mapName = "Sewer Overflow";
-			return mapName;
-			break;
-
-		case "demo":
-			mapName = "Franklin Demographics";
-			return mapName;
-			break;
-
-		case "bikepath":
-			mapName = "Bike Paths in Central Ohio";
-			return mapName;
-			break;
-
-		case "water":
-			mapName = "Water Pollution";
-			return mapName;
-			break;
-
-		case "gas":
-			mapName = "Columbus Gas Prices";
-			return mapName;
-			break;
-
-		case "trans":
-			mapName = "OSU Campus Transportation";
-			return mapName;
-			break;
-
-		case "tree":
-			mapName = "Columbus Trees";
-			return mapName;
-			break;
-
-		case "ohio":
-			mapName = "Ohio";
-			return mapName;
-			break;
-
-
 		default:
-			return layerID
-			alert("new layer")
+			return fullLayerFlags.getItemByLayerID(layerID).layerName;
 			break;
 
 	}
@@ -558,6 +481,16 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 			}
 		})
 
+
+	}
+	if(dataType==5){
+		eval(layerID + "Layer = L.esri.dynamic({" +
+		"url: '" + URL + "'," +
+		"pane: layerID + 'Pane'" +
+		"});")
+	eval("map.addLayer(" + layerID + "Layer);")
+	flagList[layerID] = 1;
+	return false;
 
 	}
 }
