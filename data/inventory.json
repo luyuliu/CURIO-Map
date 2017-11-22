@@ -14,7 +14,8 @@
     "URL": "null",
     "color": "null",
     "icon": "null",
-    "layerName": "COGO stations"
+    "layerName": "COGO stations",
+    "metaData":""
   },
   {
     "mapName": "Bike Sharing Stations",
@@ -31,7 +32,8 @@
     "URL": "null",
     "color": "null",
     "icon": "null",
-    "layerName": "Zagster stations"
+    "layerName": "Zagster stations",
+    "metaData":""
   },
   {
     "mapName": "Central Ohio Air Quality",
@@ -48,7 +50,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/0",
     "color": "null",
     "icon": "null",
-    "layerName": "Coal stations"
+    "layerName": "Coal stations",
+    "metaData":""
   },
   {
     "mapName": "Central Ohio Air Quality",
@@ -65,7 +68,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/PowerPlants/MapServer/1",
     "color": "null",
     "icon": "null",
-    "layerName": "Natural gas stations"
+    "layerName": "Natural gas stations",
+    "metaData":""
   },
   {
     "mapName": "Home Ownership",
@@ -82,7 +86,8 @@
     "URL": "null",
     "color": "null",
     "icon": "null",
-    "layerName": "Home ownership"
+    "layerName": "Home ownership",
+    "metaData":""
   },
   {
     "mapName": "COTA Ridership",
@@ -99,7 +104,8 @@
     "URL": "null",
     "color": "null",
     "icon": "null",
-    "layerName": "COTA ridership"
+    "layerName": "COTA ridership",
+    "metaData":""
   },
   {
     "mapName": "Watersheds",
@@ -116,7 +122,8 @@
     "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
     "color": "null",
     "icon": "null",
-    "layerName": "Sewer overflows"
+    "layerName": "Sewer overflows",
+    "metaData":""
   },
   {
     "mapName": "Watersheds",
@@ -133,7 +140,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/WaterShedsOH_NHD/MapServer",
     "color": "null",
     "icon": "null",
-    "layerName": "Watersheds"
+    "layerName": "Watersheds",
+    "metaData":""
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -150,7 +158,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/",
     "color": "null",
     "icon": "null",
-    "layerName": "Ethical density"
+    "layerName": "Ethical density",
+    "metaData":""
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -167,7 +176,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/",
     "color": "null",
     "icon": "null",
-    "layerName": "Asian density"
+    "layerName": "Asian density",
+    "metaData":""
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -184,7 +194,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/",
     "color": "null",
     "icon": "null",
-    "layerName": "Hispanic density"
+    "layerName": "Hispanic density",
+    "metaData":""
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -201,7 +212,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/",
     "color": "null",
     "icon": "null",
-    "layerName": "Black density"
+    "layerName": "Black density",
+    "metaData":""
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -218,7 +230,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/",
     "color": "null",
     "icon": "null",
-    "layerName": "White density"
+    "layerName": "White density",
+    "metaData":""
   },
   {
     "mapName": "Sidewalk Inventory",
@@ -235,7 +248,8 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer",
     "color": "null",
     "icon": "null",
-    "layerName": "Sidewalk"
+    "layerName": "Sidewalk",
+    "metaData":""
   },
   {
     "mapName": "Sidewalk Inventory",
@@ -252,7 +266,8 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer",
     "color": "null",
     "icon": "null",
-    "layerName": "Sidewalk gaps"
+    "layerName": "Sidewalk gaps",
+    "metaData":""
   },
   {
     "mapName": "Sewer Overflow Discharges",
@@ -269,7 +284,8 @@
     "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
     "color": "green",
     "icon": "filter",
-    "layerName": "Sewer overflow discharges"
+    "layerName": "Sewer discharges",
+    "metaData":""
   },
   {
     "mapName": "Franklin County Demographics",
@@ -286,7 +302,8 @@
     "URL": "null",
     "color": "unknown",
     "icon": "null",
-    "layerName": "Demography"
+    "layerName": "Demography",
+    "metaData":""
   },
   {
     "mapName": "Bike Paths in Central Ohio",
@@ -303,7 +320,8 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer",
     "color": "null",
     "icon": "null",
-    "layerName": "Bike paths"
+    "layerName": "Bike paths",
+    "metaData":""
   },
   {
     "mapName": "Bike Paths in Central Ohio",
@@ -320,7 +338,8 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0",
     "color": "green",
     "icon": "null",
-    "layerName": "Grean paths"
+    "layerName": "Grean paths",
+    "metaData":""
   },
   {
     "mapName": "Bike Paths in Central Ohio",
@@ -337,7 +356,8 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0",
     "color": "null",
     "icon": "null",
-    "layerName": "Bike heads"
+    "layerName": "Bike heads",
+    "metaData":""
   },
   {
     "mapName": "Water Pollution",
@@ -354,7 +374,8 @@
     "URL": "http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1",
     "color": "null",
     "icon": "null",
-    "layerName": "NPDES individual"
+    "layerName": "NPDES individual",
+    "metaData":""
   },
   {
     "mapName": "Water Pollution",
@@ -371,7 +392,8 @@
     "URL": "http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DDAGW_WI/MapServer/0",
     "color": "null",
     "icon": "null",
-    "layerName": "Water intakes"
+    "layerName": "Water intakes",
+    "metaData":""
   },
   {
     "mapName": "Water Pollution",
@@ -388,7 +410,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/IntakeBuffers/MapServer/1",
     "color": "red",
     "icon": "null",
-    "layerName": "Buffer"
+    "layerName": "Buffer",
+    "metaData":""
   },
   {
     "mapName": "Columbus Gas Prices",
@@ -405,7 +428,8 @@
     "URL": "null",
     "color": "null",
     "icon": "null",
-    "layerName": "Gas prices"
+    "layerName": "Gas prices",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -422,7 +446,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2",
     "color": "#8E8E8E",
     "icon": "null",
-    "layerName": "OSU cabs loopnorth"
+    "layerName": "OSU cabs loopnorth",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -439,7 +464,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3",
     "color": "#BF0303",
     "icon": "null",
-    "layerName": "OSU cabs loopsouth"
+    "layerName": "OSU cabs loopsouth",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -456,7 +482,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/1",
     "color": "#E37900",
     "icon": "null",
-    "layerName": "OSU cabs northexpress"
+    "layerName": "OSU cabs northexpress",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -473,7 +500,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4",
     "color": "#042093",
     "icon": "null",
-    "layerName": "OSU cabs eastresidential"
+    "layerName": "OSU cabs eastresidential",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -490,7 +518,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5",
     "color": "#039203",
     "icon": "null",
-    "layerName": "OSU cabsBuckeyevillage"
+    "layerName": "OSU cabsBuckeyevillage",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -507,7 +536,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/22",
     "color": "#40CA07",
     "icon": "null",
-    "layerName": "Parking C"
+    "layerName": "Parking C",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -524,7 +554,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/21",
     "color": "#FFB10A",
     "icon": "null",
-    "layerName": "Parking B"
+    "layerName": "Parking B",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -541,7 +572,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/20",
     "color": "#FF0A0A",
     "icon": "null",
-    "layerName": "Parking A"
+    "layerName": "Parking A",
+    "metaData":""
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -558,7 +590,8 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18",
     "color": "#0D8DF1",
     "icon": "null",
-    "layerName": "Parking accessible"
+    "layerName": "Parking accessible",
+    "metaData":""
   },
   {
     "mapName": "Columbus Trees",
@@ -575,7 +608,8 @@
     "URL": "http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/CBUSTreesByDiameter/MapServer",
     "color": "null",
     "icon": "null",
-    "layerName": "Columbus trees"
+    "layerName": "Columbus trees",
+    "metaData":""
   },
   {
     "mapName": "Central Ohio Air Quality",
@@ -592,6 +626,7 @@
     "URL": "null",
     "color": "null",
     "icon": "null",
-    "layerName": "Air quality"
+    "layerName": "Air quality",
+    "metaData":""
   }
 ]
