@@ -752,8 +752,8 @@ function conditionalSortHandle(condition) {
 	switch (condition) {
 		case "layerUpperName":
 			fullLayerFlags.layerFlags.sort(function (a, b) {
-				var textA = getLayerName(a.layerID).toUpperCase();
-				var textB = getLayerName(b.layerID).toUpperCase();
+				var textA = a.layerName;
+				var textB = b.layerName;
 				return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
 			})
 			break;
