@@ -471,10 +471,10 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 			url: legendURL,
 			type: 'GET',
 			dataType: 'JSON',
-			async: false,
 			success: function (data) {
+				console.log(layerID)
 				iconurl = 'data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
-				eval(layerID + 'Layer = L.esri.featureLayer({' +
+				var codeString=layerID + 'Layer = L.esri.featureLayer({' +
 					'url: URL,' +
 					'pointToLayer:function (feature, latlng) {' +
 					'return L.marker(latlng, {' +
@@ -485,15 +485,17 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 					'popupAnchor: [0, -25]' +
 					'}),' +
 					'riseOnHover: true,' +
-					'title: feature.properties.name,' +
-					'pane: layerID + "Pane"' +
+					'pane: "'+layerID + 'Pane",' +
+					'title: feature.properties.name' +
 					'});' +
 					'},' +
 					'style:function(feature){' +
 					'return {color:"' + acolor + '"};' +
 					'},' +
+					'pane: "'+layerID + 'Pane",' +
 					'ignoreRenderer:false' +
-					'})')
+					'})'//very ugly, I know.
+				eval(codeString)
 				eval("map.addLayer(" + layerID + "Layer)")
 				flagList[layerID] = 1;
 				return false;
@@ -565,8 +567,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\">" + '<b' + ' class="fa fa-info-circle" aria-hidden="true"></b>' + " Legend</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
-
-
+		"</br>"+
+		"<span>Opacity slider</span>"+
 		"<input id=\"" + layerID + "-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" + //slider
 
 		'<div class="legendcontent" id="' + layerID + '-legendcontent">' + //legendcontent
@@ -618,6 +620,11 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		polyfill: true,
 	});
 
+	var selector = "#" + layerID + "-slider"
+	$(document).on('input', selector, function (e) {
+		map.getPane(layerPaneID).style.opacity = (e.currentTarget.value / 100);
+	})
+
 	//------checkbox------
 	$('#' + layerID + "-checkbox").change(function () {
 		if ($(this).prop('checked')) {
@@ -629,10 +636,6 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		}
 	});
 
-	var selector = "#" + layerID + "-slider"
-	$(document).on('input', selector, function (e) {
-		map.getPane(layerPaneID).style.opacity = (e.currentTarget.value / 100);
-	})
 
 }
 
@@ -676,21 +679,6 @@ function getLayerParent(layerID) { //very ugly codes...
 	}
 }
 
-//get map's layerID
-function getLayerChildren(layerID) { //very ugly codes...
-	switch (layerID) {
-		case "bikeshr":
-			return ["bikeshr_cogo", "bikeshr_zgst"];
-		case "bikepath":
-			return ["bikepath_heads", "bikepath_green", "bikepath_path"]
-
-		default:
-			return [layerID]
-
-
-	}
-}
-
 //uncheck handle of each layer
 function uncheckedHandle(layerID) {
 
@@ -713,7 +701,6 @@ function uncheckedHandle(layerID) {
 	eval('map.removeLayer(' + layerID + 'Layer);')
 
 
-	var Sibling = getLayerChildren(getLayerParent(layerID));
 
 
 	delete flagList[layerID];
@@ -724,22 +711,7 @@ function uncheckedHandle(layerID) {
 	if (isPined) {
 		reSortHandle();
 	}
-	//adjust the status of buttons
-	/*
-	if (Sibling.length == 1) {
-		changeButtonStatus(getLayerParent(layerID));
-		delete mapFlagList[getLayerParent(layerID)];
-		return false;
-	}
-	for (var otherSibling in Sibling) {
-		if (flagList[Sibling[otherSibling]]) {
-			break;
-		}
-		if (Sibling[otherSibling] == Sibling[Sibling.length - 1]) {
-			changeButtonStatus(getLayerParent(layerID));
-			delete mapFlagList[getLayerParent(layerID)];
-		}
-	}*/
+	
 	syncSidebar();
 }
 
