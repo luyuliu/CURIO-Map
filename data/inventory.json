@@ -15,7 +15,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "COGO stations",
-    "metaData":""
+    "metaData": '<ul class="nav nav-tabs nav-justified" id="aboutTabs"> <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the Map</a></li> <li class="dropdown1"> <a href="#metadata" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-globe"></i>&nbsp;Metadata</a> <ul class="dropdown-menu"> <li><a href="#boroughs-tab" data-toggle="tab">COGO Stations</a></li> <li><a href="#subway-lines-tab" data-toggle="tab">Zagster Stations</a></li> </ul> </li> </ul> <!--Start Copy Here--> <div class="tab-content" id="aboutTabsContent"> <div class="tab-pane fade active in" id="about"> <div class="panel panel-primary"> <div class="panel-body" style="width: 100%"> <!--css reset for panel body SAF--> 					<p>Columbus has an interlocking set of bicycle rental stations provided by <a href="http://www.cogobikeshare.com" target="_blank">COGO</a> and <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster</a>. These stations can be seen on this map. COGO stations provide live data about bike and dock availability which we ingest for analysis.</p> <hr> <div class="col-md-6"> <h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeCogo.png" width="28" height="28">&nbsp;&nbsp;COGO Stations</h4> <p>Clicking on an orange COGO station will show its current available bikes and docks along with a link to the Google Streetview of the dock location.</p> <hr> <h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png" width="28" height="28">&nbsp;&nbsp;Zagster Stations</h4> <p>Clicking on a blue Zagster dock location will show the Google Streetview of the dock location. Zagster does not provide real time availability for its bikes</p> <hr> <h4>Basemaps</h4> <p>Base maps can be switched between grey, topological, and areal imagery by changing the radio button. Some basemaps have more detail and can be zoomed in further than others.</p> </div> <div class="col-md-6"><img src="http://curio.osu.edu/wp-content/uploads/2017/01/cogoThumb.jpg" style="border:1px solid black; margin:auto; display:block; width:100%"> </div> </div> </div> </div> <div id="metadata" class="tab-pane fade"> 	<h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeCogo.png" width="28" height="28">&nbsp;&nbsp;COGO DATA</h4> <div class="panel" id="boroughs-tab"> <p>COGO Station Data courtesy of <a href="http://www.cogobikeshare.com/" target="_blank">COGO Bikeshare.</a> Download a <a href="http://curio.osu.edu/api/trans/_jsonCOGOArrayGeoJSON.php" download="cogo.geojson" target="_blank">geoJSON</a> file of the current status of the stations. <!--or <a href="#" target="_blank">CSV</a> file of their locations.--></p> </div> <h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png" width="28" height="28">&nbsp;&nbsp;ZAGSTER DATA</h4> <p>Zagster Station Data courtesy of <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster Bikeshare</a> Download a <a href="http://curio.osu.edu/api/trans/_jsonZagsterArrayGeoJSON.php" download="zagster.geojson" target="_blank">geoJSON</a> file of their locations.<!--or <a href="#" target="_blank">CSV</a> file of their locations.--></p> <h4>BASEMAPS</h4> <p>Basemaps are provided by <a href="http://www.arcgis.com/home/group.html?owner=esri&amp;title=arcgis%20online%20basemaps" target="_blank">Esri</a> and hosted on ArcGIS online. Basemaps can be integrated into webmaps for free.</p> <h4>MAP TEMPLATE</h4> <p>This map is based on a <a href="https://github.com/bmcbride/bootleaf" target="_blank">bootleaf template</a> created by Brian McBride</p> </div> </div> '
   },
   {
     "mapName": "Bike Sharing Stations",
@@ -33,7 +33,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Zagster stations",
-    "metaData":""
+    "metaData": '<ul class="nav nav-tabs nav-justified" id="aboutTabs"> <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the Map</a></li> <li class="dropdown1"> <a href="#metadata" class="dropdown-toggle" data-toggle="tab"><i class="fa fa-globe"></i>&nbsp;Metadata</a> <ul class="dropdown-menu"> <li><a href="#boroughs-tab" data-toggle="tab">COGO Stations</a></li> <li><a href="#subway-lines-tab" data-toggle="tab">Zagster Stations</a></li> </ul> </li> </ul> <!--Start Copy Here--> <div class="tab-content" id="aboutTabsContent"> <div class="tab-pane fade active in" id="about"> <div class="panel panel-primary"> <div class="panel-body" style="width: 100%"> <!--css reset for panel body SAF--> 					<p>Columbus has an interlocking set of bicycle rental stations provided by <a href="http://www.cogobikeshare.com" target="_blank">COGO</a> and <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster</a>. These stations can be seen on this map. COGO stations provide live data about bike and dock availability which we ingest for analysis.</p> <hr> <div class="col-md-6"> <h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeCogo.png" width="28" height="28">&nbsp;&nbsp;COGO Stations</h4> <p>Clicking on an orange COGO station will show its current available bikes and docks along with a link to the Google Streetview of the dock location.</p> <hr> <h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png" width="28" height="28">&nbsp;&nbsp;Zagster Stations</h4> <p>Clicking on a blue Zagster dock location will show the Google Streetview of the dock location. Zagster does not provide real time availability for its bikes</p> <hr> <h4>Basemaps</h4> <p>Base maps can be switched between grey, topological, and areal imagery by changing the radio button. Some basemaps have more detail and can be zoomed in further than others.</p> </div> <div class="col-md-6"><img src="http://curio.osu.edu/wp-content/uploads/2017/01/cogoThumb.jpg" style="border:1px solid black; margin:auto; display:block; width:100%"> </div> </div> </div> </div> <div id="metadata" class="tab-pane fade"> 	<h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeCogo.png" width="28" height="28">&nbsp;&nbsp;COGO DATA</h4> <div class="panel" id="boroughs-tab"> <p>COGO Station Data courtesy of <a href="http://www.cogobikeshare.com/" target="_blank">COGO Bikeshare.</a> Download a <a href="http://curio.osu.edu/api/trans/_jsonCOGOArrayGeoJSON.php" download="cogo.geojson" target="_blank">geoJSON</a> file of the current status of the stations. <!--or <a href="#" target="_blank">CSV</a> file of their locations.--></p> </div> <h4><img src="http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png" width="28" height="28">&nbsp;&nbsp;ZAGSTER DATA</h4> <p>Zagster Station Data courtesy of <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster Bikeshare</a> Download a <a href="http://curio.osu.edu/api/trans/_jsonZagsterArrayGeoJSON.php" download="zagster.geojson" target="_blank">geoJSON</a> file of their locations.<!--or <a href="#" target="_blank">CSV</a> file of their locations.--></p> <h4>BASEMAPS</h4> <p>Basemaps are provided by <a href="http://www.arcgis.com/home/group.html?owner=esri&amp;title=arcgis%20online%20basemaps" target="_blank">Esri</a> and hosted on ArcGIS online. Basemaps can be integrated into webmaps for free.</p> <h4>MAP TEMPLATE</h4> <p>This map is based on a <a href="https://github.com/bmcbride/bootleaf" target="_blank">bootleaf template</a> created by Brian McBride</p> </div> </div> '
   },
   {
     "mapName": "Central Ohio Air Quality",
@@ -51,7 +51,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Coal stations",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Central Ohio Air Quality",
@@ -69,7 +69,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Natural gas stations",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Home Ownership",
@@ -87,7 +87,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Home ownership",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "COTA Ridership",
@@ -105,7 +105,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "COTA ridership",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Watersheds",
@@ -123,7 +123,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Sewer overflows",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Watersheds",
@@ -141,7 +141,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Watersheds",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -159,7 +159,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Ethical density",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -177,7 +177,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Asian density",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -195,7 +195,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Hispanic density",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -213,7 +213,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Black density",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Ethnic Dot Density",
@@ -231,7 +231,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "White density",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Sidewalk Inventory",
@@ -249,7 +249,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Sidewalk",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Sidewalk Inventory",
@@ -267,7 +267,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Sidewalk gaps",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Sewer Overflow Discharges",
@@ -285,7 +285,7 @@
     "color": "green",
     "icon": "filter",
     "layerName": "Sewer discharges",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Franklin County Demographics",
@@ -303,7 +303,7 @@
     "color": "unknown",
     "icon": "null",
     "layerName": "Demography",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Bike Paths in Central Ohio",
@@ -321,7 +321,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Bike paths",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Bike Paths in Central Ohio",
@@ -339,7 +339,7 @@
     "color": "green",
     "icon": "null",
     "layerName": "Grean paths",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Bike Paths in Central Ohio",
@@ -357,7 +357,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Bike heads",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Water Pollution",
@@ -375,7 +375,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "NPDES individual",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Water Pollution",
@@ -393,7 +393,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Water intakes",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Water Pollution",
@@ -411,7 +411,7 @@
     "color": "red",
     "icon": "null",
     "layerName": "Buffer",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Columbus Gas Prices",
@@ -429,7 +429,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Gas prices",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -447,7 +447,7 @@
     "color": "#8E8E8E",
     "icon": "null",
     "layerName": "OSU cabs loopnorth",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -465,7 +465,7 @@
     "color": "#BF0303",
     "icon": "null",
     "layerName": "OSU cabs loopsouth",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -483,7 +483,7 @@
     "color": "#E37900",
     "icon": "null",
     "layerName": "OSU cabs northexpress",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -501,7 +501,7 @@
     "color": "#042093",
     "icon": "null",
     "layerName": "OSU cabs eastresidential",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -519,7 +519,7 @@
     "color": "#039203",
     "icon": "null",
     "layerName": "OSU cabsBuckeyevillage",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -537,7 +537,7 @@
     "color": "#40CA07",
     "icon": "null",
     "layerName": "Parking C",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -555,7 +555,7 @@
     "color": "#FFB10A",
     "icon": "null",
     "layerName": "Parking B",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -573,7 +573,7 @@
     "color": "#FF0A0A",
     "icon": "null",
     "layerName": "Parking A",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -591,7 +591,7 @@
     "color": "#0D8DF1",
     "icon": "null",
     "layerName": "Parking accessible",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Columbus Trees",
@@ -609,7 +609,7 @@
     "color": "null",
     "icon": "null",
     "layerName": "Columbus trees",
-    "metaData":""
+    "metaData":''
   },
   {
     "mapName": "Central Ohio Air Quality",
@@ -627,6 +627,6 @@
     "color": "null",
     "icon": "null",
     "layerName": "Air quality",
-    "metaData":""
+    "metaData":''
   }
 ]

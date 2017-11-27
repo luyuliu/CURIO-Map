@@ -54,7 +54,7 @@ legend.addTo(map)*/
 
 //layer flag
 class LayerFlag {
-  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType, color, icon, layerName) {
+  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType, color, icon, layerName, metaData) {
     this._layerID = layerID;
     this._isSimpleLayer = isSimpleLayer; //is simple layer? simple here is defined as layers which don't involve with POIlist
     this._layerType = layerType; //T: transportation E: Environment S: Social
@@ -65,6 +65,7 @@ class LayerFlag {
     this._color = color;
     this._icon = icon;
     this._layerName = layerName;
+    this._metaData = metaData;
   }
   get layerID() {
     return this._layerID;
@@ -102,6 +103,9 @@ class LayerFlag {
   get layerName() {
     return this._layerName;
   }
+  get metaData() {
+    return this._metaData;
+  }
 }
 
 class LayerFlagGroup {
@@ -136,6 +140,7 @@ class LayerFlagGroup {
       }
     }
   }
+
 
   getIndexByLayerID(layerID) {
     for (var i in this.layerFlags) {
@@ -184,12 +189,11 @@ var fullLayerFlags = new LayerFlagGroup();
 $.ajax({
   url: "https://luyuliu.github.io/CURIO-Map/data/inventory.json",
   type: 'GET',
-  //async: false,
   dataType: 'JSON',
   success: function (data) {
 
     for (var i in data) {
-      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType),data[i].color,data[i].icon,data[i].layerName));
+      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType), data[i].color, data[i].icon, data[i].layerName, data[i].metaData));
     }
 
 

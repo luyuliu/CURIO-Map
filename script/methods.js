@@ -474,7 +474,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 			success: function (data) {
 				console.log(layerID)
 				iconurl = 'data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
-				var codeString=layerID + 'Layer = L.esri.featureLayer({' +
+				var codeString = layerID + 'Layer = L.esri.featureLayer({' +
 					'url: URL,' +
 					'pointToLayer:function (feature, latlng) {' +
 					'return L.marker(latlng, {' +
@@ -485,16 +485,16 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 					'popupAnchor: [0, -25]' +
 					'}),' +
 					'riseOnHover: true,' +
-					'pane: "'+layerID + 'Pane",' +
+					'pane: "' + layerID + 'Pane",' +
 					'title: feature.properties.name' +
 					'});' +
 					'},' +
 					'style:function(feature){' +
 					'return {color:"' + acolor + '"};' +
 					'},' +
-					'pane: "'+layerID + 'Pane",' +
+					'pane: "' + layerID + 'Pane",' +
 					'ignoreRenderer:false' +
-					'})'//very ugly, I know.
+					'})' //very ugly, I know.
 				eval(codeString)
 				eval("map.addLayer(" + layerID + "Layer)")
 				flagList[layerID] = 1;
@@ -536,7 +536,6 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		}
 	}
 
-
 	//syncSidebar(); //refresh POIList
 
 
@@ -567,8 +566,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\">" + '<b' + ' class="fa fa-info-circle" aria-hidden="true"></b>' + " Legend</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
-		"</br>"+
-		"<span>Opacity slider</span>"+
+		"</br>" +
+		"<span>Opacity slider</span>" +
 		"<input id=\"" + layerID + "-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" + //slider
 
 		'<div class="legendcontent" id="' + layerID + '-legendcontent">' + //legendcontent
@@ -579,6 +578,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 	document.getElementById("layer-list").prepend(neodiv);
 
 	$("#" + layerID + "-metadata").click(function () { //metadata
+		document.getElementById("meta-content").innerHTML = fullLayerFlags.getItemByLayerID(layerID).metaData
 		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
@@ -591,6 +591,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		}
 
 	});
+
 
 	//------upmost------
 	$('#' + layerID + "-upmost-btn").click(function () {
@@ -711,7 +712,7 @@ function uncheckedHandle(layerID) {
 	if (isPined) {
 		reSortHandle();
 	}
-	
+
 	syncSidebar();
 }
 

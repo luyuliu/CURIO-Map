@@ -172,10 +172,11 @@
 						<div class="panel-heading" role="tab" id="headingOne1" style="margin:0">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">Layer Control
 							</a>
-							<div class="pull-right" style="vertical-align:middle;"><input class="form-check-input" id="pin-checkbox" type="checkbox" style="vertical-align:middle;" value="">Pin checked</div>
+							<div class="pull-right" style="vertical-align:middle;">
+								<input class="form-check-input" id="pin-checkbox" type="checkbox" style="vertical-align:middle;" value="">Pin checked</div>
 
 						</div>
-						
+
 
 						<div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1" style="margin:0">
 							<div class="panel-body" style="padding:0;margin:0">
@@ -249,7 +250,7 @@
 	</div>
 
 	<!-- modals -->
-	<!--aboutModal-->
+	<!--about-modal-->
 	<div class="modal fade" id="about-modal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -283,25 +284,7 @@
 							<div class="panel panel-primary">
 
 
-								<div class="panel-body" style="width: 100%">
-									<!--css reset for panel body SAF-->
-									<p>Map introduction here.</p>
-									<hr>
-									<div class="col-md-6">
-										<h4>
-											<svg height="28" width="56">
-												<circle cx="7" cy="14" r="7" fill="#D2E0A2" />
-												<circle cx="21" cy="14" r="10" fill="#D2E0A2" />
-												<circle cx="42" cy="14" r="14" fill="#A87000" />
-											</svg> &nbsp;more introduction</h4>
-
-										<p>blahblahblah</p>
-										<hr>
-
-									</div>
-									<!--this is the picture block-->
-									<!-- <div class="col-md-6"><img src="http://curio.osu.edu/wp-content/uploads/2017/01/cogoThumb.jpg" style="border:1px solid black; margin:auto; display:block; width:100%"> </div>-->
-
+								<div id="meta-first-page" class="panel-body" style="width: 100%">
 								</div>
 
 							</div>
@@ -313,8 +296,7 @@
 								<p>blahblahblah</a>
 								</p>
 							</div>
-							<!--<h4><img src='http://curio.osu.edu/wp-content/uploads/2016/04/BikeZagster.png' width='28' height='28'>&nbsp;&nbsp;ZAGSTER DATA</h4>
-              <p>Zagster Station Data courtesy of  <a href="http://bike.zagster.com/ohiostate/" target="_blank">Zagster Bikeshare</a>  Download a <a href="http://curio.osu.edu/api/trans/_jsonZagsterArrayGeoJSON.php" download="zagster.geojson" target="_blank">geoJSON</a> file of their locations.<!--or <a href="#" target="_blank">CSV</a> file of their locations.-->
+
 							</p>
 							<h4>BASEMAPS</h4>
 							<p>Basemaps are provided by
@@ -338,24 +320,24 @@
 	</div>
 	<!-- /.modal -->
 
+
+
+	<!--meta-modal-->
 	<div class="modal fade" id="meta-modal" tabindex="-1" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">
-						Developed by
-						<a href='https://github.com/luyuliu'>Luyu Liu</a>
-					</h4>
+					<h4 class="modal-title">Layer Metadata</h4>
 				</div>
-				<div class="modal-body">
-					<div id="attribution"></div>
+				<div class="modal-body" id="meta-content">
 				</div>
 			</div>
 			<!-- /.modal-content -->
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
+	<!-- /.modal -->
 	<!-- /.modal -->
 
 	<div class="modal fade" id="rickroll-modal" tabindex="-1" role="dialog">
