@@ -54,7 +54,7 @@ legend.addTo(map)*/
 
 //layer flag
 class LayerFlag {
-  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType, color, icon, layerName, metaData) {
+  constructor(layerID, isSimpleLayer, layerType, featureType, dataType, URL, extentType, color, icon, layerName, left, right) {
     this._layerID = layerID;
     this._isSimpleLayer = isSimpleLayer; //is simple layer? simple here is defined as layers which don't involve with POIlist
     this._layerType = layerType; //T: transportation E: Environment S: Social
@@ -65,7 +65,8 @@ class LayerFlag {
     this._color = color;
     this._icon = icon;
     this._layerName = layerName;
-    this._metaData = metaData;
+    this._left = left;
+    this._right = right;
   }
   get layerID() {
     return this._layerID;
@@ -103,8 +104,11 @@ class LayerFlag {
   get layerName() {
     return this._layerName;
   }
-  get metaData() {
-    return this._metaData;
+  get left() {
+    return this._left;
+  }
+  get right() {
+    return this._right;
   }
 }
 
@@ -166,15 +170,15 @@ class LayerFlagGroup {
   getBackgroundColor(layerID) {
     switch (this.getItemByLayerID(layerID).layerType) {
       case "T":
-        return "#FFF4F4" //red
+        return "#9B2D2D" //red
         break;
 
       case "S":
-        return "#F4FFFF" //blue
+        return "#88A6E8" //blue
         break;
 
       case "E":
-        return "#F4FFF6" //green
+        return "#5EB062" //green
         break;
 
       default:
@@ -191,36 +195,42 @@ $.ajax({
   type: 'GET',
   dataType: 'JSON',
   success: function (data) {
-
-    for (var i in data) {
-      fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType), data[i].color, data[i].icon, data[i].layerName, data[i].metaData));
-    }
-
-
-    //------------------------------------layerList initialization------------------------------------
-    for (var i in fullLayerFlags.layerFlags) {
-      addLayerHandle(fullLayerFlags.layerFlags[i].layerID)
-    }
-    $("#layer-list").height($(window).height() / 2);
-
-    new SimpleBar(document.getElementById('layer-list'))
+    $.ajax({
+      url: "http://GEOG-CURA-PC5/metadata.json",
+      type: 'GET',
+      dataType: 'JSON',
+      success: function (metadata) {
+        for (var i in data) {
+          fullLayerFlags.pushNewItems(new LayerFlag(data[i].layerID, (data[i].isSimpleLayer == 'TRUE'), data[i].layerType, parseInt(data[i].featureType), parseInt(data[i].dataType), data[i].URL, parseInt(data[i].extentType), data[i].color, data[i].icon, data[i].layerName, metadata[i].left, metadata[i].right));
+        }
 
 
-    //------------------------------------Sortable list------------------------------------
-    // List with handle
-    //include onsort eventlistener and handle
+        //------------------------------------layerList initialization------------------------------------
+        for (var i in fullLayerFlags.layerFlags) {
+          addLayerHandle(fullLayerFlags.layerFlags[i].layerID)
+        }
+        $("#layer-list").height($(window).height() / 2);
 
-    contentwrapper = document.getElementsByClassName("simplebar-content")[0]
-    asortable = Sortable.create(contentwrapper, {
-      handle: '.glyphicon-move',
-      animation: 150,
-      scroll: true,
-      scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
-      scrollSpeed: 10,
-      onEnd: function (e) {
-        sortLayerHandle(e)
+        new SimpleBar(document.getElementById('layer-list'))
+
+
+        //------------------------------------Sortable list------------------------------------
+        // List with handle
+        //include onsort eventlistener and handle
+
+        contentwrapper = document.getElementsByClassName("simplebar-content")[0]
+        asortable = Sortable.create(contentwrapper, {
+          handle: '.glyphicon-move',
+          animation: 150,
+          scroll: true,
+          scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+          scrollSpeed: 10,
+          onEnd: function (e) {
+            sortLayerHandle(e)
+          }
+        });
       }
-    });
+    })
   }
 })
 

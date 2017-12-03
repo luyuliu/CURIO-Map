@@ -540,7 +540,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 
 	var neodiv = document.createElement('div');
-	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='background-color:" + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
+	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='border: double " + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
 
 		//checkbox
@@ -567,7 +567,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
 		"</br>" +
-		"<span>Opacity slider</span>" +
+		"<a class=\"btn btn-light btn-xs\" title=\"Opacity Slider\">" + '<b' + ' class="fa fa-eye" aria-hidden="true"></b>' + " Opacity</a>" +
 		"<input id=\"" + layerID + "-slider\"type=\"range\" value=\"100\" title=\"Drag to adjust the opacity of the layer\">" + //slider
 
 		'<div class="legendcontent" id="' + layerID + '-legendcontent">' + //legendcontent
@@ -578,7 +578,8 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 	document.getElementById("layer-list").prepend(neodiv);
 
 	$("#" + layerID + "-metadata").click(function () { //metadata
-		document.getElementById("meta-content").innerHTML = fullLayerFlags.getItemByLayerID(layerID).metaData
+		document.getElementById("left").innerHTML = fullLayerFlags.getItemByLayerID(layerID).left
+		document.getElementById("right").innerHTML = fullLayerFlags.getItemByLayerID(layerID).right
 		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
