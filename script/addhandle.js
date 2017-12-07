@@ -272,19 +272,25 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 			$.ajax({
 				type: "GET",
-				dataType: 'JSON',
-				//url: "http://gis.osu.edu/gisxx/gasprices/get-prices.php", // use this for client
+				dataType: 'text',
+				url: "http://gis.osu.edu/misc/gasprices/get-7day-prices.php", // use this for client
 				//url: "http://GEOG-CURA-PC5/gas.json", // use this for local test
-				url: "http://curio.osu.edu/api/trans/getGasTrendJSON.php",
+				//url: "http://curio.osu.edu/api/trans/getGasTrendJSON.php",
 				success: handleStations,
 				error: function (request, status, error) {
-					console.log(request, status, error)
+					alert(status + 'Error: ' + error);
 				}
 			});
 
 
 			function handleStations(result, status) {
-				testData = result
+				
+				var lastIndex=result.lastIndexOf(",")
+				console.log(lastIndex)
+				result=result.slice(0,lastIndex-1)+"}]}"
+				console.log(result)
+				testData = JSON.parse(result)
+				
 				date = testData.features[0].properties.date;
 				len = testData.features.length;
 				highestprice = testData.features[len - 1].properties.price;
