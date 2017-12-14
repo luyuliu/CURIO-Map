@@ -13,9 +13,64 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	2. change flagList status;
 	3. if entering parameters only include layerID, then entering switch branches is necessary.
 	*/
-
+	if(URL===undefined){
+		URL=fullLayerFlags.getItemByLayerID(layerID).URL
+	}
+	if(dataType===undefined){
+		dataType=fullLayerFlags.getItemByLayerID(layerID).dataType
+	}
 
 	switch (layerID) {
+
+		case "eth_eth":
+			eth_ethLayer=L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [0],
+				pane: layerID+"Pane"
+				});
+			eth_ethLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+		
+			case "eth_asian":
+			eth_asianLayer=L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [1],
+				pane: layerID+"Pane"
+				});
+				eth_asianLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+
+			case "eth_his":
+			eth_hisLayer=L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [2],
+				pane: layerID+"Pane"
+				});
+				eth_his.addTo(map)
+			flagList[layerID] = 1;
+			break;
+
+			case "eth_black":
+			eth_blackLayer=L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [3],
+				pane: layerID+"Pane"
+				});
+				eth_blackLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+
+			case "eth_white":
+			eth_whiteLayer=L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID+"Pane"
+				});
+				eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
@@ -125,6 +180,99 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 
+		case "cota":
+			cotaLayer = new L.markerClusterGroup({
+				spiderfyOnMaxZoom: true,
+				showCoverageOnHover: false,
+				zoomToBoundsOnClick: true,
+				disableClusteringAtZoom: 12,
+				clusterPane: layerID + "Pane"
+			});
+
+			cotaFullLayer = L.geoJson(null, {
+				pointToLayer: function (feature, latlng) {
+					return new L.CircleMarker(latlng, {
+						//radius: 10, 
+						//fillOpacity: 0.85
+						//This sets them as empty circles
+						radius: 10,
+						//this is the color of the center of the circle
+						fillColor: "#000",
+						//this is the color of the outside ring
+						color: "#000",
+						//this is the thickness of the outside ring
+						weight: .5,
+						//This is the opacity of the outside ring
+						opacity: 1,
+						//this is the opacity of the center. setting it to 0 makes the center transparent
+						//fillOpacity: 1,
+						pane: layerID + "Pane",
+					});
+				},
+				style: function (feature) {
+
+
+					if (feature.properties.TOTAL > 900) {
+						return {
+							fillColor: "#253494",
+							radius: 45
+						};
+					} else if (feature.properties.TOTAL > 500) {
+						return {
+							fillColor: "#2c7fb8",
+							radius: 35
+						};
+					} else if (feature.properties.TOTAL > 99) {
+						return {
+							fillColor: "#41b6c4",
+							radius: 25
+						};
+					} else if (feature.properties.TOTAL > 50) {
+						return {
+							fillColor: "#a1dab4",
+							radius: 15
+						};
+					} else {
+						return {
+							fillColor: "#ffffcc"
+						};
+					}
+
+				}, //end of style
+				onEachFeature: function (feature, layer) {
+					if (feature.properties) {
+						var content = "<h4>" + "Station Name: " + feature.properties.STOP_NAME +  "<br/>" + "Bus route: " + feature.properties.COTA_ROUTE+ "<br/>" + "On bus count: " + feature.properties.ON + "<br/>" + "Off bus count: " + feature.properties.OFF + "<br/>" + "Total count: " + feature.properties.TOTAL + "<br/>" + "Running day: " + feature.properties.DAY_OF_WEEK + "</h4><br/>" +
+							"<!--Streetview Div-->" +
+							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+
+
+						layer.on({
+							click: function (e) {
+								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
+							}
+						});
+						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x cota-color-' + returnColor(feature.properties.TOTAL) + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.STOP_NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+						theaterSearch.push({
+							name: layer.feature.properties.NAME,
+							address: layer.feature.properties.ADDRESS1,
+							source: "Theaters",
+							id: L.stamp(layer),
+							lat: layer.feature.geometry.coordinates[1],
+							lng: layer.feature.geometry.coordinates[0]
+						});
+					}
+				}
+			});
+			$.get("http://GEOG-CURA-PC5/weekdayRiders1000.json", function (data) {
+				cotaFullLayer.addData(data);
+				cotaLayer.addLayer(cotaFullLayer)
+				map.addLayer(cotaLayer);
+			});
+			flagList[layerID] = 2;
+
+
+			break;
+
 		case "air_stations":
 			air_stationsLayer = new L.markerClusterGroup({
 				spiderfyOnMaxZoom: true,
@@ -191,8 +339,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							fillColor: "#FFFF00"
 						};
 					}
-
-
 					// air quality is good 0-50
 					else {
 						return {
@@ -203,7 +349,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}, //end of style
 				onEachFeature: function (feature, layer) {
 					if (feature.properties) {
-						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>" + "Available Bikes: " + feature.properties.availableBikes + "<br/>" + "Available Docks: " + feature.properties.availableDocks + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
+						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>" + "PM2.5 Reading: " + feature.properties.ReadingPM25 + "<br/>" + "O3 Reading: " + feature.properties.ReadingO3 + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
 							"<!--Streetview Div-->" +
 							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
@@ -214,7 +360,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							}
 						});
 						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + layer.feature.properties.AQICat + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-						theaterSearch.push({
+						theaterSearch.push({//?????????????????
 							name: layer.feature.properties.NAME,
 							address: layer.feature.properties.ADDRESS1,
 							source: "Theaters",
@@ -469,6 +615,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 	}*/
 	//-----legend------
+	console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	addLegendHandle(layerID, URL, grades, colors, dataType, icons, acolor);
 
 

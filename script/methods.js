@@ -39,18 +39,37 @@ function sidebarClick(id, layerID) { //click on the sidebar handle
 	}
 }
 
+function returnColor(TOTAL) {//for layer of cota
+	if (TOTAL > 900) {
+		return 1;
+	} else if (TOTAL > 500) {
+		return 2;
+	} else if (TOTAL > 99) {
+		return 3;
+	} else if (TOTAL > 50) {
+		return 4;
+	} else {
+		return 5;
+	}
+}
+
 function syncSidebar() { //update the siderbar
 	/* Empty sidebar features */
 	$("#feature-list tbody").empty();
 	/* Loop through stations layer and add only features which are in the map bounds */
 	for (var i in POIFlagList) {
-		if (i == 'air_stations' || i == "cota") {
-			var pictureURL = "img/" + i + ".png";
+		if (i == 'air_stations') {
 			var layerIDFullLayer = eval(i + "FullLayer");
 			layerIDFullLayer.eachLayer(function (layer) {
 				if (map.getBounds().contains(layer.getLatLng())) {
-					console.log(layer.feature.properties.AQICat)
-					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + '1' + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + layer.feature.properties.AQICat + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+				}
+			})
+		} else if (i == 'cota') {
+			var layerIDFullLayer = eval(i + "FullLayer");
+			layerIDFullLayer.eachLayer(function (layer) {
+				if (map.getBounds().contains(layer.getLatLng())) {
+					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x cota-color-' + returnColor(layer.feature.properties.TOTAL) + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.STOP_NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 				}
 			})
 		} else {
@@ -177,9 +196,15 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			break;
 
 		case "air_stations":
-			var airLegendContent='<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
+			var airLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
 			document.getElementById('legend-' + layerID + '-collapse').innerHTML = airLegendContent;
 			break;
+
+		case "cota":
+			var cotaLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#253494" /></svg> >900 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#2c7fb8" /></svg> >500 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#41b6c4" /></svg> >99 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#a1dab4" /></svg> >50 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#ffffcc" /></svg> <50 Riders'
+			document.getElementById('legend-' + layerID + '-collapse').innerHTML = cotaLegendContent;
+			break;
+
 		case "gas":
 			getIconBlockDiv(layerID, "pic", null, "Very high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconVeryHI.png')
 			getIconBlockDiv(layerID, "pic", null, "High", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconHi.png')
@@ -224,7 +249,7 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 		async: false,
 		dataType: 'JSON',
 		success: function (data) {
-			console.log(layerName)
+			//console.log(layerName)
 			var numberOfLayer;
 			for (var i in data.layers) {
 				if (data.layers[i].layerName == layerName) {
@@ -237,6 +262,20 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 			}
 			var alegendContent = '<table><tbody>'
 
+			switch(layerID){
+				case "eth_asian":
+				numberOfLayer=1
+				break;
+				case "eth_his":
+				numberOfLayer=2
+				break;
+				case "eth_black":
+				numberOfLayer=3
+				break;
+				case "eth_white":
+				numberOfLayer=4
+				break;
+			}
 			//console.log(numberOfLayer)
 			for (var i in data.layers[numberOfLayer].legend) {
 				labelContent = data.layers[numberOfLayer].legend[i].label;
@@ -555,7 +594,7 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 
 
 	var neodiv = document.createElement('div');
-	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='border: double " + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
+	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='border-width: 3px;border-style: outset;border-color:" + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
 
 		//checkbox

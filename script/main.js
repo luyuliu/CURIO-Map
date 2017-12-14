@@ -170,7 +170,7 @@ class LayerFlagGroup {
   getBackgroundColor(layerID) {
     switch (this.getItemByLayerID(layerID).layerType) {
       case "T":
-        return "#9B2D2D" //red
+        return "#F79D17" //red
         break;
 
       case "S":

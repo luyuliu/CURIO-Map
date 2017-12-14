@@ -60,7 +60,6 @@
   opacity: 0;
 }
 
-
 .glyphicon glyphicon-list {
   font-size: 75px;
 }
@@ -176,57 +175,81 @@
   padding: 6px 8px;
   font: 16px/18px Arial, Helvetica, sans-serif;
   background: white;
-  background: rgba(255,255,255,0.8);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
+
 .info h4 {
   margin: 0 0 5px;
   color: #777;
 }
+
 .legend {
   line-height: 18px;
   color: #555;
 }
+
 .legend i {
   float: left;
   margin-right: 8px;
   opacity: 0.7;
 }
 
-
-.legendbox{
+.legendbox {
   width: 20px;
   height: 20px;
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
-.tablehead{
-  height:26px;
+.tablehead {
+  height: 26px;
 }
 
-.legendcontent{
-width:110px;
-
+.legendcontent {
+  width: 110px;
 }
 
+.aq-color-1 {
+  color: #00E400;
+}
 
-.aq-color-1{
-	color:#00E400;
-	}
+.aq-color-2 {
+  color: #FFFF00;
+}
 
-.aq-color-2{
-	color:#FFFF00;
-	}
-.aq-color-3{
-	color:#FF7E00;
-	}
-.aq-color-4{
-	color:#FF0000;
-	}
-.aq-color-5{
-	color:#8F3F97;
-	}
-.aq-color-6{
-	color:#7E0023;
-	}
+.aq-color-3 {
+  color: #FF7E00;
+}
+
+.aq-color-4 {
+  color: #FF0000;
+}
+
+.aq-color-5 {
+  color: #8F3F97;
+}
+
+.aq-color-6 {
+  color: #7E0023;
+}
+
+.cota-color-1 {
+  color: #253494
+}
+
+.cota-color-2 {
+  color: #2c7fb8
+}
+
+.cota-color-3 {
+  color: #41b6c4
+}
+
+.cota-color-4 {
+  color: #a1dab4
+}
+
+.cota-color-5 {
+  color: #ffffcc
+}
