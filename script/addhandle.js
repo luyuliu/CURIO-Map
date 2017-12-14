@@ -125,6 +125,115 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 
+		case "air_stations":
+			air_stationsLayer = new L.markerClusterGroup({
+				spiderfyOnMaxZoom: true,
+				showCoverageOnHover: false,
+				zoomToBoundsOnClick: true,
+				disableClusteringAtZoom: 16,
+				clusterPane: layerID + "Pane"
+			});
+
+			air_stationsFullLayer = L.geoJson(null, {
+				pointToLayer: function (feature, latlng) {
+					return new L.CircleMarker(latlng, {
+						//radius: 10, 
+						//fillOpacity: 0.85
+						//This sets them as empty circles
+						radius: 10,
+						//this is the color of the center of the circle
+						fillColor: "#000",
+						//this is the color of the outside ring
+						color: "#000",
+						//this is the thickness of the outside ring
+						weight: .5,
+						//This is the opacity of the outside ring
+						opacity: 1,
+						//this is the opacity of the center. setting it to 0 makes the center transparent
+						fillOpacity: 1,
+						pane: layerID + "Pane"
+
+					});
+				},
+				style: function (feature) {
+
+					//makes stations with no readings black
+					if ((feature.properties.ReadingO3 === null) && (feature.properties.ReadingPM25 === null) && (feature.properties.AQICat === null)) {
+						return {
+							fillColor: "#444444"
+						};
+					} else if ((feature.properties.ReadingO3 > 300) || (feature.properties.ReadingPM25 > 300)) {
+						return {
+							fillColor: "#7E0023"
+						};
+					}
+					//Very Unhealth AQ 201-300
+					else if ((feature.properties.ReadingO3 > 200 && feature.properties.ReadingO3 <= 300) || (feature.properties.ReadingPM25 > 200 && feature.properties.ReadingO3 <= 300)) {
+						return {
+							fillColor: "#8F3F97"
+						};
+					}
+					//unhealthy aq 150-200
+					else if ((feature.properties.ReadingO3 > 150 && feature.properties.ReadingO3 <= 200) || (feature.properties.ReadingPM25 > 150 && feature.properties.ReadingO3 <= 200)) {
+						return {
+							fillColor: "#FF0000"
+						};
+					}
+					//Unhealth for Sensitive Groups
+					else if ((feature.properties.ReadingO3 > 100 && feature.properties.ReadingO3 <= 150) || (feature.properties.ReadingPM25 > 100 && feature.properties.ReadingO3 <= 150)) {
+						return {
+							fillColor: "#FF7E00"
+						};
+					}
+					//AQ moderate 51-100		
+					else if ((feature.properties.ReadingO3 > 50 && feature.properties.ReadingO3 <= 100) || (feature.properties.ReadingPM25 > 50 && feature.properties.ReadingO3 <= 100)) {
+						return {
+							fillColor: "#FFFF00"
+						};
+					}
+
+
+					// air quality is good 0-50
+					else {
+						return {
+							fillColor: "#00E400"
+						};
+					}
+
+				}, //end of style
+				onEachFeature: function (feature, layer) {
+					if (feature.properties) {
+						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>" + "Available Bikes: " + feature.properties.availableBikes + "<br/>" + "Available Docks: " + feature.properties.availableDocks + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
+							"<!--Streetview Div-->" +
+							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+
+
+						layer.on({
+							click: function (e) {
+								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
+							}
+						});
+						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + layer.feature.properties.AQICat + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+						theaterSearch.push({
+							name: layer.feature.properties.NAME,
+							address: layer.feature.properties.ADDRESS1,
+							source: "Theaters",
+							id: L.stamp(layer),
+							lat: layer.feature.geometry.coordinates[1],
+							lng: layer.feature.geometry.coordinates[0]
+						});
+					}
+				}
+			});
+			$.get("http://GEOG-CURA-PC5/_jsonAQIArrayGeoJSON.json", function (data) {
+				air_stationsFullLayer.addData(data);
+				air_stationsLayer.addLayer(air_stationsFullLayer)
+				map.addLayer(air_stationsLayer);
+			});
+			flagList[layerID] = 2;
+			break;
+
+
 		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 			bikeshr_cogoLayer = new L.markerClusterGroup({
@@ -273,7 +382,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			$.ajax({
 				type: "GET",
 				dataType: 'text',
-				url: "http://gis.osu.edu/misc/gasprices/get-7day-prices.php", // use this for client
+				url: "http://gis.osu.edu/misc/gasprices/get-prices.php", // use this for client
 				//url: "http://GEOG-CURA-PC5/gas.json", // use this for local test
 				//url: "http://curio.osu.edu/api/trans/getGasTrendJSON.php",
 				success: handleStations,
@@ -284,13 +393,13 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 			function handleStations(result, status) {
-				
-				var lastIndex=result.lastIndexOf(",")
+
+				var lastIndex = result.lastIndexOf(",")
 				console.log(lastIndex)
-				result=result.slice(0,lastIndex-1)+"}]}"
+				result = result.slice(0, lastIndex - 1) + "}]}"
 				console.log(result)
 				testData = JSON.parse(result)
-				
+
 				date = testData.features[0].properties.date;
 				len = testData.features.length;
 				highestprice = testData.features[len - 1].properties.price;

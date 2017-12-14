@@ -44,16 +44,27 @@ function syncSidebar() { //update the siderbar
 	$("#feature-list tbody").empty();
 	/* Loop through stations layer and add only features which are in the map bounds */
 	for (var i in POIFlagList) {
-		var pictureURL = "img/" + i + ".png";
-		var layerIDFullLayer = eval(i + "FullLayer");
-		layerIDFullLayer.eachLayer(function (layer) {
-			//if (map.hasLayer(bikeshr_cogoLayer)) {
-			if (map.getBounds().contains(layer.getLatLng())) {
-				$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="' + pictureURL +
-					'"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-			}
-			//}
-		});
+		if (i == 'air_stations' || i == "cota") {
+			var pictureURL = "img/" + i + ".png";
+			var layerIDFullLayer = eval(i + "FullLayer");
+			layerIDFullLayer.eachLayer(function (layer) {
+				if (map.getBounds().contains(layer.getLatLng())) {
+					console.log(layer.feature.properties.AQICat)
+					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + '1' + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+				}
+			})
+		} else {
+			var pictureURL = "img/" + i + ".png";
+			var layerIDFullLayer = eval(i + "FullLayer");
+			layerIDFullLayer.eachLayer(function (layer) {
+				//if (map.hasLayer(bikeshr_cogoLayer)) {
+				if (map.getBounds().contains(layer.getLatLng())) {
+					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="' + pictureURL +
+						'"></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+				}
+				//}
+			});
+		}
 	}
 
 }
@@ -165,6 +176,10 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
 			break;
 
+		case "air_stations":
+			var airLegendContent='<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
+			document.getElementById('legend-' + layerID + '-collapse').innerHTML = airLegendContent;
+			break;
 		case "gas":
 			getIconBlockDiv(layerID, "pic", null, "Very high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconVeryHI.png')
 			getIconBlockDiv(layerID, "pic", null, "High", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconHi.png')

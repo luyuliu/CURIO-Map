@@ -42,6 +42,7 @@ $("#searchbox").click(function () {
 
 /* Prevent hitting enter from refreshing the page */
 $("#searchbox").keypress(function (e) {
+  console.log(e)
   if (e.which == 13) {
     e.preventDefault();
   }
@@ -50,6 +51,10 @@ $("#searchbox").keypress(function (e) {
 $("#featureModal").on("hidden.bs.modal", function (e) {
   $(document).on("mouseout", ".feature-row", clearHighlight);
 });
+
+function clearHighlight() {
+  highlight.clearLayers();
+}
 
 /* Typeahead search functionality */
 $(document).one("ajaxStop", function () {
