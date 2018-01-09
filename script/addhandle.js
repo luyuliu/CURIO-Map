@@ -13,62 +13,62 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	2. change flagList status;
 	3. if entering parameters only include layerID, then entering switch branches is necessary.
 	*/
-	if(URL===undefined){
-		URL=fullLayerFlags.getItemByLayerID(layerID).URL
+	if (URL === undefined) {
+		URL = fullLayerFlags.getItemByLayerID(layerID).URL
 	}
-	if(dataType===undefined){
-		dataType=fullLayerFlags.getItemByLayerID(layerID).dataType
+	if (dataType === undefined) {
+		dataType = fullLayerFlags.getItemByLayerID(layerID).dataType
 	}
 
 	switch (layerID) {
 
 		case "eth_eth":
-			eth_ethLayer=L.esri.dynamicMapLayer({
+			eth_ethLayer = L.esri.dynamicMapLayer({
 				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
 				layers: [0],
-				pane: layerID+"Pane"
-				});
+				pane: layerID + "Pane"
+			});
 			eth_ethLayer.addTo(map)
 			flagList[layerID] = 1;
 			break;
-		
-			case "eth_asian":
-			eth_asianLayer=L.esri.dynamicMapLayer({
+
+		case "eth_asian":
+			eth_asianLayer = L.esri.dynamicMapLayer({
 				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
 				layers: [1],
-				pane: layerID+"Pane"
-				});
-				eth_asianLayer.addTo(map)
+				pane: layerID + "Pane"
+			});
+			eth_asianLayer.addTo(map)
 			flagList[layerID] = 1;
 			break;
 
-			case "eth_his":
-			eth_hisLayer=L.esri.dynamicMapLayer({
+		case "eth_his":
+			eth_hisLayer = L.esri.dynamicMapLayer({
 				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
 				layers: [2],
-				pane: layerID+"Pane"
-				});
-				eth_his.addTo(map)
+				pane: layerID + "Pane"
+			});
+			eth_his.addTo(map)
 			flagList[layerID] = 1;
 			break;
 
-			case "eth_black":
-			eth_blackLayer=L.esri.dynamicMapLayer({
+		case "eth_black":
+			eth_blackLayer = L.esri.dynamicMapLayer({
 				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
 				layers: [3],
-				pane: layerID+"Pane"
-				});
-				eth_blackLayer.addTo(map)
+				pane: layerID + "Pane"
+			});
+			eth_blackLayer.addTo(map)
 			flagList[layerID] = 1;
 			break;
 
-			case "eth_white":
-			eth_whiteLayer=L.esri.dynamicMapLayer({
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
 				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
 				layers: [4],
-				pane: layerID+"Pane"
-				});
-				eth_whiteLayer.addTo(map)
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
 			flagList[layerID] = 1;
 			break;
 
@@ -241,7 +241,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}, //end of style
 				onEachFeature: function (feature, layer) {
 					if (feature.properties) {
-						var content = "<h4>" + "Station Name: " + feature.properties.STOP_NAME +  "<br/>" + "Bus route: " + feature.properties.COTA_ROUTE+ "<br/>" + "On bus count: " + feature.properties.ON + "<br/>" + "Off bus count: " + feature.properties.OFF + "<br/>" + "Total count: " + feature.properties.TOTAL + "<br/>" + "Running day: " + feature.properties.DAY_OF_WEEK + "</h4><br/>" +
+						var content = "<h4>" + "Station Name: " + feature.properties.STOP_NAME + "<br/>" + "Bus route: " + feature.properties.COTA_ROUTE + "<br/>" + "On bus count: " + feature.properties.ON + "<br/>" + "Off bus count: " + feature.properties.OFF + "<br/>" + "Total count: " + feature.properties.TOTAL + "<br/>" + "Running day: " + feature.properties.DAY_OF_WEEK + "</h4><br/>" +
 							"<!--Streetview Div-->" +
 							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
@@ -271,6 +271,70 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 2;
 
 
+			break;
+
+		case "demo":
+			var grades = [2000, 1500, 1000, 500, 0];
+			var colors = ['#004FC1', '#0269FF', '#5E9FFE', '#A9CCFF', '#E6F0FF'];
+			demoLayer = L.geoJson(null, {
+				style: function (feature) {
+					edgeColor = "#bdbdbd";
+					fillColor = getColorx(feature.properties.Total, grades, colors);
+					return {
+						color: edgeColor,
+						fillColor: fillColor,
+						opacity: 1,
+						fillOpacity: 0.90,
+						weight: 0.5
+					};
+				},
+				onEachFeature: onEachAdminFeatureForDemo,
+				pane: layerID + 'Pane'
+
+			})
+
+			function onEachAdminFeatureForDemo(feature, layer) {
+				layer.on({
+					mouseover: function (e) {
+						thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+						var layer = e.target;
+						layer.setStyle({
+							weight: 5,
+							color: '#999',
+							fillOpacity: 0.7
+						});
+
+
+						//info.update(popupContent);
+
+					},
+					mouseout: function (e) {
+						eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
+					},
+					click: function (e) {
+						// TODO: click
+						feature = e.target.feature;
+						var popupContent = "<h4>" + "Total population: " + feature.properties.Total + "</h4>" +
+							"Hispanic population: " + feature.properties.Franklin_2 + "<br/>" +
+							"Hispanic population proportion: " + feature.properties.HispPct + "%<br/>" +
+							"White population: " + feature.properties.White + "<br/>" +
+							"White population proportion: " + feature.properties.WhitePct + "%<br/>" +
+							"Black population: " + feature.properties.Black + "<br/>" +
+							"Black population proportion: " + feature.properties.BlkPct + "%<br/>" +
+							"Asian population: " + feature.properties.Asian + "<br/>" +
+							"Asian population proportion: " + feature.properties.AsianPct + "%<br/>"
+
+						var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
+					}
+				});
+			}
+
+			$.get("https://luyuliu.github.io/CURIO-Map/data/flanklin.json", function (data) {
+				demoLayer.addData(data)
+			});
+
+			map.addLayer(demoLayer);
+			flagList[layerID] = 1;
 			break;
 
 		case "air_stations":
@@ -360,7 +424,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							}
 						});
 						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + layer.feature.properties.AQICat + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-						theaterSearch.push({//?????????????????
+						theaterSearch.push({ //?????????????????
 							name: layer.feature.properties.NAME,
 							address: layer.feature.properties.ADDRESS1,
 							source: "Theaters",
