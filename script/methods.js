@@ -39,7 +39,7 @@ function sidebarClick(id, layerID) { //click on the sidebar handle
 	}
 }
 
-function returnColor(TOTAL) {//for layer of cota
+function returnColor(TOTAL) { //for layer of cota
 	if (TOTAL > 900) {
 		return 1;
 	} else if (TOTAL > 500) {
@@ -179,6 +179,10 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
 			break;
 
+		case "demo":
+			getGraduatedColorsDiv(layerID, grades, colors)
+			break;
+			
 		case "homeown":
 			getGraduatedColorsDiv(layerID, grades, colors)
 			break;
@@ -262,19 +266,19 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 			}
 			var alegendContent = '<table><tbody>'
 
-			switch(layerID){
+			switch (layerID) {
 				case "eth_asian":
-				numberOfLayer=1
-				break;
+					numberOfLayer = 1
+					break;
 				case "eth_his":
-				numberOfLayer=2
-				break;
+					numberOfLayer = 2
+					break;
 				case "eth_black":
-				numberOfLayer=3
-				break;
+					numberOfLayer = 3
+					break;
 				case "eth_white":
-				numberOfLayer=4
-				break;
+					numberOfLayer = 4
+					break;
 			}
 			//console.log(numberOfLayer)
 			for (var i in data.layers[numberOfLayer].legend) {
@@ -526,7 +530,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 			type: 'GET',
 			dataType: 'JSON',
 			success: function (data) {
-				console.log(layerID)
+				//console.log(layerID)
 				iconurl = 'data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
 				var codeString = layerID + 'Layer = L.esri.featureLayer({' +
 					'url: URL,' +

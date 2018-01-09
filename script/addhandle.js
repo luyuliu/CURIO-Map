@@ -329,7 +329,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				});
 			}
 
-			$.get("https://luyuliu.github.io/CURIO-Map/data/flanklin.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/frankin.json", function (data) {
 				demoLayer.addData(data)
 			});
 
@@ -661,7 +661,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			if (typeof (dataType) == "undefined") {
 				var dataType = fullLayerFlags.getDataTypeByLayerID(layerID)
 			}
-			console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
+			//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 			flagList[layerID] = 1
 
@@ -679,7 +679,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 	}*/
 	//-----legend------
-	console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
+	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	addLegendHandle(layerID, URL, grades, colors, dataType, icons, acolor);
 
 
