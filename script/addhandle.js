@@ -435,7 +435,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					}
 				}
 			});
-			$.get("https://luyuliu.github.io/CURIO-Map/data/AQIArrayGeoJSON.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/AirArrayGeoJSON.json", function (data) {
 				air_stationsFullLayer.addData(data);
 				air_stationsLayer.addLayer(air_stationsFullLayer)
 				map.addLayer(air_stationsLayer);
