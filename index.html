@@ -130,8 +130,8 @@
 														<i class="fa fa-ban" aria-hidden="true"></i> Uncheck all layers</a>
 												</li>
 												<li>
-													<a href="#" id="openall-btn">
-														<i class="fa fa-hand-spock-o" aria-hidden="true"></i> Open all layers</a>
+													<a href="#" id="morelayer-btn">
+														<i class="fa fa-folder-open" aria-hidden="true"></i> Add more layers</a>
 												</li>
 											</ul>
 										</div>
@@ -389,13 +389,13 @@
 				<div class="modal-header">
 					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">
-						New Layer Setting
+						New layer setting
 					</h4>
 				</div>
 				<div class="modal-body">
 					<ul id="input-collection">
 						<li>
-							Layer Name:
+							Layer name:
 							<input class="form-control" id="name-input" type="text">
 						</li>
 						<li>
@@ -403,12 +403,19 @@
 							<input class="form-control" id="url-input" type="text">
 						</li>
 						<li>
-							Data Type:
+							Layer type:
+							<select class="form-control" id="layertype-input">
+								<option>Transportation</option>
+								<option>Environment</option>
+								<option>SocioEconomic</option>
+							</select>
+						</li>
+						<li>
+							Data type:
 							<select class="form-control" id="datatype-input">
 								<option>JSON Points</option>
 								<option>JSON Polylines/Polygons</option>
 								<option>GeoServer tiles</option>
-								<option>More...</option>
 							</select>
 						</li>
 						<li>

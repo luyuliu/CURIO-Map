@@ -246,7 +246,7 @@ $("#water-btn").click(function () {
   return false;
 });
 
-
+*/
 
 
 $("#morelayer-btn").click(function () {
@@ -256,46 +256,66 @@ $("#morelayer-btn").click(function () {
 });
 
 $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
-  
+
   xlayerID = $("#name-input").val();
   URL = $("#url-input").val();
-  dataType = $("#datatype-input").val();
+  layerTypeText=$("#layertype-input").val();
+  switch (layerTypeText){
+    case "Transportation":
+      layerType=1
+      break;
+    case "Environment":
+      layerType=2
+      break;
+    case "SocioEconomic":
+      layerType=3
+      break;
+  }
+  dataTypeText = $("#datatype-input").val();
+  switch (dataTypeText){
+    case "Points":
+      dataType=1;
+      extentType=1;
+      break;
+    case "JSON Polylines/Polygons":
+      dataType=2;
+      extentType=1;
+      break;
+    case "GeoServer tiles":
+      dataType=4;
+      extentType=3;
+      break;
+  }
   symbolType = $("#symbol-input").val();
   jsonp = "json";
   afcolor = $("#color-palette").val();
-  if(xlayerID===undefined||URL===undefined)
-  {
+  if (xlayerID === undefined || URL === undefined) {
     alert("Please finish the input.")
     return false;
   }
+
+
+
+    if (!flagList[xlayerID]) {
+      fullLayerFlags.pushNewItems(new LayerFlag(xlayerID, true, layerType, 3, dataType, URL, extentType, afcolor, symbolType, xlayerID, null, null));
+      addLayerHandle(xlayerID,true);
+    } else {
+      alert("Already added this layer.")
+    }
+    sortLayerHandle(e)
+    $("#more-modal").modal("hide");
+    new SimpleBar(document.getElementById('layer-list'))
+    
+    return false;
+  /*} catch (err) {
+    alert("Something went wrong. Adding layer failed.");
+  }*/
   
-  
-  /*
-   try {
-     if (!flagList[xlayerID]) {
-       addLayerHandle(xlayerID, dataType, URL, symbolType, jsonp, color);
-     } else {
-       alert("Already added this layer.")
-     }
-     sortLayerHandle(e)
-     $("#more-modal").modal("hide");
-     return false;
-   } catch (err) {
-     alert("Something went wrong. Adding layer failed.");
-     try {
-       deleteClickedHandle(xlayerID);
-     } catch (err) {}
-   }*/
-/*if (!flagList[xlayerID]) {
-    addLayerHandle(xlayerID, dataType, URL, symbolType, jsonp, afcolor);
-  } else {
-    alert("Already added this layer.")
-  }
   sortLayerHandle(e)
   $("#more-modal").modal("hide");
   return false;
 
-});*/
+});
 
 //------------------------------------basemap controls------------------------------------
 $("#esriDarkGray").click(function () {

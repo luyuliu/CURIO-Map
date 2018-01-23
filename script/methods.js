@@ -575,9 +575,9 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 }
 
 
-//addLayerHandle: when add button is pushed, this method is fired.
+//addLayerHandle: when initializing or add custom layers, this method is fired.
 //Include: add items and their eventlisteners, remove eventlisteners
-function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
+function addLayerHandle(layerID,isOut, dataType, URL, symbolType, jsonp, color) {
 	//create pane for each layer, so that adjusting zindex is possible. Pane is a DOM so avoid use same name as layer.
 	var layerPaneID = layerID + "Pane";
 	if (!map.getPane(layerPaneID)) {
@@ -592,6 +592,9 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		} else {
 			color = "#000000";
 		}
+	}
+	if (isOut===undefined){
+		isOut=false;
 	}
 
 	//syncSidebar(); //refresh POIList
@@ -633,8 +636,12 @@ function addLayerHandle(layerID, dataType, URL, symbolType, jsonp, color) {
 		"</div>" +
 		"</div>" +
 		"</div>"
-	document.getElementById("layer-list").prepend(neodiv);
-
+	
+	if (isOut == false) {
+		document.getElementById("layer-list").prepend(neodiv);
+	} else {
+		document.getElementsByClassName("simplebar-content")[0].prepend(neodiv);
+	}
 	$("#" + layerID + "-metadata").click(function () { //metadata
 		document.getElementById("left").innerHTML = fullLayerFlags.getItemByLayerID(layerID).left
 		document.getElementById("right").innerHTML = fullLayerFlags.getItemByLayerID(layerID).right

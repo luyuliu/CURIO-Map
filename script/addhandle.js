@@ -263,7 +263,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					}
 				}
 			});
-			$.get("http://GEOG-CURA-PC5/weekdayRiders1000.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/weekdayRiders1000.json", function (data) {
 				cotaFullLayer.addData(data);
 				cotaLayer.addLayer(cotaFullLayer)
 				map.addLayer(cotaLayer);
@@ -435,7 +435,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					}
 				}
 			});
-			$.get("http://GEOG-CURA-PC5/_jsonAQIArrayGeoJSON.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/AQIArrayGeoJSON.json", function (data) {
 				air_stationsFullLayer.addData(data);
 				air_stationsLayer.addLayer(air_stationsFullLayer)
 				map.addLayer(air_stationsLayer);
