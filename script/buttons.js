@@ -262,18 +262,18 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
   layerTypeText=$("#layertype-input").val();
   switch (layerTypeText){
     case "Transportation":
-      layerType=1
+      layerType="T"
       break;
     case "Environment":
-      layerType=2
+      layerType="E"
       break;
     case "SocioEconomic":
-      layerType=3
+      layerType="S"
       break;
   }
   dataTypeText = $("#datatype-input").val();
   switch (dataTypeText){
-    case "Points":
+    case "JSON Points":
       dataType=1;
       extentType=1;
       break;
