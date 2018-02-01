@@ -21,7 +21,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	}
 
 	switch (layerID) {
-
+		/*
 		case "eth_eth":
 			eth_ethLayer = L.esri.dynamicMapLayer({
 				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
@@ -71,7 +71,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			eth_whiteLayer.addTo(map)
 			flagList[layerID] = 1;
 			break;
-
+*/
 		case "homeown":
 			var grades = [75, 50, 25, 0];
 			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
@@ -272,7 +272,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 			break;
-
+/*
 		case "demo":
 			var grades = [2000, 1500, 1000, 500, 0];
 			var colors = ['#004FC1', '#0269FF', '#5E9FFE', '#A9CCFF', '#E6F0FF'];
@@ -443,10 +443,11 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 2;
 			break;
 
-
+*/
+/*
 		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
-			bikeshr_cogoLayer = new L.markerClusterGroup({
+/*			bikeshr_cogoLayer = new L.markerClusterGroup({
 				spiderfyOnMaxZoom: true,
 				showCoverageOnHover: false,
 				zoomToBoundsOnClick: true,
@@ -498,10 +499,10 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			});
 			flagList[layerID] = 2;
 			break;
-
-		case "bikeshr_zgst":
+*/
+/*		case "bikeshr_zgst":
 			/* ZAGSTER Layer Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
-			bikeshr_zgstLayer = new L.markerClusterGroup({
+/*			bikeshr_zgstLayer = new L.markerClusterGroup({
 				spiderfyOnMaxZoom: true,
 				showCoverageOnHover: false,
 				zoomToBoundsOnClick: true,
@@ -643,7 +644,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			};
 			break;
-
+*/
 
 
 		default:
