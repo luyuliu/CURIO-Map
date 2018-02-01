@@ -303,7 +303,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/22",
     "color": "#40CA07",
     "icon": "null",
-    "layerName": "Parking C"
+    "layerName": "OSU Parking C"
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -320,7 +320,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/21",
     "color": "#FFB10A",
     "icon": "null",
-    "layerName": "Parking B"
+    "layerName": "OSU Parking B"
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -337,7 +337,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/20",
     "color": "#FF0A0A",
     "icon": "null",
-    "layerName": "Parking A"
+    "layerName": "OSU Parking A"
   },
   {
     "mapName": "OSU Campus Transportation",
@@ -354,7 +354,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18",
     "color": "#0D8DF1",
     "icon": "null",
-    "layerName": "Parking accessible"
+    "layerName": "OSU Parking accessible"
   },
   {
     "mapName": "Columbus Trees",
