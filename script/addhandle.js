@@ -681,6 +681,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	}*/
 	//-----legend------
 	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
+	icons=fullLayerFlags.getItemByLayerID(layerID).icon
 	addLegendHandle(layerID, URL, grades, colors, dataType, icons, acolor);
 
 

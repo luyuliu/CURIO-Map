@@ -191,24 +191,24 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getIconBlockDiv(layerID, "filter", "green", "sewer")
 			break;
 
-		case "bikeshr_cogo":
+	/*	case "bikeshr_cogo":
 			getIconBlockDiv(layerID, "pic", null, "Cogo", "./img/bikeshr_cogo.png")
 			break;
 
 		case "bikeshr_zgst":
 			getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
-			break;
+			break;*/
 
-		case "air_stations":
+	/*	case "air_stations":
 			var airLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
 			document.getElementById('legend-' + layerID + '-collapse').innerHTML = airLegendContent;
-			break;
+			break;*/
 
 		case "cota":
 			var cotaLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#253494" /></svg> >900 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#2c7fb8" /></svg> >500 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#41b6c4" /></svg> >99 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#a1dab4" /></svg> >50 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#ffffcc" /></svg> <50 Riders'
 			document.getElementById('legend-' + layerID + '-collapse').innerHTML = cotaLegendContent;
 			break;
-
+/*
 		case "gas":
 			getIconBlockDiv(layerID, "pic", null, "Very high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconVeryHI.png')
 			getIconBlockDiv(layerID, "pic", null, "High", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconHi.png')
@@ -217,7 +217,7 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 				iconurl = 'http://gis.osu.edu/misc/gasprices/icons/marker-icon' + (i + 1) + '.png';
 				getIconBlockDiv(layerID, "pic", null, "No." + (i + 1) + " low", iconurl)
 			}
-			break;
+			break;*/
 		default:
 			if (dataType == 3 || dataType == 4) {
 				$.ajax({
