@@ -272,6 +272,15 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 			break;
+
+		case "wshd_wshd":
+			eval(layerID + "Layer = L.esri.tiledMapLayer({" +
+			"url: '" + URL + "'," +
+			"pane: layerID + 'Pane'" +
+			"});")
+			eval("map.addLayer(" + layerID + "Layer);")
+			flagList[layerID] = 1;
+		break;
 /*
 		case "demo":
 			var grades = [2000, 1500, 1000, 500, 0];

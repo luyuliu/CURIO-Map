@@ -175,13 +175,13 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 	//polyline: color
 	//server: url
 	switch (layerID) {
-		case "tree":
+		/*case "tree":
 			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
-			break;
+			break;*/
 
-		case "demo":
+		/*case "demo":
 			getGraduatedColorsDiv(layerID, grades, colors)
-			break;
+			break;*/
 			
 		case "homeown":
 			getGraduatedColorsDiv(layerID, grades, colors)
