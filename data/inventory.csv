@@ -1,0 +1,29 @@
+layerID	isSimpleLayer	layerType	extentType	dataType	featureType	dataGettingType	domainHead	typeOfSource	URL	color	icon	layerName
+homeown	TRUE	S	1	0	3	d3.json	N/A	local resource	null	null	null	Home ownership
+wshd_cso	TRUE	E	2	3	1	esri.feature	maps.columbus.gov	Mapserver	http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0	null	null	Sewer overflows
+wshd_wshd	TRUE	E	3	4	2	esri.tile	cura-gis-web.asc.ohio-state.edu	Mapserver	http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/NHDWater/MapServer	null	null	Watersheds
+sdw_sdw	TRUE	T	3	4	2	esri.tile	arcgiswebadp1.morpc.org	Mapserver	http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer	null	null	Sidewalk
+sdw_nsdw	TRUE	T	3	4	2	esri.tile	arcgiswebadp1.morpc.org	Mapserver	http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer	null	null	Sidewalk gaps
+sewer	TRUE	E	2	3	1	esri.feature	maps.columbus.gov	Mapserver	http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0	green	filter	Sewer overflow discharges
+bikepath_path	TRUE	T	3	4	2	esri.tile	arcgiswebadp1.morpc.org	Mapserver	http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer	null	null	Bike paths
+bikepath_green	TRUE	T	2	3	2	esri.feature	arcgiswebadp1.morpc.org	Mapserver	http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0	green	null	Green paths
+bikepath_heads	TRUE	T	2	3	1	esri.feature	arcgiswebadp1.morpc.org	Mapserver	http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0	null	null	Bike heads
+water_npdes	TRUE	E	2	3	1	esri.feature	epagis1.oit.ohio.gov	Mapserver	http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1	null	null	NPDES individual
+water_intakes	TRUE	E	2	3	1	esri.feature	epagis1.oit.ohio.gov	Mapserver	http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DDAGW_WI/MapServer/0	null	null	Water intakes
+trans_cabsN	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2	#8E8E8E	null	OSU cabs loopnorth
+trans_cabsS	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3	#FF0000	null	OSU cabs loopsouth
+trans_cabsNE	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/1	#FFCB0A	null	OSU cabs northexpress
+trans_cabsER	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4	#003EFF	null	OSU cabs eastresidential
+trans_cabsBV	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5	#36D307	null	OSU cabsBuckeyevillage
+trans_parkingC	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/22	#40CA07	null	OSU Parking C
+trans_parkingB	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/21	#FFB10A	null	OSU Parking B
+trans_parkingA	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/20	#FF0A0A	null	OSU Parking A
+trans_parkingG	TRUE	T	2	3	2	esri.feature	gismaps.osu.edu	Mapserver	https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18	#0D8DF1	null	OSU Parking accessible
+tree	TRUE	E	3	4	3	esri.tile	cura-gis-web.asc.ohio-state.edu	Mapserver	http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer	null	null	Columbus trees
+cityparking	TRUE	T	3	4	3	esri.tile	http://maps2.columbus.gov	Mapserver	http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/6	null	null	City-Owned Public Parking
+twowheelparking	TRUE	T	3	4	3	esri.tile	http://maps2.columbus.gov	Mapserver	http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/3	null	null	Two-Wheeler Parking
+parkingmeters	FALSE	T	1	0	1	json	N/A	local resource	null	null	null	Parking meters
+waste	TRUE	E	3	4	3	esri.tile	http://maps2.columbus.gov	Mapserver	http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/12	null	null	Recycling and Waste Zones 
+preserves	TRUE	E	3	4	3	esri.tile	http://maps2.columbus.gov	Mapserver	http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/7	null	null	Nature Preserves
+preserves_trails	TRUE	E	3	4	3	esri.tile	http://maps2.columbus.gov	Mapserver	http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/8	null	null	Nature Preserve Trails
+forestry	TRUE	E	3	4	3	esri.tile	http://maps2.columbus.gov	Mapserver	http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/5	null	null	Forestry Management Zones
