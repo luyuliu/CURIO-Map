@@ -87,7 +87,7 @@
     "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
     "color": "green",
     "icon": "filter",
-    "layerName": "Sewer overflow discharges"
+    "layerName": "Sewer overflow"
   },
   {
     "layerID": "bikepath_path",
@@ -327,7 +327,7 @@
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/6",
     "color": "null",
     "icon": "null",
-    "layerName": "City-Owned Public Parking"
+    "layerName": "City-Owned Parking"
   },
   {
     "layerID": "twowheelparking",
@@ -372,7 +372,7 @@
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/12",
     "color": "null",
     "icon": "null",
-    "layerName": "Recycling and Waste Zones%uFFFD"
+    "layerName": "Waste Zones"
   },
   {
     "layerID": "preserves",
@@ -402,7 +402,7 @@
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/8",
     "color": "null",
     "icon": "null",
-    "layerName": "Nature Preserve Trails"
+    "layerName": "Preserve Trails"
   },
   {
     "layerID": "forestry",
@@ -417,6 +417,6 @@
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/5",
     "color": "null",
     "icon": "null",
-    "layerName": "Forestry Management Zones"
+    "layerName": "Forestry Zone"
   }
 ]
