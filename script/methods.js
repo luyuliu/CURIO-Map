@@ -439,7 +439,7 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			aUrl = currentLayer.options.url;
 			var theend = aUrl.indexOf("MapServer");
 			aUrl = aUrl.substring(0, theend + 9);
-			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
+			var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");
 			var corner1 = L.latLng(extent[0][1], extent[0][0])
 			var corner2 = L.latLng(extent[1][1], extent[1][0])
 			extent = L.latLngBounds(corner1, corner2)
@@ -453,7 +453,9 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			aUrl = currentLayer._url;
 			var theend = aUrl.indexOf("/tile");
 			aUrl = aUrl.substring(0, theend);
-			eval('var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");')
+			var extent=getBoundsMapServer(aUrl+"/info/iteminfo?f=pjson");
+			A=
+			console.log(extent)
 			var corner1 = L.latLng(extent[0][1], extent[0][0])
 			var corner2 = L.latLng(extent[1][1], extent[1][0])
 			extent = L.latLngBounds(corner1, corner2)
@@ -512,6 +514,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 	}
 
 	if (dataType == 4) { //"GeoServer tiles"
+		console.log(URL)
 		eval(layerID + "Layer = L.esri.tiledMapLayer({" +
 			"url: '" + URL + "'," +
 			"pane: layerID + 'Pane'" +
