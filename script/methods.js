@@ -53,7 +53,7 @@ function returnColor(TOTAL) { //for layer of cota
 	}
 }
 
-function syncSidebar() { //update the siderbar
+function syncSidebar(level) { //update the siderbar
 	/* Empty sidebar features */
 	$("#feature-list tbody").empty();
 	/* Loop through stations layer and add only features which are in the map bounds */
@@ -66,13 +66,15 @@ function syncSidebar() { //update the siderbar
 				}
 			})
 		} else if (i == 'parkingmeters') {
+			var level=map.getZoom()
+			if(level>17){
 			var layerIDFullLayer = eval(i + "FullLayer");
 			layerIDFullLayer.eachLayer(function (layer) {
 				if (map.getBounds().contains(layer.getLatLng())) {
 					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x cota-color-' + returnColor(layer.feature.properties.TOTAL) + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' +  layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 				}
-			})
-		} else {
+			})}
+		} /*else {
 			var pictureURL = "img/" + i + ".png";
 			var layerIDFullLayer = eval(i + "FullLayer");
 			layerIDFullLayer.eachLayer(function (layer) {
@@ -83,7 +85,7 @@ function syncSidebar() { //update the siderbar
 				}
 				//}
 			});
-		}
+		}*/
 	}
 
 }
@@ -417,14 +419,14 @@ function getBoundsMapServer(url) {
 }
 
 function returnBounds(layerID) { //used to put this in the bottom of addhandle.js, due to ajax's async so can't. So just put this into buttons' click listener.
-	if (layerID == "gas") {
+	/*if (layerID == "gas") {
 		var corner1 = L.latLng(40.14948820651526, -83.17611694335939)
 		var corner2 = L.latLng(39.8928799002948, -82.86712646484376)
 		extent = L.latLngBounds(corner1, corner2)
 
 		return extent;
-	}
-
+	}*/
+	try{
 	console.log(fullLayerFlags.getItemByLayerID(layerID).extentType);
 	switch (fullLayerFlags.getItemByLayerID(layerID).extentType) {
 		case 1: //json
@@ -463,13 +465,19 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 			break;
 
 		default:
+	}}
+	catch(error){
+		var corner1 = L.latLng(40.248471, -83.312091)
+		var corner2 = L.latLng(39.731868, -82.606219)
+		extent = L.latLngBounds(corner1, corner2)
 
+		return extent;
+	}
 
 
 
 
 	}
-}
 
 function getLayerName(layerID) { //from layerID to get full name of layer, the name 
 	switch (layerID) {

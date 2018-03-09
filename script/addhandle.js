@@ -288,19 +288,23 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		/* Single marker cluster layer to hold all clusters */
 			$("#loading").show();
 			parkingmetersLayer = new L.markerClusterGroup({
+			chunkedLoading:true,
 			spiderfyOnMaxZoom: true,
 			showCoverageOnHover: false,
 			zoomToBoundsOnClick: true,
 			disableClusteringAtZoom: 18,
+			animateAddingMarkers:false,
 			removeOutsideVisibleBounds: true,
 			clusterPane: layerID + "Pane"
 		});
+
 		parkingmetersLayer._getExpandedVisibleBounds = function () {
 			return parkingmetersLayer._map.getBounds();
 		};
+
 		parkingmetersFullLayer = L.geoJson(null, {
 			pointToLayer: function (feature, latlng) {
-				return L.circleMarker(latlng, {
+				return L.marker(latlng, {
 					pane: layerID + "Pane"
 				});
 			},
@@ -323,7 +327,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
 						}
 					});
-					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/parkingmeters.png"></td><td class="feature-name">' + layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID+ '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+					//$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/parkingmeters.png"></td><td class="feature-name">' + layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID+ '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 					theaterSearch.push({
 						name: layer.feature.properties.METER_ID,
 						address: layer.feature.properties.LOCATION,
@@ -335,13 +339,35 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			}
 		});
-		$.get("https://luyuliu.github.io/CURIO-Map/data/Parking_Meters.geojson", function (data) {
+		$.get("https://luyuliu.github.io/CURIO-Map/data/Parking_Meters.json", function (data) {
 			parkingmetersFullLayer.addData(data);
 			parkingmetersLayer.addLayer(parkingmetersFullLayer)
 			map.addLayer(parkingmetersLayer);
 			$("#loading").hide();
 		});
 		flagList[layerID] = 2;
+		
+		/*
+		visibilityParking=true
+		map.on("zoomend",function(){
+			var z=map.getZoom();
+			if (z<14){
+				if (visibilityParking==true){
+					parkingmetersLayer.removeLayer(parkingmetersFullLayer)
+					map.removeLayer(parkingmetersLayer)
+					visibilityParking=false
+				}
+			}
+			if(z>=14){
+				if (visibilityParking==false){
+					parkingmetersLayer.addLayer(parkingmetersFullLayer)
+					map.addLayer(parkingmetersLayer)
+					visibilityParking=true
+				}
+			}
+			console.log(z)
+		})*/
+
 		
 		break;
 /*
