@@ -418,5 +418,20 @@
     "color": "null",
     "icon": "null",
     "layerName": "Forestry Zone"
+  },
+  {
+    "layerID": "bikeshr_cogo",
+    "isSimpleLayer": "FALSE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 1,
+    "dataGettingType": "getJSON",
+    "domainHead": "curio.osu.edu",
+    "typeOfSource": "Geojson/php",
+    "URL": "null",
+    "color": "null",
+    "icon": "null",
+    "layerName": "COGO bike share"
   }
 ]

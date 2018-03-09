@@ -180,7 +180,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 
-		case "cota":
+		/*case "cota":
 			cotaLayer = new L.markerClusterGroup({
 				spiderfyOnMaxZoom: true,
 				showCoverageOnHover: false,
@@ -253,7 +253,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 						});
 						$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x cota-color-' + returnColor(feature.properties.TOTAL) + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.STOP_NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 						theaterSearch.push({
-							name: layer.feature.properties.NAME,
+							name: layer.feature.properties.STOP_NAME,
 							address: layer.feature.properties.ADDRESS1,
 							source: "Theaters",
 							id: L.stamp(layer),
@@ -271,7 +271,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 2;
 
 
-			break;
+			break;*/
 
 		case "wshd_wshd":
 		
@@ -332,7 +332,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 						name: layer.feature.properties.METER_ID,
 						address: layer.feature.properties.LOCATION,
 						source: "Theaters",
-						id: L.stamp(layer),
+						id: layerID,
 						lat: layer.feature.geometry.coordinates[1],
 						lng: layer.feature.geometry.coordinates[0]
 					});
@@ -542,16 +542,18 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			break;
 
 */
-/*
+
 		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
-/*			bikeshr_cogoLayer = new L.markerClusterGroup({
+			bikeshr_cogoLayer = new L.markerClusterGroup({
 				spiderfyOnMaxZoom: true,
 				showCoverageOnHover: false,
 				zoomToBoundsOnClick: true,
 				disableClusteringAtZoom: 16,
 				clusterPane: layerID + "Pane"
 			});
+
+
 			bikeshr_cogoFullLayer = L.geoJson(null, {
 				pointToLayer: function (feature, latlng) {
 					return L.marker(latlng, {
@@ -591,13 +593,32 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			});
 			$.get("https://luyuliu.github.io/CURIO-Map/data/COGOArrayGeoJSON.json", function (data) {
+				
 				bikeshr_cogoFullLayer.addData(data);
 				bikeshr_cogoLayer.addLayer(bikeshr_cogoFullLayer)
 				map.addLayer(bikeshr_cogoLayer);
 			});
 			flagList[layerID] = 2;
+
+			$.get("https://gbfs.cogobikeshare.com/gbfs/en/station_information.json", function (data) {
+				print()
+				bikeshr_cogoFullLayer.addData(data);
+				bikeshr_cogoLayer.addLayer(bikeshr_cogoFullLayer)
+				map.addLayer(bikeshr_cogoLayer);
+			});
+
+			flagList[layerID] = 2;
+
+
+
+
+
+
+
+
+
 			break;
-*/
+
 /*		case "bikeshr_zgst":
 			/* ZAGSTER Layer Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
 /*			bikeshr_zgstLayer = new L.markerClusterGroup({

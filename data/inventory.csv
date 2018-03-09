@@ -27,3 +27,4 @@ waste,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.co
 preserves,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/7,null,null,Nature Preserves
 preserves_trails,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/8,null,null,Preserve Trails
 forestry,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/5,null,null,Forestry Zone
+bikeshr_cogo,FALSE,T,1,0,1,getJSON,curio.osu.edu,Geojson/php,null,null,null,COGO bike share
