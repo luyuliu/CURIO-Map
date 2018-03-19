@@ -29,18 +29,27 @@ map.on("click", function (e) {
   highlight.clearLayers();
 });
 
+$(document).one("ajaxStart", function () {
+  $("#loading").show();
+  sizeLayerControl();
+});
 
+
+$(document).one("ajaxStop", function () {
+  $("#loading").hide();
+  sizeLayerControl();
+});
 
 
 
 
 //------------------------------------search box instantiation------------------------------------
-/* Highlight search box text on click */
+/* Highlight search box text on click *//*
 $("#searchbox").click(function () {
   $(this).select();
 });
 
-/* Prevent hitting enter from refreshing the page */
+/* Prevent hitting enter from refreshing the page *//*
 $("#searchbox").keypress(function (e) {
   console.log(e)
   if (e.which == 13) {
@@ -55,12 +64,9 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 function clearHighlight() {
   highlight.clearLayers();
 }
-
-/* Typeahead search functionality */
-$(document).one("ajaxStop", function () {
-  $("#loading").hide();
-  sizeLayerControl();
-
+*/
+/* Typeahead search functionality *//*
+function searchInitialization() {
   var theatersBH = new Bloodhound({
     name: "Theaters",
     datumTokenizer: function (d) {
@@ -74,7 +80,22 @@ $(document).one("ajaxStop", function () {
 
   theatersBH.initialize();
 
+  $('#bloodhound .typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: 'states',
+    source: theatersBH
+  });
+
+
+}
+*/
+
   /* instantiate the typeahead UI */
+  /*
   $("#searchbox").typeahead({
     minLength: 3,
     highlight: true,
@@ -109,6 +130,5 @@ $(document).one("ajaxStop", function () {
   });
   $(".twitter-typeahead").css("position", "static");
   $(".twitter-typeahead").css("display", "block");
-});
-
-
+}
+searchInitialization()*/

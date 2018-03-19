@@ -6,6 +6,8 @@
  *   Contact: liu.6544@osu.edu
  *
  * ******************************************************* */
+var featureList=[]
+
 function testFailedHandle() //error information
 {
 	document.getElementById("rickroll-box").innerHTML = "<div align='center'><h1>Sorry no such things...for now</h1></div> <div align='center'> <img src='img/rickroll.gif'> </div>"
@@ -30,7 +32,7 @@ function sizeLayerControl() {
 function sidebarClick(id, layerID) { //click on the sidebar handle
 	markerClusters = eval(layerID + "Layer");
 	var alayer = markerClusters.getLayer(id);
-	map.setView([alayer.getLatLng().lat, alayer.getLatLng().lng], 17);
+	map.setView([alayer.getLatLng().lat, alayer.getLatLng().lng], 18);
 	alayer.fire("click");
 	/* Hide sidebar and go to the map on small screens */
 	if (document.body.clientWidth <= 767) {
@@ -58,14 +60,15 @@ function syncSidebar(level) { //update the siderbar
 	$("#feature-list tbody").empty();
 	/* Loop through stations layer and add only features which are in the map bounds */
 	for (var i in POIFlagList) {
-		if (i == 'air_stations') {
+		/*if (i == 'air_stations') {
 			var layerIDFullLayer = eval(i + "FullLayer");
 			layerIDFullLayer.eachLayer(function (layer) {
 				if (map.getBounds().contains(layer.getLatLng())) {
 					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x aq-color-' + layer.feature.properties.AQICat + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' + layer.feature.properties.name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 				}
 			})
-		} else if (i == 'parkingmeters') {
+		} else */
+		if (i == 'parkingmeters') {
 			var level=map.getZoom()
 			if(level>17){
 			var layerIDFullLayer = eval(i + "FullLayer");
@@ -73,7 +76,15 @@ function syncSidebar(level) { //update the siderbar
 				if (map.getBounds().contains(layer.getLatLng())) {
 					$("#feature-list tbody").append('<tr class="feature-row" layerID="' + i + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><span class="fa fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x cota-color-' + returnColor(layer.feature.properties.TOTAL) + '"></i><i class="fa fa-circle-thin fa-stack-2x"></i></span></td><td class="feature-name">' +  layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
 				}
-			})}
+			})
+			var featureList=new List("collapseOne2", {
+				valueNames: ["feature-name"]
+				})
+			  featureList.sort("feature-name", {
+				order: "asc"
+			  });
+		
+		}
 		} /*else {
 			var pictureURL = "img/" + i + ".png";
 			var layerIDFullLayer = eval(i + "FullLayer");
@@ -87,7 +98,8 @@ function syncSidebar(level) { //update the siderbar
 			});
 		}*/
 	}
-
+	
+	
 }
 
 
@@ -248,7 +260,7 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 
 
 function getMapServerLegendDiv(layerID, url, layerName) { //return one map's legend
-
+	console.log(url)
 	$.ajax({
 		url: url,
 		type: 'GET',
@@ -268,7 +280,7 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 			}
 			var alegendContent = '<table><tbody>'
 
-			switch (layerID) {
+			/*switch (layerID) {
 				case "eth_asian":
 					numberOfLayer = 1
 					break;
@@ -281,7 +293,7 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 				case "eth_white":
 					numberOfLayer = 4
 					break;
-			}
+			}*/
 			//console.log(numberOfLayer)
 			for (var i in data.layers[numberOfLayer].legend) {
 				labelContent = data.layers[numberOfLayer].legend[i].label;
@@ -522,7 +534,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 	}
 
 	if (dataType == 4) { //"GeoServer tiles"
-		console.log(URL)
+		//console.log(URL)
 		eval(layerID + "Layer = L.esri.tiledMapLayer({" +
 			"url: '" + URL + "'," +
 			"pane: layerID + 'Pane'" +

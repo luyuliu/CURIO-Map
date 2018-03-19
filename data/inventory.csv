@@ -1,5 +1,5 @@
 layerID,isSimpleLayer,layerType,extentType,dataType,featureType,dataGettingType,domainHead,typeOfSource,URL,color,icon,layerName
-homeown,TRUE,S,1,0,3,d3.json,N/A,local resource,null,null,null,Home ownership
+homeown,TRUE,S,1,0,3,json,N/A,local resource,null,null,null,Home ownership
 wshd_cso,TRUE,E,2,3,1,esri.feature,maps.columbus.gov,Mapserver,http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0,null,null,Sewer overflows
 wshd_wshd,TRUE,E,3,4,2,esri.tile,cura-gis-web.asc.ohio-state.edu,Mapserver,http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/NHDWater/MapServer,null,null,Watersheds
 sdw_sdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer,null,null,Sidewalk
@@ -20,11 +20,9 @@ trans_parkingB,TRUE,T,2,3,2,esri.feature,gismaps.osu.edu,Mapserver,https://gisma
 trans_parkingA,TRUE,T,2,3,2,esri.feature,gismaps.osu.edu,Mapserver,https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/20,#FF0A0A,null,OSU Parking A
 trans_parkingG,TRUE,T,2,3,2,esri.feature,gismaps.osu.edu,Mapserver,https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18,#0D8DF1,null,OSU Parking accessible
 tree,TRUE,E,3,4,3,esri.tile,cura-gis-web.asc.ohio-state.edu,Mapserver,http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer,null,null,Columbus trees
-cityparking,TRUE,T,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/6,null,null,City-Owned Parking
-twowheelparking,TRUE,T,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/3,null,null,Two-Wheeler Parking
 parkingmeters,FALSE,T,1,0,1,json,N/A,local resource,null,null,null,Parking meters
-waste,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/12,null,null,Waste Zones
-preserves,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/7,null,null,Nature Preserves
-preserves_trails,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/8,null,null,Preserve Trails
-forestry,TRUE,E,3,4,3,esri.tile,http://maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Schemas/RecreationParks/MapServer/5,null,null,Forestry Zone
-bikeshr_cogo,FALSE,T,1,0,1,getJSON,curio.osu.edu,Geojson/php,null,null,null,COGO bike share
+waste,FALSE,S,1,0,3,json,N/A,local resource,null,null,null,Waste Zones
+office,FALSE,S,1,0,1,json,N/A,local resource,null,null,null,Columbus Office
+preserves_trails,TRUE,E,1,0,2,json,N/A,local resource,null,#00AB05,null,Preserve Trails
+bikeshr_cogo,FALSE,T,1,0,1,json,N/A,local resource,null,null,null,COGO bike share
+industry,FALSE,S,1,0,1,json,N/A,local resource,null,null,null,Columbus Industry
