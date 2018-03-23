@@ -285,7 +285,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 		case "parkingmeters": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
-			$("#loading").show();
+
 			parkingmetersLayer = new L.markerClusterGroup({
 				chunkedLoading: true,
 				spiderfyOnMaxZoom: true,
@@ -343,7 +343,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				parkingmetersFullLayer.addData(data);
 				parkingmetersLayer.addLayer(parkingmetersFullLayer)
 				map.addLayer(parkingmetersLayer);
-				$("#loading").hide();
 			});
 			flagList[layerID] = 2;
 
@@ -525,10 +524,9 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 		case "bikeshr_cogo": //about Pane: clustermarker and bikeshr_cogoFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 			bikeshr_cogoLayer = new L.markerClusterGroup({
-				spiderfyOnMaxZoom: true,
 				showCoverageOnHover: false,
 				zoomToBoundsOnClick: true,
-				disableClusteringAtZoom: 16,
+				disableClusteringAtZoom: 15,
 				clusterPane: layerID + "Pane"
 			});
 
@@ -600,34 +598,117 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			break;
 
 		case "waste":
-			var grades = [75, 50, 25, 0];
-			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
-			homeownLayer = L.geoJson(null, {
-				style: function (feature) {
-					edgeColor = "#bdbdbd";
-					fillColor = getColorx(feature.properties.PCT_OWN, grades, colors);
-					return {
-						color: edgeColor,
-						fillColor: fillColor,
-						opacity: 1,
-						fillOpacity: 0.90,
-						weight: 0.5
-					};
-				},
-				onEachFeature: onEachAdminFeatureForHomeown,
-				pane: layerID + 'Pane'
-
-			})
-
-
-			$.get("https://luyuliu.github.io/CURIO-Map/data/morpcCensus.json", function (data) {
-				homeownLayer.addData(data)
+		wasteLayer = new L.markerClusterGroup({
+				showCoverageOnHover: false,
+				zoomToBoundsOnClick: true,
+				disableClusteringAtZoom: 18,
+				clusterPane: layerID + "Pane"
 			});
 
-			map.addLayer(homeownLayer);
+
+			wasteFullLayer = L.geoJson(null, {
+				onEachFeature: function (feature, layer) {
+				console.log(layer)
+				layer.on({
+					mouseover: function (e) {
+						thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+						var layer = e.target;
+						layer.setStyle({
+							weight: 5,
+							color: '#999',
+							fillOpacity: 0.7
+						});
+
+
+						//info.update(popupContent);
+
+					},
+					mouseout: function (e) {
+						eval(layerID + "FullLayer" + ".resetStyle(e.target);")
+					},
+					click: function (e) {
+						// TODO: click
+						feature = e.target.feature;
+						var popupContent = "<h4>" + "Unit name: " + feature.properties.UNIT_NAME + "</h4>"
+
+						var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
+					}
+				});
+				}
+			});
+
+
+			$.get("https://luyuliu.github.io/CURIO-Map/data/Recycling__Yard_Waste_Zones.geojson", function (data) {
+				wasteFullLayer.addData(data);
+				wasteLayer.addLayer(wasteFullLayer)
+				map.addLayer(wasteLayer);
+			});
+
+			map.addLayer(wasteLayer);
 			flagList[layerID] = 1;
 
 			break;
+
+			case "office": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
+			/* Single marker cluster layer to hold all clusters */
+
+			officeLayer = new L.markerClusterGroup({
+				chunkedLoading: true,
+				spiderfyOnMaxZoom: true,
+				showCoverageOnHover: false,
+				zoomToBoundsOnClick: true,
+				disableClusteringAtZoom: 18,
+				animateAddingMarkers: false,
+				removeOutsideVisibleBounds: true,
+				clusterPane: layerID + "Pane"
+			});
+
+			officeLayer._getExpandedVisibleBounds = function () {
+				return officeLayer._map.getBounds();
+			};
+
+			officeFullLayer = L.geoJson(null, {
+				pointToLayer: function (feature, latlng) {
+					return L.marker(latlng, {
+						icon: L.icon({
+							iconUrl: "./img/office.png",
+							iconSize: [28, 28],
+							iconAnchor: [12, 28],
+							popupAnchor: [0, -25]
+						}),
+						title: feature.properties.name,
+						riseOnHover: true,
+						pane: layerID + "Pane"
+					});
+				},
+				onEachFeature: function (feature, layer) {
+					if (feature.properties) {
+						var content = "<h4>" + "Address: " + feature.properties.LSN + "</h4><br/>" +
+							"Name: " + feature.properties.POI_NAME + "<br/>" +
+							"Type: " + feature.properties.POI_TYPE + "<br/>" +
+							"<!--Streetview Div-->" +
+							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+
+						layer.on({
+							click: function (e) {
+								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
+							}
+						});
+						//$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/parkingmeters.png"></td><td class="feature-name">' + layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID+ '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+
+					}
+				}
+			});
+			$.get("https://luyuliu.github.io/CURIO-Map/data/Office_Facilities.geojson", function (data) {
+				officeFullLayer.addData(data);
+				officeLayer.addLayer(officeFullLayer)
+				map.addLayer(officeLayer);
+			});
+			flagList[layerID] = 2;
+
+
+			break;
+
 			/*		case "bikeshr_zgst":
 						/* ZAGSTER Layer Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
 			/*			bikeshr_zgstLayer = new L.markerClusterGroup({
@@ -811,6 +892,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	icons = fullLayerFlags.getItemByLayerID(layerID).icon
 	addLegendHandle(layerID, URL + "/legend", grades, colors, dataType, icons, acolor);
-
+	$("#loading").hide();
 
 }
