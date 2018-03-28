@@ -330,36 +330,6 @@
     "layerName": "Parking meters"
   },
   {
-    "layerID": "waste",
-    "isSimpleLayer": "FALSE",
-    "layerType": "S",
-    "extentType": 1,
-    "dataType": 0,
-    "featureType": 3,
-    "dataGettingType": "json",
-    "domainHead": "N/A",
-    "typeOfSource": "local resource",
-    "URL": "null",
-    "color": "null",
-    "icon": "null",
-    "layerName": "Waste Zones"
-  },
-  {
-    "layerID": "office",
-    "isSimpleLayer": "FALSE",
-    "layerType": "S",
-    "extentType": 1,
-    "dataType": 0,
-    "featureType": 1,
-    "dataGettingType": "json",
-    "domainHead": "N/A",
-    "typeOfSource": "local resource",
-    "URL": "null",
-    "color": "null",
-    "icon": "null",
-    "layerName": "Columbus Office"
-  },
-  {
     "layerID": "preserves_trails",
     "isSimpleLayer": "TRUE",
     "layerType": "E",
@@ -388,5 +358,50 @@
     "color": "null",
     "icon": "null",
     "layerName": "COGO bike share"
+  },
+  {
+    "layerID": "industry",
+    "isSimpleLayer": "FALSE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 1,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "null",
+    "color": "null",
+    "icon": "null",
+    "layerName": "Columbus Industry"
+  },
+  {
+    "layerID": "medical",
+    "isSimpleLayer": "FALSE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 1,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "null",
+    "color": "null",
+    "icon": "null",
+    "layerName": "Columbus Medical"
+  },
+  {
+    "layerID": "emergency",
+    "isSimpleLayer": "FALSE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 1,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "null",
+    "color": "null",
+    "icon": "null",
+    "layerName": "Columbus Emergency"
   }
 ]

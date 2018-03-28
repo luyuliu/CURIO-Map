@@ -709,6 +709,66 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 			break;
 			
+			case "emergency": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
+			/* Single marker cluster layer to hold all clusters */
+
+			emergencyLayer = new L.markerClusterGroup({
+				chunkedLoading: true,
+				spiderfyOnMaxZoom: true,
+				showCoverageOnHover: false,
+				zoomToBoundsOnClick: true,
+				disableClusteringAtZoom: 18,
+				animateAddingMarkers: false,
+				removeOutsideVisibleBounds: true,
+				clusterPane: layerID + "Pane"
+			});
+
+			emergencyLayer._getExpandedVisibleBounds = function () {
+				return emergencyLayer._map.getBounds();
+			};
+
+			emergencyFullLayer = L.geoJson(null, {
+				pointToLayer: function (feature, latlng) {
+					return L.marker(latlng, {
+						icon: L.icon({
+							iconUrl: "./img/emergency.png",
+							iconSize: [28, 28],
+							iconAnchor: [12, 28],
+							popupAnchor: [0, -25]
+						}),
+						title: feature.properties.POI_NAME,
+						riseOnHover: true,
+						pane: layerID + "Pane"
+					});
+				},
+				onEachFeature: function (feature, layer) {
+					if (feature.properties) {
+						var content = "<h4>" + "Address: " + feature.properties.LSN + "</h4><br/>" +
+							"Name: " + feature.properties.POI_NAME + "<br/>" +
+							"Type: " + feature.properties.POI_TYPE + "<br/>" +
+							"<!--Streetview Div-->" +
+							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+
+						layer.on({
+							click: function (e) {
+								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
+							}
+						});
+						//$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/parkingmeters.png"></td><td class="feature-name">' + layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID+ '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+
+					}
+				}
+			});
+			$.get("https://luyuliu.github.io/CURIO-Map/data/Industrial_Facilties.json", function (data) {
+				emergencyFullLayer.addData(data);
+				emergencyLayer.addLayer(emergencyFullLayer)
+				map.addLayer(emergencyLayer);
+			});
+			flagList[layerID] = 2;
+
+
+			break;
+
 			case "medical": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 
