@@ -597,7 +597,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 2;
 			break;
 
-		case "waste":
+		/*case "waste":
 		wasteLayer = new L.markerClusterGroup({
 				showCoverageOnHover: false,
 				zoomToBoundsOnClick: true,
@@ -647,12 +647,12 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			map.addLayer(wasteLayer);
 			flagList[layerID] = 1;
 
-			break;
+			break;*/
 
-			case "office": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
+			case "industry": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 
-			officeLayer = new L.markerClusterGroup({
+			industryLayer = new L.markerClusterGroup({
 				chunkedLoading: true,
 				spiderfyOnMaxZoom: true,
 				showCoverageOnHover: false,
@@ -663,20 +663,20 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				clusterPane: layerID + "Pane"
 			});
 
-			officeLayer._getExpandedVisibleBounds = function () {
-				return officeLayer._map.getBounds();
+			industryLayer._getExpandedVisibleBounds = function () {
+				return industryLayer._map.getBounds();
 			};
 
-			officeFullLayer = L.geoJson(null, {
+			industryFullLayer = L.geoJson(null, {
 				pointToLayer: function (feature, latlng) {
 					return L.marker(latlng, {
 						icon: L.icon({
-							iconUrl: "./img/office.png",
+							iconUrl: "./img/industry.png",
 							iconSize: [28, 28],
 							iconAnchor: [12, 28],
 							popupAnchor: [0, -25]
 						}),
-						title: feature.properties.name,
+						title: feature.properties.POI_NAME,
 						riseOnHover: true,
 						pane: layerID + "Pane"
 					});
@@ -699,10 +699,10 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					}
 				}
 			});
-			$.get("https://luyuliu.github.io/CURIO-Map/data/Office_Facilities.geojson", function (data) {
-				officeFullLayer.addData(data);
-				officeLayer.addLayer(officeFullLayer)
-				map.addLayer(officeLayer);
+			$.get("https://luyuliu.github.io/CURIO-Map/data/Industrial_Facilties.json", function (data) {
+				industryFullLayer.addData(data);
+				industryLayer.addLayer(industryFullLayer)
+				map.addLayer(industryLayer);
 			});
 			flagList[layerID] = 2;
 
