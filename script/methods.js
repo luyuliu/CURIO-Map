@@ -134,6 +134,24 @@ function receiveJsonp(URL2, layerID, jsonp, acolor) {
 		acolor = "brown"
 		aweight = 1
 	}
+	if (URL2==false){
+		var geoJsonLayer = new L.GeoJSON(null, {
+			style: function style(feature) {
+				return {
+					weight: aweight,
+					opacity: 1,
+					color: acolor,
+					fill: false
+				};
+			},
+			pane: layerID + "Pane"
+		});
+
+		//localJSON=JSON.parse(localJSON)
+		geoJsonLayer.addData(localJSON);
+		
+		return geoJsonLayer;
+	}
 
 	switch (jsonp) {
 		case "JSON":
@@ -143,6 +161,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor) {
 				jsonpCallback: 'getjson',
 				success: getjson
 			});
+
 			var geoJsonLayer = new L.GeoJSON(null, {
 				style: function style(feature) {
 					return {
@@ -181,6 +200,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor) {
 }
 
 function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
+	console.log(symbolType)
 	var anewicon = L.AwesomeMarkers.icon({
 		icon: symbolType,
 		markerColor: awcolor,
@@ -198,6 +218,21 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 			});
 		}
 	})
+
+	
+	if (URL==false){
+		if(dataType == 1){
+			
+			//console.log(localJSON)
+			newLayer.addData(localJSON);
+			return newLayer;
+
+		}
+
+	}
+	
+
+	
 
 	$.get(URL, function (data) {
 		newLayer.addData(data);
@@ -544,6 +579,9 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 //------------------------------------------add layer-===---------------------------------------
 function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 {
+	
+	//These methods are obselete. Can't actually use them
+
 	if (dataType == 1) { //"JSON Points"
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
 		eval("map.addLayer(" + layerID + "Layer);")

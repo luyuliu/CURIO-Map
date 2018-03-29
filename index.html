@@ -128,7 +128,7 @@
 														<i class="fa fa-ban" aria-hidden="true"></i> Uncheck all layers</a>
 												</li>
 
-												<!-- <li><a href="#" id="morelayer-btn"><i class="fa fa-folder-open" aria-hidden="true"></i> Add more layers</a></li>-->
+												<li><a href="#" id="morelayer-btn"><i class="fa fa-folder-open" aria-hidden="true"></i> Add more layers</a></li>
 
 											</ul>
 										</div>
@@ -389,56 +389,52 @@
 				<div class="modal-header">
 					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">
-						New layer setting
+						Add new JSON layers
 					</h4>
 				</div>
 				<div class="modal-body">
-					<ul id="input-collection">
-						<li>
-							Layer name:
-							<input class="form-control" id="name-input" type="text">
-						</li>
-						<li>
-							URL:
-							<input class="form-control" id="url-input" type="text">
-						</li>
-						<li>
-							Layer type:
-							<select class="form-control" id="layertype-input">
-								<option>Transportation</option>
-								<option>Environment</option>
-								<option>SocioEconomic</option>
-							</select>
-						</li>
-						<li>
-							Data type:
-							<select class="form-control" id="datatype-input">
-								<option>JSON Points</option>
-								<option>JSON Polylines/Polygons</option>
-								<option>GeoServer tiles</option>
-							</select>
-						</li>
-						<li>
-							Symbology:
-							<input class="form-control" id="symbol-input" type="text">
-						</li>
-						<li>
-							Color:
-							<select class="form-control" id="color-palette">
-								<option>red</option>
-								<option>darkred</option>
-								<option>orange</option>
-								<option>green</option>
-								<option>darkgreen</option>
-								<option>blue</option>
-								<option>purple</option>
-								<option>darkpuple</option>
-								<option>cadetblue</option>
-							</select>
-						</li>
-					</ul>
-
-
+						<ul id="input-collection">
+								<li>
+									Layer name:
+									<input class="form-control" id="name-input" type="text">
+								</li>
+								<li>
+									Layer type:
+									<select class="form-control" id="layertype-input">
+										<option>Transportation</option>
+										<option>Environment</option>
+										<option>SocioEconomic</option>
+									</select>
+								</li>
+								<li>
+									Data type :
+									<select class="form-control" id="datatype-input">
+										<option>Points</option>
+										<option>Polylines</option>
+										<option>Polygons</option>
+									</select>
+								</li>
+								<li>
+									Symbology for points (<a target="_blank" href="https://fontawesome.com/v4.7.0/icons/" title="Please type in the a single word for the icon. e.g. anchor">Icon dictionary</a>):
+									<input class="form-control" id="symbol-input" type="text">
+								</li>
+								<li>
+									Color:
+									<select class="form-control" id="color-palette">
+										<option>red</option>
+										<option>darkred</option>
+										<option>orange</option>
+										<option>green</option>
+										<option>darkgreen</option>
+										<option>blue</option>
+										<option>purple</option>
+										<option>darkpuple</option>
+										<option>cadetblue</option>
+									</select>
+								</li>
+							</ul>
+					<div id="drop_zone">Drop files here</div>
+					<output id="fileInfoList"></output>
 				</div>
 				<div class="modal-footer">
 					<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>

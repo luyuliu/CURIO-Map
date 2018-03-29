@@ -260,67 +260,116 @@ $("#water-btn").click(function () {
 
 
 $("#morelayer-btn").click(function () {
+  $("#fileInfoList").empty();
   $("#more-modal").modal("show");
   $(".navbar-collapse.in").collapse("hide");
   return false;
 });
 
-$("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
+//drag-to-show handling
+function handleFileSelect(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
 
+  var files = evt.dataTransfer.files; // FileList object.
+  //console.log(files)
+
+  // files is a FileList of File objects. List some properties.
+  var output = [];
+  f = files[0]
+  output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+    f.size, ' bytes, last modified: ',
+    f.lastModifiedDate.toLocaleDateString(), '</li>');
+
+  document.getElementById('fileInfoList').innerHTML = '<ul>' + output.join('') + '</ul>';
+
+  var fileReader = new FileReader();
+  fileReader.onload = function (e) {
+    localJSON = fileReader.result;
+  }
+  fileReader.readAsText(f);
+  
+}
+
+function handleDragOver(evt) {
+  evt.stopPropagation();
+  evt.preventDefault();
+  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+}
+
+// Setup the dnd listeners.
+var dropZone = document.getElementById('drop_zone');
+var localJSON;
+dropZone.addEventListener('dragover', handleDragOver, false);
+dropZone.addEventListener('drop', handleFileSelect, false);
+
+$("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
+  //console.log(localJSON)
+  try{localJSON=JSON.parse(localJSON);}
+  catch(e){
+    window.alert("Cannot parse JSON string.")
+    return false;
+  }
+  
   xlayerID = $("#name-input").val();
-  URL = $("#url-input").val();
-  layerTypeText=$("#layertype-input").val();
-  switch (layerTypeText){
+  for (var i =0 ; i< fullLayerFlags.layerFlags.length;i++){
+    if (fullLayerFlags.layerFlags[i].layerID==xlayerID)
+    {
+      window.alert("Please use another name.")
+      return false;
+    }
+  }
+  
+  URL = null
+  layerTypeText = $("#layertype-input").val();
+  switch (layerTypeText) {
     case "Transportation":
-      layerType="T"
+      layerType = "T"
       break;
     case "Environment":
-      layerType="E"
+      layerType = "E"
       break;
     case "SocioEconomic":
-      layerType="S"
+      layerType = "S"
       break;
   }
   dataTypeText = $("#datatype-input").val();
-  switch (dataTypeText){
-    case "JSON Points":
-      dataType=1;
-      extentType=1;
+  switch (dataTypeText) {
+    case "Points":
+      dataType = 1;
+      extentType = 1;
       break;
-    case "JSON Polylines/Polygons":
-      dataType=2;
-      extentType=1;
+    case "Polylines":
+      dataType = 2;
+      extentType = 1;
       break;
-    case "GeoServer tiles":
-      dataType=4;
-      extentType=3;
+    case "Polygons":
+      dataType = 2;
+      extentType = 1;
       break;
   }
   symbolType = $("#symbol-input").val();
-  jsonp = "json";
   afcolor = $("#color-palette").val();
   if (xlayerID === undefined || URL === undefined) {
     alert("Please finish the input.")
     return false;
   }
 
+  if (!flagList[xlayerID]) {
+    fullLayerFlags.pushNewItems(new LayerFlag(xlayerID, true, layerType, 3, dataType, false, extentType, afcolor, symbolType, xlayerID, null, null));
+    addLayerHandle(xlayerID, true, dataType, false, symbolType, false, afcolor)
+  } else {
+    alert("Already added this layer.")
+  }
+  sortLayerHandle(e)
+  $("#more-modal").modal("hide");
+  new SimpleBar(document.getElementById('layer-list'))
 
-
-    if (!flagList[xlayerID]) {
-      fullLayerFlags.pushNewItems(new LayerFlag(xlayerID, true, layerType, 3, dataType, URL, extentType, afcolor, symbolType, xlayerID, null, null));
-      addLayerHandle(xlayerID,true);
-    } else {
-      alert("Already added this layer.")
-    }
-    sortLayerHandle(e)
-    $("#more-modal").modal("hide");
-    new SimpleBar(document.getElementById('layer-list'))
-    
-    return false;
+  return false;
   /*} catch (err) {
     alert("Something went wrong. Adding layer failed.");
   }*/
-  
+
   sortLayerHandle(e)
   $("#more-modal").modal("hide");
   return false;

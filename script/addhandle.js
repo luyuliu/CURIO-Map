@@ -760,6 +760,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				}
 			});
 			$.get("https://luyuliu.github.io/CURIO-Map/data/Emergency_Response_Facilities.json", function (data) {
+				console.log(data)
 				emergencyFullLayer.addData(data);
 				emergencyLayer.addLayer(emergencyFullLayer)
 				map.addLayer(emergencyLayer);
