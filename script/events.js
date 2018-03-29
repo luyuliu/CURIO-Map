@@ -21,7 +21,7 @@ $(document).on("click", ".feature-row", function (e) {
 
 /* Filter sidebar feature list to only show features in current map bounds */
 map.on("moveend", function (e) {
-  syncSidebar();
+  syncSidebar(isLeveled);
 });
 
 /* Clear feature highlight when map is clicked */

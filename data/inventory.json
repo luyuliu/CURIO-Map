@@ -330,21 +330,6 @@
     "layerName": "Parking meters"
   },
   {
-    "layerID": "preserves_trails",
-    "isSimpleLayer": "TRUE",
-    "layerType": "E",
-    "extentType": 1,
-    "dataType": 0,
-    "featureType": 2,
-    "dataGettingType": "json",
-    "domainHead": "N/A",
-    "typeOfSource": "local resource",
-    "URL": "null",
-    "color": "#00AB05",
-    "icon": "null",
-    "layerName": "Preserve Trails"
-  },
-  {
     "layerID": "bikeshr_cogo",
     "isSimpleLayer": "FALSE",
     "layerType": "T",

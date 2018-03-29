@@ -53,6 +53,16 @@ $('#pin-checkbox').change(function () {
   }
 });
 
+$('#leveled-checkbox').change(function () {
+  if ($(this).prop('checked')) {
+    isLeveled = true;
+    syncSidebar(isLeveled)
+  } else {
+    isLeveled = false;
+    syncSidebar(isLeveled)
+  }
+});
+
 //------------------------------------sorting buttons------------------------------------
 /*$("#topchecked-btn").click(function () {
   var container = document.getElementsByClassName("simplebar-content")[0]

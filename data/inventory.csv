@@ -21,7 +21,6 @@ trans_parkingA,TRUE,T,2,3,2,esri.feature,gismaps.osu.edu,Mapserver,https://gisma
 trans_parkingG,TRUE,T,2,3,2,esri.feature,gismaps.osu.edu,Mapserver,https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18,#0D8DF1,null,OSU Parking accessible
 tree,TRUE,E,3,4,3,esri.tile,cura-gis-web.asc.ohio-state.edu,Mapserver,http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer,null,null,Columbus trees
 parkingmeters,FALSE,T,1,0,1,json,N/A,local resource,null,null,null,Parking meters
-preserves_trails,TRUE,E,1,0,2,json,N/A,local resource,null,#00AB05,null,Preserve Trails
 bikeshr_cogo,FALSE,T,1,0,1,json,N/A,local resource,null,null,null,COGO bike share
 industry,FALSE,S,1,0,1,json,N/A,local resource,null,null,null,Columbus Industry
 medical,FALSE,S,1,0,1,json,N/A,local resource,null,null,null,Columbus Medical

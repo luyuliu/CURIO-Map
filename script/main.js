@@ -11,7 +11,6 @@
 var test;
 var baseLayer = L.esri.basemapLayer('Topographic')
 
-
 map = L.map("map", {
   zoom: 13,
   center: [39.98, -83],
@@ -239,6 +238,7 @@ $.ajax({
 var flagList = new Array(); //the status of each layer. 1 means simple layer (without a modal), 2 means simple layer with a modal.
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI listconsole.log(fullLayerFlags)
 var isPined = false;
+var isLeveled = false;
 
 //---------------------------------------------Initialization----------------------------------------
 

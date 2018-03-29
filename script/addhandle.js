@@ -708,7 +708,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 
 			break;
-			
+
 			case "emergency": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 
@@ -759,7 +759,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					}
 				}
 			});
-			$.get("https://luyuliu.github.io/CURIO-Map/data/Industrial_Facilties.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/Emergency_Response_Facilities.json", function (data) {
 				emergencyFullLayer.addData(data);
 				emergencyLayer.addLayer(emergencyFullLayer)
 				map.addLayer(emergencyLayer);
@@ -819,7 +819,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					}
 				}
 			});
-			$.get("https://luyuliu.github.io/CURIO-Map/data/Industrial_Facilties.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/Medical_Facilities.json", function (data) {
 				medicalFullLayer.addData(data);
 				medicalLayer.addLayer(medicalFullLayer)
 				map.addLayer(medicalLayer);
