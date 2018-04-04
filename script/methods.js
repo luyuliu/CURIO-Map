@@ -74,7 +74,7 @@ function syncSidebar(isLeveled) { //update the siderbar
 		} else */
 		if (i == 'parkingmeters') {
 			var level = map.getZoom()
-			if (level > 17 || isLeveled==true) {
+			if (level > 17 || isLeveled == true) {
 				var layerIDFullLayer = eval(i + "FullLayer");
 				layerIDFullLayer.eachLayer(function (layer) {
 					if (map.getBounds().contains(layer.getLatLng())) {
@@ -92,7 +92,7 @@ function syncSidebar(isLeveled) { //update the siderbar
 		}
 		if (i == "emergency" || i == "medical" || i == "industry") {
 			var level = map.getZoom()
-			if (level > 14 || isLeveled==true) {
+			if (level > 14 || isLeveled == true) {
 				var pictureURL = "img/" + i + ".png";
 				var layerIDFullLayer = eval(i + "FullLayer");
 				layerIDFullLayer.eachLayer(function (layer) {
@@ -134,7 +134,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor) {
 		acolor = "brown"
 		aweight = 1
 	}
-	if (URL2==false){
+	if (URL2 == false) {
 		var geoJsonLayer = new L.GeoJSON(null, {
 			style: function style(feature) {
 				return {
@@ -148,8 +148,8 @@ function receiveJsonp(URL2, layerID, jsonp, acolor) {
 		});
 
 		//localJSON=JSON.parse(localJSON)
-		geoJsonLayer.addData(localJSON);
-		
+		eval('geoJsonLayer.addData(' + layerID + 'JSON);')
+
 		return geoJsonLayer;
 	}
 
@@ -200,7 +200,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor) {
 }
 
 function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
-	console.log(symbolType)
+	//console.log(symbolType)
 	var anewicon = L.AwesomeMarkers.icon({
 		icon: symbolType,
 		markerColor: awcolor,
@@ -219,20 +219,20 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 		}
 	})
 
-	
-	if (URL==false){
-		if(dataType == 1){
-			
+
+	if (URL == false) {
+		if (dataType == 1) {
+
 			//console.log(localJSON)
-			newLayer.addData(localJSON);
+			eval('newLayer.addData(' + layerID + 'JSON);')
 			return newLayer;
 
 		}
 
 	}
-	
 
-	
+
+
 
 	$.get(URL, function (data) {
 		newLayer.addData(data);
@@ -265,13 +265,22 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getIconBlockDiv(layerID, "filter", "green", "sewer")
 			break;
 
-			/*	case "bikeshr_cogo":
-					getIconBlockDiv(layerID, "pic", null, "Cogo", "./img/bikeshr_cogo.png")
-					break;
+		case "medical":
+			getIconBlockDiv(layerID, "pic", null, "Columbus medical facilities", "./img/medical.png")
+			break;
 
-				case "bikeshr_zgst":
-					getIconBlockDiv(layerID, "pic", null, "Zagster", "./img/bikeshr_zgst.png")
-					break;*/
+		case "industry":
+			getIconBlockDiv(layerID, "pic", null, "Columbus industry facilities", "./img/industry.png")
+			break;
+
+		case "emergency":
+			getIconBlockDiv(layerID, "pic", null, "Columbus emergency response", "./img/emergency.png")
+			break;
+
+		case "bikeshr_cogo":
+			getIconBlockDiv(layerID, "pic", null, "Cogo bike sharing station", "./img/bikeshr_cogo.png")
+			break;
+
 
 			/*	case "air_stations":
 					var airLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
@@ -579,7 +588,7 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 //------------------------------------------add layer-===---------------------------------------
 function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 {
-	
+
 	//These methods are obselete. Can't actually use them
 
 	if (dataType == 1) { //"JSON Points"
@@ -710,7 +719,7 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 		"<div id=\"" + layerID + "-controlcontainer" + "\" style='width:230px;margin:0' class=\"panel-collapse collapse\" title=\"Click to open the legend\">" + //control wrapper
 		"<div class=\"panel-body\" style=\"width:230px;padding:0px;margin:0px\"><br>" + //wrapper
 
-		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\">" + '<b' + ' class="fa fa-info-circle" aria-hidden="true"></b>' + " Legend</a>" + //legendbutton
+		"<a id=\"" + layerID + "-legend-btn\" class=\"btn btn-info btn-xs\" title=\"Click to open the legend\" data-toggle=\"collapse\" href=\"#legend-" + layerID + "-collapse\" disabled>" + '<b' + ' class="fa fa-info-circle" aria-hidden="true"></b>' + " Legend</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-upmost-btn\" class=\"btn btn-primary btn-xs\" title=\"Click to move this layer to the top\">" + '<b' + ' class="fa fa-thumbs-up" aria-hidden="true"></b>' + " Upmost</a>" + //legendbutton
 		"&nbsp&nbsp&nbsp<a id=\"" + layerID + "-zoomto-btn\" class=\"btn btn-success btn-xs\" title=\"Click to zoom in the layer\">" + '<b' + ' class="fa fa-search-plus" aria-hidden="true"></b>' + " Zoomto</a>" + //legendbutton
 		"</br>" +
@@ -738,9 +747,9 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 
 	//-----legend------if you are looking for the real adding legend sentence, pls go to add handle's bottom
 	$('#' + layerID + "-legend-btn").click(function () {
-		if (!$('#' + layerID + "-checkbox").prop('checked')) {
+		/*if (!$('#' + layerID + "-checkbox").prop('checked')) {
 			alert("Please add the layer first.");
-		}
+		}*/
 
 	});
 
@@ -841,8 +850,11 @@ function uncheckedHandle(layerID) {
 	$('#' + layerID + "-checkbox").off("change");
 	$("#" + layerID + "-slider").off("input"); //turn off the eventhandler*/
 
+
+	document.getElementById(layerID + "-legend-btn").setAttribute("disabled", "")
 	deletelegend = document.getElementById("legend-" + layerID + "-collapse")
 	deletelegend.innerHTML = ''
+
 
 	/*$("#" + layerID + "-listItem").animate({
 		height: "0px"

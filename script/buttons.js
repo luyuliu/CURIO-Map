@@ -71,8 +71,8 @@ $('#leveled-checkbox').change(function () {
     currentItem,
     currentBase36Id;
   for (var i in container.children) {
-    var currentLayerID = document.getElementsByClassName("simplebar-content")[0].children[1].children[0].getAttribute("layerID")
-    base36ToLayerIDList[layerListOrder[i]]=currentLayerID
+    var xcurrentLayerID = document.getElementsByClassName("simplebar-content")[0].children[1].children[0].getAttribute("layerID")
+    base36ToLayerIDList[layerListOrder[i]]=xcurrentLayerID
   }
 
   for (var j in flagList) {
@@ -277,17 +277,27 @@ function handleFileSelect(evt) {
   // files is a FileList of File objects. List some properties.
   var output = [];
   f = files[0]
-  output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-    f.size, ' bytes, last modified: ',
-    f.lastModifiedDate.toLocaleDateString(), '</li>');
+  
 
-  document.getElementById('fileInfoList').innerHTML = '<ul>' + output.join('') + '</ul>';
+  
 
   var fileReader = new FileReader();
   fileReader.onload = function (e) {
-    localJSON = fileReader.result;
+    if (xcurrentLayerID==$("#name-input").val() || $("#name-input").val()=="")
+    {
+      window.alert("Please re/specify layer's name.")
+    }
+    else{
+      xcurrentLayerID = $("#name-input").val();
+      eval(xcurrentLayerID + "JSON = fileReader.result;")
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+      f.size, ' bytes, last modified: ',
+      f.lastModifiedDate.toLocaleDateString(), '</li>');
+      document.getElementById('fileInfoList').innerHTML = '<ul>' + output.join('') + '</ul>';
+    }
   }
   fileReader.readAsText(f);
+
   
 }
 
@@ -298,28 +308,33 @@ function handleDragOver(evt) {
 }
 
 // Setup the dnd listeners.
+var xcurrentLayerID = null;
 var dropZone = document.getElementById('drop_zone');
-var localJSON;
 dropZone.addEventListener('dragover', handleDragOver, false);
 dropZone.addEventListener('drop', handleFileSelect, false);
 
 $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
   //console.log(localJSON)
-  try{localJSON=JSON.parse(localJSON);}
-  catch(e){
+
+
+
+
+
+  try {
+    eval(xcurrentLayerID +"JSON = JSON.parse("+xcurrentLayerID +"JSON);")
+  } catch (e) {
     window.alert("Cannot parse JSON string.")
     return false;
   }
-  
+
   xlayerID = $("#name-input").val();
-  for (var i =0 ; i< fullLayerFlags.layerFlags.length;i++){
-    if (fullLayerFlags.layerFlags[i].layerID==xlayerID)
-    {
+  for (var i = 0; i < fullLayerFlags.layerFlags.length; i++) {
+    if (fullLayerFlags.layerFlags[i].layerID == xlayerID) {
       window.alert("Please use another name.")
       return false;
     }
   }
-  
+
   URL = null
   layerTypeText = $("#layertype-input").val();
   switch (layerTypeText) {

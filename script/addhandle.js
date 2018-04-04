@@ -12,6 +12,8 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	2. change flagList status;
 	3. if entering parameters only include layerID, then entering switch branches is necessary.
 	*/
+
+	document.getElementById(layerID+"-legend-btn").removeAttribute("disabled")
 	if (URL === undefined) {
 		URL = fullLayerFlags.getItemByLayerID(layerID).URL
 	}
@@ -1013,6 +1015,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	icons = fullLayerFlags.getItemByLayerID(layerID).icon
 	addLegendHandle(layerID, URL + "/legend", grades, colors, dataType, icons, acolor);
+	console.log("Done.")
 	$("#loading").hide();
 
 }

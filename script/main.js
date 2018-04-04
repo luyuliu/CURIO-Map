@@ -239,6 +239,7 @@ var flagList = new Array(); //the status of each layer. 1 means simple layer (wi
 var POIFlagList = new Array(); // the list of layer with features to demonstrate in the POI listconsole.log(fullLayerFlags)
 var isPined = false;
 var isLeveled = false;
+var isCustomLayerAdded = false;
 
 //---------------------------------------------Initialization----------------------------------------
 
