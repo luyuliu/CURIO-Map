@@ -1,0 +1,27 @@
+layerID	left	right
+homeown		
+wshd_cso		
+wshd_wshd		
+sdw_sdw		
+sdw_nsdw		
+sewer		
+bikepath_path		
+bikepath_green		
+bikepath_heads		
+water_npdes		
+water_intakes		
+trans_cabsN		
+trans_cabsS		
+trans_cabsNE		
+trans_cabsER		
+trans_cabsBV		
+trans_parkingC		
+trans_parkingB		
+trans_parkingA		
+trans_parkingG		
+tree		
+parkingmeters		
+bikeshr_cogo	Columbus has an interlocking set of bicycle rental stations provided by <a href=http://www.cogobikeshare.com target=_blank>COGO</a>. These stations can be seen on this map. COGO stations provide live data about bike and dock availability which we ingest for analysis. <br/>Clicking on an orange COGO station will show its current available bikes and docks along with a link to the Google Streetview of the dock location.	
+industry		
+medical		
+emergency		

@@ -152,7 +152,6 @@ class LayerFlagGroup {
         return i;
       }
     }
-
   }
 
   getFeatureTypeByLayerID(layerID) {

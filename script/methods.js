@@ -45,17 +45,35 @@ function sidebarClick(id, layerID) { //click on the sidebar handle
 	}
 }
 
-function returnColor(TOTAL) { //for layer of cota
-	if (TOTAL > 900) {
-		return 1;
-	} else if (TOTAL > 500) {
-		return 2;
-	} else if (TOTAL > 99) {
-		return 3;
-	} else if (TOTAL > 50) {
-		return 4;
-	} else {
-		return 5;
+function returnColor(color) { //for layer of cota
+	switch (color) {
+		case "red":
+			return "#FF0000"
+			break;
+		case "darkred":
+			return "#6C0000"
+			break;
+		case "orange":
+			return "#FF8000"
+			break;
+		case "green":
+			return "#3FD801"
+			break;
+		case "darkgreen":
+			return "#1D6400"
+			break;
+		case "blue":
+			return "#0089FF"
+			break;
+		case "purple":
+			return "#A800FF"
+			break;
+		case "darkpurple":
+			return "#570085"
+			break;
+		case "cadetblue":
+			return "#5f9ea0"
+			break;
 	}
 }
 
@@ -129,28 +147,103 @@ function syncSidebar(isLeveled) { //update the siderbar
 
 
 //------------------------------------addhandle.js------------------------------------
-function receiveJsonp(URL2, layerID, jsonp, acolor) {
-	if (acolor === undefined && aweight === undefined) {
+function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
+	if (acolor === undefined) {
 		acolor = "brown"
-		aweight = 1
 	}
+
 	if (URL2 == false) {
-		var geoJsonLayer = new L.GeoJSON(null, {
-			style: function style(feature) {
-				return {
-					weight: aweight,
-					opacity: 1,
-					color: acolor,
-					fill: false
-				};
-			},
-			pane: layerID + "Pane"
-		});
+		if (dataType == 2) {
+			var geoJsonLayer = new L.GeoJSON(null, {
+				style: function style(feature) {
+					return {
+						weight: 1,
+						opacity: 1,
+						color: returnColor(acolor),
+						fill: false
+					};
+				},
+				pane: layerID + "Pane",
+				onEachFeature: function (feature, layer) {
+					layer.on({
+						mouseover: function (e) {
+							thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+							var layer = e.target;
+							layer.setStyle({
+								weight: 5,
+								color: '#999',
+								fillOpacity: 0.7
+							});
+						},
+						mouseout: function (e) {
+							eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
+						},
+						click: function (e) {
+							// TODO: click
+							feature = e.target.feature;
+							var content = ""
+							for (var index in feature.properties) {
+								content = content + index + ": " + feature.properties[index] + "<br/>"
+							}
 
-		//localJSON=JSON.parse(localJSON)
-		eval('geoJsonLayer.addData(' + layerID + 'JSON);')
+							var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(content).openOn(map);
+						}
+					});
+				}
+			});
 
-		return geoJsonLayer;
+			//localJSON=JSON.parse(localJSON)
+			eval('geoJsonLayer.addData(' + layerID + 'JSON);')
+
+			return geoJsonLayer;
+		}
+		if (dataType == 6) {
+			var geoJsonLayer = L.geoJson(null, {
+				style: function (feature) {
+					edgeColor = "#000000";
+					return {
+						color: edgeColor,
+						fillColor: returnColor(acolor),
+						opacity: 1,
+						fillOpacity: 0.90,
+						weight: 0.8
+					};
+				},
+				onEachFeature: function (feature, layer) {
+					layer.on({
+						mouseover: function (e) {
+							thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+							var layer = e.target;
+							layer.setStyle({
+								weight: 5,
+								color: '#999',
+								fillOpacity: 0.7
+							});
+						},
+						mouseout: function (e) {
+							eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
+						},
+						click: function (e) {
+							// TODO: click
+							feature = e.target.feature;
+							var content = ""
+							for (var index in feature.properties) {
+								content = content + index + ": " + feature.properties[index] + "<br/>"
+							}
+
+							var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(content).openOn(map);
+						}
+					});
+				},
+				pane: layerID + 'Pane'
+
+			})
+			eval('geoJsonLayer.addData(' + layerID + 'JSON);')
+
+			return geoJsonLayer;
+
+
+		}
 	}
 
 	switch (jsonp) {
@@ -216,6 +309,26 @@ function addingJsonPointsHandle(layerID, URL, symbolType, awcolor) {
 				riseOnHover: true,
 				pane: layerID + "Pane"
 			});
+		},
+		onEachFeature: function (feature, layer) {
+			if (feature.properties) {
+				var content = ""
+				for (var index in feature.properties) {
+					content = content + index + ": " + feature.properties[index] + "<br/>"
+				}
+				var content = content +
+					"<!--Streetview Div-->" +
+					"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+
+
+				layer.on({
+					click: function (e) {
+						var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
+					}
+				});
+				//$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/parkingmeters.png"></td><td class="feature-name">' + layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID+ '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+
+			}
 		}
 	})
 
@@ -598,8 +711,8 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		return false;
 	}
 
-	if (dataType == 2) { //"JSON Polyline/Polygon"
-		eval(layerID + "Layer = receiveJsonp(URL, layerID,jsonp,acolor);")
+	if (dataType == 2 || dataType == 6) { //"JSON Polyline (2)/Polygon (6)"
+		eval(layerID + "Layer = receiveJsonp(URL, layerID,jsonp,acolor,dataType);")
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
@@ -738,8 +851,8 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 		document.getElementsByClassName("simplebar-content")[0].prepend(neodiv);
 	}
 	$("#" + layerID + "-metadata").click(function () { //metadata
-		document.getElementById("left").innerHTML = fullLayerFlags.getItemByLayerID(layerID).left
-		document.getElementById("right").innerHTML = fullLayerFlags.getItemByLayerID(layerID).right
+		document.getElementById("left").innerHTML = "<div class=panel-body style=width:100%><p>"+fullLayerFlags.getItemByLayerID(layerID).left+'</p></div>'
+		document.getElementById("right").innerHTML = "<div class=panel-body style=width:100%><p>"+fullLayerFlags.getItemByLayerID(layerID).right+'</p></div>'
 		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;

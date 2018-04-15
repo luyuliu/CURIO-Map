@@ -285,7 +285,7 @@ function handleFileSelect(evt) {
   fileReader.onload = function (e) {
     if (xcurrentLayerID==$("#name-input").val() || $("#name-input").val()=="")
     {
-      window.alert("Please re/specify layer's name.")
+      document.getElementById('fileInfoList').innerHTML ='<ul style="color:red">' +"Please re/specify layer's name."+'</ul>'
     }
     else{
       xcurrentLayerID = $("#name-input").val();
@@ -315,22 +315,17 @@ dropZone.addEventListener('drop', handleFileSelect, false);
 
 $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
   //console.log(localJSON)
-
-
-
-
-
   try {
     eval(xcurrentLayerID +"JSON = JSON.parse("+xcurrentLayerID +"JSON);")
   } catch (e) {
-    window.alert("Cannot parse JSON string.")
+    document.getElementById('fileInfoList').innerHTML ='<ul style="color:red">' +"Cannot parse JSON string."+'</ul>'
     return false;
   }
 
   xlayerID = $("#name-input").val();
   for (var i = 0; i < fullLayerFlags.layerFlags.length; i++) {
     if (fullLayerFlags.layerFlags[i].layerID == xlayerID) {
-      window.alert("Please use another name.")
+      document.getElementById('fileInfoList').innerHTML ='<ul style="color:red">' +"Please use another name."+'</ul>'
       return false;
     }
   }
@@ -359,14 +354,14 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
       extentType = 1;
       break;
     case "Polygons":
-      dataType = 2;
+      dataType = 6;
       extentType = 1;
       break;
   }
   symbolType = $("#symbol-input").val();
   afcolor = $("#color-palette").val();
   if (xlayerID === undefined || URL === undefined) {
-    alert("Please finish the input.")
+    document.getElementById('fileInfoList').innerHTML ='<ul style="color:red">' +"Please finish the input."+'</ul>'
     return false;
   }
 
@@ -374,7 +369,7 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
     fullLayerFlags.pushNewItems(new LayerFlag(xlayerID, true, layerType, 3, dataType, false, extentType, afcolor, symbolType, xlayerID, null, null));
     addLayerHandle(xlayerID, true, dataType, false, symbolType, false, afcolor)
   } else {
-    alert("Already added this layer.")
+    document.getElementById('fileInfoList').innerHTML ='<ul style="color:red">' +"Already added this layer."+'</ul>'
   }
   sortLayerHandle(e)
   $("#more-modal").modal("hide");
