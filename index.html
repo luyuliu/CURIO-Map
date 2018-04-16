@@ -128,7 +128,10 @@
 														<i class="fa fa-ban" aria-hidden="true"></i> Uncheck all layers</a>
 												</li>
 
-												<li><a href="#" id="morelayer-btn"><i class="fa fa-folder-open" aria-hidden="true"></i> Add more layers</a></li>
+												<li>
+													<a href="#" id="morelayer-btn">
+														<i class="fa fa-folder-open" aria-hidden="true"></i> Add more layers</a>
+												</li>
 
 											</ul>
 										</div>
@@ -192,7 +195,7 @@
 							<div class="pull-right" style="vertical-align:middle;" title="Check it if you want the POI list always shows up. (May result in slow performance)">
 								<input class="form-check-input" id="leveled-checkbox" type="checkbox" style="vertical-align:middle;" value="">Always show</div>
 						</div>
-						
+
 						<div id="collapseOne2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2" style="margin:0">
 
 							<div class="panel-body">
@@ -244,11 +247,11 @@
 
 	<div id="loading" style="display:inline;">
 		<div class="loading-indicator">
-		  <div class="progress progress-striped active">
-			<div class="progress-bar progress-bar-info progress-bar-full"></div>
-		  </div>
+			<div class="progress progress-striped active">
+				<div class="progress-bar progress-bar-info progress-bar-full"></div>
+			</div>
 		</div>
-	  </div>
+	</div>
 	<!-- modals -->
 	<!--about-modal-->
 	<div class="modal fade" id="about-modal" tabindex="-1" role="dialog">
@@ -285,6 +288,8 @@
 
 
 								<div id="meta-first-page" class="panel-body" style="width: 100%">
+									<h4>Project introduction</h4>
+									This map gallery is fantastic.
 								</div>
 
 							</div>
@@ -293,17 +298,37 @@
 						<div id="metadata" class="tab-pane fade">
 							<h4>DATA SOURCE</h4>
 							<div class="panel" id="boroughs-tab">
-								<p>blahblahblah</a>
+								<p>All layers in CURIO map gallery are using public data source. Most data are published by City of Columbus, Mid-Ohio
+									Regional Planning Commission (MORPC) and Center for Urban and Regional Analysis (CURA).
+								</p>
+							</div>
+
+							<h4>LAYER CATEGORIZATION</h4>
+							<div class="panel" id="boroughs-tab">
+								<p>Based on layers' nature, all layers are divided into Transportation (with orange edge), Environment (with green edge)
+									and Social (with blue edge).</br>
+								</p>
+							</div>
+
+							<h4>COMPATIBILITY</h4>
+							<div class="panel" id="boroughs-tab">
+								<p>CURIO map gallery support most mainstream browsers (Chrome, Firefox, safari, etc.) on Windows, MacOS and Android
+									pad.
 								</p>
 							</div>
 
 							</p>
 							<h4>BASEMAPS</h4>
-							<p>Basemaps are provided by
-								<a href="http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps" target="_blank">Esri</a> and hosted on ArcGIS online. Basemaps can be integrated into webmaps for free.</p>
+							<div class="panel" id="boroughs-tab">
+								<p>Basemaps are provided by
+									<a href="http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps" target="_blank">Esri</a> and hosted on ArcGIS online. Basemaps can be integrated into webmaps for free.</p>
+							</div>
 							<h4>MAP TEMPLATE</h4>
-							<p>This map is based on a
-								<a href="https://github.com/bmcbride/bootleaf" target="_blank">bootleaf template</a> created by Brian McBride</p>
+							<div class="panel" id="boroughs-tab">
+								<p>This map layout is adapted by
+									<a href="https://github.com/luyuliu" target="_blank">Luyu Liu</a> based on a
+									<a href="https://github.com/bmcbride/bootleaf" target="_blank">bootleaf template</a> created by Brian McBride</p>
+							</div>
 						</div>
 
 
@@ -393,46 +418,47 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-						<ul id="input-collection">
-								<li>
-									Layer name:
-									<input class="form-control" id="name-input" type="text">
-								</li>
-								<li>
-									Layer type:
-									<select class="form-control" id="layertype-input">
-										<option>Transportation</option>
-										<option>Environment</option>
-										<option>SocioEconomic</option>
-									</select>
-								</li>
-								<li>
-									Data type :
-									<select class="form-control" id="datatype-input">
-										<option>Points</option>
-										<option>Polylines</option>
-										<option>Polygons</option>
-									</select>
-								</li>
-								<li>
-									Symbology for points (<a target="_blank" href="https://fontawesome.com/v4.7.0/icons/" title="Please type in the a single word for the icon. e.g. anchor">Icon dictionary</a>):
-									<input class="form-control" id="symbol-input" type="text">
-								</li>
-								<li>
-									Color:
-									<select class="form-control" id="color-palette">
-										<option>red</option>
-										<option>darkred</option>
-										<option>orange</option>
-										<option>green</option>
-										<option>darkgreen</option>
-										<option>blue</option>
-										<option>purple</option>
-										<option>darkpurple</option>
-										<option>cadetblue</option>
-									</select>
-								</li>
-							</ul>
+					<ul id="input-collection">
+						<li>
+							Layer name:
+							<input class="form-control" id="name-input" type="text">
+						</li>
+						<li>
+							Layer type:
+							<select class="form-control" id="layertype-input">
+								<option>Transportation</option>
+								<option>Environment</option>
+								<option>SocioEconomic</option>
+							</select>
+						</li>
+						<li>
+							Data type :
+							<select class="form-control" id="datatype-input">
+								<option>Points</option>
+								<option>Polylines</option>
+								<option>Polygons</option>
+							</select>
+						</li>
+						<li>
+							Symbology for points (
+							<a target="_blank" href="https://fontawesome.com/v4.7.0/icons/" title="Please type in the a single word for the icon. e.g. anchor">Icon dictionary</a>):
+							<input class="form-control" id="symbol-input" type="text">
+						</li>
+						<li>
+							Color:
+							<select class="form-control" id="color-palette">
+								<option>red</option>
+								<option>darkred</option>
+								<option>orange</option>
+								<option>green</option>
+								<option>darkgreen</option>
+								<option>blue</option>
+								<option>purple</option>
+								<option>darkpurple</option>
+								<option>cadetblue</option>
+							</select>
+						</li>
+					</ul>
 					<div id="drop_zone">Drop files here</div>
 					<output id="fileInfoList"></output>
 				</div>
