@@ -13,7 +13,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	3. if entering parameters only include layerID, then entering switch branches is necessary.
 	*/
 
-	document.getElementById(layerID+"-legend-btn").removeAttribute("disabled")
+	document.getElementById(layerID + "-legend-btn").removeAttribute("disabled")
 	if (URL === undefined) {
 		URL = fullLayerFlags.getItemByLayerID(layerID).URL
 	}
@@ -73,6 +73,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 */
+		
 		case "homeown":
 			var grades = [75, 50, 25, 0];
 			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
@@ -90,7 +91,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				},
 				onEachFeature: onEachAdminFeatureForHomeown,
 				pane: layerID + 'Pane'
-
 			})
 
 
@@ -599,59 +599,59 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 2;
 			break;
 
-		/*case "waste":
-		wasteLayer = new L.markerClusterGroup({
-				showCoverageOnHover: false,
-				zoomToBoundsOnClick: true,
-				disableClusteringAtZoom: 18,
-				clusterPane: layerID + "Pane"
-			});
+			/*case "waste":
+			wasteLayer = new L.markerClusterGroup({
+					showCoverageOnHover: false,
+					zoomToBoundsOnClick: true,
+					disableClusteringAtZoom: 18,
+					clusterPane: layerID + "Pane"
+				});
 
 
-			wasteFullLayer = L.geoJson(null, {
-				onEachFeature: function (feature, layer) {
-				console.log(layer)
-				layer.on({
-					mouseover: function (e) {
-						thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
-						var layer = e.target;
-						layer.setStyle({
-							weight: 5,
-							color: '#999',
-							fillOpacity: 0.7
-						});
+				wasteFullLayer = L.geoJson(null, {
+					onEachFeature: function (feature, layer) {
+					console.log(layer)
+					layer.on({
+						mouseover: function (e) {
+							thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+							var layer = e.target;
+							layer.setStyle({
+								weight: 5,
+								color: '#999',
+								fillOpacity: 0.7
+							});
 
 
-						//info.update(popupContent);
+							//info.update(popupContent);
 
-					},
-					mouseout: function (e) {
-						eval(layerID + "FullLayer" + ".resetStyle(e.target);")
-					},
-					click: function (e) {
-						// TODO: click
-						feature = e.target.feature;
-						var popupContent = "<h4>" + "Unit name: " + feature.properties.UNIT_NAME + "</h4>"
+						},
+						mouseout: function (e) {
+							eval(layerID + "FullLayer" + ".resetStyle(e.target);")
+						},
+						click: function (e) {
+							// TODO: click
+							feature = e.target.feature;
+							var popupContent = "<h4>" + "Unit name: " + feature.properties.UNIT_NAME + "</h4>"
 
-						var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
+							var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
+						}
+					});
 					}
 				});
-				}
-			});
 
 
-			$.get("https://luyuliu.github.io/CURIO-Map/data/Recycling__Yard_Waste_Zones.geojson", function (data) {
-				wasteFullLayer.addData(data);
-				wasteLayer.addLayer(wasteFullLayer)
+				$.get("https://luyuliu.github.io/CURIO-Map/data/Recycling__Yard_Waste_Zones.geojson", function (data) {
+					wasteFullLayer.addData(data);
+					wasteLayer.addLayer(wasteFullLayer)
+					map.addLayer(wasteLayer);
+				});
+
 				map.addLayer(wasteLayer);
-			});
+				flagList[layerID] = 1;
 
-			map.addLayer(wasteLayer);
-			flagList[layerID] = 1;
+				break;*/
 
-			break;*/
-
-			case "industry": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
+		case "industry": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 
 			industryLayer = new L.markerClusterGroup({
@@ -711,7 +711,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 			break;
 
-			case "emergency": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
+		case "emergency": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 
 			emergencyLayer = new L.markerClusterGroup({
@@ -772,7 +772,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 			break;
 
-			case "medical": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
+		case "medical": //about Pane: clustermarker and parkingmetersFullLayer is in a same pane.
 			/* Single marker cluster layer to hold all clusters */
 
 			medicalLayer = new L.markerClusterGroup({

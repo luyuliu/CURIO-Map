@@ -1,10 +1,9 @@
 layerID,isSimpleLayer,layerType,extentType,dataType,featureType,dataGettingType,domainHead,typeOfSource,URL,color,icon,layerName
 homeown,TRUE,S,1,0,3,json,N/A,local resource,null,null,null,Home ownership
-wshd_cso,TRUE,E,2,3,1,esri.feature,maps.columbus.gov,Mapserver,http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0,null,null,Sewer overflows
+wshd_cso,TRUE,E,2,3,1,esri.feature,maps.columbus.gov,Mapserver,http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer,null,null,Sewer overflows
 wshd_wshd,TRUE,E,3,4,2,esri.tile,cura-gis-web.asc.ohio-state.edu,Mapserver,http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/NHDWater/MapServer,null,null,Watersheds
 sdw_sdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer,null,null,Sidewalk
 sdw_nsdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer,null,null,Sidewalk gaps
-sewer,TRUE,E,2,3,1,esri.feature,maps.columbus.gov,Mapserver,http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer,green,filter,Sewer overflow
 bikepath_path,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer,null,null,Bike paths
 bikepath_green,TRUE,T,2,3,2,esri.feature,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0,green,null,Green paths
 bikepath_heads,TRUE,T,2,3,1,esri.feature,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0,null,null,Bike heads

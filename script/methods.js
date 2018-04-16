@@ -374,8 +374,8 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getGraduatedColorsDiv(layerID, grades, colors)
 			break;
 
-		case "sewer":
-			getIconBlockDiv(layerID, "filter", "green", "sewer")
+		case "wshd_cso":
+			getIconBlockDiv(layerID, "pic", null, "Sewer overflows", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAMRJREFUOI3t0jFKgzEYBuAnUMgtFDo49gZOTuqkTuLi4OIBPEJdugs9QIUew9GDKHoCSRHj8IuU8n8/pLiIvpDle+FJQjLywxn9g78MrJziErt4wgL3idoMfnCH67XRBIeV48pFhPaClbMN7DuJczxg3nLCq2C+3jeAOY+VMgSOo6IfLOUVeyGX80u0YXTlJfZDsJRlVEXgHCc46OkeMWsCE++VI9zo/uEOnmvOi1TKbeKt9YQSK0y/VpfhhxoGt80fBD8BW6sroSH2zDEAAAAASUVORK5CYII=")
 			break;
 
 		case "medical":
