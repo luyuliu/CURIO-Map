@@ -24,7 +24,7 @@
     "dataGettingType": "esri.feature",
     "domainHead": "maps.columbus.gov",
     "typeOfSource": "Mapserver",
-    "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
+    "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer",
     "color": "null",
     "icon": "null",
     "layerName": "Sewer overflows"
@@ -73,21 +73,6 @@
     "color": "null",
     "icon": "null",
     "layerName": "Sidewalk gaps"
-  },
-  {
-    "layerID": "sewer",
-    "isSimpleLayer": "TRUE",
-    "layerType": "E",
-    "extentType": 2,
-    "dataType": 3,
-    "featureType": 1,
-    "dataGettingType": "esri.feature",
-    "domainHead": "maps.columbus.gov",
-    "typeOfSource": "Mapserver",
-    "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer",
-    "color": "green",
-    "icon": "filter",
-    "layerName": "Sewer overflow"
   },
   {
     "layerID": "bikepath_path",
