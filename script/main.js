@@ -229,6 +229,128 @@ $.ajax({
           }
         });
 
+        //------------------------------------Tutorial------------------------------------
+        tour = new Tour({
+          steps: [{
+              element: "#about-btn",
+              title: "Welcome to CURIO Map gallery!",
+              content: "Thank you for using CURIO map gallery! Click the title banner to see more detail of the map gallery!",
+              backdrop: true
+            },
+            {
+              element: "#sidebar-hide-btn",
+              title: "Map controls I",
+              content: "The left sidebar is the map controls. You can hide the menu by clicking the button and unfold it by clicking the floating button! Give it a try!",
+              backdrop: true
+            },
+            {
+              element: "#map-adm-title",
+              title: "Map controls II",
+              content: "The sidebar contains 3 parts, each of which can be fold and unfold by clicking on the title."
+            },
+            {
+              element: "#layer-setting",
+              title: "Layer Setting",
+              content: '"Layer Setting" menu has three functions.</br>1. Change the base map </br>2. Uncheck all the layer selected in the Layer Control </br>3. Add more custom Geojson layers.'
+            },
+            {
+              element: "#layer-sorting",
+              title: "Layer Sorting",
+              content: '"Layer Sorting" menu also has three sorting functions to sort the layers in the "Layer Control" list as well as the z-index in the map.</br>1. Alphabetical sorting;</br>2. Categories sorting, which will sort the layers according to Transportation (orange), Social (blue), and Environment (green) category;</br>3. GIS sorting, which will sort the layers based on their geometry dimension as in points (0-dimension) and polylines (1-dimension) and polygons (2-dimension).'
+            },
+            {
+              element: "#emergency-list-item",
+              title: "Layer Control I",
+              content: "This panel contains multiple layers. For each layer, check the checkbox to add the layer to the map, and click on the title of each layer to see the metadata."
+            },
+            {
+              element: "#emergency-list-item",
+              title: "Layer Control II",
+              content: "The sequence of the layers in this list is also the sequence of z-index of each layer. Drag the handle to move and change the z-index.<br/><br/>Click on the expanding arrow to see more functionalities."
+            },
+            {
+              element: "#emergency-list-item",
+              title: "Layer Control III",
+              content: '1. Click on the "Legend" button to expand the legend of this layer;<br/>2. Click on the "Upmost" button to move this layer to the top of the list;</br>3. Click on the "Zoomto" button to zoom the map to the extent of the layer;</br>4. Drag the slider to change the opacity of the layer.</br></br>So give it try!'
+            },
+            {
+              element: "#headingOne1",
+              title: "Layer Control IV",
+              content: 'Check the "Pin checked" checkbox to pin the checked layers always to the top.'
+            },
+            {
+              element: "#headingOne2",
+              title: "POI List I",
+              content: 'POI List shows the corresponding information of certain layers\'s point of interests in the current map extent.</br></br> Uncheck "Always show" checkbox to hide the POI list at higher zoom levels, which will influence map\'s performance, while checking the box will result in showing the POI list at any zoom levels.</br></br>Again, feel free to hide the "Layer Control" menu by clicking the title!'
+            },
+            {
+              element: "#headingOne2",
+              title: "POI List II",
+              content: 'Type in the "Filter" to search and query, and click sort to sort the result and list.</br></br>If you want to zoom to the POI in the list, just simply click it!'
+            },
+            {
+              element: "#tutorial-btn",
+              title: "Thank you!",
+              placement: "left",
+              content: 'Please feel free to explore! If you want to see the tutorial again, please click me anytime :)'
+            },
+          ]
+        });
+        tour.init();
+
+        atour = new Tour({
+          steps: [{
+              element: "#addnew-tutorial-btn",
+              title: "Add your own layer in CURIO gallery!",
+              placement: "right",
+              content: "This is the custom layer adding panel. Make sure your Geojson is valid and enjoy! The system will present the Geojson on the map and the property information in popups."
+            },
+            {
+              element: "#name-input",
+              title: "Layer name",
+              placement: "left",
+              content: "Please make sure every layer has a unique name."
+            },
+            {
+              element: "#layertype-input",
+              title: "Layer type",
+              placement: "left",
+              content: "The category this layer belongs to."
+            },
+            {
+              element: "#datatype-input",
+              title: "Data type",
+              placement: "left",
+              content: "The geometry type of this layer."
+            },
+            {
+              element: "#symbol-input",
+              title: "Symbology for points",
+              placement: "left",
+              content: "This option only applys to points layers. The custom layer supports Awesome fonts icons."
+            },
+            {
+              element: "#color-palette",
+              title: "Color",
+              placement: "left",
+              content: "Select color for the layer."
+            },
+            {
+              element: "#drop_zone",
+              title: "File input",
+              placement: "left",
+              content: "Drag the geojson file to the rectangle area."
+            },
+            {
+              element: "#confirm-btn",
+              title: "File input",
+              placement: "right",
+              content: "Add this layer to the Layer Control list and enjoy!"
+            }
+          ]
+
+        })
+        atour.init();
       }
     })
   }

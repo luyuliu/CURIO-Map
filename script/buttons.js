@@ -399,3 +399,12 @@ $("#esriImagery").click(function () {
 $("#esriGray").click(function () {
   changeBasemap("esriGray")
 });
+
+//------------------------------------tutorial button-------------------------------------
+$("#tutorial-btn").click(function () {
+  tour.restart(true)
+});
+
+$("#addnew-tutorial-btn").click(function () {
+  atour.restart(true)
+});
