@@ -9,17 +9,16 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="theme-color" content="#000000">
 	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Luyu Liu">
 
 	<link rel="shortcut icon" href="./img/favicon.ico">
 	<!-- Libraries-->
 	<!-- Load Leaflet from -->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
 	<script src="./js/leaflet.js"></script>
 	<!-- Load Esri Leaflet -->
 	<script src="./js/esri-leaflet.js"></script>
 	<!-- Load jquery -->
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="./js/jquery-3.2.1.min.js"></script>
 
 	<!-- Load Bootstrap -->
 	<script src="./js/bootstrap.min.js"></script>
@@ -39,26 +38,28 @@
 	<!-- list.js -->
 	<script src="./js/list.min.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
-
-	<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+	<script src="./js/L.Control.Locate.min.js"></script>
 
 	<!-- scrollbar.js -->
 	<script src="./js/simplebar.js"></script>
 
+	<!-- tour.js -->
+	<script src="./js/bootstrap-tour.min.js"></script>
+
+
 	<!-- Load css-->
+	<link rel="stylesheet" href="./css/leaflet.css" />
 	<link rel="stylesheet" href="./css/simplebar.css">
+	<link rel="stylesheet" href="./css/bootstrap-tour.min.css">
 	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
 	<link rel="stylesheet" href="./css/awesome-bootstrap-checkbox.css">
-	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+	<link rel="stylesheet" href="./css/ionicons.min.css">
 	<link rel="stylesheet" href="./css/bootstrap.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" href="./css/MarkerCluster.css">
 	<link rel="stylesheet" href="./css/MarkerCluster.Default.css">
-	<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+	<link rel="stylesheet" href="./css/L.Control.Locate.css">
 	<link rel="stylesheet" href="./css/bootleaf.css">
-	<!-- already added to <style>  <link rel="stylesheet" href="./css/leaflet.groupedlayercontrol.css">-->
 </head>
 
 
@@ -72,6 +73,9 @@
 				<a class="navbar-brand mapheader" id="about-btn" title="Metadata of the map gallery" href="#">CURIO@OSU Comprehensive Map Gallery</a>
 			</div>
 			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right" style="margin-top:8;">
+					<button type="button" id="tutorial-btn" class="btn btn-secondary">Tutorial</button>
+				</ul>
 
 			</div>
 			<!--/.navbar-collapse -->
@@ -86,7 +90,8 @@
 				<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true" style="height:100%">
 					<div class="panel panel-default" style="margin:0">
 						<div class="panel-heading" role="tab" id="headingOne0" style="margin:0">
-							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne0" aria-expanded="true" aria-controls="collapseOne0">Map Administration
+							<a class="panel-title" id="map-adm-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne0" aria-expanded="true"
+							    aria-controls="collapseOne0">Map Administration
 								<button type="button" class="btn btn-xs btn-default pull-right" title="Click to hide sidebar" id="sidebar-hide-btn">
 									<i class="fa fa-chevron-left"></i>
 								</button>
@@ -95,15 +100,15 @@
 						<div id="collapseOne0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne0" style="margin:0">
 							<div class="panel-body" style="padding:0">
 								<ul class="list-group" id="controlList" style="padding:0">
-									<li class="list-group-item">
+									<li id="layer-setting" class="list-group-item">
 										<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-												<i class="fa fa-cogs" aria-hidden="true"></i> Layer Settings
+												<i class="fa fa-cogs" aria-hidden="true"></i> Layer Setting
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
 												<li class="dropdown-submenu">
-													<a class="test" tabindex="-1" href="#">
+													<a id="select-basemap" class="test" tabindex="-1" href="#">
 														<i class="fa fa-map" aria-hidden="true"></i> Select basemap
 														<span class="caret"></span>
 													</a>
@@ -137,10 +142,10 @@
 										</div>
 									</li>
 
-									<li class="list-group-item">
+									<li id="layer-sorting" class="list-group-item">
 										<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" title="Add default layers and other layers" type="button" data-toggle="dropdown">
-												<i class="fa fa-binoculars" aria-hidden="true"></i> Sorting Layers
+												<i class="fa fa-binoculars" aria-hidden="true"></i> Layer Sorting
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
@@ -189,7 +194,7 @@
 					</div>
 
 					<div class="panel panel-default" style="margin:0">
-						<div class="panel-heading" role="tab" id="headingOne1" style="margin:0">
+						<div class="panel-heading" role="tab" id="headingOne2" style="margin:0">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">POI List
 							</a>
 							<div class="pull-right" style="vertical-align:middle;" title="Check it if you want the POI list always shows up. (May result in slow performance)">
@@ -415,7 +420,7 @@
 					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">
 						Add new JSON layers
-					</h4>
+					</h4>(<a id="addnew-tutorial-btn" href="#" >Have trouble? Click me</a>)
 				</div>
 				<div class="modal-body">
 					<ul id="input-collection">
