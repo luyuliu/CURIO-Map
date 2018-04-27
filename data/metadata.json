@@ -96,7 +96,7 @@
   },
   {
     "layerID": "tree",
-    "left": "<p>This is a map of the trees maintained by the City of Columbus.. This database has the locations along with various characteristics of the trees like condition, age, etc. Try changing the basemap to imagery or topographic at tighter zoom to see exactly where the largest trees are.<hr><div class=col-md-6><h4><svg height=28 width=56><circle cx=7 cy=14 fill=#D2E0A2 r=7></circle><circle cx=21 cy=14 fill=#D2E0A2 r=10></circle><circle cx=42 cy=14 fill=#A87000 r=14></circle></svg> %uFFFDTREES</h4><p>Circles represent trees that are in the City of Columbus tree management system. The size of the circle represents the diameter of the trunk at 4.5 feet from the ground also known as <a href=\\\"https://www.portlandoregon.gov/trees/?c=59508&a=424017\\\"target=new title=\\\"DBH measuring technique\\\">diameter at breast height (DBH).</a> Larger trees are shaded orange to make them stand out.<hr></div>",
+    "left": "<p>This is a map of the trees maintained by the City of Columbus.. This database has the locations along with various characteristics of the trees like condition, age, etc. Try changing the basemap to imagery or topographic at tighter zoom to see exactly where the largest trees are.<hr><div class=col-md-6><h4><svg height=28 width=56><circle cx=7 cy=14 fill=#D2E0A2 r=7></circle><circle cx=21 cy=14 fill=#D2E0A2 r=10></circle><circle cx=42 cy=14 fill=#A87000 r=14></circle></svg>  TREES</h4><p>Circles represent trees that are in the City of Columbus tree management system. The size of the circle represents the diameter of the trunk at 4.5 feet from the ground also known as <a href=\\\"https://www.portlandoregon.gov/trees/?c=59508&a=424017\\\"target=new title=\\\"DBH measuring technique\\\">diameter at breast height (DBH).</a> Larger trees are shaded orange to make them stand out.<hr></div>",
     "right": "<h4>TREE DATA</h4><div class=panel id=boroughs-tab><p>Columbus Tree Data courtesy of <a href=https://www.columbus.gov/technology/gis/ target=_blank>the City of Columbus.</a> Download the tree data <a href=http://data.columbus.opendata.arcgis.com/datasets/0dae954be1184293b293dbace5e0718b_0 target=_blank>at the City of Columbus open data site.</a></div>"
   },
   {
@@ -105,18 +105,13 @@
     "right": "<h4>PARKING METERS DATA</h4><div class=panel id=boroughs-tab><p>Columbus parking meters Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/parking-meters target=_blank>the City of Columbus.</a> </div>"
   },
   {
-    "layerID": "bikeshr_cogo",
-    "left": "Columbus has an interlocking set of bicycle rental stations provided by%uFFFD<a href=http://www.cogobikeshare.com target=_blank>COGO</a>. These stations can be seen on this map. COGO stations provide live data about bike and dock availability which we ingest for analysis. <br/>Clicking on an orange COGO station will show its current available bikes and docks along with a link to the Google Streetview of the dock location.",
-    "right": "<h4></h4>"
-  },
-  {
     "layerID": "industry",
-    "left": "This map layer shows industrial facilities in the City of Columbus.%uFFFDThis layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
+    "left": "This map layer shows industrial facilities in the City of Columbus. This layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
     "right": "<h4>INDUSTRY DATA</h4><div class=panel id=boroughs-tab><p>Columbus Industry Facilities Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/industrial-facilties target=_blank>the City of Columbus.</a></div>"
   },
   {
     "layerID": "medical",
-    "left": "This map layer shows office facilities in the City of Columbus. Corporate and non-profit offices are included.%uFFFDThis layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
+    "left": "This map layer shows office facilities in the City of Columbus. Corporate and non-profit offices are included. This layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
     "right": "<h4>MEDICAL FACILITIES DATA</h4><div class=panel id=boroughs-tab><p>Columbus Medical Facilities Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/medical-facilities target=_blank>the City of Columbus.</a></div>"
   },
   {

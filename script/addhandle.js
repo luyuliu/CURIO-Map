@@ -573,6 +573,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 2;*/
 
 			$.get("http://feeds.cogobikeshare.com/stations/stations.json", function (schedule) {
+				console.log(schedule)
 				data = {}
 				data.features = []
 				data.type = "FeatureCollection"
@@ -586,9 +587,9 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					everyStation.properties.name = schedule.stationBeanList[i].stationName
 					everyStation.properties.address = schedule.stationBeanList[i].stAddress1
 					everyStation.properties.capacity = schedule.stationBeanList[i].totalDocks
-					everyStation.properties.availableBikes = schedule.stationBeanLists.availableBikes
-					everyStation.properties.availableDocks = schedule.stationBeanLists.availableDocks
-					everyStation.properties.timestamp = schedule.stationBeanLists.lastCommunicationTime
+					everyStation.properties.availableBikes = schedule.stationBeanList[i].availableBikes
+					everyStation.properties.availableDocks = schedule.stationBeanList[i].availableDocks
+					everyStation.properties.timestamp = schedule.stationBeanList[i].lastCommunicationTime
 					data.features.append(everyStation)
 				}
 				bikeshr_cogoFullLayer.addData(data);
