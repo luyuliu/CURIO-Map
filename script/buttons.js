@@ -402,9 +402,11 @@ $("#esriGray").click(function () {
 
 //------------------------------------tutorial button-------------------------------------
 $("#tutorial-btn").click(function () {
+  tour.init();
   tour.restart(true)
 });
 
 $("#addnew-tutorial-btn").click(function () {
+  atour.init();
   atour.restart(true)
 });

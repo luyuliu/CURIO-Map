@@ -296,7 +296,7 @@ $.ajax({
             },
           ]
         });
-        tour.init();
+        
 
         atour = new Tour({
           steps: [{
@@ -350,7 +350,6 @@ $.ajax({
           ]
 
         })
-        atour.init();
       }
     })
   }
