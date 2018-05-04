@@ -9,7 +9,7 @@
 
 //------------------------------------map & basemap layers------------------------------------
 var test;
-var baseLayer = L.esri.basemapLayer('Topographic')
+var baseLayer = L.esri.basemapLayer('Topographic');
 
 map = L.map("map", {
   zoom: 13,
@@ -24,6 +24,14 @@ groupedOverlays = {} //dummy parameters
 map.createPane('basemapPane');
 map.getPane('basemapPane').style.zIndex = 100;
 map.getPane('popupPane').style.zIndex = 700;
+
+var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+searchControl.on('results', function(data){
+  results.clearLayers();
+  for (var i = data.results.length - 1; i >= 0; i--) {
+    results.addLayer(L.marker(data.results[i].latlng));
+  }
+});
 
 //------------------------------------symbol layers------------------------------------
 /* Overlay Layers */
@@ -246,7 +254,10 @@ $.ajax({
             {
               element: "#map-adm-title",
               title: "Map controls II",
-              content: "The sidebar contains 3 parts, each of which can be fold and unfold by clicking on the title."
+              content: "The sidebar contains 3 parts, each of which can be fold and unfold by clicking on the title.",
+              onNext: function (tour) {
+                document.getElementById("collapseOne0").setAttribute("class", "panel-collapse collapse in")
+              }
             },
             {
               element: "#layer-setting",
@@ -271,22 +282,33 @@ $.ajax({
             {
               element: "#emergency-list-item",
               title: "Layer Control III",
-              content: '1. Click on the "Legend" button to expand the legend of this layer;<br/>2. Click on the "Upmost" button to move this layer to the top of the list;</br>3. Click on the "Zoomto" button to zoom the map to the extent of the layer;</br>4. Drag the slider to change the opacity of the layer.</br></br>So give it try!'
+              content: '1. Click on the "Legend" button to expand the legend of this layer;<br/>2. Click on the "Upmost" button to move this layer to the top of the list;</br>3. Click on the "Zoomto" button to zoom the map to the extent of the layer;</br>4. Drag the slider to change the opacity of the layer.</br></br>So give it try!',
+              onNext: function (tour) {
+                document.getElementById("collapseOne0").setAttribute("class", "panel-collapse collapse in")
+              }
             },
             {
-              element: "#headingOne1",
+              element: "#group-button",
               title: "Layer Control IV",
               content: 'Check the "Pin checked" checkbox to pin the checked layers always to the top.'
             },
             {
               element: "#headingOne2",
               title: "POI List I",
-              content: 'POI List shows the corresponding information of certain layers\'s point of interests in the current map extent.</br></br> Uncheck "Always show" checkbox to hide the POI list at higher zoom levels, which will influence map\'s performance, while checking the box will result in showing the POI list at any zoom levels.</br></br>Again, feel free to hide the "Layer Control" menu by clicking the title!'
+              content: 'POI List shows the corresponding information of certain layers\'s point of interests in the current map extent.</br></br>Again, feel free to hide the "Layer Control" menu by clicking the title!'
             },
             {
               element: "#headingOne2",
               title: "POI List II",
-              content: 'Type in the "Filter" to search and query, and click sort to sort the result and list.</br></br>If you want to zoom to the POI in the list, just simply click it!'
+              content: 'Type in the "Filter" to search and query, and click sort to sort the result and list.</br></br>If you want to zoom to the POI in the list, just simply click it!',
+              onNext: function (tour) {
+                document.getElementById("collapseOne0").setAttribute("class", "panel-collapse collapse in")
+              }
+            },
+            {
+              element: "#showclosest-button",
+              title: "POI List III",
+              content: '</br> Uncheck "Always show" checkbox to hide the POI list at higher zoom levels, which will influence map\'s performance, while checking the box will result in showing the POI list at any zoom levels.</br>'
             },
             {
               element: "#tutorial-btn",
@@ -296,7 +318,7 @@ $.ajax({
             },
           ]
         });
-        
+
 
         atour = new Tour({
           steps: [{

@@ -49,9 +49,13 @@
 	<!-- bootstrap-toggle.min.js -->
 	<script src="./js/bootstrap-toggle.min.js"></script>
 
+	<!-- geosearch -->
+	<script src="./js/esri-leaflet-geocoder.js"></script>
+
 
 	<!-- Load css-->
 	<link rel="stylesheet" href="./css/bootstrap-toggle.min.css" />
+	<link rel="stylesheet" href="./css/esri-leaflet-geocoder.css" />
 	<link rel="stylesheet" href="./css/leaflet.css" />
 	<link rel="stylesheet" href="./css/simplebar.css">
 	<link rel="stylesheet" href="./css/bootstrap-tour.min.css">
@@ -101,7 +105,7 @@
 								</button>
 							</a>
 						</div>
-						<div id="collapseOne0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne0" style="margin:0">
+						<div id="collapseOne0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne0" style="margin:0">
 							<div class="panel-body" style="padding:0">
 								<ul class="list-group" id="controlList" style="padding:0">
 									<li id="layer-setting" class="list-group-item">
@@ -168,6 +172,16 @@
 											</ul>
 										</div>
 									</li>
+
+									<li id="group-button" class="list-group-item">
+										
+										<input type="checkbox" id="pin-checkbox" unchecked data-toggle="toggle" data-width="139" data-height="10" data-on="Auto Group off"
+										    data-off="Auto Group off">
+									</li>
+									<li id="showclosest-button" class="list-group-item">
+										<input type="checkbox" title="Turn on the switch to keep" id="leveled-checkbox" unchecked data-toggle="toggle" data-width="139" data-height="10" data-on="Always show POI"
+										    data-off="Show at closest">
+									</li>
 								</ul>
 							</div>
 
@@ -181,9 +195,8 @@
 						<div class="panel-heading" role="tab" id="headingOne1">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">Layer Control
 							</a>
-							<div class="pull-right" style="margin-top:-5px;margin-right:-10px">
-								<input type="checkbox" id="pin-checkbox" unchecked data-toggle="toggle" data-width="100" data-height="10" data-on="Topped" data-off="Untopped"></div>
-								
+
+
 						</div>
 
 
@@ -201,9 +214,8 @@
 						<div class="panel-heading" role="tab" id="headingOne2" style="margin:0">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">POI List
 							</a>
-							<div class="pull-right" style="vertical-align:middle;margin-top:-5px;margin-right:-10px" title="Check it if you want the POI list always shows up. (May result in slow performance)">
-								<input type="checkbox" id="leveled-checkbox" unchecked data-toggle="toggle" data-width="130" data-height="10" data-on="Always show" data-off="Show at closest"></div>
-							</div>
+
+						</div>
 
 						<div id="collapseOne2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2" style="margin:0">
 
@@ -424,7 +436,8 @@
 					<button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">
 						Add new JSON layers
-					</h4>(<a id="addnew-tutorial-btn" href="#" >Have trouble? Click me</a>)
+					</h4>(
+					<a id="addnew-tutorial-btn" href="#">Have trouble? Click me</a>)
 				</div>
 				<div class="modal-body">
 					<ul id="input-collection">
