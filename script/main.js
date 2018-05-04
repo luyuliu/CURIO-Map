@@ -16,7 +16,6 @@ map = L.map("map", {
   center: [39.98, -83],
   layers: [baseLayer],
   zoomControl: false,
-  attributionControl: false,
   maxZoom: 18
 });
 
@@ -25,13 +24,6 @@ map.createPane('basemapPane');
 map.getPane('basemapPane').style.zIndex = 100;
 map.getPane('popupPane').style.zIndex = 700;
 
-var searchControl = L.esri.Geocoding.geosearch().addTo(map);
-searchControl.on('results', function(data){
-  results.clearLayers();
-  for (var i = data.results.length - 1; i >= 0; i--) {
-    results.addLayer(L.marker(data.results[i].latlng));
-  }
-});
 
 //------------------------------------symbol layers------------------------------------
 /* Overlay Layers */
@@ -239,6 +231,8 @@ $.ajax({
 
         //------------------------------------Tutorial------------------------------------
         tour = new Tour({
+          backdrop:true,
+          backdropContainer:"body",
           steps: [{
               element: "#about-btn",
               title: "Welcome to CURIO Map gallery!",
@@ -406,6 +400,9 @@ var zoomControl = L.control.zoom({
 
 
 
+//----------------------------------geocoding plugin--------------------------------------------
+var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+var searchControl = L.esri.Geocoding.geosearch({position: "topright",provider:arcgisOnline}).addTo(map);
 
 
 
