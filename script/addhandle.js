@@ -73,7 +73,58 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 */
+		case "bikepath_heads":
+		var legendURL = URL.substring(0, URL.indexOf("MapServer") + 9) + '/legend?f=pjson'
+		var numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
+			$.ajax({
+				url: legendURL,
+				type: 'GET',
+				dataType: 'JSON',
+				success: function (data) {
+					var numberOfIcon = data.layers[numberOfLayer].legend.length
+					iconurls = [];
+					
+					for (var jj = 0; jj < numberOfIcon; jj++) {
+						iconurls.push ('data:image/png;base64,' + data.layers[numberOfLayer].legend[jj].imageData)
+					}
+					var codeString = layerID + 'Layer = L.esri.featureLayer({' +
+						'url: URL,' +
 
+						'pointToLayer:function (feature, latlng) {var jjj;' +
+						'if(feature.properties.Type=="ParkandPedal"){jjj=0}else{jjj=1}'+
+						'return L.marker(latlng, {' +
+						'icon: L.icon({' +
+						'iconUrl:  iconurls[jjj],' +
+						'iconSize: [28, 28],' +
+						'iconAnchor: [12, 28],' +
+						'popupAnchor: [0, -25]' +
+						'}),' +
+
+						'riseOnHover: true,' +
+						'pane: "' + layerID + 'Pane",' +
+						'title: feature.properties.Name' +
+						'});' +
+						'},' +
+
+						'style:function(feature){' +
+						'return {color:"' + acolor + '"};' +
+						'},' +
+						'pane: "' + layerID + 'Pane",' +
+						'ignoreRenderer:false' +
+						'})' //very ugly, I know.
+					eval(codeString)
+					eval("map.addLayer(" + layerID + "Layer)")
+
+					bikepath_headsLayer.bindPopup(function (layer) {
+						return 'Name: ' + layer.feature.properties.Name + "</br>TrailName: " + layer.feature.properties.TrailName + "</br>Type: " + layer.feature.properties.Type +
+							"<!--Streetview Div-->" +
+							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+					});
+
+				}
+			})
+
+			break;
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];

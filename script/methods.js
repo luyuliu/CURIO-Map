@@ -699,6 +699,8 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 }
 
 //------------------------------------------add layer-===---------------------------------------
+
+
 function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 {
 
@@ -730,16 +732,18 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 	}
 
 	if (dataType == 3) { //"GeoServer features"
-		var iconurl,
-			numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
+
+		var numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
+
 		legendURL = URL.substring(0, URL.indexOf("MapServer") + 9) + '/legend?f=pjson'
 		$.ajax({
 			url: legendURL,
 			type: 'GET',
 			dataType: 'JSON',
 			success: function (data) {
-				//console.log(layerID)
-				iconurl = 'data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData
+				
+				iconurl = ('data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData);
+				
 				var codeString = layerID + 'Layer = L.esri.featureLayer({' +
 					'url: URL,' +
 					'pointToLayer:function (feature, latlng) {' +
@@ -763,17 +767,6 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 					'})' //very ugly, I know.
 				eval(codeString)
 				eval("map.addLayer(" + layerID + "Layer)")
-				//add popup
-				
-				if(layerID=="bikepath_heads"){
-					bikepath_headsLayer.bindPopup(function (layer) {
-						return 'Name: '+layer.feature.properties.Name+"</br>TrailName: "+layer.feature.properties.TrailName+"</br>Type: "+layer.feature.properties.Type+
-						"<!--Streetview Div-->" +
-						"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
-
-					});
-				}
-
 
 				flagList[layerID] = 1;
 				return false;
@@ -863,8 +856,8 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 		document.getElementsByClassName("simplebar-content")[0].prepend(neodiv);
 	}
 	$("#" + layerID + "-metadata").click(function () { //metadata
-		document.getElementById("left").innerHTML = "<div class=panel-body style=width:100%><p>"+fullLayerFlags.getItemByLayerID(layerID).left+'</p></div>'
-		document.getElementById("right").innerHTML = "<div class=panel-body style=width:100%><p>"+fullLayerFlags.getItemByLayerID(layerID).right+'</p></div>'
+		document.getElementById("left").innerHTML = "<div class=panel-body style=width:100%><p>" + fullLayerFlags.getItemByLayerID(layerID).left + '</p></div>'
+		document.getElementById("right").innerHTML = "<div class=panel-body style=width:100%><p>" + fullLayerFlags.getItemByLayerID(layerID).right + '</p></div>'
 		$("#meta-modal").modal("show");
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
