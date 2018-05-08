@@ -87,7 +87,7 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer",
     "color": null,
     "icon": null,
-    "layerName": "Bike paths"
+    "layerName": "Bike Routes"
   },
   {
     "layerID": "bikepath_green",
@@ -102,7 +102,7 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0",
     "color": "green",
     "icon": null,
-    "layerName": "Green paths"
+    "layerName": "Greenway Trails"
   },
   {
     "layerID": "bikepath_heads",
@@ -117,7 +117,7 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0",
     "color": null,
     "icon": null,
-    "layerName": "Bike heads"
+    "layerName": "Bike Trailheads"
   },
   {
     "layerID": "water_npdes",

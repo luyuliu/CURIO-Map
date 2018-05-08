@@ -763,6 +763,14 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 					'})' //very ugly, I know.
 				eval(codeString)
 				eval("map.addLayer(" + layerID + "Layer)")
+				//add popup
+				if(layerID=="bikepath_heads"){
+					bikepath_headsLayer.bindPopup(function (error, featureCollection) {
+						console.log(featureCollection)
+					  });
+				}
+
+
 				flagList[layerID] = 1;
 				return false;
 			}

@@ -73,7 +73,8 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 */
-		
+
+
 		case "homeown":
 			var grades = [75, 50, 25, 0];
 			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
