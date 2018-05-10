@@ -30,21 +30,6 @@
     "layerName": "Sewer overflows"
   },
   {
-    "layerID": "wshd_wshd",
-    "isSimpleLayer": "TRUE",
-    "layerType": "E",
-    "extentType": 3,
-    "dataType": 4,
-    "featureType": 2,
-    "dataGettingType": "esri.tile",
-    "domainHead": "cura-gis-web.asc.ohio-state.edu",
-    "typeOfSource": "Mapserver",
-    "URL": "http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/NHDWater/MapServer",
-    "color": null,
-    "icon": null,
-    "layerName": "Watersheds"
-  },
-  {
     "layerID": "sdw_sdw",
     "isSimpleLayer": "TRUE",
     "layerType": "T",
