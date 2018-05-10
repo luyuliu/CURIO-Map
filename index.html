@@ -43,8 +43,8 @@
 	<!-- scrollbar.js -->
 	<script src="./js/simplebar.js"></script>
 
-	<!-- tour.js -->
-	<script src="./js/bootstrap-tour.min.js"></script>
+	<!-- intro.js -->
+	<script src="./js/intro.min.js"></script>
 
 	<!-- bootstrap-toggle.min.js -->
 	<script src="./js/bootstrap-toggle.min.js"></script>
@@ -58,7 +58,7 @@
 	<link rel="stylesheet" href="./css/esri-leaflet-geocoder.css" />
 	<link rel="stylesheet" href="./css/leaflet.css" />
 	<link rel="stylesheet" href="./css/simplebar.css">
-	<link rel="stylesheet" href="./css/bootstrap-tour.min.css">
+	<link rel="stylesheet" href="./css/introjs.min.css">
 	<link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
 	<link rel="stylesheet" href="./css/awesome-bootstrap-checkbox.css">
 	<link rel="stylesheet" href="./css/ionicons.min.css">
@@ -78,7 +78,7 @@
 		<div class="container-fluid">
 
 			<div class="navbar-header" id="mapheader">
-				<a class="navbar-brand mapheader" id="about-btn" title="Metadata of the map gallery" href="#">CURIO@OSU Comprehensive Map Gallery</a>
+				<a class="navbar-brand mapheader tutmainpg" id="about-btn" title="Metadata of the map gallery" href="#" style="z-index:99999999999">CURIO@OSU Comprehensive Map Gallery</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right" style="margin-top:8;">
@@ -98,9 +98,9 @@
 				<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true" style="height:100%">
 					<div class="panel panel-default" style="margin:0">
 						<div class="panel-heading" role="tab" id="headingOne0" style="margin:0">
-							<a class="panel-title" id="map-adm-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne0" aria-expanded="true"
+							<a class="panel-title" id="map-adm-title" data-step="3" data-intro="The sidebar contains 3 parts, each of which can be fold and unfold by clicking on the title." data-toggle="collapse" data-parent="#accordion" href="#collapseOne0" aria-expanded="true"
 							    aria-controls="collapseOne0">Section Settings
-								<button type="button" class="btn btn-xs btn-default pull-right" title="Click to hide sidebar" id="sidebar-hide-btn">
+								<button type="button" class="btn btn-xs btn-default pull-right" title="Click to hide sidebar" data-step="2" data-intro="The left sidebar is the map controls. You can hide the menu by clicking the button and unfold it by clicking the floating button! Give it a try!" id="sidebar-hide-btn">
 									<i class="fa fa-chevron-left"></i>
 								</button>
 							</a>
@@ -140,7 +140,10 @@
 													<a href="#" id="removeall-btn">
 														<i class="fa fa-ban" aria-hidden="true"></i> Uncheck all layers</a>
 												</li>
-
+												<li>
+													<a href="#" id="foldall-btn">
+														<i class="fa fa-angle-double-down" aria-hidden="true"></i>  &nbspFold all layers</a>
+												</li>
 												<li>
 													<a href="#" id="morelayer-btn">
 														<i class="fa fa-folder-open" aria-hidden="true"></i> Add more layers</a>
@@ -191,7 +194,7 @@
 
 
 					</div>
-					<div class="panel panel-default" style="margin:0">
+					<div class="panel panel-default" id="layer-control-panel" style="margin:0">
 						<div class="panel-heading" role="tab" id="headingOne1">
 							<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">Layer Control
 							</a>
@@ -220,7 +223,7 @@
 						<div id="collapseOne2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2" style="margin:0">
 
 							<div class="panel-body">
-								<div class="row">
+								<div id="search-and-sort" class="row">
 									<div class="col-xs-8 col-md-8">
 										<input type="text" class="form-control search" placeholder="Filter" />
 									</div>
