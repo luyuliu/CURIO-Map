@@ -829,7 +829,7 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 
 		//"<div class=\"panel-title\" style=\"float:left\">" +
 		"<a style=\"float:left\" id=\"" + layerID + "-metadata" + "\" title=\"The metadata of the layer\" valign=\"top\" href=\"#\">" + getLayerName(layerID) + "</a>" + //metadata
-		"<a class=\"accordion-toggle collapsed\" data-toggle=\"collapse\" data-parent=\"#accordion\" style=\"vertical-align: middle; float:right\" href=\"#" + layerID + "-controlcontainer" + "\" title=\"Click to show or hide the control box\">" +
+		"<a class=\"accordion-toggle collapsed\" id=\""+layerID+ "-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion\" style=\"vertical-align: middle; float:right\" href=\"#" + layerID + "-controlcontainer" + "\" title=\"Click to show or hide the control box\">" +
 		"</a>" +
 		//"</div>" +
 		"</div>" +

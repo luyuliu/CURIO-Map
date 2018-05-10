@@ -229,8 +229,9 @@ $.ajax({
           }
         });
 
+
         //------------------------------------Tutorial------------------------------------
-        tour = new Tour({
+        /*tour = new Tour({
           backdrop:true,
           backdropContainer:"body",
           steps: [{
@@ -365,7 +366,7 @@ $.ajax({
             }
           ]
 
-        })
+        })*/
       }
     })
   }
@@ -402,7 +403,7 @@ var zoomControl = L.control.zoom({
 
 //----------------------------------geocoding plugin--------------------------------------------
 var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
-var searchControl = L.esri.Geocoding.geosearch({position: "topright",provider:arcgisOnline}).addTo(map);
+var searchControl = L.esri.Geocoding.geosearch({ position: "topright", provider: arcgisOnline }).addTo(map);
 
 
 
