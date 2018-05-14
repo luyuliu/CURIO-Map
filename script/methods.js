@@ -390,9 +390,11 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 			getIconBlockDiv(layerID, "pic", null, "Columbus emergency response", "./img/emergency.png")
 			break;
 
-		case "bikeshr_cogo":
-			getIconBlockDiv(layerID, "pic", null, "Cogo bike sharing station", "./img/bikeshr_cogo.png")
+		case "parkingmeters":
+			getIconBlockDiv(layerID, "pic", null, "Parking meters", "./img/parkingmeters.png")
 			break;
+		
+		
 
 
 			/*	case "air_stations":

@@ -123,7 +123,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 				}
 			})
-
+			flagList[layerID]=1
 			break;
 
 		case "homeown":
