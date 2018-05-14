@@ -24,7 +24,7 @@
     "dataGettingType": "esri.feature",
     "domainHead": "maps.columbus.gov",
     "typeOfSource": "Mapserver",
-    "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer",
+    "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
     "color": null,
     "icon": null,
     "layerName": "Sewer overflows"
