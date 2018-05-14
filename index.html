@@ -52,9 +52,12 @@
 	<!-- geosearch -->
 	<script src="./js/esri-leaflet-geocoder.js"></script>
 
+	<!-- chardin.js -->
+	<script src="./js/chardinjs.min.js"></script>
 
 	<!-- Load css-->
 	<link rel="stylesheet" href="./css/bootstrap-toggle.min.css" />
+	<link rel="stylesheet" href="./css/chardinjs.css" />
 	<link rel="stylesheet" href="./css/esri-leaflet-geocoder.css" />
 	<link rel="stylesheet" href="./css/leaflet.css" />
 	<link rel="stylesheet" href="./css/simplebar.css">
@@ -178,12 +181,12 @@
 
 									<li id="group-button" class="list-group-item">
 										
-										<input type="checkbox" id="pin-checkbox" unchecked data-toggle="toggle" data-width="139" data-height="10" data-on="Auto Group off"
+										<input type="checkbox" id="pin-checkbox" unchecked data-toggle="toggle" data-width="139" data-height="10" data-on="Auto Group ON"
 										    data-off="Auto Group off">
 									</li>
 									<li id="showclosest-button" class="list-group-item">
-										<input type="checkbox" title="Turn on the switch to keep" id="leveled-checkbox" unchecked data-toggle="toggle" data-width="139" data-height="10" data-on="Always show POI"
-										    data-off="Show at closest">
+										<input type="checkbox" id="leveled-checkbox" unchecked data-toggle="toggle" data-width="139" data-height="10" data-on="Show more POI"
+										    data-off="Show less POI">
 									</li>
 								</ul>
 							</div>
@@ -440,17 +443,17 @@
 					<h4 class="modal-title">
 						Add new JSON layers
 					</h4>(
-					<a id="addnew-tutorial-btn" href="#">Have trouble? Click me</a>)
+					<a data-position="left" chardin-intro="This is the custom layer adding panel. Make sure your Geojson is valid and enjoy! The system will present the Geojson on the map and the property information in popups." id="addnew-tutorial-btn" href="#">Have trouble? Click me</a>)
 				</div>
 				<div class="modal-body">
 					<ul id="input-collection">
 						<li>
 							Layer name:
-							<input class="form-control" id="name-input" type="text">
+							<input data-position="right" chardin-intro="Please make sure every layer has a unique name." class="form-control" id="name-input" type="text">
 						</li>
 						<li>
 							Layer type:
-							<select class="form-control" id="layertype-input">
+							<select data-position="left" chardin-intro="The category this layer belongs to." class="form-control" id="layertype-input">
 								<option>Transportation</option>
 								<option>Environment</option>
 								<option>SocioEconomic</option>
@@ -458,7 +461,7 @@
 						</li>
 						<li>
 							Data type :
-							<select class="form-control" id="datatype-input">
+							<select data-position="right" chardin-intro="The geometry type of this layer." class="form-control" id="datatype-input">
 								<option>Points</option>
 								<option>Polylines</option>
 								<option>Polygons</option>
@@ -467,11 +470,11 @@
 						<li>
 							Symbology for points (
 							<a target="_blank" href="https://fontawesome.com/v4.7.0/icons/" title="Please type in the a single word for the icon. e.g. anchor">Icon dictionary</a>):
-							<input class="form-control" id="symbol-input" type="text">
+							<input data-position="left" chardin-intro="This option only applys to points layers. The custom layer supports Awesome fonts icons." class="form-control" id="symbol-input" type="text">
 						</li>
 						<li>
 							Color:
-							<select class="form-control" id="color-palette">
+							<select data-position="right" chardin-intro="Select color for the layer." class="form-control" id="color-palette">
 								<option>red</option>
 								<option>darkred</option>
 								<option>orange</option>
@@ -484,12 +487,12 @@
 							</select>
 						</li>
 					</ul>
-					<div id="drop_zone">Drop files here</div>
+					<div data-position="bottom" chardin-intro="Drag the geojson file to the rectangle area." id="drop_zone">Drop files here</div>
 					<output id="fileInfoList"></output>
 				</div>
 				<div class="modal-footer">
 					<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-					<button type="button" id="confirm-btn" class="btn btn-primary">Add layer</button>
+					<button data-position="right" chardin-intro="Add this layer to the Layer Control list and enjoy!" type="button" id="confirm-btn" class="btn btn-primary">Add layer</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

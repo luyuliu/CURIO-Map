@@ -432,7 +432,7 @@ $("#tutorial-btn").click(function () {
         break;
       case 4:
         item = "layer-setting"
-        intro = "'Layer Setting' menu has three functions.</br>1. Change the base map </br>2. Uncheck all the layer selected in the Layer Control </br>3. Add more custom Geojson layers."
+        intro = "'Layer Setting' menu has three functions.</br>1. Change the base map </br>2. Uncheck all the layer selected in the Layer Control </br>3. Fold all the panel in the 'Layer Control' list. </br>4. Add more custom Geojson layers."
         break;
       case 5:
         item = "layer-sorting"
@@ -571,6 +571,5 @@ $("#tutorial-btn").click(function () {
 });
 
 $("#addnew-tutorial-btn").click(function () {
-  atour.init();
-  atour.restart(true)
+  $('body').chardinJs({'attribute': 'chardin-intro','method':'start'})
 });
