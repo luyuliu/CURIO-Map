@@ -219,7 +219,7 @@ $.ajax({
 
         contentwrapper = document.getElementsByClassName("simplebar-content")[0]
         asortable = Sortable.create(contentwrapper, {
-          handle: '.glyphicon-move',
+          handle: '.glyphicon-menu-hamburger',
           animation: 150,
           scroll: true,
           scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
@@ -405,6 +405,12 @@ var zoomControl = L.control.zoom({
 var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
 var searchControl = L.esri.Geocoding.geosearch({ position: "topright", provider: arcgisOnline }).addTo(map);
 
+
+
+searchControl.on("results", function(data) {
+  console.log(data)
+  map.fitBounds(data.bounds)
+});
 
 
 $(document).ready(function () {
