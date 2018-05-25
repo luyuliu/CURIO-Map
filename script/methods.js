@@ -818,7 +818,7 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 	var neodiv = document.createElement('div');
 	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='border-width: 3px;border-style: outset;border-color:" + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
-		"<span style=\"float:left;vertical-align: middle;padding-right:5\" class=\"glyphicon glyphicon-menu-hamburger\" title=\"Drag to change the sequence of layers\" aria-hidden=\"true\"></span>" +
+		"<span style=\"float:left;vertical-align: middle;padding-right:5;opacity:0.5\" class=\"glyphicon glyphicon-menu-hamburger\" title=\"Drag to change the sequence of layers\" aria-hidden=\"true\"></span>" +
 		//dragger
 		
 		
