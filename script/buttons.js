@@ -424,7 +424,7 @@ $("#tutorial-btn").click(function () {
         break;
       case 2:
         item = "sidebar-hide-btn";
-        intro = "You can hide the menu by clicking the button and unfold it by clicking the floating button! Give it a try!"
+        intro = "You can hide the menu by clicking the button and unfold it by clicking the floating button."
         break;
       case 3:
         item = "map-adm-title"
@@ -452,7 +452,7 @@ $("#tutorial-btn").click(function () {
         break;
       case 9:
         item = "emergency-list-item"
-        intro = "The sequence of the layers in this list is also the sequence of z-index of each layer. Drag the handle to move and change the z-index.<br/><br/>Click on the expanding arrow to see more functionalities."
+        intro = "The sequence of the layers in this list is also the sequence of z-index of each layer. Drag the handle to move and change the z-index.<br/><br/>Click on the expanding arrow to see more functions."
         break;
       case 10:
         item = "emergency-legend-btn"
@@ -484,7 +484,7 @@ $("#tutorial-btn").click(function () {
         break;
       case 17:
         item = "showclosest-button"
-        intro = "Uncheck 'Always show' checkbox to hide the POI list at higher zoom levels, which will influence map\'s performance, while checking the box will result in showing the POI list at any zoom levels."
+        intro = "Toggle 'Show less POI' slider to hide the POI list at higher zoom levels, which will influence map\'s performance, while checking the box will result in showing the POI list at any zoom levels."
         break;
       case 18:
         item = "tutorial-btn"
@@ -567,8 +567,26 @@ $("#tutorial-btn").click(function () {
         }
         break;
     }
+  }).oncomplete(function() {
+    console.log("Tutorial ends.")
+    if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
+      $("#collapseOne0").attr("class", "panel-collapse collapse")
+    }
+    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in ") {
+      $("#layer-control-panel-inner").trigger("click")
+    }
+  }).onexit(function() {
+    console.log("Tutorial ends.")
+    if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
+      $("#collapseOne0").attr("class", "panel-collapse collapse")
+    }
+    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in ") {
+      $("#layer-control-panel-inner").trigger("click")
+    }
   }).start();
 });
+
+
 
 $("#addnew-tutorial-btn").click(function () {
   $('body').chardinJs({'attribute': 'chardin-intro','method':'start'})

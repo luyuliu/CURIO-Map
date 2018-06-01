@@ -1068,6 +1068,8 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	icons = fullLayerFlags.getItemByLayerID(layerID).icon
 	addLegendHandle(layerID, URL + "/legend", grades, colors, dataType, icons, acolor);
+	console.log("dataType: "+dataType)
+	console.log("URL: "+URL)
 	console.log("Done.")
 	$("#loading").hide();
 

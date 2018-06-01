@@ -444,7 +444,7 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 
 
 function getMapServerLegendDiv(layerID, url, layerName) { //return one map's legend
-	console.log(url)
+	//console.log(url)
 	$.ajax({
 		url: url,
 		type: 'GET',
