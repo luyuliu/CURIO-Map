@@ -195,7 +195,7 @@ $.ajax({
   dataType: 'JSON',
   success: function (data) {
     $.ajax({
-      url: "http://localhost:8080/metadata.json",
+      url: "https://luyuliu.github.io/CURIO-Map/data/metadata.json",
       type: 'GET',
       dataType: 'JSON',
       success: function (metadata) {
