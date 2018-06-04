@@ -195,7 +195,7 @@ $.ajax({
   dataType: 'JSON',
   success: function (data) {
     $.ajax({
-      url: "http://localhost:8080/metadata.json",
+      url: "https://luyuliu.github.io/CURIO-Map/data/metadata.json",
       type: 'GET',
       dataType: 'JSON',
       success: function (metadata) {
@@ -390,7 +390,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'><a href='http://cura.osu.edu' target='_blank'>CURA</a> | <a href='https://github.com/luyuliu' target='_blank'>Luyu Liu</a> | <a href='http://bryanmcbride.com' target='_blank'>Bootleaf</a></span>";
+  div.innerHTML = "<span class='hidden-xs'><a href='http://cura.osu.edu' target='_blank'>CURA</a> | <a href='https://github.com/luyuliu' target='_blank'>Luyu Liu</a> | <a href='https://github.com/bmcbride/bootleaf' target='_blank'>Bootleaf</a></span>";
   return div;
 };
 map.addControl(attributionControl);

@@ -2,37 +2,37 @@
   {
     "layerID": "homeown",
     "left": "This map shows housing characteristics by census tract in the Mid-Ohio Regional Planning Commission (MORPC) planning area. This is an interactive map, which means when clicking on the map, the information will be presented by popup.",
-    "right": "<h4>MORPC PLANNING AREA HOUSING DATA</h4><p>Housing data are from the <a href=https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml target=_blank>US Census Bureau.</a> Download a <a href=http://curio.osu.edu/json/MORPCTractsHSE.geojson target=_blank download=morpcCensus.geojson>geoJSON</a> file.<h4>BASEMAPS</h4>"
+    "right": "<h4>MORPC PLANNING AREA HOUSING DATA</h4><p>Housing data are from the <a href=https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml target=_blank>US Census Bureau.</a>"
   },
   {
     "layerID": "wshd_cso",
-    "left": "This map shows several themes of water in central Ohio. It has the HUC-8 watersheds associated with Ohio, NDPES permits holders, and combined sewer locations. The inital map extent shows the lines of flow for water overlaid over an Esri topological map. Zooming out removes the watershed and stream flow layers.</p><svg height=6 width=30><line style=stroke:#c500ff;stroke-width:6 x1=0 x2=25 y1=0 y2=0></line></svg><h4 style=display:inline>HUC-8 Watersheds and Stream Flow Lines</h4><p>Watersheds of the National Watershed Boundary Dataset are defined by their hydraulic unit code (HUC). The smaller the number the larger the area covered.<h4><svg height=24 width=50><circle cx=12 cy=12 fill=#FF0000 opacity=.85 r=12></circle><circle cx=36 cy=12 fill=#005be6 opacity=.85 r=12></circle></svg>CSO Locations</h4><p>Combined sewer overflows are locations where the sanitary sewer and storm sewer may overflow into rivers and streams releasing polluted water.<h4><img height=28 src=http://curio.osu.edu/wp-content/uploads/2016/06/NPDES_I_I.png width=28>NPDES Permits</h4><p>The National Pollutant Discharge Elimination System (NPDES) regulates the dumping of waste into waterways. This layer shows locations where permits to dump waste are located.<h4>Basemaps</h4><p>Basemaps are provided by <a href=\\\"http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps\\\"target=_blank>Esri</a> and hosted on ArcGIS online.",
-    "right": "<h4>Watershed Data</h4><div class=panel id=boroughs-tab><p>Watershed data are from the <a href=https://nhd.usgs.gov/data.html target=_blank>USGS.</a> This layer is displayed using a<a href=http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/WaterShedsOH_NHD/MapServer target=_blank> tile service on our GIS server."
+    "left": "Combined sewer overflows are locations where the sanitary sewer and storm sewer may overflow into rivers and streams releasing polluted water.",
+    "right": "<h4>Watershed Data</h4><div class=panel id=boroughs-tab><p>Watershed data are from the columbus city. This layer is displayed using a<a href=http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0 target=_blank> feature layer service on columbus city GIS server."
   },
   {
     "layerID": "sdw_sdw",
     "left": "<p>This map shows the status of the <a href=http://www.morpc.org target=_blank>MORPC sidewalk survey.</a> Areas where sidewalks don't exist are shown.<h4>SIDEWALKS</h4><p><svg height=14 width=28><rect fill=#0088FF height=5 width=24 y=5></rect></svg>Current Sidwalks<p><svg height=14 width=28><circle cx=4 cy=5 fill=#e64c00 r=3></circle><circle cx=10 cy=5 fill=#e64c00 r=3></circle><circle cx=16 cy=5 fill=#e64c00 r=3></circle><circle cx=21 cy=5 fill=#e64c00 r=3></circle></svg>Sidewalk Gaps",
-    "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/data-maps/index target=_blank>MORPC.</a><h5><a href=http://www.morpc.org/data-maps/gis-files/index target=_blank>Download the data at MORPC</a></h5></div><h4>BASEMAPS</h4>"
+    "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/tool-resource/central-ohio-data-catalog/ target=_blank>MORPC.</a></div>"
   },
   {
     "layerID": "sdw_nsdw",
     "left": "<p>This map shows the status of the <a href=http://www.morpc.org target=_blank>MORPC sidewalk survey.</a> Areas where sidewalks don't exist are shown.<h4>SIDEWALKS</h4><p><svg height=14 width=28><rect fill=#0088FF height=5 width=24 y=5></rect></svg>Current Sidwalks<p><svg height=14 width=28><circle cx=4 cy=5 fill=#e64c00 r=3></circle><circle cx=10 cy=5 fill=#e64c00 r=3></circle><circle cx=16 cy=5 fill=#e64c00 r=3></circle><circle cx=21 cy=5 fill=#e64c00 r=3></circle></svg>Sidewalk Gaps",
-    "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/data-maps/index target=_blank>MORPC.</a><h5><a href=http://www.morpc.org/data-maps/gis-files/index target=_blank>Download the data at MORPC</a></h5></div><h4>BASEMAPS</h4>"
+    "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/tool-resource/central-ohio-data-catalog/ target=_blank>MORPC.</a></div>"
   },
   {
     "layerID": "bikepath_path",
     "left": "<p><h4><p><svg height=14 width=28><rect fill=#54BA61 height=5 width=24 y=5></rect></svg> BIKE GREENWAYS</h4><p>Bike greenways are dedicated paths for fitness activites.<h4><img src=./img/parkandpedal.png> <img src=./img/trailhead.png> BIKE TRAIL HEADS</h4><p>Trail heads allow access to greenways. Most have parking and park facilities at them.<h4><svg height=22 width=28><line style=stroke:red;stroke-width:4 x1=0 x2=28 y1=8 y2=8></line><line style=stroke:#0f0;stroke-width:4 x1=0 x2=28 y1=15 y2=15></line><line style=stroke:#eda411;stroke-width:4 x1=0 x2=28 y1=20 y2=20></line></svg> ROUTES BY LEVEL OF COMFORT</h4><p>These are streets rated by the level of comfort of bicycle riders",
-    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div><h4>Basemaps</h4><p>Basemaps are provided by <a href=\\\"http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps\\\"target=_blank>Esri</a> and hosted on ArcGIS online."
+    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div>"
   },
   {
     "layerID": "bikepath_green",
     "left": "<p><h4><p><svg height=14 width=28><rect fill=#54BA61 height=5 width=24 y=5></rect></svg> BIKE GREENWAYS</h4><p>Bike greenways are dedicated paths for fitness activites.<h4><img src=./img/parkandpedal.png> <img src=./img/trailhead.png> BIKE TRAIL HEADS</h4><p>Trail heads allow access to greenways. Most have parking and park facilities at them.<h4><svg height=22 width=28><line style=stroke:red;stroke-width:4 x1=0 x2=28 y1=8 y2=8></line><line style=stroke:#0f0;stroke-width:4 x1=0 x2=28 y1=15 y2=15></line><line style=stroke:#eda411;stroke-width:4 x1=0 x2=28 y1=20 y2=20></line></svg> ROUTES BY LEVEL OF COMFORT</h4><p>These are streets rated by the level of comfort of bicycle riders",
-    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div><h4>Basemaps</h4><p>Basemaps are provided by <a href=\\\"http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps\\\"target=_blank>Esri</a> and hosted on ArcGIS online."
+    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div>"
   },
   {
     "layerID": "bikepath_heads",
     "left": "<p><h4><p><svg height=14 width=28><rect fill=#54BA61 height=5 width=24 y=5></rect></svg> BIKE GREENWAYS</h4><p>Bike greenways are dedicated paths for fitness activites.<h4><img src=./img/parkandpedal.png> <img src=./img/trailhead.png> BIKE TRAIL HEADS</h4><p>Trail heads allow access to greenways. Most have parking and park facilities at them.<h4><svg height=22 width=28><line style=stroke:red;stroke-width:4 x1=0 x2=28 y1=8 y2=8></line><line style=stroke:#0f0;stroke-width:4 x1=0 x2=28 y1=15 y2=15></line><line style=stroke:#eda411;stroke-width:4 x1=0 x2=28 y1=20 y2=20></line></svg> ROUTES BY LEVEL OF COMFORT</h4><p>These are streets rated by the level of comfort of bicycle riders",
-    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div><h4>Basemaps</h4><p>Basemaps are provided by <a href=\\\"http://www.arcgis.com/home/group.html?owner=esri&title=arcgis%20online%20basemaps\\\"target=_blank>Esri</a> and hosted on ArcGIS online."
+    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div>"
   },
   {
     "layerID": "water_npdes",
