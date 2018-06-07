@@ -415,7 +415,7 @@ $("#tutorial-btn").click(function () {
     var item, intro;
     switch (zz) {
       case 0:
-        item = "about-btn";
+        item = "mapheader";
         intro = "Welcome to CURIO Map gallery! Thank you for using CURIO map gallery! Click the title banner to see more detail of the map gallery"
         break;
       case 1:
@@ -500,7 +500,6 @@ $("#tutorial-btn").click(function () {
 
 
   introJs().onchange(function (targetElement) {
-
     console.log(targetElement.getAttribute("data-step"));
     switch (targetElement.getAttribute("data-step")) {
       case "4":
