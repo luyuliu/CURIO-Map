@@ -816,19 +816,19 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 
 
 	var neodiv = document.createElement('div');
-	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='border-width: 3px;border-style: outset;border-color:" + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:10px;padding-right:5px;'>" + //list-group-item
+	neodiv.innerHTML = "<div class=\"list-group-item\" layerID='" + layerID + "' id=\"" + layerID + "-list-item\" style='border-width: 3px;border-style: outset;border-color:" + fullLayerFlags.getBackgroundColor(layerID) + ";padding-left:8px;padding-right:5px;'>" + //list-group-item
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
-		"<span style=\"float:left;vertical-align: middle;padding-right:5;opacity:0.3;cursor: all-scroll;\" class=\"glyphicon glyphicon-menu-hamburger\" title=\"Drag to change the sequence of layers\" aria-hidden=\"true\"></span>" +
+		"<span style=\"float:left;vertical-align: middle;padding-right:0;opacity:0.3;cursor: all-scroll;padding-top:2px\" class=\"glyphicon glyphicon-menu-hamburger\" title=\"Drag to change the sequence of layers\" aria-hidden=\"true\"></span>" +
 		//dragger
 		
 		
 		//checkbox
-		"&nbsp&nbsp&nbsp<div class=\"checkbox checkbox-primary\" title=\"Click to show or hide the layer\" style=\"float:left ; margin: auto\">" +
+		"&nbsp&nbsp&nbsp<div class=\"form-check abc-checkbox\" title=\"Click to show or hide the layer\" style=\"float:left ; margin: auto;padding:0;margin:0\">" +
 		
-		"<input type=\"checkbox\" id=\"" + layerID + "-checkbox" + "\" class=\"styled\" unchecked style=\"float:left;vertical-align: middle\">" +
+		"<input type=\"checkbox\" id=\"" + layerID + "-checkbox" + "\" class=\"styled\" unchecked style=\"float:left;vertical-align: middle;padding:0\">" +
 		
-		"<label style='float:left;padding-left:0;padding-right:0'>" +
-		"<a style=\"float:left\" id=\"" + layerID + "-metadata" + "\" title=\"The metadata of the layer\" valign=\"top\" href=\"#\">" + getLayerName(layerID) + "</a>" + //metadata
+		"<label style='float:left;padding-left:0;padding-right:0;font-weight:normal' class='form-check-label' for='"+ layerID + "-checkbox'>" +
+		"<a style=\"float:left;padding-left:9px\" id=\"" + layerID + "-metadata" + "\" title=\"The metadata of the layer\" valign=\"top\" href=\"#\">" + getLayerName(layerID) + "</a>" + //metadata
 		//"<div class=\"panel-title\" style=\"float:left\">" +
 		"</label>"+
 		"</div>" +
