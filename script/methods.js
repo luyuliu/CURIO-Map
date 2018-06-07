@@ -498,9 +498,9 @@ function getGraduatedColorsDiv(layerID, grades, colors) { //grades.length must =
 	var legendContent2 = '<table><tbody>'
 	for (var i in grades) {
 		if (i == 0) {
-			labelContent2 = grades[i] + " +"
+			labelContent2 = grades[i] + "% + "
 		} else {
-			labelContent2 = grades[i] + " - " + grades[i - 1]
+			labelContent2 = grades[i] + "% - " + grades[i - 1] +"%"
 		}
 		legendContent2 += "<tr valign='middle'>" +
 			"<td class='tablehead' align='middle'>" + getColorBlockString(colors[i]) + "</td>" +
