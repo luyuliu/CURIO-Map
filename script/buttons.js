@@ -504,7 +504,7 @@ $("#tutorial-btn").click(function () {
     switch (targetElement.getAttribute("data-step")) {
       case "4":
         if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne0").attr("class", "panel-collapse collapse in")
+          $("#map-adm-title").trigger("click")
         }
         break;
         case "11":
@@ -512,7 +512,7 @@ $("#tutorial-btn").click(function () {
           $("#emergency-toggle").trigger("click");
         }
         if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne1").attr("class", "panel-collapse collapse in")
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
         case "12":
@@ -520,7 +520,7 @@ $("#tutorial-btn").click(function () {
           $("#emergency-toggle").trigger("click");
         }
         if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne1").attr("class", "panel-collapse collapse in")
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
         case "13":
@@ -528,12 +528,15 @@ $("#tutorial-btn").click(function () {
           $("#emergency-toggle").trigger("click");
         }
         if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne1").attr("class", "panel-collapse collapse in")
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
       case "15":
         if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne0").attr("class", "panel-collapse collapse in")
+          $("#map-adm-title").trigger("click")
+        }
+        if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
       case "14":
@@ -541,45 +544,39 @@ $("#tutorial-btn").click(function () {
           $("#emergency-toggle").trigger("click");
         }
         if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne1").attr("class", "panel-collapse collapse in")
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
       case "16":
-        if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
-          $("#collapseOne0").attr("class", "panel-collapse collapse")
-        }
         if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
-          $("#collapseOne1").attr("class", "panel-collapse collapse")
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
       case "17":
-        if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
-          $("#collapseOne0").attr("class", "panel-collapse collapse")
-        }
         if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
-          $("#collapseOne1").attr("class", "panel-collapse collapse")
+          $("#layer-control-panel-inner").trigger("click")
         }
         break;
       case "18":
         if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
-          $("#collapseOne0").attr("class", "panel-collapse collapse in")
+          $("#map-adm-title").trigger("click")
         }
         break;
     }
   }).oncomplete(function() {
     console.log("Tutorial ends.")
     if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
-      $("#collapseOne0").attr("class", "panel-collapse collapse")
+      $("#map-adm-title").trigger("click")
     }
-    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in ") {
+    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
       $("#layer-control-panel-inner").trigger("click")
     }
   }).onexit(function() {
     console.log("Tutorial ends.")
     if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
-      $("#collapseOne0").attr("class", "panel-collapse collapse")
+      $("#map-adm-title").trigger("click")
     }
-    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in ") {
+    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
       $("#layer-control-panel-inner").trigger("click")
     }
   }).start();
