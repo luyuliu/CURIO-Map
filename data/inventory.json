@@ -120,21 +120,6 @@
     "layerName": "NPDES individual"
   },
   {
-    "layerID": "water_intakes",
-    "isSimpleLayer": "TRUE",
-    "layerType": "E",
-    "extentType": 2,
-    "dataType": 3,
-    "featureType": 1,
-    "dataGettingType": "esri.feature",
-    "domainHead": "epagis1.oit.ohio.gov",
-    "typeOfSource": "Mapserver",
-    "URL": "http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DDAGW_WI/MapServer/0",
-    "color": null,
-    "icon": null,
-    "layerName": "Water intakes"
-  },
-  {
     "layerID": "trans_cabsN",
     "isSimpleLayer": "TRUE",
     "layerType": "T",
@@ -163,21 +148,6 @@
     "color": "#FF0000",
     "icon": null,
     "layerName": "OSU cabs loopsouth"
-  },
-  {
-    "layerID": "trans_cabsNE",
-    "isSimpleLayer": "TRUE",
-    "layerType": "T",
-    "extentType": 2,
-    "dataType": 3,
-    "featureType": 2,
-    "dataGettingType": "esri.feature",
-    "domainHead": "gismaps.osu.edu",
-    "typeOfSource": "Mapserver",
-    "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/1",
-    "color": "#FFCB0A",
-    "icon": null,
-    "layerName": "OSU cabs northexpress"
   },
   {
     "layerID": "trans_cabsER",
