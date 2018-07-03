@@ -33,16 +33,18 @@ function sizeLayerControl() {
 	$("#table-wrapper").height($(window).height() / 2);
 }
 
+
+
 function sidebarClick(id, layerID) { //click on the sidebar handle
 	markerClusters = eval(layerID + "Layer");
 	var alayer = markerClusters.getLayer(id);
 	map.setView([alayer.getLatLng().lat, alayer.getLatLng().lng], 18);
 	alayer.fire("click");
 	/* Hide sidebar and go to the map on small screens */
-	if (document.body.clientWidth <= 767) {
+	/*if (document.body.clientWidth <= 767) {
 		$("#sidebar").hide();
 		map.invalidateSize();
-	}
+	}*/
 }
 
 function returnColor(color) { //for layer of cota

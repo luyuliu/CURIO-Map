@@ -9,10 +9,16 @@
 
 
 //------------------------------------feature map eventlisterner------------------------------------
-$(window).resize(function () {
-  sizeLayerControl();
-});
+$(window).resize(function() {
+	sizeLayerControl();
+	if (document.body.clientWidth <= 767) {
+		map.invalidateSize();
+	}
+  });
 
+$(document).ready(function(){
+  $("#sidebar").show();
+})
 
 $(document).on("click", ".feature-row", function (e) {
   $(document).off("mouseout", ".feature-row", clearHighlight);

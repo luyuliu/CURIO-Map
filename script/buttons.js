@@ -295,8 +295,7 @@ function handleFileSelect(evt) {
   fileReader.onload = function (e) {
     if (xcurrentLayerID == $("#name-input").val() || $("#name-input").val() == "") {
       document.getElementById('fileInfoList').innerHTML = '<ul style="color:red">' + "Please re/specify layer's name." + '</ul>'
-    }
-    else {
+    } else {
       xcurrentLayerID = $("#name-input").val();
       eval(xcurrentLayerID + "JSON = fileReader.result;")
       output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
@@ -410,7 +409,7 @@ $("#esriGray").click(function () {
 });
 
 //------------------------------------tutorial button-------------------------------------
-$("#tutorial-btn").click(function () {
+function tutorialHandle() {
   for (var zz = 0; zz < 19; zz++) {
     var item, intro;
     switch (zz) {
@@ -494,96 +493,107 @@ $("#tutorial-btn").click(function () {
     document.getElementById(item).setAttribute("data-step", (zz + 1).toString());
     document.getElementById(item).setAttribute("data-intro", intro);
     document.getElementById(item).setAttribute("data-position", "auto")
-
   }
 
-
-
-  introJs().onchange(function (targetElement) {
-    console.log(targetElement.getAttribute("data-step"));
-    switch (targetElement.getAttribute("data-step")) {
-      case "4":
-        if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
-          $("#map-adm-title").trigger("click")
-        }
-        break;
+    introJs().onchange(function (targetElement) {
+      console.log(targetElement.getAttribute("data-step"));
+      switch (targetElement.getAttribute("data-step")) {
+        case "4":
+          if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
+            $("#map-adm-title").trigger("click")
+          }
+          break;
         case "11":
-        if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-          $("#emergency-toggle").trigger("click");
-        }
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
+          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#emergency-toggle").trigger("click");
+          }
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
         case "12":
-        if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-          $("#emergency-toggle").trigger("click");
-        }
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
+          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#emergency-toggle").trigger("click");
+          }
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
         case "13":
-        if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-          $("#emergency-toggle").trigger("click");
-        }
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
-      case "15":
-        if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
-          $("#map-adm-title").trigger("click")
-        }
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
-      case "14":
-        if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-          $("#emergency-toggle").trigger("click");
-        }
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
-      case "16":
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
-      case "17":
-        if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
-          $("#layer-control-panel-inner").trigger("click")
-        }
-        break;
-      case "18":
-        if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
-          $("#map-adm-title").trigger("click")
-        }
-        break;
-    }
-  }).oncomplete(function() {
-    console.log("Tutorial ends.")
-    if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
-      $("#map-adm-title").trigger("click")
-    }
-    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-      $("#layer-control-panel-inner").trigger("click")
-    }
-  }).onexit(function() {
-    console.log("Tutorial ends.")
-    if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
-      $("#map-adm-title").trigger("click")
-    }
-    if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
-      $("#layer-control-panel-inner").trigger("click")
-    }
-  }).start();
-});
+          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#emergency-toggle").trigger("click");
+          }
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
+        case "15":
+          if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
+            $("#map-adm-title").trigger("click")
+          }
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
+        case "14":
+          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#emergency-toggle").trigger("click");
+          }
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
+        case "16":
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
+        case "17":
+          if ($("#collapseOne1").attr("class") != "panel-collapse collapse") {
+            $("#layer-control-panel-inner").trigger("click")
+          }
+          break;
+        case "18":
+          if ($("#collapseOne0").attr("class") != "panel-collapse collapse in") {
+            $("#map-adm-title").trigger("click")
+          }
+          break;
+      }
+    }).oncomplete(function () {
+      console.log("Tutorial ends.")
+      if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
+        $("#map-adm-title").trigger("click")
+      }
+      if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
+        $("#layer-control-panel-inner").trigger("click")
+      }
+    }).onexit(function () {
+      console.log("Tutorial ends.")
+      if ($("#collapseOne0").attr("class") != "panel-collapse collapse") {
+        $("#map-adm-title").trigger("click")
+      }
+      if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
+        $("#layer-control-panel-inner").trigger("click")
+      }
+    }).start();
+}
+$("#tutorial-btn").click(function () {
+  tutorialHandle();
+})
+$("#tutorial-btn2").click(function () {
+  tutorialHandle();
+})
+
+
+
+
+
 
 
 
 $("#addnew-tutorial-btn").click(function () {
-  $('body').chardinJs({'attribute': 'chardin-intro','method':'start'})
+  $('body').chardinJs({
+    'attribute': 'chardin-intro',
+    'method': 'start'
+  })
 });
