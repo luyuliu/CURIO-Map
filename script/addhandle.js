@@ -118,7 +118,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					bikepath_headsLayer.bindPopup(function (layer) {
 						return 'Name: ' + layer.feature.properties.Name + "</br>TrailName: " + layer.feature.properties.TrailName + "</br>Type: " + layer.feature.properties.Type +
 							"<!--Streetview Div-->" +
-							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 					});
 
 				}
@@ -381,7 +381,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							"Meter time: " + feature.properties.METER_TIME + "<br/>" +
 							"Charging station: " + feature.properties.CHARGING_STATION + "</h4><br/>" +
 							"<!--Streetview Div-->" +
-							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 						layer.on({
 							click: function (e) {
@@ -603,7 +603,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					if (feature.properties) {
 						var content = "<h4>" + "Station Name: " + feature.properties.name + "<br/>" + "Available Bikes: " + feature.properties.availableBikes + "<br/>" + "Available Docks: " + feature.properties.availableDocks + "<br/>" + "Last Checked: " + feature.properties.timestamp + "</h4><br/>" +
 							"<!--Streetview Div-->" +
-							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 
 						layer.on({
@@ -742,7 +742,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							"Name: " + feature.properties.POI_NAME + "<br/>" +
 							"Type: " + feature.properties.POI_TYPE + "<br/>" +
 							"<!--Streetview Div-->" +
-							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 						layer.on({
 							click: function (e) {
@@ -802,7 +802,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							"Name: " + feature.properties.POI_NAME + "<br/>" +
 							"Type: " + feature.properties.POI_TYPE + "<br/>" +
 							"<!--Streetview Div-->" +
-							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 						layer.on({
 							click: function (e) {
@@ -863,7 +863,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 							"Name: " + feature.properties.POI_NAME + "<br/>" +
 							"Type: " + feature.properties.POI_TYPE + "<br/>" +
 							"<!--Streetview Div-->" +
-							"<div  id='streetview' style='margin-top:10px;'><img class='center-block' src='https://maps.googleapis.com/maps/api/streetview?size=300x300&location=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "&key=AIzaSyCewGkupcv7Z74vNIVf05APjGOvX4_ygbc' height='300' width='300'></img><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
 
 						layer.on({
 							click: function (e) {

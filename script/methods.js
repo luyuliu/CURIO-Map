@@ -631,21 +631,23 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 				var extent;
 				eval('extent=' + layerID + "Layer.getBounds()")
 				return extent;
-				break;
 
 			case 2: //feature
+			/*
 				var aUrl;
 				eval('var currentLayer=' + layerID + 'Layer')
 				aUrl = currentLayer.options.url;
 				var theend = aUrl.indexOf("MapServer");
 				aUrl = aUrl.substring(0, theend + 9);
 				var extent = getBoundsMapServer(aUrl + "/info/iteminfo?f=pjson");
-				var corner1 = L.latLng(extent[0][1], extent[0][0])
-				var corner2 = L.latLng(extent[1][1], extent[1][0])
+				
 				extent = L.latLngBounds(corner1, corner2)
 
-				return extent;
-				break;
+				console.log(extent)
+				return extent;*/
+				var corner1 = L.latLng(40.143327, -83.177279)
+				var corner2 = L.latLng(39.835083, -82.773769)
+				return L.latLngBounds(corner1, corner2)
 
 			case 3: //tile
 				var aUrl;
@@ -660,7 +662,6 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 				var corner2 = L.latLng(extent[1][1], extent[1][0])
 				extent = L.latLngBounds(corner1, corner2)
 				return extent;
-				break;
 
 			default:
 		}
