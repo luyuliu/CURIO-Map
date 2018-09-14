@@ -5,11 +5,6 @@
     "right": "<h4>MORPC PLANNING AREA HOUSING DATA</h4><p>Housing data are from the <a href=https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml target=_blank>US Census Bureau.</a>"
   },
   {
-    "layerID": "wshd_cso",
-    "left": "Combined sewer overflows are locations where the sanitary sewer and storm sewer may overflow into rivers and streams releasing polluted water.",
-    "right": "<h4>Watershed Data</h4><div class=panel id=boroughs-tab><p>Watershed data are from the columbus city. This layer is displayed using a<a href=http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0 target=_blank> feature layer service on columbus city GIS server."
-  },
-  {
     "layerID": "sdw_sdw",
     "left": "<p>This map shows the status of the <a href=http://www.morpc.org target=_blank>MORPC sidewalk survey.</a> Areas where sidewalks don't exist are shown.<h4>SIDEWALKS</h4><p><svg height=14 width=28><rect fill=#0088FF height=5 width=24 y=5></rect></svg>Current Sidwalks<p><svg height=14 width=28><circle cx=4 cy=5 fill=#e64c00 r=3></circle><circle cx=10 cy=5 fill=#e64c00 r=3></circle><circle cx=16 cy=5 fill=#e64c00 r=3></circle><circle cx=21 cy=5 fill=#e64c00 r=3></circle></svg>Sidewalk Gaps",
     "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/tool-resource/central-ohio-data-catalog/ target=_blank>MORPC.</a></div>"

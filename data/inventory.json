@@ -15,21 +15,6 @@
     "layerName": "Home ownership"
   },
   {
-    "layerID": "wshd_cso",
-    "isSimpleLayer": "TRUE",
-    "layerType": "E",
-    "extentType": 2,
-    "dataType": 3,
-    "featureType": 1,
-    "dataGettingType": "esri.feature",
-    "domainHead": "maps.columbus.gov",
-    "typeOfSource": "Mapserver",
-    "URL": "http://maps.columbus.gov/arcgis/rest/services/LegacyServices/SSOCSO/MapServer/0",
-    "color": null,
-    "icon": null,
-    "layerName": "Sewer overflows"
-  },
-  {
     "layerID": "sdw_sdw",
     "isSimpleLayer": "TRUE",
     "layerType": "T",
