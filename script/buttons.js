@@ -288,15 +288,12 @@ function handleFileSelect(evt) {
   var output = [];
   f = files[0]
 
-
-
-
   var fileReader = new FileReader();
   fileReader.onload = function (e) {
     if (xcurrentLayerID == $("#name-input").val() || $("#name-input").val() == "") {
       document.getElementById('fileInfoList').innerHTML = '<ul style="color:red">' + "Please re/specify layer's name." + '</ul>'
     } else {
-      xcurrentLayerID = $("#name-input").val();
+      xcurrentLayerID = "Custom_"+$("#name-input").val();
       eval(xcurrentLayerID + "JSON = fileReader.result;")
       output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
         f.size, ' bytes, last modified: ',
@@ -305,8 +302,6 @@ function handleFileSelect(evt) {
     }
   }
   fileReader.readAsText(f);
-
-
 }
 
 function handleDragOver(evt) {
@@ -330,7 +325,7 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
     return false;
   }
 
-  xlayerID = $("#name-input").val();
+  xlayerID = "Custom_"+$("#name-input").val();
   for (var i = 0; i < fullLayerFlags.layerFlags.length; i++) {
     if (fullLayerFlags.layerFlags[i].layerID == xlayerID) {
       document.getElementById('fileInfoList').innerHTML = '<ul style="color:red">' + "Please use another name." + '</ul>'
@@ -388,7 +383,7 @@ $("#confirm-btn").click(function () { //equal to clicking addLayer buttons.
     alert("Something went wrong. Adding layer failed.");
   }*/
 
-  sortLayerHandle(e)
+  sortLayerHandle(e);
   $("#more-modal").modal("hide");
   return false;
 
