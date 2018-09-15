@@ -73,25 +73,81 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 */
+
+		case "columbus311":
+			console.log("it's there");
+			URL='http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer/22';
+			//URL="http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer";
+			columbus311Layer = L.esri.featureLayer({
+				url: URL,
+				pointToLayer: function (feature, latlng) {
+					if (feature.properties.STATUS=="CLOSED")
+					{
+						return L.circleMarker(latlng, {
+							radius: 4,
+							color: "#33B001",
+							pane: layerID + "Pane",
+							fillOpacity: 0.85
+						}
+						///////////////////////////////////////////////////here goes the marker setting
+					)
+					}
+					else{
+						return L.circleMarker(latlng, {
+							radius: 4,
+							color: "#FF5656",
+							pane: layerID + "Pane",
+							fillOpacity: 0.85
+						}
+						///////////////////////////////////////////////////here goes the marker setting
+					)
+					}
+					
+				},
+				onEachFeature: function (feature, layer) {
+					if (feature.properties) {
+						var content = "<h4>" + "Address: " + feature.properties.LOCATION_DESCRIPTION + "</h4><br/>" +
+							"Section Name: " + feature.properties.SECTION_NAME + "<br/>" +
+							"Referral Name: " + feature.properties.REFERRAL_NAME + "<br/>" +
+							"Division Name: " + feature.properties.DIVISION_NAME + "<br/>" +
+							"Category: " + feature.properties.SR_CATEGORY + "<br/>" +
+							"Status: " + feature.properties.STATUS + "<br/>" +
+							"Description: " + feature.properties.SWR_TYPE + "<br/>" +
+							"<!--Streetview Div-->" +
+							"<div  id='streetview' style='margin-top:10px;'><hr><h4 class='text-center'><a href='http://maps.google.com/maps?q=&layer=c&cbll=" + layer.getLatLng().lat + "," + layer.getLatLng().lng + "' target='_blank'>Google Streetview</a></h4</div>";
+
+						layer.on({
+							click: function (e) {
+								var popup = L.popup().setLatLng([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).setContent(content).openOn(map);
+							}
+						});
+						//$("#feature-list tbody").append('<tr class="feature-row" layerID="' + layerID + '" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="18" height="18" src="img/parkingmeters.png"></td><td class="feature-name">' + layer.feature.properties.LOCATION +" , "+layer.feature.properties.METER_ID+ '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+
+					}
+				}
+			}).addTo(map);
+			flagList[layerID] = 1;
+			break;
+
 		case "bikepath_heads":
-		var legendURL = URL.substring(0, URL.indexOf("MapServer") + 9) + '/legend?f=pjson'
-		var numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2)
+			var legendURL = URL.substring(0, URL.indexOf("MapServer") + 9) + '/legend?f=pjson';
+			var numberOfLayer = URL.substring(URL.lastIndexOf("/") + 1, URL.lastIndexOf("/") + 2);
 			$.ajax({
 				url: legendURL,
 				type: 'GET',
 				dataType: 'JSON',
 				success: function (data) {
-					var numberOfIcon = data.layers[numberOfLayer].legend.length
+					var numberOfIcon = data.layers[numberOfLayer].legend.length;
 					iconurls = [];
-					
+
 					for (var jj = 0; jj < numberOfIcon; jj++) {
-						iconurls.push ('data:image/png;base64,' + data.layers[numberOfLayer].legend[jj].imageData)
+						iconurls.push('data:image/png;base64,' + data.layers[numberOfLayer].legend[jj].imageData);
 					}
 					var codeString = layerID + 'Layer = L.esri.featureLayer({' +
 						'url: URL,' +
 
 						'pointToLayer:function (feature, latlng) {var jjj;' +
-						'if(feature.properties.Type=="ParkandPedal"){jjj=0}else{jjj=1}'+
+						'if(feature.properties.Type=="ParkandPedal"){jjj=0}else{jjj=1}' +
 						'return L.marker(latlng, {' +
 						'icon: L.icon({' +
 						'iconUrl:  iconurls[jjj],' +
@@ -122,8 +178,8 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 					});
 
 				}
-			})
-			flagList[layerID]=1
+			});
+			flagList[layerID] = 1;
 			break;
 
 		case "homeown":
@@ -1068,8 +1124,8 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	icons = fullLayerFlags.getItemByLayerID(layerID).icon
 	addLegendHandle(layerID, URL + "/legend", grades, colors, dataType, icons, acolor);
-	console.log("dataType: "+dataType)
-	console.log("URL: "+URL)
+	console.log("dataType: " + dataType)
+	console.log("URL: " + URL)
 	console.log("Done.")
 	$("#loading").hide();
 
