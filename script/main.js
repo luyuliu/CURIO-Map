@@ -190,12 +190,12 @@ class LayerFlagGroup {
 var fullLayerFlags = new LayerFlagGroup();
 
 $.ajax({
-  url: "https://luyuliu.github.io/CURIO-Map/data/inventory.json",
+  url: "/data/inventory.json",
   type: 'GET',
   dataType: 'JSON',
   success: function (data) {
     $.ajax({
-      url: "https://luyuliu.github.io/CURIO-Map/data/metadata.json",
+      url: "/data/metadata.json",
       type: 'GET',
       dataType: 'JSON',
       success: function (metadata) {
