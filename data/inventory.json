@@ -305,7 +305,7 @@
     "layerType": "T",
     "extentType": 2,
     "dataType": 3,
-    "featureType": 2,
+    "featureType": 3,
     "dataGettingType": "esri.feature",
     "domainHead": "gismaps.osu.edu",
     "typeOfSource": "Mapserver",
