@@ -300,7 +300,7 @@
     "layerName": "Columbus Emergency"
   },
   {
-    "layerID": "Columbus311",
+    "layerID": "columbus311",
     "isSimpleLayer": "TRUE",
     "layerType": "T",
     "extentType": 2,

@@ -98,5 +98,10 @@
     "layerID": "emergency",
     "left": "This map layer shows facilities related to emergency response in the City of Columbus. Police and fire stations, as well as other facilities, are included. This layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
     "right": "<h4>EMERGENCY FACILITIES DATA</h4><div class=panel id=boroughs-tab><p>Columbus Emergency Facilities Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/emergency-response-facilities target=_blank>the City of Columbus.</a></div>"
+  },
+  {
+    "layerID": "columbus311",
+    "left": "City of Columbus 311 Requests - Last 30 Days.",
+    "right": ""
   }
 ]
