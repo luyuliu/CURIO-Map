@@ -101,7 +101,7 @@
   },
   {
     "layerID": "columbus311",
-    "left": "<h4>The City of Columbus Service Center provides a way for you, the resident, to submit a request for City Services. The Service Center is the single point of contact for requesting all non-emergency City services and is available to residents, City businesses, and visitors.</h4></br><p>The Columbus Service Center is also known as \"3-1-1\"; its mission is to provide access to City services and City information with the highest possible levels of customer service. The \"3-1-1\" initiative strives to help City agencies provide efficient service delivery by allowing them to focus on their core missions, manage workloads efficiently, provide insight into the needs of residents, and measure how well services are delivered.</p>",
+    "left": "<p>The City of Columbus Service Center provides a way for the resident to submit a request for City Services. The Service Center is the single point of contact for requesting all non-emergency City services and is available to residents, City businesses, and visitors.</p></br><p>The Columbus Service Center is also known as \"3-1-1\"; its mission is to provide access to City services and City information with the highest possible levels of customer service. The \"3-1-1\" initiative strives to help City agencies provide efficient service delivery by allowing them to focus on their core missions, manage workloads efficiently, provide insight into the needs of residents, and measure how well services are delivered.</p>",
     "right": "City of Columbus 311 Requests - Last 7 Days."
   }
 ]
