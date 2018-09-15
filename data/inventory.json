@@ -298,5 +298,20 @@
     "color": null,
     "icon": null,
     "layerName": "Columbus Emergency"
+  },
+  {
+    "layerID": "trans_cabsER",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 2,
+    "dataGettingType": "esri.feature",
+    "domainHead": "gismaps.osu.edu",
+    "typeOfSource": "Mapserver",
+    "URL": "http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer",
+    "color": null,
+    "icon": null,
+    "layerName": "Columbus 311 requests"
   }
 ]
