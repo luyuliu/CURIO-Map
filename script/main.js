@@ -34,7 +34,7 @@ var highlightStyle = {
   fillOpacity: 0.7,
   radius: 10
 };
-highlight.addTo(map)
+highlight.addTo(map);
 
 var e = null;
 

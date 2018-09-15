@@ -410,54 +410,54 @@ function tutorialHandle() {
     switch (zz) {
       case 0:
         item = "mapheader";
-        intro = "Welcome to CURIO Map gallery! Thank you for using CURIO map gallery! Click the title banner to see more detail of the map gallery"
+        intro = "Welcome to CURIO Map gallery! Thank you for using CURIO map gallery! Click the title banner to see more detail of the map gallery";
         break;
       case 1:
-        item = "accordion1"
-        intro = "The left sidebar is the map controls."
+        item = "accordion1";
+        intro = "The left sidebar is the map controls.";
         break;
       case 2:
         item = "sidebar-hide-btn";
-        intro = "You can hide the menu by clicking the button and unfold it by clicking the floating button."
+        intro = "You can hide the menu by clicking the button and unfold it by clicking the floating button.";
         break;
       case 3:
-        item = "map-adm-title"
-        intro = "The sidebar contains 3 parts, each of which can be fold and unfold by clicking on the title."
+        item = "map-adm-title";
+        intro = "The sidebar contains 3 parts, each of which can be fold and unfold by clicking on the title.";
         break;
       case 4:
-        item = "layer-setting"
+        item = "layer-setting";
         intro = "'Layer Setting' menu has three functions.</br>1. Change the base map </br>2. Uncheck all the layer selected in the Layer Control </br>3. Fold all the panel in the 'Layer Control' list. </br>4. Add more custom Geojson layers."
         break;
       case 5:
-        item = "layer-sorting"
+        item = "layer-sorting";
         intro = "'Layer Sorting' menu also has three sorting functions to sort the layers in the 'Layer Control' list as well as the z-index in the map.</br>1. Alphabetical sorting;</br>2. Categories sorting, which will sort the layers according to Transportation (orange), Social (blue), and Environment (green) category;</br>3. GIS sorting, which will sort the layers based on their geometry dimension as in points (0-dimension) and polylines (1-dimension) and polygons (2-dimension)."
         break;
       case 6:
-        item = "layer-control-panel"
-        intro = "This panel contains multiple layers to display and overlay."
+        item = "layer-control-panel";
+        intro = "This panel contains multiple layers to display and overlay.";
         break;
       case 7:
-        item = "emergency-checkbox"
-        intro = "For each layer, check/uncheck the checkbox to add/remove the layer to/from the map."
+        item = "emergency-checkbox";
+        intro = "For each layer, check/uncheck the checkbox to add/remove the layer to/from the map.";
         break;
       case 8:
-        item = "emergency-metadata"
-        intro = "And click on the title of each layer to see the metadata."
+        item = "emergency-metadata";
+        intro = "And click on the title of each layer to see the metadata.";
         break;
       case 9:
-        item = "emergency-list-item"
+        item = "emergency-list-item";
         intro = "The sequence of the layers in this list is also the sequence of z-index of each layer. Drag the handle to move and change the z-index.<br/><br/>Click on the expanding arrow to see more functions."
         break;
       case 10:
-        item = "emergency-legend-btn"
-        intro = "Click on the 'Legend' button to expand the legend of this layer. Legend can only be opened after the layer is added to the map."
+        item = "emergency-legend-btn";
+        intro = "Click on the 'Legend' button to expand the legend of this layer. Legend can only be opened after the layer is added to the map.";
         break;
       case 11:
-        item = "emergency-upmost-btn"
-        intro = "Click on the 'Upmost' button to move this layer to the top of the list as well as the z-index will be raised to the top."
+        item = "emergency-upmost-btn";
+        intro = "Click on the 'To Top' button to move this layer to the top of the list as well as the z-index will be raised to the top.";
         break;
       case 12:
-        item = "emergency-zoomto-btn"
+        item = "emergency-zoomto-btn";
         intro = "Click on the 'Zoomto' button to zoom the map to the extent of the layer."
         break;
       case 13:
