@@ -24,14 +24,85 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	switch (layerID) {
 
 		case "eth_asian":
-			eth_asianLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [1],
-				pane: layerID + "Pane"
+		var grades = [75, 50, 25, 0];
+		var colors = ['#e31a1c', '#fd8d3c', '#fecc5c', '#ffffb2'];
+		homeownLayer = L.geoJson(null, {
+			style: function (feature) {
+				edgeColor = "#bdbdbd";
+				fillColor = getColorx(feature.properties.PCT_OWN, grades, colors);
+				return {
+					color: edgeColor,
+					fillColor: fillColor,
+					opacity: 1,
+					fillOpacity: 0.90,
+					weight: 0.5
+				};
+			},
+			onEachFeature: onEachAdminFeatureForHomeown,
+			pane: layerID + 'Pane'
+		})
+
+
+		$.get("https://luyuliu.github.io/CURIO-Map/data/morpcCensus.json", function (data) {
+			homeownLayer.addData(data)
+		});
+
+		map.addLayer(homeownLayer);
+		flagList[layerID] = 1;
+
+		//for homeown, mouse events
+		function onEachAdminFeatureForHomeown(feature, layer) {
+			layer.on({
+				mouseover: function (e) {
+					thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+					var layer = e.target;
+					layer.setStyle({
+						weight: 5,
+						color: '#999',
+						fillOpacity: 0.7
+					});
+
+
+					//info.update(popupContent);
+
+				},
+				mouseout: function (e) {
+					eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
+				},
+				click: function (e) {
+					// TODO: click
+					feature = e.target.feature;
+					var popupContent = "<h4>" + "Census Tract: " + feature.properties.TRACT + "</h4>" +
+						"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
+
+						"Vacant Units: " + feature.properties.VACANT + "<br/>" +
+						"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
+						"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
+						"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
+
+					var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
+				}
 			});
-			eth_asianLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
+		}
+
+		function getColorx(val, grades, colors) {
+			for (i = 0; i < grades.length; i++)
+				if (val >= grades[i])
+					return colors[i];
+			return '#ffffff';
+		}
+
+		if (!("ontouchstart" in window)) { //highlight
+			$(document).on("mouseover", ".feature-row", function (e) {
+				highlight.clearLayers().addLayer(L.circleMarker([$(this).attr("lat"), $(this).attr("lng")], highlightStyle));
+			});
+		}
+
+		$(document).on("mouseout", ".feature-row", clearHighlight); //clear highlight when mouse out of feature-row
+
+		function clearHighlight() {
+			highlight.clearLayers();
+		}
 
 		case "eth_his":
 			eth_hisLayer = L.esri.dynamicMapLayer({
@@ -63,36 +134,99 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			flagList[layerID] = 1;
 			break;
 
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+		case "eth_white":
+			eth_whiteLayer = L.esri.dynamicMapLayer({
+				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
+				layers: [4],
+				pane: layerID + "Pane"
+			});
+			eth_whiteLayer.addTo(map)
+			flagList[layerID] = 1;
+			break;
+
 
 		case "columbus311":
 			console.log("it's there");
-			URL='http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer/22';
+			URL = 'http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer/22';
 			//URL="http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer";
 			columbus311Layer = L.esri.featureLayer({
 				url: URL,
 				pointToLayer: function (feature, latlng) {
-					if (feature.properties.STATUS=="CLOSED")
-					{
+					if (feature.properties.STATUS == "CLOSED") {
 						return L.circleMarker(latlng, {
-							radius: 4,
-							color: "#33B001",
-							pane: layerID + "Pane",
-							fillOpacity: 0.85
-						}
-						///////////////////////////////////////////////////here goes the marker setting
-					)
-					}
-					else{
+								radius: 4,
+								color: "#33B001",
+								pane: layerID + "Pane",
+								fillOpacity: 0.85
+							}
+							///////////////////////////////////////////////////here goes the marker setting
+						)
+					} else {
 						return L.circleMarker(latlng, {
-							radius: 4,
-							color: "#FF5656",
-							pane: layerID + "Pane",
-							fillOpacity: 0.85
-						}
-						///////////////////////////////////////////////////here goes the marker setting
-					)
+								radius: 4,
+								color: "#FF5656",
+								pane: layerID + "Pane",
+								fillOpacity: 0.85
+							}
+							///////////////////////////////////////////////////here goes the marker setting
+						)
 					}
-					
+
 				},
 				onEachFeature: function (feature, layer) {
 					if (feature.properties) {
@@ -174,7 +308,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
-			var colors = ['#e31a1c','#fd8d3c','#fecc5c', '#ffffb2'  ];
+			var colors = ['#e31a1c', '#fd8d3c', '#fecc5c', '#ffffb2'];
 			homeownLayer = L.geoJson(null, {
 				style: function (feature) {
 					edgeColor = "#bdbdbd";

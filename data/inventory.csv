@@ -1,5 +1,5 @@
 layerID,isSimpleLayer,layerType,extentType,dataType,featureType,dataGettingType,domainHead,typeOfSource,URL,color,icon,layerName
-homeown,TRUE,S,1,0,3,json,N/A,local resource,,,,Home ownership
+homeown,TRUE,S,1,7,3,json,N/A,local resource,,,,Home ownership
 sdw_sdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer,,,Sidewalk
 sdw_nsdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer,,,Sidewalk gaps
 bikepath_path,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer,,,Bike Routes
@@ -20,14 +20,14 @@ industry,FALSE,S,1,0,1,json,N/A,local resource,,,,Columbus Industry
 medical,FALSE,S,1,0,1,json,N/A,local resource,,,,Columbus Medical
 emergency,FALSE,S,1,0,1,json,N/A,local resource,,,,Columbus Emergency
 columbus311,TRUE,S,2,3,3,esri.feature,maps2.columbus.gov,Mapserver,http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer,,,Columbus 311 requests
-eth_asian,TRUE,S,1,0,3,json,N/A,local resource,,,,Asian Percent
-eth_his,TRUE,S,1,0,3,json,N/A,local resource,,,,Hispanic Percent
-eth_black,TRUE,S,1,0,3,json,N/A,local resource,,,,Black Percent
-eth_white,TRUE,S,1,0,3,json,N/A,local resource,,,,White Percent
-med_income,TRUE,S,1,0,3,json,N/A,local resource,,,,Median Income
-commute_min,TRUE,T,1,0,3,json,N/A,local resource,,,,Commute Time
-walk_rate,TRUE,T,1,0,3,json,N/A,local resource,,,,Walk to Work Rate
-auto_rate,TRUE,T,1,0,3,json,N/A,local resource,,,,Drive to Work Rate
-trans_rate,TRUE,T,1,0,3,json,N/A,local resource,,,,Transit to Work Rate
-bike_rate,TRUE,T,1,0,3,json,N/A,local resource,,,,Bicycle to Work Rate
-pool_rate,TRUE,T,1,0,3,json,N/A,local resource,,,,Carpool to Work Rate
+eth_asian,TRUE,S,1,7,3,json,N/A,local resource,,,,Asian Percent
+eth_his,TRUE,S,1,7,3,json,N/A,local resource,,,,Hispanic Percent
+eth_black,TRUE,S,1,7,3,json,N/A,local resource,,,,Black Percent
+eth_white,TRUE,S,1,7,3,json,N/A,local resource,,,,White Percent
+med_income,TRUE,S,1,7,3,json,N/A,local resource,,,,Median Income
+commute_min,TRUE,T,1,7,3,json,N/A,local resource,,,,Commute Time
+walk_rate,TRUE,T,1,7,3,json,N/A,local resource,,,,Walk to Work Rate
+auto_rate,TRUE,T,1,7,3,json,N/A,local resource,,,,Drive to Work Rate
+trans_rate,TRUE,T,1,7,3,json,N/A,local resource,,,,Transit to Work Rate
+bike_rate,TRUE,T,1,7,3,json,N/A,local resource,,,,Bicycle to Work Rate
+pool_rate,TRUE,T,1,7,3,json,N/A,local resource,,,,Carpool to Work Rate
