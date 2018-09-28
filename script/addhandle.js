@@ -24,182 +24,72 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	switch (layerID) {
 
 		case "eth_asian":
-		var grades = [75, 50, 25, 0];
-		var colors = ['#e31a1c', '#fd8d3c', '#fecc5c', '#ffffb2'];
-		homeownLayer = L.geoJson(null, {
-			style: function (feature) {
-				edgeColor = "#bdbdbd";
-				fillColor = getColorx(feature.properties.PCT_OWN, grades, colors);
-				return {
-					color: edgeColor,
-					fillColor: fillColor,
-					opacity: 1,
-					fillOpacity: 0.90,
-					weight: 0.5
-				};
-			},
-			onEachFeature: onEachAdminFeatureForHomeown,
-			pane: layerID + 'Pane'
-		})
-
-
-		$.get("https://luyuliu.github.io/CURIO-Map/data/morpcCensus.json", function (data) {
-			homeownLayer.addData(data)
-		});
-
-		map.addLayer(homeownLayer);
-		flagList[layerID] = 1;
-
-		//for homeown, mouse events
-		function onEachAdminFeatureForHomeown(feature, layer) {
-			layer.on({
-				mouseover: function (e) {
-					thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
-					var layer = e.target;
-					layer.setStyle({
-						weight: 5,
-						color: '#999',
-						fillOpacity: 0.7
-					});
-
-
-					//info.update(popupContent);
-
-				},
-				mouseout: function (e) {
-					eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
-				},
-				click: function (e) {
-					// TODO: click
-					feature = e.target.feature;
-					var popupContent = "<h4>" + "Census Tract: " + feature.properties.TRACT + "</h4>" +
-						"Housing Units: " + Number(feature.properties.HSE_UNITS) + "<br/>" +
-
-						"Vacant Units: " + feature.properties.VACANT + "<br/>" +
-						"Owner Occupied Units: " + feature.properties.OWNER_OCC + "<br/>" +
-						"Rental Units: " + feature.properties.RENTER_OCC + "<br/>" +
-						"Population/SQMI 2013: " + Math.floor(feature.properties.POP13_SQMI);
-
-					var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(popupContent).openOn(map);
-				}
-			});
-		}
-
-		function getColorx(val, grades, colors) {
-			for (i = 0; i < grades.length; i++)
-				if (val >= grades[i])
-					return colors[i];
-			return '#ffffff';
-		}
-
-		if (!("ontouchstart" in window)) { //highlight
-			$(document).on("mouseover", ".feature-row", function (e) {
-				highlight.clearLayers().addLayer(L.circleMarker([$(this).attr("lat"), $(this).attr("lng")], highlightStyle));
-			});
-		}
-
-		$(document).on("mouseout", ".feature-row", clearHighlight); //clear highlight when mouse out of feature-row
-
-		function clearHighlight() {
-			highlight.clearLayers();
-		}
+			colors = ["#C71585", "#FF1493", "#FF69B4", "#FFC0CB", "#f7e3e3"];
+			grades = [3.99, 1.83, 0.94, 0.34];
+			variables = ["AsianNH", "AsianNHPct", "Total"];
+			break;
 
 		case "eth_his":
-			eth_hisLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [2],
-				pane: layerID + "Pane"
-			});
-			eth_his.addTo(map)
-			flagList[layerID] = 1;
+			colors = ["#8B0000", "#CD5C5C", "#F08080", "#FFA07A", "#f7e3e3"];
+			grades = [4.86, 2.84, 1.87, 1.16];
+			variables = ["Hispanic", "HispPct", "Total"];
 			break;
 
 		case "eth_black":
-			eth_blackLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [3],
-				pane: layerID + "Pane"
-			});
-			eth_blackLayer.addTo(map)
-			flagList[layerID] = 1;
+			colors = ["#006400", "#008000", "#3CB371", "#9ACD32", "#DDF9D2"];
+			grades = [33.5, 9.4, 3.17, 1.08];
+			variables = ["BlackNH", "BlackNHPct", "Total"];
 			break;
 
 		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
+			colors = ["#000080", "#0000CD", "#6495ED", "#B0C4DE", "#DDF9D2"];
+			grades = [94.3, 88.67, 77.87, 53.3];
+			variables = ["WhiteNH", "WhiteNHPct", "Total"];
 			break;
 
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
+		case "med_income":
+			colors = ["#800000", "#A52A2A", "#A0522D", "#DEB887", "#FFF8DC"];
+			grades = [81780, 61284, 43577, 30064];
+			variables = ["Total", "MEDINCOME"];
 			break;
 
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
-		case "eth_white":
-			eth_whiteLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [4],
-				pane: layerID + "Pane"
-			});
-			eth_whiteLayer.addTo(map)
-			flagList[layerID] = 1;
+		case "commute_min":
+			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
+			grades = [27, 24, 22, 19];
+			variables = ["Total", "COMMUTEMIN"];
 			break;
 
+		case "walk_rate":
+			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
+			grades = [6.01, 2.94, 2.94, 1.53];
+			variables = ["Total", "WALKRATE"];
+			break;
 
+		case "auto_rate":
+			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
+			grades = [90, 85.6, 80.7, 72.4];
+			variables = ["Total", "AUTORATE"];
+			break;
+
+		case "trans_rate":
+			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
+			grades = [8.25, 3.97, 1.77, 0];
+			variables = ["Total", "TRANSRATE"];
+			break;
+
+		case "bike_rate":
+			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
+			grades = [4.93, 2.64, 1.44, 0];
+			variables = ["Total", "BIKERATE"];
+			break;
+
+		case "pool_rate":
+			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
+			grades = [27, 24, 22, 19];
+			variables = ["Total", "POOLRATE"];
+			break;
+	}
+	switch (layerID) {
 		case "columbus311":
 			console.log("it's there");
 			URL = 'http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer/22';
@@ -1216,7 +1106,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			//"JSON Points"
 			//"JSON Polyline/Polygon"
 			//"GeoServer tiles"
-			//"GeoServer features" which users can't use.;)
 			if (typeof (URL) == "undefined") {
 				var URL = fullLayerFlags.getURLByLayerID(layerID);
 			}
@@ -1227,8 +1116,11 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				var dataType = fullLayerFlags.getDataTypeByLayerID(layerID)
 			}
 			//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
+			if (dataType == 7) {
+				jsonp = [grades, colors, variables];
+			}
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
-			flagList[layerID] = 1
+			flagList[layerID] = 1;
 
 
 	}
@@ -1249,7 +1141,9 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	addLegendHandle(layerID, URL + "/legend", grades, colors, dataType, icons, acolor);
 	console.log("dataType: " + dataType)
 	console.log("URL: " + URL)
+	console.log("layerID: " + layerID)
 	console.log("Done.")
+
 	$("#loading").hide();
 
 }

@@ -149,9 +149,71 @@ function syncSidebar(isLeveled) { //update the siderbar
 
 
 //------------------------------------addhandle.js------------------------------------
+function getColorJson(val, grades, colors) {
+	for (i = 0; i < grades.length; i++)
+		if (val >= grades[i])
+			return colors[i];
+	return colors[colors.length - 1];
+}
+
 function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
 	if (acolor === undefined) {
-		acolor = "brown"
+		acolor = "brown";
+	}
+
+	if (dataType == 7) {
+		URL2 = "https://luyuliu.github.io/CURIO-Map/data/CURIODemographics-ALL.geojson";
+		var grades, colors, variables;
+		grades=jsonp[0];
+		colors=jsonp[1];
+		variables=jsonp[2];
+		var geoJsonLayer = L.geoJson(null, {
+			style: function (feature) {
+				edgeColor = "#000000";
+
+				fillColor = getColorJson(feature.properties[variables[1]], grades, colors);
+				return {
+					color: edgeColor,
+					fillColor: fillColor,
+					opacity: 1,
+					fillOpacity: 0.90,
+					weight: 0.8
+				};
+			},
+			onEachFeature: function (feature, layer) {
+				layer.on({
+					mouseover: function (e) {
+						thisLayerID = e.target.options.pane.substring(0, e.target.options.pane.indexOf("P"))
+						var layer = e.target;
+						layer.setStyle({
+							weight: 5,
+							color: '#999',
+							fillOpacity: 0.7
+						});
+					},
+					mouseout: function (e) {
+						eval(thisLayerID + "Layer" + ".resetStyle(e.target);")
+					},
+					click: function (e) {
+						// TODO: click
+						feature = e.target.feature;
+						var content = ""
+						for (var index in variables) {
+							content = content + variables[index] + ": " + feature.properties[variables[index]] + "<br/>"
+						}
+						var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(content).openOn(map);
+					}
+				});
+			},
+			pane: layerID + 'Pane'
+
+		});
+
+		$.get("https://luyuliu.github.io/CURIO-Map/data/CURIODemographics-ALL.geojson", function (data) {
+			geoJsonLayer.addData(data);
+		});
+
+		return geoJsonLayer;
 	}
 
 	if (URL2 == false) {
@@ -243,8 +305,6 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
 			eval('geoJsonLayer.addData(' + layerID + 'JSON);')
 
 			return geoJsonLayer;
-
-
 		}
 	}
 
@@ -395,8 +455,8 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 		case "parkingmeters":
 			getIconBlockDiv(layerID, "pic", null, "Parking meters", "./img/parkingmeters.png")
 			break;
-		
-		
+
+
 
 
 			/*	case "air_stations":
@@ -502,7 +562,7 @@ function getGraduatedColorsDiv(layerID, grades, colors) { //grades.length must =
 		if (i == 0) {
 			labelContent2 = grades[i] + "% + "
 		} else {
-			labelContent2 = grades[i] + "% - " + grades[i - 1] +"%"
+			labelContent2 = grades[i] + "% - " + grades[i - 1] + "%"
 		}
 		legendContent2 += "<tr valign='middle'>" +
 			"<td class='tablehead' align='middle'>" + getColorBlockString(colors[i]) + "</td>" +
@@ -633,18 +693,18 @@ function returnBounds(layerID) { //used to put this in the bottom of addhandle.j
 				return extent;
 
 			case 2: //feature
-			/*
-				var aUrl;
-				eval('var currentLayer=' + layerID + 'Layer')
-				aUrl = currentLayer.options.url;
-				var theend = aUrl.indexOf("MapServer");
-				aUrl = aUrl.substring(0, theend + 9);
-				var extent = getBoundsMapServer(aUrl + "/info/iteminfo?f=pjson");
-				
-				extent = L.latLngBounds(corner1, corner2)
+				/*
+					var aUrl;
+					eval('var currentLayer=' + layerID + 'Layer')
+					aUrl = currentLayer.options.url;
+					var theend = aUrl.indexOf("MapServer");
+					aUrl = aUrl.substring(0, theend + 9);
+					var extent = getBoundsMapServer(aUrl + "/info/iteminfo?f=pjson");
+					
+					extent = L.latLngBounds(corner1, corner2)
 
-				console.log(extent)
-				return extent;*/
+					console.log(extent)
+					return extent;*/
 				var corner1 = L.latLng(40.143327, -83.177279)
 				var corner2 = L.latLng(39.835083, -82.773769)
 				return L.latLngBounds(corner1, corner2)
@@ -708,9 +768,6 @@ function getLayerName(layerID) { //from layerID to get full name of layer, the n
 
 function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 {
-
-	//These methods are obselete. Can't actually use them
-
 	if (dataType == 1) { //"JSON Points"
 		eval(layerID + "Layer=addingJsonPointsHandle(layerID, URL,symbolType,acolor);")
 		eval("map.addLayer(" + layerID + "Layer);")
@@ -718,7 +775,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		return false;
 	}
 
-	if (dataType == 2 || dataType == 6) { //"JSON Polyline (2)/Polygon (6)"
+	if (dataType == 2 || dataType == 6 || dataType == 7) { //"JSON Polyline (2)/Polygon (6)"
 		eval(layerID + "Layer = receiveJsonp(URL, layerID,jsonp,acolor,dataType);")
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
@@ -746,9 +803,9 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 			type: 'GET',
 			dataType: 'JSON',
 			success: function (data) {
-				
+
 				iconurl = ('data:image/png;base64,' + data.layers[numberOfLayer].legend[0].imageData);
-				
+
 				var codeString = layerID + 'Layer = L.esri.featureLayer({' +
 					'url: URL,' +
 					'pointToLayer:function (feature, latlng) {' +
@@ -823,23 +880,23 @@ function addLayerHandle(layerID, isOut, dataType, URL, symbolType, jsonp, color)
 		"<div class=\"panel-heading\" style=\"width:230px;height:20px;padding:0;margin:0px\">" + //wrapper
 		"<span style=\"float:left;vertical-align: middle;padding-right:0;opacity:0.3;cursor: all-scroll;padding-top:2px\" class=\"glyphicon glyphicon-menu-hamburger\" title=\"Drag to change the sequence of layers\" aria-hidden=\"true\"></span>" +
 		//dragger
-		
-		
+
+
 		//checkbox
 		"&nbsp&nbsp&nbsp<div class=\"form-check abc-checkbox\" title=\"Click to show or hide the layer\" style=\"float:left ; margin: auto;padding:0;margin:0\">" +
-		
+
 		"<input type=\"checkbox\" id=\"" + layerID + "-checkbox" + "\" class=\"styled\" unchecked style=\"float:left;vertical-align: middle;padding:0\">" +
-		
-		"<label style='float:left;padding-left:0;padding-right:0;font-weight:normal' class='form-check-label' for='"+ layerID + "-checkbox'>" +
+
+		"<label style='float:left;padding-left:0;padding-right:0;font-weight:normal' class='form-check-label' for='" + layerID + "-checkbox'>" +
 		"<a style=\"float:left;padding-left:9px\" id=\"" + layerID + "-metadata" + "\" title=\"The metadata of the layer\" valign=\"top\" href=\"#\">" + getLayerName(layerID) + "</a>" + //metadata
 		//"<div class=\"panel-title\" style=\"float:left\">" +
-		"</label>"+
+		"</label>" +
 		"</div>" +
 		//checkbox end
 
-		
-		
-		"<a class=\"accordion-toggle collapsed\" id=\""+layerID+ "-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion\" style=\"vertical-align: middle; float:right\" href=\"#" + layerID + "-controlcontainer" + "\" title=\"Click to show or hide the control box\">" +
+
+
+		"<a class=\"accordion-toggle collapsed\" id=\"" + layerID + "-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion\" style=\"vertical-align: middle; float:right\" href=\"#" + layerID + "-controlcontainer" + "\" title=\"Click to show or hide the control box\">" +
 		"</a>" +
 		//"</div>" +
 		"</div>" +
