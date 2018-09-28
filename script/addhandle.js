@@ -184,11 +184,11 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
-			var colors = ['#ffffb2', '#fecc5c', '#fd8d3c', '#e31a1c'];
+			var colors = ['#e31a1c','#fd8d3c','#fecc5c', '#ffffb2' ];
 			homeownLayer = L.geoJson(null, {
 				style: function (feature) {
 					edgeColor = "#bdbdbd";
-					fillColor = getColorx(feature.properties.PCT_OWN, grades, colors);
+					fillColor = getColorx(feature.properties.OWNERRATE, grades, colors);
 					return {
 						color: edgeColor,
 						fillColor: fillColor,
@@ -202,7 +202,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			})
 
 
-			$.get("https://luyuliu.github.io/CURIO-Map/data/morpcCensus.json", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/CURIODemographics-ALL.geojson", function (data) {
 				homeownLayer.addData(data)
 			});
 
