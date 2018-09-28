@@ -22,16 +22,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	}
 
 	switch (layerID) {
-		/*
-		case "eth_eth":
-			eth_ethLayer = L.esri.dynamicMapLayer({
-				url: 'http://geog-cura-gis.asc.ohio-state.edu/arcgis/rest/services/CURIO/DotDensityFC_DarkGray/MapServer/',
-				layers: [0],
-				pane: layerID + "Pane"
-			});
-			eth_ethLayer.addTo(map)
-			flagList[layerID] = 1;
-			break;
 
 		case "eth_asian":
 			eth_asianLayer = L.esri.dynamicMapLayer({
@@ -72,7 +62,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			eth_whiteLayer.addTo(map)
 			flagList[layerID] = 1;
 			break;
-*/
+
 
 		case "columbus311":
 			console.log("it's there");
@@ -184,11 +174,11 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 		case "homeown":
 			var grades = [75, 50, 25, 0];
-			var colors = ['#e31a1c','#fd8d3c','#fecc5c', '#ffffb2' ];
+			var colors = ['#e31a1c','#fd8d3c','#fecc5c', '#ffffb2'  ];
 			homeownLayer = L.geoJson(null, {
 				style: function (feature) {
 					edgeColor = "#bdbdbd";
-					fillColor = getColorx(feature.properties.OWNERRATE, grades, colors);
+					fillColor = getColorx(feature.properties.PCT_OWN, grades, colors);
 					return {
 						color: edgeColor,
 						fillColor: fillColor,
@@ -202,7 +192,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			})
 
 
-			$.get("https://luyuliu.github.io/CURIO-Map/data/CURIODemographics-ALL.geojson", function (data) {
+			$.get("https://luyuliu.github.io/CURIO-Map/data/morpcCensus.json", function (data) {
 				homeownLayer.addData(data)
 			});
 
@@ -263,7 +253,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 				highlight.clearLayers();
 			}
 			break;
-
 
 		case "sewer":
 			var sewerMarker = L.AwesomeMarkers.icon({

@@ -103,5 +103,60 @@
     "layerID": "columbus311",
     "left": "<p>The City of Columbus Service Center provides a way for the resident to submit a request for City Services. The Service Center is the single point of contact for requesting all non-emergency City services and is available to residents, City businesses, and visitors.</p></br><p>The Columbus Service Center is also known as \"3-1-1\"; its mission is to provide access to City services and City information with the highest possible levels of customer service. The \"3-1-1\" initiative strives to help City agencies provide efficient service delivery by allowing them to focus on their core missions, manage workloads efficiently, provide insight into the needs of residents, and measure how well services are delivered.</p>",
     "right": "City of Columbus 311 Requests - Last 7 Days."
+  },
+  {
+    "layerID": "eth_asian",
+    "left": "<p>This layer shows the percentage of Asian people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "eth_his",
+    "left": "<p>This layer shows the percentage of Hispanic people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "eth_black",
+    "left": "<p>This layer shows the percentage of African American people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "eth_white",
+    "left": "<p>This layer shows the percentage of White people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "med_income",
+    "left": "<p>This layer shows the median income in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "commute_min",
+    "left": "<p>This layer shows the commute time in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "walk_rate",
+    "left": "<p>This layer shows the percentage of people who walk to working places in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "auto_rate",
+    "left": "<p>This layer shows the percentage of people who drive to working place in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "trans_rate",
+    "left": "<p>This layer shows the percentage of people who use public transit to working in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "bike_rate",
+    "left": "<p>This layer shows the percentage of people who use bicycle to working place in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "pool_rate",
+    "left": "<p>This layer shows the percentage of carpool to working place in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
   }
 ]

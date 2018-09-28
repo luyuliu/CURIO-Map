@@ -9,9 +9,9 @@
     "dataGettingType": "json",
     "domainHead": "N/A",
     "typeOfSource": "local resource",
-    "URL": null,
-    "color": null,
-    "icon": null,
+    "URL": "",
+    "color": "",
+    "icon": "",
     "layerName": "Home ownership"
   },
   {
@@ -25,8 +25,8 @@
     "domainHead": "arcgiswebadp1.morpc.org",
     "typeOfSource": "Mapserver",
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "Sidewalk"
   },
   {
@@ -40,8 +40,8 @@
     "domainHead": "arcgiswebadp1.morpc.org",
     "typeOfSource": "Mapserver",
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "Sidewalk gaps"
   },
   {
@@ -55,8 +55,8 @@
     "domainHead": "arcgiswebadp1.morpc.org",
     "typeOfSource": "Mapserver",
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapLevelOfComfort/MapServer",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "Bike Routes"
   },
   {
@@ -71,7 +71,7 @@
     "typeOfSource": "Mapserver",
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/BikemapGreenways/MapServer/0",
     "color": "green",
-    "icon": null,
+    "icon": "",
     "layerName": "Greenway Trails"
   },
   {
@@ -85,8 +85,8 @@
     "domainHead": "arcgiswebadp1.morpc.org",
     "typeOfSource": "Mapserver",
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/bikes/Bikemap_Trailheads/MapServer/0",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "Bike Trailheads"
   },
   {
@@ -100,8 +100,8 @@
     "domainHead": "epagis1.oit.ohio.gov",
     "typeOfSource": "Mapserver",
     "URL": "http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "NPDES individual"
   },
   {
@@ -116,7 +116,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2",
     "color": "#8E8E8E",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU cabs loopnorth"
   },
   {
@@ -131,7 +131,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3",
     "color": "#FF0000",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU cabs loopsouth"
   },
   {
@@ -146,7 +146,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4",
     "color": "#003EFF",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU cabs eastresidential"
   },
   {
@@ -161,7 +161,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5",
     "color": "#36D307",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU cabsBuckeyevillage"
   },
   {
@@ -176,7 +176,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/22",
     "color": "#40CA07",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU Parking C"
   },
   {
@@ -191,7 +191,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/21",
     "color": "#FFB10A",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU Parking B"
   },
   {
@@ -206,7 +206,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/20",
     "color": "#FF0A0A",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU Parking A"
   },
   {
@@ -221,7 +221,7 @@
     "typeOfSource": "Mapserver",
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18",
     "color": "#0D8DF1",
-    "icon": null,
+    "icon": "",
     "layerName": "OSU Parking accessible"
   },
   {
@@ -235,8 +235,8 @@
     "domainHead": "cura-gis-web.asc.ohio-state.edu",
     "typeOfSource": "Mapserver",
     "URL": "http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "Columbus trees"
   },
   {
@@ -249,9 +249,9 @@
     "dataGettingType": "json",
     "domainHead": "N/A",
     "typeOfSource": "local resource",
-    "URL": null,
-    "color": null,
-    "icon": null,
+    "URL": "",
+    "color": "",
+    "icon": "",
     "layerName": "Parking meters"
   },
   {
@@ -264,9 +264,9 @@
     "dataGettingType": "json",
     "domainHead": "N/A",
     "typeOfSource": "local resource",
-    "URL": null,
-    "color": null,
-    "icon": null,
+    "URL": "",
+    "color": "",
+    "icon": "",
     "layerName": "Columbus Industry"
   },
   {
@@ -279,9 +279,9 @@
     "dataGettingType": "json",
     "domainHead": "N/A",
     "typeOfSource": "local resource",
-    "URL": null,
-    "color": null,
-    "icon": null,
+    "URL": "",
+    "color": "",
+    "icon": "",
     "layerName": "Columbus Medical"
   },
   {
@@ -294,9 +294,9 @@
     "dataGettingType": "json",
     "domainHead": "N/A",
     "typeOfSource": "local resource",
-    "URL": null,
-    "color": null,
-    "icon": null,
+    "URL": "",
+    "color": "",
+    "icon": "",
     "layerName": "Columbus Emergency"
   },
   {
@@ -310,8 +310,173 @@
     "domainHead": "maps2.columbus.gov",
     "typeOfSource": "Mapserver",
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer",
-    "color": null,
-    "icon": null,
+    "color": "",
+    "icon": "",
     "layerName": "Columbus 311 requests"
+  },
+  {
+    "layerID": "eth_asian",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Asian Percent"
+  },
+  {
+    "layerID": "eth_his",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "His Percent"
+  },
+  {
+    "layerID": "eth_black",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Black Percent"
+  },
+  {
+    "layerID": "eth_white",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "White Percent"
+  },
+  {
+    "layerID": "med_income",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Median Income"
+  },
+  {
+    "layerID": "commute_min",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Commute Time"
+  },
+  {
+    "layerID": "walk_rate",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Walk to Work Rate"
+  },
+  {
+    "layerID": "auto_rate",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Drive to Work Rate"
+  },
+  {
+    "layerID": "trans_rate",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Transit to Work Rate"
+  },
+  {
+    "layerID": "bike_rate",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Bicycle to Work Rate"
+  },
+  {
+    "layerID": "pool_rate",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 1,
+    "dataType": 0,
+    "featureType": 3,
+    "dataGettingType": "json",
+    "domainHead": "N/A",
+    "typeOfSource": "local resource",
+    "URL": "",
+    "color": "",
+    "icon": "",
+    "layerName": "Carpool to Work Rate"
   }
 ]
