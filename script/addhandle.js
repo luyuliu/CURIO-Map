@@ -73,13 +73,13 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 
 		case "trans_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
-			grades = [8.25, 3.97, 1.77, 0];
+			grades = [8.25, 3.97, 1.77, 0.01];
 			variables = ["Total", "TRANSRATE"];
 			break;
 
 		case "bike_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
-			grades = [4.93, 2.64, 1.44, 0];
+			grades = [4.93, 2.64, 1.44, 0.01];
 			variables = ["Total", "BIKERATE"];
 			break;
 
@@ -1139,7 +1139,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 	//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 	icons = fullLayerFlags.getItemByLayerID(layerID).icon
 	addLegendHandle(layerID, URL + "/legend", grades, colors, dataType, icons, acolor);
-	console.log("dataType: " + dataType)
 	console.log("URL: " + URL)
 	console.log("layerID: " + layerID)
 	console.log("Done.")

@@ -164,9 +164,9 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
 	if (dataType == 7) {
 		URL2 = "https://luyuliu.github.io/CURIO-Map/data/CURIODemographics-ALL.geojson";
 		var grades, colors, variables;
-		grades=jsonp[0];
-		colors=jsonp[1];
-		variables=jsonp[2];
+		grades = jsonp[0];
+		colors = jsonp[1];
+		variables = jsonp[2];
 		var geoJsonLayer = L.geoJson(null, {
 			style: function (feature) {
 				edgeColor = "#000000";
@@ -423,18 +423,16 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 	//ADDITIONAL FOR JSON points: icon, color
 	//polyline: color
 	//server: url
+	if (dataType == 7) {
+		if (layerID == "med_income" || layerID == "commute_min") {
+			getGraduatedColorsDiv(layerID, grades, colors, false);
+		}
+		else {
+			getGraduatedColorsDiv(layerID, grades, colors, true);
+		}
+	}
+
 	switch (layerID) {
-		/*case "tree":
-			getMapServerLegendDiv(layerID, url + '/legend?f=pjson')
-			break;*/
-
-		/*case "demo":
-			getGraduatedColorsDiv(layerID, grades, colors)
-			break;*/
-
-		case "homeown":
-			getGraduatedColorsDiv(layerID, grades, colors)
-			break;
 
 		case "wshd_cso":
 			getIconBlockDiv(layerID, "pic", null, "Sewer overflows", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAMRJREFUOI3t0jFKgzEYBuAnUMgtFDo49gZOTuqkTuLi4OIBPEJdugs9QIUew9GDKHoCSRHj8IuU8n8/pLiIvpDle+FJQjLywxn9g78MrJziErt4wgL3idoMfnCH67XRBIeV48pFhPaClbMN7DuJczxg3nLCq2C+3jeAOY+VMgSOo6IfLOUVeyGX80u0YXTlJfZDsJRlVEXgHCc46OkeMWsCE++VI9zo/uEOnmvOi1TKbeKt9YQSK0y/VpfhhxoGt80fBD8BW6sroSH2zDEAAAAASUVORK5CYII=")
@@ -459,25 +457,25 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 
 
 
-			/*	case "air_stations":
-					var airLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
-					document.getElementById('legend-' + layerID + '-collapse').innerHTML = airLegendContent;
-					break;*/
+		/*	case "air_stations":
+				var airLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#008000"/></svg> 1–50 <br>Good<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFFF00"/></svg> 50–101 Moderate<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FFA500"/></svg> 101–151 Unhealthy for Sensitive Groups<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#FF0000"/></svg> 151–201 Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800080"/></svg> 201–301 Very Unhealthy<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#800000"/></svg> 301–500 Hazardous<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#222222"/></svg> Not Reporting Data'
+				document.getElementById('legend-' + layerID + '-collapse').innerHTML = airLegendContent;
+				break;*/
 
 		case "cota":
 			var cotaLegendContent = '<svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#253494" /></svg> >900 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#2c7fb8" /></svg> >500 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#41b6c4" /></svg> >99 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#a1dab4" /></svg> >50 Riders<br><svg height="28" width="28"><circle cx="14" cy="14" r="11" stroke-width="1" fill="#ffffcc" /></svg> <50 Riders'
 			document.getElementById('legend-' + layerID + '-collapse').innerHTML = cotaLegendContent;
 			break;
-			/*
-					case "gas":
-						getIconBlockDiv(layerID, "pic", null, "Very high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconVeryHI.png')
-						getIconBlockDiv(layerID, "pic", null, "High", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconHi.png')
-						getIconBlockDiv(layerID, "pic", null, "Mid high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconMidHi.png')
-						for (i = 0; i < 15; i++) {
-							iconurl = 'http://gis.osu.edu/misc/gasprices/icons/marker-icon' + (i + 1) + '.png';
-							getIconBlockDiv(layerID, "pic", null, "No." + (i + 1) + " low", iconurl)
-						}
-						break;*/
+		/*
+				case "gas":
+					getIconBlockDiv(layerID, "pic", null, "Very high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconVeryHI.png')
+					getIconBlockDiv(layerID, "pic", null, "High", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconHi.png')
+					getIconBlockDiv(layerID, "pic", null, "Mid high", 'http://gis.osu.edu/misc/gasprices/icons/marker-iconMidHi.png')
+					for (i = 0; i < 15; i++) {
+						iconurl = 'http://gis.osu.edu/misc/gasprices/icons/marker-icon' + (i + 1) + '.png';
+						getIconBlockDiv(layerID, "pic", null, "No." + (i + 1) + " low", iconurl)
+					}
+					break;*/
 		default:
 			if (dataType == 3 || dataType == 4) {
 				$.ajax({
@@ -554,22 +552,43 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 
 }
 
-function getGraduatedColorsDiv(layerID, grades, colors) { //grades.length must === colors.length
-
-
-	var legendContent2 = '<table><tbody>'
-	for (var i in grades) {
-		if (i == 0) {
-			labelContent2 = grades[i] + "% + "
-		} else {
-			labelContent2 = grades[i] + "% - " + grades[i - 1] + "%"
+function getGraduatedColorsDiv(layerID, grades, colors, flag) { //grades.length must === colors.length
+	if (flag) {
+		var legendContent2 = '<table><tbody>'
+		for (var i in grades) {
+			if (i == 0) {
+				labelContent2 = grades[i] + "% + ";
+			} else {
+				labelContent2 = grades[i] + "% - " + grades[i - 1] + "%";
+			}
+			legendContent2 += "<tr valign='middle'>" +
+				"<td class='tablehead' align='middle'>" + getColorBlockString(colors[i]) + "</td>" +
+				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'>" + labelContent2 + "</span><td>" + "</tr>";
 		}
 		legendContent2 += "<tr valign='middle'>" +
-			"<td class='tablehead' align='middle'>" + getColorBlockString(colors[i]) + "</td>" +
-			"<td class='tablecontent' align='right'><span>" + labelContent2 + "</span><td>" + "</tr>"
+				"<td class='tablehead' align='middle'>" + getColorBlockString(colors[colors.length-1]) + "</td>" +
+				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'> 0% - " + grades[grades.length-1] + "%</span><td>" + "</tr>";
+		legendContent2 += "</tbody><table>";
+		document.getElementById('legend-' + layerID + '-collapse').innerHTML += legendContent2;
 	}
-	legendContent2 += "</tbody><table>"
-	document.getElementById('legend-' + layerID + '-collapse').innerHTML += legendContent2;
+	else {
+		var legendContent2 = '<table><tbody>'
+		for (var i in grades) {
+			if (i == 0) {
+				labelContent2 = grades[i] + " + ";
+			} else {
+				labelContent2 = grades[i] + " - " + grades[i - 1];
+			}
+			legendContent2 += "<tr valign='middle'>" +
+				"<td class='tablehead' align='middle'>" + getColorBlockString(colors[i]) + "</td>" +
+				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'>" + labelContent2 + "</span><td>" + "</tr>";
+		}
+		legendContent2 += "<tr valign='middle'>" +
+				"<td class='tablehead' align='middle'>" + getColorBlockString(colors[colors.length-1]) + "</td>" +
+				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'> 0 - " + grades[grades.length-1] + "</span><td>" + "</tr>";
+		legendContent2 += "</tbody><table>";
+		document.getElementById('legend-' + layerID + '-collapse').innerHTML += legendContent2;
+	}
 }
 
 function getColorBlockString(color) {
