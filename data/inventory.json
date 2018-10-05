@@ -12,7 +12,7 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "Home ownership"
+    "layerName": "Home Ownership"
   },
   {
     "layerID": "sdw_sdw",
@@ -42,7 +42,7 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer",
     "color": "",
     "icon": "",
-    "layerName": "Sidewalk gaps"
+    "layerName": "Sidewalk Gaps"
   },
   {
     "layerID": "bikepath_path",
@@ -102,7 +102,7 @@
     "URL": "http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1",
     "color": "",
     "icon": "",
-    "layerName": "NPDES individual"
+    "layerName": "NPDES Individual"
   },
   {
     "layerID": "trans_cabsN",
@@ -117,7 +117,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2",
     "color": "#8E8E8E",
     "icon": "",
-    "layerName": "OSU cabs loopnorth"
+    "layerName": "OSU Cabs Loopnorth"
   },
   {
     "layerID": "trans_cabsS",
@@ -132,7 +132,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3",
     "color": "#FF0000",
     "icon": "",
-    "layerName": "OSU cabs loopsouth"
+    "layerName": "OSU Cabs Loopsouth"
   },
   {
     "layerID": "trans_cabsER",
@@ -147,7 +147,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4",
     "color": "#003EFF",
     "icon": "",
-    "layerName": "OSU cabs eastresidential"
+    "layerName": "OSU Cabs Eastresidential"
   },
   {
     "layerID": "trans_cabsBV",
@@ -162,7 +162,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5",
     "color": "#36D307",
     "icon": "",
-    "layerName": "OSU cabsBuckeyevillage"
+    "layerName": "OSU Cabs Buckeyevillage"
   },
   {
     "layerID": "trans_parkingC",
@@ -222,7 +222,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18",
     "color": "#0D8DF1",
     "icon": "",
-    "layerName": "OSU Parking accessible"
+    "layerName": "OSU Parking Accessible"
   },
   {
     "layerID": "tree",
@@ -237,7 +237,7 @@
     "URL": "http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer",
     "color": "",
     "icon": "",
-    "layerName": "Columbus trees"
+    "layerName": "Columbus Trees"
   },
   {
     "layerID": "parkingmeters",
@@ -252,7 +252,7 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "Parking meters"
+    "layerName": "Parking Meters"
   },
   {
     "layerID": "industry",
@@ -312,7 +312,7 @@
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer",
     "color": "",
     "icon": "",
-    "layerName": "Columbus 311 requests"
+    "layerName": "Columbus 311 Requests"
   },
   {
     "layerID": "eth_white",
@@ -483,9 +483,9 @@
     "layerID": "cota_route",
     "isSimpleLayer": "TRUE",
     "layerType": "T",
-    "extentType": 2,
-    "dataType": 3,
-    "featureType": 3,
+    "extentType": 3,
+    "dataType": 4,
+    "featureType": 2,
     "dataGettingType": "esri.feature",
     "domainHead": "cura-gis-web.asc.ohio-state.edu",
     "typeOfSource": "Mapserver",
