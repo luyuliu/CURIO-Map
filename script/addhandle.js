@@ -101,10 +101,6 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			break;
 	}
 	switch (layerID) {
-		case "cota_route":
-		columbus311Layer = L.esri.featureLayer({
-			url: URL});
-		break;
 		case "columbus311":
 			console.log("it's there");
 			URL = 'http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer/22';
