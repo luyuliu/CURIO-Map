@@ -315,7 +315,7 @@
     "layerName": "Columbus 311 requests"
   },
   {
-    "layerID": "eth_asian",
+    "layerID": "eth_white",
     "isSimpleLayer": "TRUE",
     "layerType": "S",
     "extentType": 1,
@@ -327,8 +327,8 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "Asian Percent"
-  },
+    "layerName": "White Percent"
+  }, 
   {
     "layerID": "eth_his",
     "isSimpleLayer": "TRUE",
@@ -360,7 +360,7 @@
     "layerName": "Black Percent"
   },
   {
-    "layerID": "eth_white",
+    "layerID": "eth_asian",
     "isSimpleLayer": "TRUE",
     "layerType": "S",
     "extentType": 1,
@@ -372,7 +372,7 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "White Percent"
+    "layerName": "Asian Percent"
   },
   {
     "layerID": "med_income",

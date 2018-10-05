@@ -27,66 +27,77 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			colors = ["#C71585", "#FF1493", "#FF69B4", "#FFC0CB", "#f7e3e3"];
 			grades = [3.99, 1.83, 0.94, 0.34];
 			variables = ["AsianNH", "AsianNHPct", "Total"];
+			realVariables = ["Asian Population", "Asian Percentage", "Total Population"];
 			break;
 
 		case "eth_his":
 			colors = ["#8B0000", "#CD5C5C", "#F08080", "#FFA07A", "#f7e3e3"];
 			grades = [4.86, 2.84, 1.87, 1.16];
 			variables = ["Hispanic", "HispPct", "Total"];
+			realVariables = ["Hispanic Population", "Hispanic Percentage", "Total Population"];
 			break;
 
 		case "eth_black":
 			colors = ["#006400", "#008000", "#3CB371", "#9ACD32", "#DDF9D2"];
 			grades = [33.5, 9.4, 3.17, 1.08];
 			variables = ["BlackNH", "BlackNHPct", "Total"];
+			realVariables = ["Black Population", "Black Percentage", "Total Population"];
 			break;
 
 		case "eth_white":
 			colors = ["#000080", "#0000CD", "#6495ED", "#B0C4DE", "#DDF9D2"];
 			grades = [94.3, 88.67, 77.87, 53.3];
 			variables = ["WhiteNH", "WhiteNHPct", "Total"];
+			realVariables = ["White Population", "White Percentage", "Total Population"];
 			break;
 
 		case "med_income":
 			colors = ["#800000", "#A52A2A", "#A0522D", "#DEB887", "#FFF8DC"];
 			grades = [81780, 61284, 43577, 30064];
 			variables = ["Total", "MEDINCOME"];
+			realVariables = ["Total Population","Median Income" ];
 			break;
 
 		case "commute_min":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
 			grades = [27, 24, 22, 19];
 			variables = ["Total", "COMMUTEMIN"];
+			realVariables = ["Total Population","Average Commute Minutes"  ];
 			break;
 
 		case "walk_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
 			grades = [6.01, 2.94, 2.94, 1.53];
 			variables = ["Total", "WALKRATE"];
+			realVariables = ["Total Population", "Walking Percent to Work"  ];
 			break;
 
 		case "auto_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
 			grades = [90, 85.6, 80.7, 72.4];
 			variables = ["Total", "AUTORATE"];
+			realVariables = ["Total Population", "Driving Percent to Work"  ];
 			break;
 
 		case "trans_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
 			grades = [8.25, 3.97, 1.77, 0.01];
 			variables = ["Total", "TRANSRATE"];
+			realVariables = ["Total Population", "Public Transit Percent to Work"  ];
 			break;
 
 		case "bike_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
 			grades = [4.93, 2.64, 1.44, 0.01];
 			variables = ["Total", "BIKERATE"];
+			realVariables = ["Total Population", "Biking Percent to Work"  ];
 			break;
 
 		case "pool_rate":
 			colors = ["#2F4F4F", "#778899", "#808080", "#A9A9A9", "#D3D3D3"];
 			grades = [27, 24, 22, 19];
 			variables = ["Total", "POOLRATE"];
+			realVariables = ["Total Population", "Carpool Percent to Work"  ];
 			break;
 	}
 	switch (layerID) {
@@ -1117,7 +1128,7 @@ function checkedHandle(layerID, dataType, URL, symbolType, jsonp, acolor) {
 			}
 			//console.log(layerID, dataType, URL, symbolType, jsonp, acolor)
 			if (dataType == 7) {
-				jsonp = [grades, colors, variables];
+				jsonp = [grades, colors, variables,realVariables];
 			}
 			addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor);
 			flagList[layerID] = 1;

@@ -167,6 +167,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
 		grades = jsonp[0];
 		colors = jsonp[1];
 		variables = jsonp[2];
+		realVariables=jsonp[3];
 		var geoJsonLayer = L.geoJson(null, {
 			style: function (feature) {
 				edgeColor = "#000000";
@@ -198,8 +199,8 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
 						// TODO: click
 						feature = e.target.feature;
 						var content = ""
-						for (var index in variables) {
-							content = content + variables[index] + ": " + feature.properties[variables[index]] + "<br/>"
+						for (var index in realVariables) {
+							content = content + realVariables[index] + ": " + feature.properties[variables[index]] + "<br/>"
 						}
 						var popup = L.popup().setLatLng([e.latlng.lat, e.latlng.lng]).setContent(content).openOn(map);
 					}
