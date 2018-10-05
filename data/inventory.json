@@ -478,5 +478,20 @@
     "color": "",
     "icon": "",
     "layerName": "Carpool to Work Rate"
+  },
+  {
+    "layerID": "cota_route",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "cura-gis-web.asc.ohio-state.edu",
+    "typeOfSource": "Mapserver",
+    "URL": "http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/COTA_network_layer_viz_v2/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "COTA Bus Routes"
   }
 ]
