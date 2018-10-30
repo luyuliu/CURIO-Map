@@ -294,31 +294,31 @@ function tutorialHandle() {
         intro = "This panel contains multiple layers to display and overlay.";
         break;
       case 7:
-        item = "emergency-checkbox";
+        item = "cota_route-checkbox";
         intro = "For each layer, check/uncheck the checkbox to add/remove the layer to/from the map.";
         break;
       case 8:
-        item = "emergency-metadata";
+        item = "cota_route-metadata";
         intro = "And click on the title of each layer to see the metadata.";
         break;
       case 9:
-        item = "emergency-list-item";
+        item = "cota_route-list-item";
         intro = "The sequence of the layers in this list is also the sequence of z-index of each layer. Drag the handle to move and change the z-index.<br/><br/>Click on the expanding arrow to see more functions."
         break;
       case 10:
-        item = "emergency-legend-btn";
+        item = "cota_route-legend-btn";
         intro = "Click on the 'Legend' button to expand the legend of this layer. Legend can only be opened after the layer is added to the map.";
         break;
       case 11:
-        item = "emergency-upmost-btn";
+        item = "cota_route-upmost-btn";
         intro = "Click on the 'To Top' button to move this layer to the top of the list as well as the z-index will be raised to the top.";
         break;
       case 12:
-        item = "emergency-zoomto-btn";
+        item = "cota_route-zoomto-btn";
         intro = "Click on the 'Zoomto' button to zoom the map to the extent of the layer."
         break;
       case 13:
-        item = "emergency-slider"
+        item = "cota_route-slider"
         intro = "Drag the slider to change the opacity of the layer."
         break;
       case 14:
@@ -356,24 +356,24 @@ function tutorialHandle() {
           }
           break;
         case "11":
-          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-            $("#emergency-toggle").trigger("click");
+          if ($("#cota_route-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#cota_route-toggle").trigger("click");
           }
           if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
             $("#layer-control-panel-inner").trigger("click")
           }
           break;
         case "12":
-          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-            $("#emergency-toggle").trigger("click");
+          if ($("#cota_route-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#cota_route-toggle").trigger("click");
           }
           if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
             $("#layer-control-panel-inner").trigger("click")
           }
           break;
         case "13":
-          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-            $("#emergency-toggle").trigger("click");
+          if ($("#cota_route-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#cota_route-toggle").trigger("click");
           }
           if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
             $("#layer-control-panel-inner").trigger("click")
@@ -388,8 +388,8 @@ function tutorialHandle() {
           }
           break;
         case "14":
-          if ($("#emergency-controlcontainer").attr("class") != "panel-collapse collapse in") {
-            $("#emergency-toggle").trigger("click");
+          if ($("#cota_route-controlcontainer").attr("class") != "panel-collapse collapse in") {
+            $("#cota_route-toggle").trigger("click");
           }
           if ($("#collapseOne1").attr("class") != "panel-collapse collapse in") {
             $("#layer-control-panel-inner").trigger("click")
