@@ -869,7 +869,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 	}
 
 	if (dataType == 8){// "GeoServer features collection"
-
+		
 	}
 }
 
