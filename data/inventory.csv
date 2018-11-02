@@ -1,10 +1,10 @@
 layerID,isSimpleLayer,layerType,extentType,dataType,featureType,dataGettingType,domainHead,typeOfSource,URL,color,icon,layerName
-commercial,TRUE,S,2,3,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/CommercialPOI/MapServer,,,Commercial POI
-education,TRUE,S,2,3,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/EducationPOI/MapServer,,,Education POI
-government,TRUE,S,2,3,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/GovernmentPOI/MapServer,,,Government POI
-groupquarter,TRUE,S,2,3,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/GroupQuartersPOI/MapServer,,,GroupQuarters POI
-publicplace,TRUE,S,2,3,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/PublicPlacesPOI/MapServer,,,PublicPlace POI
-transportation,TRUE,T,2,3,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/TransportationPOI/MapServer,,,Transportation POI
+commercial,TRUE,S,2,8,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/CommercialPOI/MapServer,,,Commercial POI
+education,TRUE,S,2,8,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/EducationPOI/MapServer,,,Education POI
+government,TRUE,S,2,8,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/GovernmentPOI/MapServer,,,Government POI
+groupquarter,TRUE,S,2,8,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/GroupQuartersPOI/MapServer,,,GroupQuarters POI
+publicplace,TRUE,S,2,8,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/PublicPlacesPOI/MapServer,,,PublicPlace POI
+transportation,TRUE,T,2,8,3,esri.feature,arcgiswebadp3.morpc.org,Mapserver,https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/TransportationPOI/MapServer,,,Transportation POI
 homeown,TRUE,S,1,7,3,json,N/A,local resource,,,,Home ownership
 sdw_sdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/Sidewalks/MapServer,,,Sidewalk
 sdw_nsdw,TRUE,T,3,4,2,esri.tile,arcgiswebadp1.morpc.org,Mapserver,http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer,,,Sidewalk gaps

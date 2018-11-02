@@ -857,7 +857,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 
 
 	}
-	if (dataType == 5) { // Dynamic layer
+	if (dataType == 5) { // "Dynamic layer"
 		eval(layerID + "Layer = L.esri.dynamic({" +
 			"url: '" + URL + "'," +
 			"pane: layerID + 'Pane'" +
@@ -865,6 +865,10 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		eval("map.addLayer(" + layerID + "Layer);")
 		flagList[layerID] = 1;
 		return false;
+
+	}
+
+	if (dataType == 8){// "GeoServer features collection"
 
 	}
 }
