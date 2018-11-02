@@ -1,0 +1,192 @@
+[
+  {
+    "layerID": "commercial",
+    "left": "This layer shows the commercial points of interest (POI) in Columbus Ohio.",
+    "right": "The data are courtesy of <a href=https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI target=_blank>MORPC.</a>"
+  },
+  {
+    "layerID": "education",
+    "left": "This layer shows the education points of interest (POI) in Columbus Ohio.",
+    "right": "The data are courtesy of <a href=https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI target=_blank>MORPC.</a>"
+  },
+  {
+    "layerID": "government",
+    "left": "This layer shows the government points of interest (POI) in Columbus Ohio.",
+    "right": "The data are courtesy of <a href=https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI target=_blank>MORPC.</a>"
+  },
+  {
+    "layerID": "groupquarter",
+    "left": "This layer shows the group quarter points of interest (POI) in Columbus Ohio.",
+    "right": "The data are courtesy of <a href=https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI target=_blank>MORPC.</a>"
+  },
+  {
+    "layerID": "publicplace",
+    "left": "This layer shows the public place points of interest (POI) in Columbus Ohio.",
+    "right": "The data are courtesy of <a href=https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI target=_blank>MORPC.</a>"
+  },
+  {
+    "layerID": "transportation",
+    "left": "This layer shows the transportation points of interest (POI) in Columbus Ohio.",
+    "right": "The data are courtesy of <a href=https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI target=_blank>MORPC.</a>"
+  },
+  {
+    "layerID": "homeown",
+    "left": "This map shows housing characteristics by census tract in the Mid-Ohio Regional Planning Commission (MORPC) planning area. This is an interactive map, which means when clicking on the map, the information will be presented by popup.",
+    "right": "<h4>MORPC PLANNING AREA HOUSING DATA</h4><p>Housing data are from the <a href=https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml target=_blank>US Census Bureau.</a>"
+  },
+  {
+    "layerID": "sdw_sdw",
+    "left": "<p>This map shows the status of the <a href=http://www.morpc.org target=_blank>MORPC sidewalk survey.</a> Areas where sidewalks don't exist are shown.<h4>SIDEWALKS</h4><p><svg height=14 width=28><rect fill=#0088FF height=5 width=24 y=5></rect></svg>Current Sidwalks<p><svg height=14 width=28><circle cx=4 cy=5 fill=#e64c00 r=3></circle><circle cx=10 cy=5 fill=#e64c00 r=3></circle><circle cx=16 cy=5 fill=#e64c00 r=3></circle><circle cx=21 cy=5 fill=#e64c00 r=3></circle></svg>Sidewalk Gaps",
+    "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/tool-resource/central-ohio-data-catalog/ target=_blank>MORPC.</a></div>"
+  },
+  {
+    "layerID": "sdw_nsdw",
+    "left": "<p>This map shows the status of the <a href=http://www.morpc.org target=_blank>MORPC sidewalk survey.</a> Areas where sidewalks don't exist are shown.<h4>SIDEWALKS</h4><p><svg height=14 width=28><rect fill=#0088FF height=5 width=24 y=5></rect></svg>Current Sidwalks<p><svg height=14 width=28><circle cx=4 cy=5 fill=#e64c00 r=3></circle><circle cx=10 cy=5 fill=#e64c00 r=3></circle><circle cx=16 cy=5 fill=#e64c00 r=3></circle><circle cx=21 cy=5 fill=#e64c00 r=3></circle></svg>Sidewalk Gaps",
+    "right": "<h4>Sidewalk Survey Data</h4><div class=panel id=boroughs-tab><p>Sidewalk survey data are courtesy of <a href=http://www.morpc.org/tool-resource/central-ohio-data-catalog/ target=_blank>MORPC.</a></div>"
+  },
+  {
+    "layerID": "bikepath_path",
+    "left": "<p><h4><p><svg height=14 width=28><rect fill=#54BA61 height=5 width=24 y=5></rect></svg> BIKE GREENWAYS</h4><p>Bike greenways are dedicated paths for fitness activites.<h4><img src=./img/parkandpedal.png> <img src=./img/trailhead.png> BIKE TRAIL HEADS</h4><p>Trail heads allow access to greenways. Most have parking and park facilities at them.<h4><svg height=22 width=28><line style=stroke:red;stroke-width:4 x1=0 x2=28 y1=8 y2=8></line><line style=stroke:#0f0;stroke-width:4 x1=0 x2=28 y1=15 y2=15></line><line style=stroke:#eda411;stroke-width:4 x1=0 x2=28 y1=20 y2=20></line></svg> ROUTES BY LEVEL OF COMFORT</h4><p>These are streets rated by the level of comfort of bicycle riders",
+    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div>"
+  },
+  {
+    "layerID": "bikepath_green",
+    "left": "<p><h4><p><svg height=14 width=28><rect fill=#54BA61 height=5 width=24 y=5></rect></svg> BIKE GREENWAYS</h4><p>Bike greenways are dedicated paths for fitness activites.<h4><img src=./img/parkandpedal.png> <img src=./img/trailhead.png> BIKE TRAIL HEADS</h4><p>Trail heads allow access to greenways. Most have parking and park facilities at them.<h4><svg height=22 width=28><line style=stroke:red;stroke-width:4 x1=0 x2=28 y1=8 y2=8></line><line style=stroke:#0f0;stroke-width:4 x1=0 x2=28 y1=15 y2=15></line><line style=stroke:#eda411;stroke-width:4 x1=0 x2=28 y1=20 y2=20></line></svg> ROUTES BY LEVEL OF COMFORT</h4><p>These are streets rated by the level of comfort of bicycle riders",
+    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div>"
+  },
+  {
+    "layerID": "bikepath_heads",
+    "left": "<p><h4><p><svg height=14 width=28><rect fill=#54BA61 height=5 width=24 y=5></rect></svg> BIKE GREENWAYS</h4><p>Bike greenways are dedicated paths for fitness activites.<h4><img src=./img/parkandpedal.png> <img src=./img/trailhead.png> BIKE TRAIL HEADS</h4><p>Trail heads allow access to greenways. Most have parking and park facilities at them.<h4><svg height=22 width=28><line style=stroke:red;stroke-width:4 x1=0 x2=28 y1=8 y2=8></line><line style=stroke:#0f0;stroke-width:4 x1=0 x2=28 y1=15 y2=15></line><line style=stroke:#eda411;stroke-width:4 x1=0 x2=28 y1=20 y2=20></line></svg> ROUTES BY LEVEL OF COMFORT</h4><p>These are streets rated by the level of comfort of bicycle riders",
+    "right": "<h4>BIKE DATA</h4><div class=panel id=boroughs-tab><p>Trail and Street data come from MORPC.</div>"
+  },
+  {
+    "layerID": "water_npdes",
+    "left": "<p>This map displays NPDES permit holders in Ohio. The <a href=https://www.epa.gov/npdes =_blank>National Pollution Discharge Elimination System</a> (NPDES) is a pollution regulation system to decrease point water pollution sources.",
+    "right": "<h4>NPDES Data</h4><div class=panel id=boroughs-tab><p>NPDES data are served by the Ohio EPA."
+  },
+  {
+    "layerID": "trans_cabsN",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_cabsS",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_cabsER",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_cabsBV",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_parkingC",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_parkingB",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_parkingA",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "trans_parkingG",
+    "left": "<p>This map shows transportation data for the OSU campus area. Parking lots are broken out by permit type. CABS Bus lines are shown by route.<hr><div class=col-md-6><h4>Parking Lots</h4><p><svg height=14 width=28><rect fill=#B7E85D height=14 width=14></rect></svg>Green Lots - Permit C<p><svg height=14 width=28><rect fill=##EDF0E8 height=14 width=14></rect></svg>Orange Lots - Permit B<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Red Lots - Permit A<hr><h4>Parking Garages</h4><p><svg height=14 width=28><rect fill=#00C5FF height=14 width=14></rect></svg>Visitor Only<p><svg height=14 width=28><rect fill=#A11FF1 height=14 width=14></rect></svg>Permit/Visitor<p><svg height=14 width=28><rect fill=#FFBEE8 height=14 width=14></rect></svg>Permit Only until 4:00 Garages<p><svg height=14 width=28><rect fill=#FF0000 height=14 width=14></rect></svg>Permit Only 24 Hour Garages<hr><h4>CABS Bus Lines</h4><p><svg height=14 width=28><rect fill=#77787B height=4 width=14 y=5></rect></svg>CABS North Loop<p><svg height=14 width=28><rect fill=#C1262C height=4 width=14 y=5></rect></svg>CABS South Loop<p><svg height=14 width=28><rect fill=#657CAC height=4 width=14 y=5></rect></svg>CABS East Residential Loop<p><svg height=14 width=28><rect fill=#F26122 height=4 width=14 y=5></rect></svg>CABS North Express Loop</div>",
+    "right": "<h4>OSU Data</h4><div class=panel id=boroughs-tab><p>All OSU data comes from the GIS servers hosted by OSU. The map interface to these data is at <a href=http://gismaps.osu.edu target=_blank>gismaps.osu.edu.</a> The GIS server hosting the data can be reached <a href=https://gismaps.osu.edu/arcgis/rest/services target=_blank>here."
+  },
+  {
+    "layerID": "tree",
+    "left": "<p>This is a map of the trees maintained by the City of Columbus.. This database has the locations along with various characteristics of the trees like condition, age, etc. Try changing the basemap to imagery or topographic at tighter zoom to see exactly where the largest trees are.<hr><div class=col-md-6><h4><svg height=28 width=56><circle cx=7 cy=14 fill=#D2E0A2 r=7></circle><circle cx=21 cy=14 fill=#D2E0A2 r=10></circle><circle cx=42 cy=14 fill=#A87000 r=14></circle></svg> TREES</h4><p>Circles represent trees that are in the City of Columbus tree management system. The size of the circle represents the diameter of the trunk at 4.5 feet from the ground also known as <a href='https://www.portlandoregon.gov/trees/?c=59508&a=424017%22target=new' title='DBH measuring technique'>diameter at breast height (DBH).</a> Larger trees are shaded orange to make them stand out.<hr></div>",
+    "right": "<h4>TREE DATA</h4><div class=panel id=boroughs-tab><p>Columbus Tree Data courtesy of <a href=https://www.columbus.gov/technology/gis/ target=_blank>the City of Columbus.</a> Download the tree data <a href=https://opendata.arcgis.com/datasets/674e4a358e8042f69a734f229a93823c_1.geojson target=_blank>at the City of Columbus open data site.</a></div>"
+  },
+  {
+    "layerID": "parkingmeters",
+    "left": "This map layer shows parking meters in the City of Columbus. Information provided about each meter includes its operational status, in-service hours, maximum time, hourly-rate, and handicap accessibility.",
+    "right": "<h4>PARKING METERS DATA</h4><div class=panel id=boroughs-tab><p>Columbus parking meters Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/parking-meters target=_blank>the City of Columbus.</a> </div>"
+  },
+  {
+    "layerID": "industry",
+    "left": "This map layer shows industrial facilities in the City of Columbus. This layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
+    "right": "<h4>INDUSTRY DATA</h4><div class=panel id=boroughs-tab><p>Columbus Industry Facilities Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/industrial-facilties target=_blank>the City of Columbus.</a></div>"
+  },
+  {
+    "layerID": "medical",
+    "left": "This map layer shows office facilities in the City of Columbus. Corporate and non-profit offices are included. This layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
+    "right": "<h4>MEDICAL FACILITIES DATA</h4><div class=panel id=boroughs-tab><p>Columbus Medical Facilities Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/medical-facilities target=_blank>the City of Columbus.</a></div>"
+  },
+  {
+    "layerID": "emergency",
+    "left": "This map layer shows facilities related to emergency response in the City of Columbus. Police and fire stations, as well as other facilities, are included. This layer is maintained through a cooperative effort by multiple departments of the City of Columbus using first-hand knowledge of the area as well as a variety of authoritative data sources. While significant effort is made to ensure the data is as accurate and comprehensive as possible, some points of interest may be excluded and included points may not be immediately updated as change occurs.",
+    "right": "<h4>EMERGENCY FACILITIES DATA</h4><div class=panel id=boroughs-tab><p>Columbus Emergency Facilities Data courtesy of <a href=https://data-columbus.opendata.arcgis.com/datasets/emergency-response-facilities target=_blank>the City of Columbus.</a></div>"
+  },
+  {
+    "layerID": "columbus311",
+    "left": "<p>The City of Columbus Service Center provides a way for the resident to submit a request for City Services. The Service Center is the single point of contact for requesting all non-emergency City services and is available to residents, City businesses, and visitors.</p></br><p>The Columbus Service Center is also known as \"3-1-1\"; its mission is to provide access to City services and City information with the highest possible levels of customer service. The \"3-1-1\" initiative strives to help City agencies provide efficient service delivery by allowing them to focus on their core missions, manage workloads efficiently, provide insight into the needs of residents, and measure how well services are delivered.</p>",
+    "right": "City of Columbus 311 Requests - Last 7 Days."
+  },
+  {
+    "layerID": "eth_asian",
+    "left": "<p>This layer shows the percentage of Asian people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "eth_his",
+    "left": "<p>This layer shows the percentage of Hispanic people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "eth_black",
+    "left": "<p>This layer shows the percentage of African American people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "eth_white",
+    "left": "<p>This layer shows the percentage of White people in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "med_income",
+    "left": "<p>This layer shows the median income in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "commute_min",
+    "left": "<p>This layer shows the commute time in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "walk_rate",
+    "left": "<p>This layer shows the percentage of people who walk to working places in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "auto_rate",
+    "left": "<p>This layer shows the percentage of people who drive to working place in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "trans_rate",
+    "left": "<p>This layer shows the percentage of people who use public transit to working in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "bike_rate",
+    "left": "<p>This layer shows the percentage of people who use bicycle to working place in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "pool_rate",
+    "left": "<p>This layer shows the percentage of carpool to working place in the census tract level. Popups is usable.</p>",
+    "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  }
+]
