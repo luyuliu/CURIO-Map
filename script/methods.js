@@ -6,6 +6,10 @@
  *   Contact: liu.6544@osu.edu
  *
  * ******************************************************* */
+
+function print(a){
+	console.log(a)
+}
 var featureList = []
 
 function testFailedHandle() //error information
@@ -858,7 +862,7 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 
 	}
 	if (dataType == 5) { // "Dynamic layer"
-		eval(layerID + "Layer = L.esri.dynamic({" +
+		eval(layerID + "Layer = L.esri.dynamicMapLayer({" +
 			"url: '" + URL + "'," +
 			"pane: layerID + 'Pane'" +
 			"});")
@@ -869,10 +873,16 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 	}
 
 	if (dataType == 8){// "GeoServer features collection"
-		
+		print("adf")
+
+
+
 	}
 }
 
+function addServerMapCollection(){
+
+}
 
 //addLayerHandle: when initializing or add custom layers, this method is fired.
 //Include: add items and their eventlisteners, remove eventlisteners
