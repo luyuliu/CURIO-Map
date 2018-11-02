@@ -7,7 +7,7 @@
  *
  * ******************************************************* */
 
-function print(a){
+function print(a) {
 	console.log(a)
 }
 var featureList = []
@@ -171,7 +171,7 @@ function receiveJsonp(URL2, layerID, jsonp, acolor, dataType) {
 		grades = jsonp[0];
 		colors = jsonp[1];
 		variables = jsonp[2];
-		realVariables=jsonp[3];
+		realVariables = jsonp[3];
 		var geoJsonLayer = L.geoJson(null, {
 			style: function (feature) {
 				edgeColor = "#000000";
@@ -500,6 +500,18 @@ function addLegendHandle(layerID, url, grades, colors, dataType, icons, color) {
 				getIconBlockDiv(layerID, icons, color, getLayerName(layerID), null)
 			} else if (dataType == 2) {
 				getIconBlockDiv(layerID, null, color, getLayerName(layerID), null)
+			} else if (dataType == 5) {
+				$.ajax({
+					url: url + "?f=pjson",
+					type: 'GET',
+					async:false,
+					dataType: 'JSON',
+					success: function (data) {
+						//console.log(data)
+						url = url.substring(0, url.indexOf("MapServer") + 9)
+						getMapServerCollectionLegendDiv(layerID, url + '/legend?f=pjson')
+					}
+				});
 			}
 
 	}
@@ -557,6 +569,31 @@ function getMapServerLegendDiv(layerID, url, layerName) { //return one map's leg
 
 }
 
+function getMapServerCollectionLegendDiv(layerID, url) {
+	$.ajax({
+		url: url,
+		type: 'GET',
+		async:false,
+		dataType: 'JSON',
+		success: function (data) {
+			//console.log(layerName)
+			var alegendContent = '<table><tbody>'
+			data=data["layers"]
+			print (data)
+			for (var numberOfLayer in data) {
+					labelContent = data[numberOfLayer].legend[0].label;
+					alegendContent += "<tr valign='middle'>" +
+						"<td class='tablehead' align='middle'><img src='data:image/png;base64," + data[numberOfLayer].legend[0].imageData + "'></td>" +
+						"<td style='width:200px;' class='tablecontent' align='right'><span>" + data[numberOfLayer].layerName+ "</span><td>" + "</tr>"
+			}
+
+			alegendContent += "</tbody><table>"
+			document.getElementById('legend-' + layerID + '-collapse').innerHTML = alegendContent;
+		}
+	})
+
+}
+
 function getGraduatedColorsDiv(layerID, grades, colors, flag) { //grades.length must === colors.length
 	if (flag) {
 		var legendContent2 = '<table><tbody>'
@@ -571,8 +608,8 @@ function getGraduatedColorsDiv(layerID, grades, colors, flag) { //grades.length 
 				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'>" + labelContent2 + "</span><td>" + "</tr>";
 		}
 		legendContent2 += "<tr valign='middle'>" +
-				"<td class='tablehead' align='middle'>" + getColorBlockString(colors[colors.length-1]) + "</td>" +
-				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'> 0% - " + grades[grades.length-1] + "%</span><td>" + "</tr>";
+			"<td class='tablehead' align='middle'>" + getColorBlockString(colors[colors.length - 1]) + "</td>" +
+			"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'> 0% - " + grades[grades.length - 1] + "%</span><td>" + "</tr>";
 		legendContent2 += "</tbody><table>";
 		document.getElementById('legend-' + layerID + '-collapse').innerHTML += legendContent2;
 	}
@@ -589,8 +626,8 @@ function getGraduatedColorsDiv(layerID, grades, colors, flag) { //grades.length 
 				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'>" + labelContent2 + "</span><td>" + "</tr>";
 		}
 		legendContent2 += "<tr valign='middle'>" +
-				"<td class='tablehead' align='middle'>" + getColorBlockString(colors[colors.length-1]) + "</td>" +
-				"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'> 0 - " + grades[grades.length-1] + "</span><td>" + "</tr>";
+			"<td class='tablehead' align='middle'>" + getColorBlockString(colors[colors.length - 1]) + "</td>" +
+			"<td class='tablecontent' align='right' style='width:90%;'><span style='width:90%;'> 0 - " + grades[grades.length - 1] + "</span><td>" + "</tr>";
 		legendContent2 += "</tbody><table>";
 		document.getElementById('legend-' + layerID + '-collapse').innerHTML += legendContent2;
 	}
@@ -871,16 +908,9 @@ function addDefaultHandles(layerID, dataType, URL, symbolType, jsonp, acolor) //
 		return false;
 
 	}
-
-	if (dataType == 8){// "GeoServer features collection"
-		print("adf")
-
-
-
-	}
 }
 
-function addServerMapCollection(){
+function addServerMapCollection() {
 
 }
 
