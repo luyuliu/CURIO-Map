@@ -1,5 +1,95 @@
 [
   {
+    "layerID": "commercial",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "arcgiswebadp3.morpc.org",
+    "typeOfSource": "Mapserver",
+    "URL": "https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/CommercialPOI/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "Commercial POI"
+  },
+  {
+    "layerID": "education",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "arcgiswebadp3.morpc.org",
+    "typeOfSource": "Mapserver",
+    "URL": "https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/EducationPOI/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "Education POI"
+  },
+  {
+    "layerID": "government",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "arcgiswebadp3.morpc.org",
+    "typeOfSource": "Mapserver",
+    "URL": "https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/GovernmentPOI/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "Government POI"
+  },
+  {
+    "layerID": "groupquarter",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "arcgiswebadp3.morpc.org",
+    "typeOfSource": "Mapserver",
+    "URL": "https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/GroupQuartersPOI/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "GroupQuarters POI"
+  },
+  {
+    "layerID": "publicplace",
+    "isSimpleLayer": "TRUE",
+    "layerType": "S",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "arcgiswebadp3.morpc.org",
+    "typeOfSource": "Mapserver",
+    "URL": "https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/PublicPlacesPOI/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "PublicPlace POI"
+  },
+  {
+    "layerID": "transportation",
+    "isSimpleLayer": "TRUE",
+    "layerType": "T",
+    "extentType": 2,
+    "dataType": 3,
+    "featureType": 3,
+    "dataGettingType": "esri.feature",
+    "domainHead": "arcgiswebadp3.morpc.org",
+    "typeOfSource": "Mapserver",
+    "URL": "https://arcgiswebadp3.morpc.org/arcgis/rest/services/POI/TransportationPOI/MapServer",
+    "color": "",
+    "icon": "",
+    "layerName": "Transportation POI"
+  },
+  {
     "layerID": "homeown",
     "isSimpleLayer": "TRUE",
     "layerType": "S",
@@ -12,7 +102,7 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "Home Ownership"
+    "layerName": "Home ownership"
   },
   {
     "layerID": "sdw_sdw",
@@ -42,7 +132,7 @@
     "URL": "http://arcgiswebadp1.morpc.org/webadaptor/rest/services/transportation/NoSidewalks/MapServer",
     "color": "",
     "icon": "",
-    "layerName": "Sidewalk Gaps"
+    "layerName": "Sidewalk gaps"
   },
   {
     "layerID": "bikepath_path",
@@ -102,7 +192,7 @@
     "URL": "http://epagis1.oit.ohio.gov/arcgis/rest/services/WM/DSW/MapServer/1",
     "color": "",
     "icon": "",
-    "layerName": "NPDES Individual"
+    "layerName": "NPDES individual"
   },
   {
     "layerID": "trans_cabsN",
@@ -117,7 +207,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/2",
     "color": "#8E8E8E",
     "icon": "",
-    "layerName": "OSU Cabs Loopnorth"
+    "layerName": "OSU cabs loopnorth"
   },
   {
     "layerID": "trans_cabsS",
@@ -132,7 +222,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/3",
     "color": "#FF0000",
     "icon": "",
-    "layerName": "OSU Cabs Loopsouth"
+    "layerName": "OSU cabs loopsouth"
   },
   {
     "layerID": "trans_cabsER",
@@ -147,7 +237,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/4",
     "color": "#003EFF",
     "icon": "",
-    "layerName": "OSU Cabs Eastresidential"
+    "layerName": "OSU cabs eastresidential"
   },
   {
     "layerID": "trans_cabsBV",
@@ -162,7 +252,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/5",
     "color": "#36D307",
     "icon": "",
-    "layerName": "OSU Cabs Buckeyevillage"
+    "layerName": "OSU cabsBuckeyevillage"
   },
   {
     "layerID": "trans_parkingC",
@@ -222,7 +312,7 @@
     "URL": "https://gismaps.osu.edu/arcgis/rest/services/OSUMaps/Transportation/MapServer/18",
     "color": "#0D8DF1",
     "icon": "",
-    "layerName": "OSU Parking Accessible"
+    "layerName": "OSU Parking accessible"
   },
   {
     "layerID": "tree",
@@ -237,7 +327,7 @@
     "URL": "http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/CURIO/Columbus_Trees/MapServer",
     "color": "",
     "icon": "",
-    "layerName": "Columbus Trees"
+    "layerName": "Columbus trees"
   },
   {
     "layerID": "parkingmeters",
@@ -252,7 +342,7 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "Parking Meters"
+    "layerName": "Parking meters"
   },
   {
     "layerID": "industry",
@@ -312,10 +402,10 @@
     "URL": "http://maps2.columbus.gov/arcgis/rest/services/Applications/ServiceRequests/MapServer",
     "color": "",
     "icon": "",
-    "layerName": "Columbus 311 Requests"
+    "layerName": "Columbus 311 requests"
   },
   {
-    "layerID": "eth_white",
+    "layerID": "eth_asian",
     "isSimpleLayer": "TRUE",
     "layerType": "S",
     "extentType": 1,
@@ -327,8 +417,8 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "White Percent"
-  }, 
+    "layerName": "Asian Percent"
+  },
   {
     "layerID": "eth_his",
     "isSimpleLayer": "TRUE",
@@ -360,7 +450,7 @@
     "layerName": "Black Percent"
   },
   {
-    "layerID": "eth_asian",
+    "layerID": "eth_white",
     "isSimpleLayer": "TRUE",
     "layerType": "S",
     "extentType": 1,
@@ -372,7 +462,7 @@
     "URL": "",
     "color": "",
     "icon": "",
-    "layerName": "Asian Percent"
+    "layerName": "White Percent"
   },
   {
     "layerID": "med_income",
@@ -478,20 +568,5 @@
     "color": "",
     "icon": "",
     "layerName": "Carpool to Work Rate"
-  },
-  {
-    "layerID": "cota_route",
-    "isSimpleLayer": "TRUE",
-    "layerType": "T",
-    "extentType": 3,
-    "dataType": 4,
-    "featureType": 2,
-    "dataGettingType": "esri.feature",
-    "domainHead": "cura-gis-web.asc.ohio-state.edu",
-    "typeOfSource": "Mapserver",
-    "URL": "http://cura-gis-web.asc.ohio-state.edu/arcgis/rest/services/COTA_network_layer_viz_v2/MapServer",
-    "color": "",
-    "icon": "",
-    "layerName": "COTA Bus Routes"
   }
 ]
