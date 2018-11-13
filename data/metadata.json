@@ -188,5 +188,10 @@
     "layerID": "pool_rate",
     "left": "<p>This layer shows the percentage of carpool to working place in the census tract level. Popups is usable.</p>",
     "right": "Map data collected from census 2010. Processed by CURA@OSU."
+  },
+  {
+    "layerID": "cota_route",
+    "left": "<p>This layer shows the scheduled bus routes of COTA (Central Ohio Transit Agency).</p>",
+    "right": "Map data collected from:  <a href=https://www.cota.com/data/ target=_blank>COTA website</a>."
   }
 ]
