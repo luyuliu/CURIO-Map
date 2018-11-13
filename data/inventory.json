@@ -569,7 +569,6 @@
     "icon": "",
     "layerName": "Carpool to Work Rate"
   },
-  ,
   {
     "layerID": "cota_route",
     "isSimpleLayer": "TRUE",
